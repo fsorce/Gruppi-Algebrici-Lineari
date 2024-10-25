@@ -1,0 +1,339 @@
+\chapter{Geometria Algebrica}
+In questa sezione, assumeremo sempre $\K$ algebricamente chiuso.
+
+\section{Variet\`a affini immerse}
+\begin{definition}
+    Un sottoinsieme $X$ di $\K^n$ si dice una \textbf{varità algebrica affine} (\textbf{immersa}) se esistono $f_1,\dots,f_h$ in $\K[x_1,\dots,x_n]$ tali che 
+	\[X=\cpa{v\in \K^n \mid f_1(v)=\ldots=f_h(v)=0}.\]
+\end{definition}
+%la condizione di finitezza segue da noetherianità
+Data una varità algebrica affine immersa $X$, denotiamo \[I(X)\doteqdot\{f\in \K[x_1,\dots,x_n] \mid f(v)=0 \text{ per ogni } v\in X  \}.\]
+L'insieme $I(X)$ risulta un ideale di $\K[x_1,\dots,x_n]$. Viceversa, se $J$ è un ideale di $ \K[x_1,\dots,x_n]$, denotiamo \[V(J)\doteqdot\left\{v\in \K^n \mid f(v)=0 \text{ per ogni } f\in J\right\}.\]
+%la stessa cosa nel caso $J$ finito
+
+Richiamiamo inoltre il classico Teorema degli Zeri di Hilbert. 
+\begin{notation}
+    Nel seguito, denoteremo con $P$ l'anello $\K[x_1,\dots,x_n]$.
+\end{notation}
+
+\begin{theorem}[Nullstellensatz]
+Se $\K$ \`e un campo algebricamente chiuso e $I,J$ sono ideali di $P$ allora 
+\[V(I)=V(J)\coimplies \sqrt I=\sqrt J.\]
+\end{theorem}
+In particolare abbiamo una corrispondenza biunivoca \[\left\{\text{varietà algebriche affini immerse in $\K^n$} \right\} \longleftrightarrow \left\{\text{ideali radicali di $\K[x_1,\dots,x_n]$}\right\}.\]
+
+%(controesempio classico di $X^2+1$ in $\R[X]$.)
+\begin{example} Vediamo qualche controesempio classico.
+\begin{itemize}
+    \item Se $\K$ non è algebricamente chiuso, il Nullstellensatz non vale: ad esempio per $\K=\R$, il polinomio $X^2+1$ in $\R[X]$ genera un ideale proprio (massimale) $J$ tale che $V(J)=\emptyset$.
+    \item La corrispondenza precedente non vale per gli ideali in generale: $\K=\C$ e $n=1$, l'ideale $J=(x^2)$ è tale che $V(J)=\{0\}$, ma $I(V(J))=(x)\ne J$.
+\end{itemize}
+\end{example}
+
+\medskip 
+Vediamo ora alcune conseguenze del Nullstellensatz.
+\begin{enumerate}
+    \item Gli ideali massimali di $P$ sono tutti e solo quelli della forma $m_\alpha=(x_1-\alpha_1,\dots,x_n-\alpha_n)$, con $\alpha=(\alpha_1,\dots,\alpha_n)$ in $\K^n$.
+    \begin{proof}
+        Che i precedenti siano tutti ideali massimali è evidente, mostriamo che sono i soli. Sia $\mf$ un ideale massimale di $P$. Allora $V(\mf)\ne\emptyset$ (in quanto altrimenti avremmo $P=I(\emptyset)=\sqrt{\mf}=\mf$), dunque esiste un $\alpha$ in $\K^n$ appartenente a $V(\mf)$. Ma allora $\mf_\alpha\subseteq \mf$ e per massimalità di $\mf_\alpha$ si ottiene l'uguaglianza. \end{proof}
+
+        \item Sia $I\subseteq P$ e sia $\alpha$ in $V(I)$. Allora $\sqrt{I}\subseteq \mf_\alpha$ e in generale \[V(I)=\{\alpha\in \K^n \mid \mf_\alpha \supseteq I\}.\]    
+\end{enumerate} 
+Ricordiamo inoltre (mostrarlo per esercizio) che se $I$ è un ideale di $P$, allora si ha \[\sqrt{I}=\bigcap_{\substack{\mf \in \operatorname{Max}(P) \\ I\subseteq \mf}} \mf .\]
+
+
+\begin{definition}
+    Sia $X$ una varietà algebrica affine immersa in $\K^n$. Si definisce l'\textbf{anello delle coordinate} di $X$ come il quoziente \[\K[X]= P/I(X)=\left\{\left.f\right|_{X} \colon f\in P\right\}.\] %delle funzioni regolari su $X$.
+\end{definition}
+
+Ricordiamo che su $\K^n$ è definita una topologia, detta \textbf{topologia di Zariski}, in cui i chiusi sono tutti e soli gli insiemi $V(I)$ al variare degli ideali $I$ in $P$. Ricordiamo infatti che, se $I,J$ sono ideali di $P$, allora \begin{itemize}
+    \item $V(I)\cup V(J)=V(I\cap J)$;
+    \item $\bigcap_{i\in I} V(I_i)=V\left(\sum_{i\in I}I_i\right)$.
+\end{itemize}
+
+\begin{example}
+    Nel caso $\K=\C$ e $n=1$, i chiusi sono gli insiemi con un numero finito di punti, oppure tutto $\C$.
+\end{example}
+
+\begin{definition}
+    Sia $f$ un elemento di $P$. Si definisce l'\textbf{aperto principale} relativo a $f$ come
+	\[\left(\K^n\right)_f\doteqdot \K^n\setminus V(f)=\left\{\alpha\in \K^n \colon f(\alpha)\ne 0\right\}.\] 
+\end{definition}
+Se $U=\K^n\setminus V(I)$ è un aperto e $\alpha$ è in $U$, allora esiste $f$ in $P$ tale che $\alpha\in\left(\K^n\right)_f\subseteq U$. Infatti $I=(f_1,\dots,f_h)$, $V(I)\subseteq V(f_i)$ e $\left(\K^n\right)_{f_i}=\K^n\setminus V(f_i) \subseteq U$. \\
+
+\noindent Dotiamo ogni varietà algebrica affine immersa in $\K^n$ della topologia di sottospazio. Inoltre, definiamo \[X_f\doteqdot\left(\K^n\right)_f\cap X=\{\alpha\in X \colon f(\alpha)\ne 0\}.\]
+
+\begin{remark}
+    L'insieme \[\left\{\frac{g}{f^n} \colon g\in P\right\}\] è ben definito su $\left(\K^n\right)_f$.
+\end{remark}
+
+\begin{definition}[Funzioni regolari]
+    Sia $U$ un aperto di $\K^n$. Si definisce l'insieme delle \textbf{funzioni regolari} su $U$ come \[\Oc_X(U)=\left\{f\colon U \to \K \mid \forall \alpha \in U \ \exists\,g,h\in P\colon g(\alpha)\ne0 \text{ e } f=h/g^n \text{ su } U\cap X_g\right\}.\]
+\end{definition}
+
+
+\begin{lemma}
+Sia $X$ variet\`a affine immersa, allora
+\begin{enumerate}
+	\item $\Oc(X)=\K[X]$
+	\item Se $g\in\K[X]$ allora $\Oc(X_g)=\K[X]_g$
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+Intanto l'affermazione 2. implica l'affermazione 1. scegliendo $g\in\K\nz$. 
+
+Osserviamo che se abbiamo una funzione della forma $f/g^n$ allora essa appartiene a $\Oc(X_g)$, quindi basta mostrare che se $\vp\in \Oc(X_g)$ allora $\vp\in\K[X]_g$. Per definizione, per ogni $\al\in X_g$ esistono $h$ e $k$ tali che $\vp=k/h$ in $X_g\cap X_h=X_{gh}$.
+
+Abbiamo dunque un ricoprimento $X_g=\bigcup X_{gh_i}$ dove $\vp=k_i/h_i$ su $X_{gh_i}$. Sia $I=(h_i)$ l'ideale in $\K[X]_g$ generato dagli $h_i$. Se per assurdo $I\neq \K[X_g]$ allora esiste un massimale $\mf$ che contine $I$. Un massimale corrisponde ad un punto $\al\in X_g\subseteq X$ ma, poich\'e $X_g$ \`e ricoperto dagli $X_{gh_i}$, esiste un indice $i_0$ tale che $\al\in X_{gh_{i_0}}$ e questo \`e assurdo perch\'e vorrebbe dire 
+\[h_{i_0}\notin \mf_\al\supseteq I\ni h_{i_0}.\]
+
+Questo mostra che $I=\K[X_g]$. Possiamo dunque scrivere\footnote{nota che la somma \`e finita per definizione di ideale generato.} $1=\sum \al_i h_i$ per opportuni $\al_i$. Segue che $\vp=\sum \al_i h_i\vp=\sum \al_i k_i$ in $\K[X]_g$, infatti dove $h_i\neq 0$ abbiamo $\vp=k_i/h_i$ e quindi $h_i\vp=k_i$, se invece $h_i(x)=0$ si ha che $h_i(x)\vp(x)=0=k_i(0)$, perch\'e se cos\`i non fosse, poich\'e $x\in X_{h_j}$ per qualche $j\neq i$, si ha che \[k_j/h_j=k_i/h_i\coimplies h_ik_j=k_ih_j\] su $X_{h_ih_j}$ e quindi valutando in $x$ abbiamo $k_i(x)h_j(x)=0$ con $h_j(x)\neq 0$.
+\end{proof}
+
+\section{Variet\`a algebriche e morfismi}
+\begin{definition}[Variet\`a algebrica]
+Spazio topologico compatto $X$ tale che per ogni aperto $U$ abbiamo un insieme di funzioni $\Oc_X(U)\subseteq C^0(X\to \K)$ tale che
+\begin{enumerate}
+	\item Se $U\subseteq V$ e $f\in \Oc_X(V)$ allora $f\res U\in \Oc_X(U)$.
+	\item Se $V=\bigcup U_\al$ e $f:V\to \K$ \`e tale che $f\res{U_\al}\in \Oc_X(U_\al)$ per ogni $\al$ allora $f\in \Oc_X(V)$.
+	\item $(X,\Oc_X)$ \`e localmente isomorfo ad una variet\`a affine immersa, cio\`e per ogni $x\in X$ esiste un intorno $U$ e un omeomorfismo $\vp:U\to Y$ con $Y$ affine tale che per ogni $V$ aperto di $U$ si ha $\vp(V)=W$ aperto e $\vp^\#:\Oc_Y(W)\to\Oc_X(V)$ \`e un isomorfismo.
+\end{enumerate}
+\end{definition}
+
+\begin{example}
+Sia $V=\Mc(n,\K)= \K^{n^2}\supseteq V_{\det}=\GL(n)=X$. Se $U$ \`e un aperto di $X$ pongo $\Oc_X(U)=\Oc_V(U)$. Dimostriamo che $X$ \`e localmente isomorfo ad una variet\`a affine (in realt\`a possiamo morstrare che \`e isomorfo ad una variet\`a affine globalmente):
+
+Sia $Y\subseteq \K^{n^2+1}=V_{x_{ij}}\times \K_{t}$ definito dall'equazione $d(x_{ij})t=1$. La mappa
+\[\Phi:\funcDef{X}{Y}{(x_{ij})}{(x_{ij},\frac1{\det(x_{ij})})}\]
+risulta essere un isomorfismo.
+\end{example}
+
+\begin{proposition}
+Se $X$ \`e una variet\`a affine immersa in $\K^N$, $X_f$ \`e una variet\`a isomorfa ad una variet\`a affine immersa $Y$ data da $V((\cpa{f(x),f(x)t-1}_{f\in I(X)}))\subseteq \K^N_x\times \K_t$.
+\end{proposition}
+\begin{proof}
+ESERCIZIO.
+\end{proof}
+
+\begin{example}
+Sia $X=\Pj^1$. Come spazio topologico, i chiusi sono $\Pj^1,\emptyset$ e sottoinsiemi finiti di punti. Per ogni $U$ aperto di $\Pj^1$ poniamo
+\[\Oc_{\Pj^1}(U)=\cpa{f:U\to \K\mid f\circ \vp_1\in\Oc(\vp_1\ii(U)),f\circ \vp_2\in\Oc(\vp_2\ii(U))}\]
+dove
+\[\vp_1:\funcDef{\K}{\Pj^1}{t}{[t:1]},\quad \vp_2:\funcDef{\K}{\Pj^1}{t}{[1:t]}.\]
+\end{example}
+
+\begin{definition}[Funzione regolare]
+Se $(X,\Oc_X),(Y,\Oc_Y)$ sono variet\`a, la mappa $\vp:X\to Y$ \`e \textbf{regolare} se
+\begin{enumerate}
+	\item $\vp$ \`e continua
+	\item Per ogni $W$ aperto di $Y$, se $f\in\Oc_Y(W)$ allora $f\circ \vp\in \Oc_X(\vp\ii(W))$
+\end{enumerate}
+\end{definition}
+
+\begin{definition}[Variet\`a affine]
+$(X,\Oc_X)$ \`e una \textbf{variet\`a affine} se \`e isomorfa ad una variet\`a affine immersa.
+\end{definition}
+
+Se $X$ \`e una variet\`a affine immersa, un morfismo $\vp:X\to \K^n$ induce un omomorfismo di anelli
+\[\vp^\ast:\funcDef{\K[x_1,\cdots, x_n]}{\K[X]}{f}{f\circ \vp}\]
+in particolare possiamo definire $f_i=\vp^\ast(x_i)=x_i\circ \vp$ in $\K[X]$ tali che $\vp(x)=(f_1(x),\cdots,f_n(x))$ per definizione.
+
+Viceversa, dati $f_1,\cdots, f_n\in\K[X]$ si ha che $\vp(x)=(f_1(x),\cdots, f_n(x))$ \`e una mappa regolare.
+\begin{itemize}
+	\item[$\boxed{\text{Cont.}}$] Ovvio.
+	\item[$\boxed{\text{Pullback}}$] Sia $U=D(g)\subseteq \K^n$. Notiamo che
+	\[\vp\ii(U)=\cpa{x\in X\mid h(x)\doteqdot g(f_1(x),\cdots, f_n(x))\neq 0}=X_h\]
+	Se $\al:U\to \K$ \`e regolare, $\al=\ell/g^n$ con $\ell\in\K[x_1,\cdots, x_n]$, quindi
+	\[\al\circ \vp=frac{\ell(f_1,\cdots,f_n)}{h^n}\]
+	che \`e un elemento di $\Oc(X_h)$ come voluto.
+\end{itemize}
+
+
+\begin{proposition}[Morfismi verso affine]
+Se $Y$ \`e una variet\`a affine allora un morfismo $\vp:X\to Y$ \`e univocamente determinato dall'omomorfismo $\vp^\ast:\K[Y]\to\K[X]$.
+\end{proposition}
+\begin{proof}
+Sia $\psi:X\to \K^n$ tale che 
+	% https://q.uiver.app/#q=WzAsMyxbMCwwLCJYIl0sWzEsMCwiWSJdLFsxLDEsIlxcS15uIl0sWzAsMiwiXFxwc2kiLDJdLFswLDEsIlxcdnAiXSxbMSwyLCJcXHN1YnNldGVxIl1d
+	\[\begin{tikzcd}
+		X & Y \\
+		& {\K^n}
+		\arrow["\vp", from=1-1, to=1-2]
+		\arrow["\psi"', from=1-1, to=2-2]
+		\arrow["\subseteq", from=1-2, to=2-2]
+	\end{tikzcd}\]
+Notiamo che $\vp$ \`e morfismo se e solo se $\psi$ lo \`e. Se $\psi(X)\subseteq Y$ e $f\in I(Y)$ allora $\psi^\ast(f)=f\circ \vp=0$, quindi abbiamo un diagramma di algebre.
+
+Viceversa se un morfismo di algebre sollevo e bla bla bla trovo morfismo di variet\`a.
+\end{proof}
+
+
+\begin{definition}[Prodotto]
+Siano $X,Y$ variet\`a affini immerse in $\K^\ell_x$ e $\K^m_y$ rispettivamente, allora $X\times Y\subseteq \K^{\ell+m}_{(x,y)}$ \`e una variet\`a, data da
+\[X\times Y=V((\cpa{f(x),g(y)}_{f\in I(X),g\in I(Y)}))\subseteq \K^\ell\times\K^m.\]
+\end{definition}
+
+
+\begin{proposition}
+$\K[X\times Y]\cong \K[X]\otimes\K[Y]$
+\end{proposition}
+\begin{proof}
+L'anello delle coordinate del prodotto di due variet\`a affini \`e dato da
+\[\K[X\times Y]=\frac{\K{x_1,\cdots, x_\ell,y_1,\cdots, x_\ell}}{f(x),g(y)}\cong \K[X]\otimes \K[Y]\]
+Infatti abbiamo un morfismo bilineare da $\K[X]\times\K[Y]\to \K[X\times Y]$ dato dal prodotto dei polinomi. Il morfismo indotto $\Phi $\`e surgettivo perch\'e $x_i=\Phi(x_i\times 1)$ e $y_i=\Phi(1\otimes y_i)$, quindi abbiamo i generatori. Per l'iniettivit\`a procediamo per casi
+\begin{itemize}
+	\item Supponiamo $X=\K^\ell$ e $Y=\K^m$, allora abbiamo una inversa di $\Phi$ data da
+	\[x_i\mapsto x_i\otimes 1,\qquad y_i\mapsto 1\otimes y_i\]
+	\item Scrivendo $\K[X\times Y]$ come $\frac{\K[x_1,\cdots, y_\ell]}{(f(x),g(y))}$ abbiamo un morfismo dal numeratore verso $\K[X]\otimes \K[Y]$ ben definito e notiamo che il nucleo \`e esattamente $(f(x),g(y))$. (dimostrare che protto tensore di $\K$-alegbre ridotte finitamente generate \`e ridotta.)
+\end{itemize}
+\end{proof}
+
+\begin{definition}[Prodotto fibrato]
+Se $X,Y,Z$ variet\`a affini e morfismi $f:X\to Z$ e $g:Y\to Z$, definiamo $W=\cpa{(x,y)\mid f(x)=g(y)}\subseteq X\times Y$. 
+% https://q.uiver.app/#q=WzAsNCxbMSwxLCJaIl0sWzAsMSwiWCJdLFsxLDAsIlkiXSxbMCwwLCJXIl0sWzEsMCwiZiIsMl0sWzIsMCwiZyJdLFszLDEsIiIsMix7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dLFszLDIsIiIsMCx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dLFszLDAsIiIsMSx7InN0eWxlIjp7Im5hbWUiOiJjb3JuZXIifX1dXQ==
+\[\begin{tikzcd}
+	W & Y \\
+	X & Z
+	\arrow[dashed, from=1-1, to=1-2]
+	\arrow[dashed, from=1-1, to=2-1]
+	\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=2-2]
+	\arrow["g", from=1-2, to=2-2]
+	\arrow["f"', from=2-1, to=2-2]
+\end{tikzcd}\]
+\end{definition}
+
+\begin{remark}
+Notiamo che $W$ \`e un chiuso, infatti \`e luogo di zeri di $f(x)-g(y)$ in $X\times Y$. Osserviamo per\`o che queste equazioni non sono ridotte a priori.
+\end{remark}
+
+
+\section{Connessione e Irriducibilit\`a}
+Sia $X$ uno spazio topologico connesso. Allora
+\begin{enumerate}
+    \item Se $Y\subset X$ è connesso, allora $\overline{Y}$ è connesso.
+    \item Se $\varphi\colon X \to Y$ è continua, allora $\varphi(X)$ è connesso.
+\end{enumerate}
+
+\begin{exercise}
+    Se $X$ è una varietà algebrica affine, allora \[X \text{ sconnesso } \iff \K[X]=A\times B.\]
+\end{exercise}
+
+\begin{exercise}
+    Siano $X,Y$ due varietà affini connesse. Allora $X\times Y$ è connessa. [Attenzione: la topologia di $X\times Y$ non è la topologia prodotto!]
+\end{exercise}
+
+\begin{exercise}
+    Se $X$ è una varietà, allora $X$ ha un numero finito di componenti connesse. In particolare le componenti connesse sono chiuse e aperte.
+\end{exercise}
+
+\begin{definition}
+    Uno spazio topologico $X$ si dice \textbf{riducibile} se esistono due sottospazi chiusi propri $Z$ e $W$ di $X$ tali che $X=Z\cup W$. Lo spazio $X$ si dice \textbf{irriducibile} se non è riducibile.
+\end{definition}
+
+\begin{remark}
+    Se $X$ è uno spazio di Hausdorff irriducibile, allora $X$ è un punto.
+\end{remark}
+\begin{proof}
+    Se $x,y$ sono punti distinti di $X$, allora esistono due intorni disgiunti $U_x$ e $U_y$ di $x$ e $y$ rispettivamente. Posti $Z=X\setminus U_y$ e $W=X\setminus U_x$, si ottiene $X=Z\cup W$.
+\end{proof}
+
+\begin{remark}
+    Sia $X$ una varietà affine. Allora $X$ è irriducibile se e solo se l'anello delle coordinate $\K[X]$ è un dominio d'integrità.
+\end{remark}
+
+\begin{proof}
+    Siano $f,g$ in $\K[X]$ tali che $f g=0$. Consideriamo $Z=V(f)$ e $W=V(g)$. Allora $Z$ e $W$ sono due chiusi tali che $X=Z\cup W$, dunque $X=Z$ oppure $X=W$, cioè $f=0$ oppure $g=0$.
+\end{proof}
+
+\begin{example}
+    La variet\`a $X=\{(x,y)\in \K^2 \colon xy=0\}$ non \`e irriducibile.
+\end{example}
+
+\begin{remark}
+    Se $Y$ è un sottospazio irriducibile di una varietà affine $X$, allora $\overline{Y}$ è irriducibile. Se inoltre $\varphi\colon Y \to X$ è una mappa continua, allora $\varphi(Y)$ è irriducibile. Infine, se $X$ e $Y$ sono spazi topologici irriducibili, allora $X\times Y$ è uno spazio topologico irriducibile.
+\end{remark}
+
+Sia $X$ una varietà affine. Ricordiamo che esiste una bigezione tra gli ideali radicali di $\K[X]$ e le sottovarietà chiuse di $X$, data da $I \mapsto V(I)$ e viceversa $Y\mapsto I(Y)$. 
+
+\begin{remark}
+    Sia $I$ un ideale di $\K[X]$. Allora \[V(I) \text{ è irriducibile} \quad \iff \quad I \text{ è un ideale primo.}\]
+\end{remark}
+
+Ricordiamo che, se $I$ è un ideale radicale allora $V(I)$, come spazio topologico, è omeomorfo alla varietà affine avente come anello di coordinate $\K[X]/I$. L'insieme $V(I)$ è in corrispondenza biunivoca con l'insieme degli ideali massimali di $\K[X]$ contenenti $I$. D'altra parte, gli ideali massimali di $\K[X]/I$ sono gli ideali massimali di $\K[X]$ contenenti $I$. Se $\pi\colon \K[X]\to \K[X]/I$ è la proiezione canonica, si ha una corrispondenza biunivoca 
+\[\correspDef{\cpa{\text{Massimali di $\K[X]$ che contengono $I$}}}{\cpa{\text{Massimali di $\K[X]/I$}}}{\mf}{\mf/I}{\pi\ii(M)}{M}\]
+
+
+\begin{definition}
+    Uno spazio topologico $X$ si dice \textbf{Noetheriano} se ogni successione  \[Z_1\supseteq Z_2 \supseteq Z_3 \supseteq \ldots\]
+    di sottospazi chiusi di $X$ stabilizza.
+\end{definition}
+
+\begin{remark}
+    Ogni varietà affine è uno spazio topologico Noetheriano.
+\end{remark}
+\begin{proof}
+    Se $Z_1\supseteq Z_2 \supseteq \ldots \supseteq Z_n \supseteq\ldots$ è una successione di sottospazi chiusi di $X$, allora si ha una successione  \[I(Z_1)\subseteq I(Z_2) \subseteq \ldots \subseteq I(Z_n)\subseteq \ldots\]  di ideali di $\K[X]$ che stabilizza perché $\K[X]$ è Noetheriano. Quindi anche la successione $Z_1\supseteq Z_2 \supseteq \ldots \supseteq Z_n \supseteq\ldots$ stabilizza.
+\end{proof}
+
+\begin{remark}
+    Ogni varietà è uno spazio topologico Noetheriano.
+\end{remark}
+\begin{proof}
+Scrivendo $X=X_1\cup\ldots\cup X_n$ con $X_i$ aperti affini e data una successione di chiusi $Z_1\supseteq Z_2 \supseteq \ldots \supseteq Z_n \supseteq\ldots$, si ha una successione $Z_1\cap X_i\supseteq Z_2 \cap X_i\supseteq \ldots \supseteq Z_n  \cap X_i\supseteq\ldots$  che stabilizza per ogni $i$. Allora esiste un $N$ tale che $Z_n\cap X_i= Z_N \cap X_i$ per ogni $n\ge N$ e per ogni $i$, da cui $Z_n=Z_N$ per ogni $n\ge N$.
+\end{proof}
+
+\begin{proposition}
+    Sia $X$ uno spazio topologico Noetheriano. Allora esistono dei sottospazi $Y_1,\ldots,Y_n$ chiusi e irriducibili di $X$ tali che $X=Y_1\cup\ldots\cup Y_n$. Inoltre, se $Y_i\not\subseteq Y_j$ per ogni $i\ne j$, una tale decomposizione di $X$ è unica, e i sottospazi $Y_i$ si dicono le \textbf{componenti irriducibili} di $X$.
+\end{proposition}
+
+\begin{proof}
+    Consideriamo la famiglia $\mathcal{F}$ dei chiusi di $X$ che non possono essere scritti come unione di un numero finito di chiusi irriducibili. Mostriamo che $\mathcal{F}$ è vuota.
+
+    Supponiamo per assurdo che $\mathcal{F}$ sia non vuota. Poiché ogni catena in $\mathcal{F}$ ammette un minimo, per il Lemma di Zorn esiste un elemento minimale $Z$ in $\mathcal{F}$. Per costruzione, $Z$ è riducibile, quindi possiamo scrivere $Z=C\cup D$ con $C,D$ sottospazi chiusi e propri di $Z$. Poiché $Z$ è un elemento minimale, $C,D$ non sono in $\mathcal{F}$, quindi ammettono una decomposizione finita in chiusi irriducibili, ma allora anche $Z$ ammette una tale decomposizione. 
+
+    Supponiamo ora che $X$ ammetta due decomposizioni in chiusi irriducibili \[X=Y_1\cup\ldots\cup Y_m=Z_1\cup\ldots\cup Z_n\] tali che $Y_i\not\subseteq Y_j$ e $Z_i\not\subseteq Z_j$ per ogni $i\ne j$. Poiché \[Y_i=Y_i\cap (Z_1\cup\ldots\cup Z_n)=Y_i\cap Z_1\cup\ldots\cup Y_i\cap Z_n\] e poiché $Y_i$ è irriducibile, si ha $Y_i\subseteq Z_{\alpha(i)}$. Analogamente, $Z_j\subseteq Y_{\beta(i)}$. Allora $\beta\circ\alpha=id$, infatti \[Y_i\subseteq Z_{\alpha(i)}\subseteq Y_{\beta(\alpha(i))}=Y_i.\]
+    Analogamente $\alpha\circ\beta=id$ e ciò conclude.
+\end{proof}
+
+\begin{remark}[Componenti irriducibili corrispondono a primi minimali]
+    Siano $I,J_\alpha$ ideali di $\K[x_1,\ldots,x_n]$ tali che i $J_\alpha$ siano primi contenti $I$. Siano $X=V(I)$ e $Y_\alpha=V(J_\alpha)$. Allora 
+    \[X=Y_1\cup \ldots \cup Y_n,\] 
+    dove $J_1,\ldots,J_n$ sono i primi minimali contenenti $I$. Sappiamo dal corso di Algebra 2 che i primi minimali sono in numero finito.
+\end{remark}
+
+\begin{example}
+    $I=(zx,zy)$. $p_1=(z)$ è il piano, $p_2=(x,y)$ è la retta, $X=V(p_1)\cup V(p_2)$.
+\end{example}
+
+
+\section{Dimensione di una varietà algebrica}
+
+\begin{definition}
+    Sia $X$ uno spazio topologico. Definiamo la \textbf{dimensione (di Krull)} di $X$ come 
+    \[\sup\left\{n\in\N \colon \text{ esiste una catena di chiusi irriducibili } Z_0\subsetneq Z_1 \subsetneq \ldots \subsetneq Z_n\right\}.\]
+    Denotiamo questo numero $\dim X$.
+\end{definition}
+
+\begin{remark}
+    Se $X$ è una varietà affine, per quanto già visto si ha 
+    \[\dim(X)=\sup\left\{n\in\N\mid\text{ esistono primi $P_0,\cdots, P_n$ di $\K[X]$ : } P_0\supsetneq P_1 \supsetneq \ldots \supsetneq P_n\right\}.\] 
+\end{remark}
+
+\begin{theorem}
+    Ogni varietà affine ha dimensione finita.
+\end{theorem}
+
+Poiché l'anello delle coordinate $\K[X]$ di una varietà affine irriducibile $X$ è un dominio d'integrità, possiamo considerare il suo campo dei quozienti, che indichiamo con $K_X$.
+
+\begin{definition}[Altezza]
+Se $\pf$ è un ideale primo di $\K[X]$, la sua \textbf{altezza} è definita come 
+\[\operatorname{ht}(\pf)\doteqdot \sup\left\{n\in\N \mid \text{ esistono primi $\pf_0,\cdots, \pf_n$ di $\K[X]$ : } \pf_0\subsetneq \cdots \subsetneq \pf_n=\pf\right\}\]
+\end{definition}
+
+\begin{theorem}
+    Sia $X$ una varietà affine irriducibile. Allora \begin{enumerate}
+        \item $\dim(X)=\operatorname{tr\,deg}_\K(K_X)$. 
+        \item Se $\pf$ è un ideale primo di $K[X]$ e $Y=V(\pf)$, allora \[\dim(X)=\dim(Y)+\operatorname{ht}(\pf).\]
+        \item Se $f$ è un elemento non nullo e non invertibile di $\K[X]$, allora $V(f)$ è un chiuso di $X$. Se la sua decomposizione in componenti irriducibili è data da $V(f)=Y_1\cup\ldots\cup Y_h$, allora \[\dim(Y_i)=\dim(X)-1.\]
+    \end{enumerate}
+\end{theorem}

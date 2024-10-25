@@ -1,0 +1,248 @@
+\section{Gruppi unipotenti}
+\begin{definition}
+    Un gruppo $G$ si dice \textbf{unipotente} se ogni suo elemento è unipotente.
+\end{definition}
+
+\begin{lemma}\label{LmUnicaRappresentazioneIrriducibileBanaleImplicaUpperTriangularCon1SuDiagonale}
+Se $G$ \`e tale che l'unica rappresentazione irriducibile di $G$ \`e banale allora $G$ si immerge nel gruppo delle matrici triangolari superiori aventi $1$ sulla diagonale, cio\`e
+\[G\subseteq U(n)=\cpa{\mat{1 & \ast & \ast\\ &\ddots &\ast\\ &&1}}\]
+\end{lemma}
+\begin{proof}
+    Sia $V$ un $\K$-spazio vettoriale di dimensione finita per cui $G$ è un sottogruppo di $\GL(V)$. Sia $W$ una sottorappresentazione di $V$ non banale. Allora $W=\K v_1$ e $g v_1=v_1$ per ogni $g$ in $G$. Consideriamo il quoziente $V_1=V/\langle v_1\rangle$. Allora esiste $v_2$ in $V$ tale che per ogni $g$ in $G$ si ha $gv_2\equiv v_2 \pmod{V_1}$. Procedendo in questo modo, possiamo scegliere una base $v_1,\ldots,v_n$ di $V$, rispetto alla quale risulta chiaramente $G\subseteq U_n$.
+\end{proof}
+
+\begin{theorem}\label{ThSottoalgebraAssociativaDiEndomorfismiDiSempliceETuttiGliEndomorfismi}
+Sia $\K$ algebricamente chiuso, $V$ spazio vettoriale di dimensione finita, $A\subseteq \End_\K(V)$ che sia una $\K$-algebra associativa. Se $V$ \`e un $A$-modulo semplice allora $A=\End_\K(V)$.
+\end{theorem}
+\begin{proof}
+Sia $v_1,\cdots, v_n$ una base di $V$. Se $v=(v_1,\cdots, v_n)\in V^n$ allora vogliamo mostrare che $Av=V^n$.
+
+Poich\'e $V$ \`e semplice, $V^n$ \`e somma di rappresentazioni semplici, quindi per la proposizione (\ref{PrSommaSempliciESommaDirettaSemplici}) si ha che $V^n$ \`e semisemplice e quindi completamente riducibile. Possiamo allora scrivere $V^n=Av\oplus P$ per $P$ un $A$-sottomodulo. Sia $\pi_P:V^n\to V^n$ la proiezione su $P$ e notiamo che essa ammette una decomposizione a blocchi
+\[\pi_P=(\al_{ij})_{i,j}\quad\text{ per degli endomorfismi }\al_{ij}:V\to V\]
+dove il dominio di $\al_{ij}$ \`e la $j$-esima copia di $V$ in $V^n$ e il codominio \`e l'$i$-esima copia.
+
+Quindi $\al_{ij}\in \End_A(V)$ con $V$ spazio vettoriale su $\K$ algebricamente chiuso. Per il lemma di Schur (\ref{LmSchur}) questi endomorfismi sono le costanti.
+
+Ricordando ricordando che $V^n=Av\oplus P$, si ha necessariamente $\pi_P(v)=0$ per definizione di $\pi_P$, quindi per ogni $i$ abbiamo $\sum \al_{ij}v_j=0$. Poich\'e gli $v_j$ sono una base e gli endomorfismi $\al_{ij}$ sono costanti, per indipendenza lineare questo significa che per ogni $i$ e ogni $j$ si ha $\al_{ij}=0$. Segue dunque che $\pi_P=0$ e quindi $P=\imm \pi_P=\cpa{0}$, cio\`e $V^n=Av$.
+\end{proof}
+
+\begin{exercise}
+Trova un controesempio per $\K$ non algebricamente chiuso.
+\end{exercise}
+
+\begin{theorem}\label{ThUnipotenteSeESoloSeUnicaRappresentazioneIrriducibileEBanale}
+    Un gruppo $G$ è unipotente se e solo se l'unica rappresentazione irriducibile di $G$ è quella banale.
+\end{theorem}
+\begin{proof}
+Diamo le due implicazioni
+\setlength{\leftmargini}{0cm}
+\begin{itemize}
+\item[$\boxed{\impliedby}$] Se $G$ ha questa propriet\`a allora per il lemma (\ref{LmUnicaRappresentazioneIrriducibileBanaleImplicaUpperTriangularCon1SuDiagonale}) abbiamo
+\[G\subseteq U(n)=\cpa{\mat{1 & \ast & \ast\\ &\ddots &\ast\\ &&1}}\]
+e chiaramente un gruppo di questa forma \`e unipotente.
+\item[$\boxed{\implies}$] Sia $V$ una rappresentazione semplice di $G$ di dimensione $n$. Allora $\tr(g_V)=n$ per ogni $g\in G$ (perch\'e si immerge nelle triangolari superiori), quindi
+\[\forall g_V,h_V\in G,\qquad \tr((g_V-1)h_V)=\tr(g_Vh_V-h_V)=0.\]
+Se $A$ \`e il $\K$-spazio vettoriale generato da $G$, $A\subseteq \End_\K(V)$ ed \`e un'algebra associativa. Poich\'e $V$ \`e semplice per $A$ (in quanto semplice per $G$ e $A=\Span_\K(G)$), si ha per il teorema (\ref{ThSottoalgebraAssociativaDiEndomorfismiDiSempliceETuttiGliEndomorfismi}) si ha $A=\End_\K(V)$.
+
+Segue per linearit\`a della traccia che $\tr((g_V-1)a)=0$ per ogni $a\in \End_\K(V)=A$, da cui $(g_v-1)=0$, cio\`e $G$ agisce banalmente.
+\end{itemize}
+\setlength{\leftmargini}{0.5cm}
+\end{proof}
+
+\begin{corollary}
+    Se $G$ è unipotente, allora è contenuto nel gruppo $U_n$ delle matrici triangolari superiori aventi $1$ sulla diagonale principale.
+\end{corollary}
+
+\begin{remark}
+    Consideriamo il gruppo $(\C,+)$. Questo è un gruppo unipotente perché possiamo vederlo in $\GL(2)$ tramite la rappresentazione \[x\mapsto \begin{pmatrix}
+        1 & x \\ 0 & 1 
+    \end{pmatrix}\]
+    Abbiamo anche una rappresentazione data da \[ \C\to \GL(1), \quad x\mapsto \text{e}^{\alpha x}.\]
+    La differenza tra i due casi è che da una rappresentazione $V$ non possiamo costruire tutte le funzioni di $C^{\infty}(\C)$, ma solo quelle di $\C[G]$ (con $G=\C$).
+\end{remark}
+
+
+\begin{corollary}
+    Se $V$ \`e una rappresentazione di $G$ non nulla allora $V^G\neq 0$.
+\end{corollary}
+
+\begin{corollary}
+    Se $G$ \`e unipotente allora $G$ \`e nilpotente come gruppo, cio\`e definiamo iterativamente $G^{(0)}=G$ e $G^{(k+1)}=[G^{(k)},G]$ allora esiste $n$ tale che $G^{(n)}=\cpa{id_G}$.
+\end{corollary}
+\begin{proof}
+Basta immergere $G$ in $U(n)$ e notare che sottogruppi di triangolari superiori con 1 sulla diagonale hanno questa propriet\`a.
+\end{proof}
+
+
+\begin{example}
+Il gruppo $G=\znz p=C_p$ con $\cha \K=p$ \`e un gruppo unipotente, perch\'e si pu\`o scrivere come
+\[G=\cpa{\mat{1&\al\\0&1}\mid \al\in\znz p}\]
+\end{example}
+\begin{remark}
+Se $G=U(n)$ con $\cha \K=p$ allora $g^{p^n}=id_G$.
+\end{remark}
+
+\subsection{Esponenziale e logaritmo}
+
+\begin{notation}
+Definiamo lo spazio vettoriale
+\[N(n)=\cpa{\mat{0&\ast&\ast\\&\ddots&\ast\\&&0}}.\]
+\end{notation}
+
+\begin{definition}[Esponenziale]
+Definiamo la mappa \textbf{esponenziale}
+\[\exp:\funcDef{N(n)}{U(n)}{M}{\sum_{i=0}^n\frac1{i!}M^i}.\]
+\end{definition}
+\begin{remark}
+La mappa esponenziale appena definita \`e algebrica. Inoltre rispetta le usuali propriet\`a:
+\begin{itemize}
+    \item $\exp((\la+\mu)M)=\exp(\la M)\exp(\mu M)$
+    \item Se $M_1M_2=M_2M_1$ allora $\exp(M_1+M_2)=\exp(M_1)\exp(M_2)$.
+\end{itemize}
+\end{remark}
+
+\begin{definition}[Logaritmo]
+Definiamo la mappa \textbf{logaritmo}
+\[\log:\funcDef{U(n)}{N(n)}{B}{\sum_{i=1}^n\frac{(-1)^{i+1}}{i}(M-I_n)^i}.\]
+\end{definition}
+
+\begin{remark}
+$\log$ e $\exp$ sono mappe algebriche e inverse. Sono anche in realt\`a la definizione usuale, solo che per matrici in $N(n)$ e $U(n)$ queste somme finite coincidono con la definizione in serie.
+\end{remark}
+
+\begin{notation}
+Se $G\subseteq U(n)$ definiamo $X=\log(G)$ e notiamo che $X$ \`e isomorfo a $G$ come variet\`a.
+\end{notation}
+
+\begin{proposition}\label{PrChiusuraDelGeneratoDaPotenzeDiElemento}
+Se $g\in G\bs\cpa{id_G}$ allora, ponendo
+\[\ol{\cpa{g^n\mid n\in\Z}}=H\subseteq G,\]
+si ha $H\cong \G_a=(\K,+)$.
+\end{proposition}
+\begin{proof}
+Poich\'e $g\neq id_G$, $\log g=x\neq 0$, inoltre $\log(g^n)=nx$. Notiamo dunque che da $nx\neq 0$ per ogni $n$ ricaviamo $g^n\neq 1_G$ per ogni $n$. Se $Y=\K x$ allora
+\[\log(H)=\log(\ol{\cpa{g^n}})=\ol{\cpa{nx}}\subseteq Y\]
+Poich\'e $Y$ \`e una retta e $\cpa{nx}$ sono infiniti, $\ol{nx}= Y$ per come sono fatti i chiusi di Zariski di $\A^1$, quindi 
+\[\funcDef{\K}{H=\exp(Y)}{\la}{\exp(\la x)}\]
+\`e un isomorfismo di gruppi tra $\K$ e $H$.
+\end{proof}
+
+\begin{exercise}
+Se $\cha \K=0$ e $G$ unipotente abeliano allora $G\cong \K^n$.
+\end{exercise}
+
+\begin{fact}
+Se $\cha \K=p$ e $g^p=id$ per ogni $g\in G$ abeliano connesso allora $G$ \`e unipotente e $G\cong \K^n$.
+\end{fact}
+
+\begin{example}
+Se $\cha \K=p$ poniamo $\wt \al_i=\frac1p\binom pi$ per $i\in\cpa{0,\cdots, p-1}$ e definiamo $\al_i$ come l'immagine di $\wt \al_i$ in $\K$.
+
+Definiamo\footnote{moralmente $c(a,b)=\frac{(a+b)^p-a^p-b^p}p$, che non potremmo fare direttamente in $\K$ per l'identit\`a del binomio ingenuo}
+\[c:\funcDef{\K\times \K}{\K}{(a,b)}{\sum_{i=1}^{p-1} \al_i a^ib^{p-1}}\]
+e notiamo che
+\[c(a,b)c(a+b,c)=c(b,c)c(a,b+c)\implies c(a,0)=c(a,b)=0,\]
+quindi se $G=\K\times\K$ con prodotto
+\[(a,b)\cdot(a',b')=(a+a',b+b'+c(a,a'))\]
+allora $G$ \`e unipotente e $G\cong \K^2$ come gruppo.
+
+(QUESTO DOVREBBE ESSERE UN CONTROESEMPIO DI QUALCOSA???)
+\end{example}
+
+\section{Gruppi completamente riducibili}
+\begin{definition}
+Un gruppo \`e \textbf{completamente riducibile} se ogni sua rappresentazione regolare \`e semisemplice.
+\end{definition}
+\begin{remark}
+Basta anche chiedere ``ogni rappresentazione regolare \emph{finita} \`e semisemplice".
+\end{remark}
+
+\begin{remark}
+$G$ \`e completamente riducibile se e solo se $\K[G]$ \`e semisemplice.
+\end{remark}
+\begin{proof}
+$\K[G]$ \`e una rappresentazione regolare di $G$ quindi una implicazione \`e ovvia.
+Se $V$ ha dimensione $n$ e $\K[G]$ \`e semisemplice allora per l'immersione (\ref{LmIniezioneRappresentazioniFiniteInPotenzaAnelloCoordinateDiG}) $V\inj \K[G]^m$ si ha che $V$ \`e semisemplice (\ref{LmPassaggioSemisempliceUnipotenteNilpotenteAdOperazioniVettoriali}).
+\end{proof}
+
+\begin{definition}
+Un gruppo $G$ \`e un \textbf{toro (algebrico)} se $G\cong (\G_m)^n$.
+\end{definition}
+
+\begin{remark}
+Ricordando che $\K[\G_m]=\K[t^{\pm1}]$ notiamo che
+\[\K[\G_m^n]=\K[t_1^{\pm1},\cdots,t_n^{\pm1}].\]
+Questo spazio ha una base data da $t^\al=t_1^{\al_1}\cdots t_n^{\al_n}$ per $\al\in \Z^n$.
+\end{remark}
+
+\begin{remark}
+Se $g=(\la_1,\cdots, \la_n)$ e $h=(\mu_1,\cdots, \mu_n)$ sono elementi di $\G_m^n=(\K^\times)^n$ si ha che
+\begin{align*}
+(gt^\al)(h)=&t^\al(g\ii h)=t^\al(\la_1\ii \mu_1,\cdots, \la_n\ii\mu_n)=\\
+=&(\la_1\ii\mu_1)^{\al_1}\cdots (\la_n\ii\mu_n)^{\al_n}=\\
+=&\la^{-\al}\mu^\al=\\
+=&(\la^{-\al}t^\al)h.
+\end{align*}
+Segue che $gt^\al=\la^{-\al}t^\al$ e che quindi i $t^\al$ sono autovettori per ogni $g\in G$. Poich\'e
+\[\K[G]=\bigoplus_{\al\in\Z^n} \K t^\al\]
+e ogni $\K t^\al$ \`e semisemplice, segue (\ref{LmPassaggioSemisempliceUnipotenteNilpotenteAdOperazioniVettoriali}) che $\K[G]$ \`e semisemplice.
+
+Quindi le rappresentazioni semplici di $G$ sono di dimensione 1 e sono date da $\K_\al=\K t^{-\al}$ con $gz=t^\al(g)z$
+\end{remark}
+
+
+\begin{lemma}
+    Se $G\subseteq \GL(V)$ allora $G$ \`e completamente riducibile se e solo se $V^{\otimes n}$ \`e semisemplice per ogni $n$
+\end{lemma}
+\begin{proof}
+Diamo le implicazioni
+\setlength{\leftmargini}{0cm}
+\begin{itemize}
+\item[$\boxed{\implies}$] Ovvio
+\item[$\boxed{\impliedby}$] La dimostrazione \`e del tutto analoga a quella esposta per il lemma (\ref{LmCriterioSemisempliceUnipotentePerGruppiLineari}). Dimostriamo che $\K[G]$ \`e semisemplice. Dato il morfismo
+$\K[\GL(V)]\onto \K[G]$
+basta mostrare che $\K[\GL(V)]$ \`e semisemplice. Scriviamo \[\K[\GL(V)]=\K[\End(V)][{\det}\ii].\]
+$\K[\End(V)]$ \`e un quoziente di somme di rappresentazioni della forma $(V^\ast)^{\otimes m}$ e quindi \`e quoziente di $(V^\ast\oplus\cdots, \oplus V^\ast)^{\otimes m}$ e dato che $V^\ast$ \`e semisemplice ho finito.
+\end{itemize}
+\setlength{\leftmargini}{0.5cm}
+\end{proof}
+
+\begin{corollary}
+    Se $\K=\C$ e $G\subseteq \GL(n,\C)$ \`e tale che se $g\in G$ allora $\ol g\in G$, allora $G$ \`e completamente riducibile.
+\end{corollary}
+\begin{proof}
+Sia $V=\C^n$ e dimostriamo che $V^{\otimes m}$ \`e semisemplice per ogni $m$, cio\`e che per ogni $U\subseteq V^{\otimes m}$ che sia $G$-stabile esiste $W$ $G$-stabile tale che $V^{\otimes m}=U\oplus W$.
+
+Consideriamo il caso $m=1$. Definiamo la forma hermitiana
+\[h((x_i)(y_i))=\sum_{i=1}^n \ol{x_i}y_i.\]
+Se $U\subseteq V$, poniamo $W=U^\perp$ rispetto a questa forma. Chiaramente $V=U\oplus U^\perp$, quindi vogliamo mostrare che $U$ $G$-stabile implica $U^\perp$ $G$-stabile.
+\[h(gw,u)=\ol w^\top \ol g^\top u=h(w,\under{\in U}{\ol g^\top u})\pasgnlmath={w\in U^\perp}0.\]
+
+
+Per il caso generale l'idea \`e la stessa ma usiamo
+\[h_m(v_1\otimes\cdots\otimes v_m,u_1\otimes \cdots\otimes u_m)=\prod_{i=1}^m h(v_i,u_i).\]
+Si conclude usando la tesi per $h$.
+\end{proof}
+
+\begin{example}
+Sia $G\in\cpa{\GL(n,\C), \SL(n), O(n)}$, allora $G$ \`e completamente riducibile. Per $\GL(n,\C)$ e $\SL(n,\C)$ questo \`e ovvio. Per $O(n)=\cpa{g^\top g=id}$ basta mostrare che se $g^\top g=id$ allora $\ol g^\top \ol g=id$, ma questo \`e chiaro.
+
+
+Anche $SO(n)$ e $S_p(2n)$ hanno questa propriet\`a, dove
+\[S_p(2n)=\cpa{g\mid gJg^\top=J},\qquad J=\mat{0 &I\\ -I &0}.\]
+\end{example}
+
+
+
+\begin{example}
+Sia $\cha \K=p=2$ e consideriamo $G=\SL(2,\K)$. Esso ammette una rappresentazione semplice $V=\K^2$. Sia $x,y$ una base di $V$ e consideriamo l'azione data da
+\[\mat{a&b\\c&d}x=ax+by,\qquad \mat{a&b\\c&d}y=cx+dy.\]
+Consideriamo ora $S^2V=\ps{X^2,xy,y^2}$. Per questioni di caratteristica 2, $gx^2=(gx)^2$. Notiamo allora che $W=\ps{x^2,y^2}$ \`e una sottorappresentazione di $S^2V$ che non ammette un complementare.
+\end{example}
+
+\begin{exercise}
+Se $G$ \`e completamente riducibile allora $G$ non ha sottogruppi unipotenti normali.
+\end{exercise}
+\begin{exercise}
+Se $\cha \K=p$ allora $\SL(n,\K)$ e $\GL(n,\K)$ non sono completamente riducibili.
+\end{exercise}

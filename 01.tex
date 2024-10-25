@@ -1,0 +1,277 @@
+\chapter{Teoria delle rappresentazioni}
+
+\section{Definizioni}
+
+\begin{definition}[Rappresentazione]
+Sia $G$ un gruppo e $\K$ un campo. Una \textbf{rappresentazione} di $G$ su $\K$ (o \textbf{$G$-modulo}) \`e un $\K$-spazio vettoriale $V$ munito di una azione $\K$-lineare di $G$, cio\`e esiste una mappa
+\[\funcDef{G\times V}{V}{(g,v)}{g\cdot v}\]
+con le propriet\`a\footnote{in futuro potr\`o abbreviare omettendo il $\cdot$.}
+\begin{itemize}
+    \item $e\cdot v=v$
+    \item $(g h)\cdot v=g\cdot(h\cdot v)$
+    \item $g\cdot(\la u+\mu v)=\la g\cdot u+\mu g\cdot v$
+\end{itemize}
+\end{definition}
+\begin{remark}
+    Dare una rappresentazione \`e equivalente a dare un morfismo di gruppi $\rho:G\to \GL(V)$ dove $\rho(g)v=g\cdot v$.
+\end{remark}
+
+\begin{definition}[Sottorappresentazione]
+Dato $U\subseteq V$ con $V$ rappresentazione di $G$, $U$ \`e una \textbf{sottorappresentazione} se $U$ \`e sottospazio vettoriale $G$-invariante.
+\end{definition}
+\begin{remark}
+Data $U\subseteq V$ sottorappresentazione, possiamo definire una struttura naturale di rappresentazione su $W=V/U$ ponendo
+\[g[v]=[gv].\]
+\end{remark}
+
+\begin{definition}[Morfismo di $G$-rappresentazioni]
+Se $V_1,V_2$ sono rappresentazioni di $G$ e abbiamo $\vp:V_1\to V_2$ lineare, diciamo che $\vp$ \`e un \textbf{morfismo di $G$-rappresentazioni o di $G$-moduli} se 
+\[\vp(gv_1)=g\vp(v_1).\]
+\end{definition}
+
+\begin{example}
+Se $U\subseteq V$ \`e una sottorappresentazione, $U\subseteq V$ \`e morfismo di $G$-moduli
+\end{example}
+
+\begin{example}
+    Se $U\subseteq V$ \`e una sottorappresentazione, $V\to V/U$ \`e morfismo di $G$-moduli
+\end{example}
+
+\begin{remark}
+La mappa $\pi:V\to V/U$ \`e tale che per ogni $\vp:V\to V'$ di $G$-moduli, se $\vp(U)=0$ allora esiste $\chi:V/U\to V'$ di $G$-moduli t.c. $\vp=\chi\circ \pi$.
+% https://q.uiver.app/#q=WzAsNixbMSwwLCJVIl0sWzIsMCwiViJdLFszLDAsIlYvVSJdLFsyLDEsIlYnIl0sWzQsMCwiMCJdLFswLDAsIjAiXSxbMCwxXSxbMSwyXSxbNSwwXSxbMiw0XSxbMSwzLCJcXHZwIiwxXSxbMCwzLCIwIiwyXSxbMiwzLCJcXGNoaSIsMCx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dXQ==
+\[\begin{tikzcd}
+	0 & U & V & {V/U} & 0 \\
+	&& {V'}
+	\arrow[from=1-1, to=1-2]
+	\arrow[from=1-2, to=1-3]
+	\arrow["0"', from=1-2, to=2-3]
+	\arrow[from=1-3, to=1-4]
+	\arrow["\vp"{description}, from=1-3, to=2-3]
+	\arrow[from=1-4, to=1-5]
+	\arrow["\chi", dashed, from=1-4, to=2-3]
+\end{tikzcd}\]
+\end{remark}
+
+
+\begin{definition}[Invarianti e coinvarianti]
+Sia $V$ un $G$-modulo. Definiamo lo \textbf{spazio degli invarianti} come
+\[V^G=\cpa{v\in V\mid gv=v\forall g\in G}.\] Si ha che $V^G$ \`e una sottorappresentazione du cui $G$ agisce banalmente.
+
+Analogamente definiamo lo \textbf{spazio dei coinvarianti} come
+\[V_G=V/\ps{v-gv\mid v\in V,g\in G}_\K.\]
+Notiamo che $\ps{v-gv\mid v\in V,g\in G}$ \`e effettivamente una sottorappresentazione ($h(v-gv)=hv-(hgh\ii)(hv)$), quindi questo quoziente \`e ben definito. Notiamo che $G$ agisce banalmente anche $V_G$.
+\end{definition}
+
+
+\begin{notation}
+Se $V$ e $W$ sono $G$-moduli, poniamo
+\[\Hom_G(V,W)=\cpa{\vp:V\to W\mid \text{$\vp$ di $G$-moduli}}.\]
+Notiamo che \`e un $\K$-spazio vettoriale.
+\end{notation}
+
+\section{Costruzioni principali}
+
+Se $V_i$ sono rappresentazioni di $G$, $\bigoplus_i V_i$ e $\prod_i V_i$ sono rappresentazioni di $G$. Inoltre $\bigoplus_i V_i$ \`e sottorappresentazione di $\prod_i V_i$.
+\begin{remark}[Propriet\`a universale]
+Consideriamo le inclusioni di $G$-moduli
+\[\al_i:\funcDef{V_i}{\bigoplus V_i}{v_i}{(w_j)},\quad\text{dove }w_j=\begin{cases}
+v_i &i=j\\
+0 &\text{altrimenti}
+\end{cases}\]
+Se $\vp_i:V_i\to W$ \`e di $G$-moduli allora esiste un'unica $\psi:\bigoplus V_i\to W$ che fa commutare il diagramma
+
+% https://q.uiver.app/#q=WzAsMyxbMCwwLCJWX2kiXSxbMSwwLCJcXGJpZ29wbHVzIFZfaSJdLFsxLDEsIlciXSxbMCwxLCJcXGFsX2kiXSxbMCwyLCJcXHZwX2kiLDJdLFsxLDIsIlxccHNpIiwwLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV1d
+\[\begin{tikzcd}
+	{V_i} & {\bigoplus V_i} \\
+	& W
+	\arrow["{\al_i}", from=1-1, to=1-2]
+	\arrow["{\vp_i}"', from=1-1, to=2-2]
+	\arrow["\psi", dashed, from=1-2, to=2-2]
+\end{tikzcd}\]
+Vale una propriet\`a duale per il prodotto.
+\end{remark}
+
+\begin{definition}[Rappresentazione duale]
+Se $V$ \`e $G$-modulo, definiamo una azione di $G$ su $V^\ast$ definendo $(g\vp)(v)=\vp(g\ii v)$. Come notazione useremo
+\[\ps{g\vp,v}=\ps{\vp,g\ii v}.\]
+La rappresentazione cos\`i definita \`e detta \textbf{duale} alla rappresentazione $V$.
+\end{definition}
+\begin{remark}
+$\ps{g\vp,gv}=\ps{\vp,v}$.
+\end{remark}
+
+\begin{definition}[Prodotto tensore]
+Se $V$ e $W$ rappresentazioni di $G$, definiamo una azione sul prodotto tensore ponendo
+\[g(v\otimes w)=gv\otimes gw\]
+\end{definition}
+
+\begin{definition}[Omomorfismi]
+    Se $V$ e $W$ rappresentazioni di $G$, definiamo una azione su $\Hom_\K(V,W)$ ponendo 
+    \[(gL)(v)=g(L(g\ii v)).\]
+\end{definition}
+\begin{remark}
+$(\Hom_\K(V,W))^G=\cpa{L\mid gL=L}$, ma
+\[gL=L\coimplies g(L(g\ii v))=gL(v)=L(v)\coimplies L(g\ii v)=g\ii L(v)\]
+e poich\'e questo vale per ogni $g\in G$ ricaviamo che
+\[(\Hom_\K(V,W))^G=\Hom_G(V,W).\]
+\end{remark}
+
+Ricordiamo che esiste
+\[\Phi:\funcDef{V^\ast\otimes W}{\Hom_\K(V,W)}{\vp\otimes w}{\cpa{v\mapsto \vp(v)w}}\]
+\begin{remark}
+$\Phi$ \`e iniettiva e $\imm \Phi=\cpa{L:V\to W\mid \rnk L<\infty}$
+\end{remark}
+\begin{proof}
+ESERCIZIO
+\end{proof}
+
+\textbf{Domanda:} $\Phi$ \`e di $G$-moduli?
+\begin{proof}
+Per linearit\`a basta considerare elementi della forma $\vp\otimes w$.
+\[\Phi(g(\vp\otimes w))(v)=\Phi(g\vp\otimes gw)(v)=g\vp(v)gw=\vp(g\ii v)gw=g(\Phi(\vp\otimes w))(v).\]
+\end{proof}
+
+\begin{definition}[Tensori simmetrici e antisimmetrici]
+Definiamo
+\begin{align*}
+V^{\otimes n}=&\under{n\text{-volte}}{V\otimes\cdots\otimes V}\\
+S^nV=&\frac{V^{\otimes n}}{\ps{x_1\otimes\cdots\otimes x_a\otimes x_b\otimes\cdots\otimes x_n-x_1\otimes\cdots\otimes x_b\otimes x_a\otimes\cdots\otimes x_n}_\K}\\
+\bw^nV=&\frac{V^{\otimes n}}{\ps{x_1\otimes\cdots\otimes x_a\otimes v\otimes v\otimes x_{a+3}\otimes\cdots\otimes x_n}_\K}
+\end{align*}
+Per il prodotto simmetrico vale una propriet\`a universale analoga a quella del prodotto tensore, dove al posto di mappe multilineari qualsiasi consideriamo multilineari simmetriche (se $V^n\to W$ multilineare simmetrica, abbiamo $F:V^{\otimes n}\to W$ che passa al quoziente diventando $H:S^nV\to W$, l'unicit\`a segue dall'unicit\`a di $F$ e suriettivit\`a di $V^{\otimes n}\to S^nV$).
+
+Un ragionamento completamente analogo vale per $\bw^nV$.
+\end{definition}
+
+\begin{remark}
+Se $V$ \`e un $G$-modulo, per quanto detto sul prodotto tensore, $V^{\otimes n}$ \`e una rappresentazione e quindi anche $S^nV$ e $\bw^n V$ lo sono in quanto suoi quozienti.
+\end{remark}
+
+
+\begin{definition}[Algebra tensoriale]
+Sia $V$ uno spazio vettoriale su $\K$ e poniamo $V^{\otimes 0}=\K$. Definiamo l'\textbf{algebra tensoriale} come
+\[TV=\bigoplus_{n=0}^\infty V^{\otimes n},\]
+dove il prodotto \`e indotto da
+\[(v_1\otimes\cdots\otimes v_n)\cdot(w_1\otimes\cdots\otimes w_m)=v_1\otimes\cdots\otimes v_n\otimes w_1\otimes\cdots\otimes w_m\]
+In modo analogo costruiamo l'\textbf{algebra simmetrica} $SV$ e l'\textbf{algebra antisimmetrica} $\bw V$.
+\end{definition}
+
+\begin{remark}
+$SV\cong \K[x_i\mid i\in I]$ dove $\cpa{x_i}_{i\in I}$ \`e una base di $V$.
+\end{remark}
+
+
+\begin{definition}[Algebra associativa universale]
+Sia $V$ uno spazio vettoriale, l'\textbf{algebra associativa universale} su $V$ consiste in una $\K$-algebra\footnote{$\K\subseteq A$, $A$ anello con unit\`a e $\K\subseteq Z(A)$} $A$ e un morfismo $\al:V\to A$ tale che
+\begin{enumerate}
+    \item $\al$ \`e $\K$-lineare
+    \item per ogni $B$ algebra associativa e per ogni $\beta:V\to B$ $\K$-lineare esiste un unico morfismo $\psi$ di $\K$-algebre tale che
+    % https://q.uiver.app/#q=WzAsMyxbMCwwLCJWIl0sWzEsMCwiQSJdLFsxLDEsIkIiXSxbMCwxLCJcXGFsIl0sWzAsMiwiXFxiZXRhIiwyXSxbMSwyLCJcXHBzaSIsMCx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dXQ==
+\[\begin{tikzcd}
+	V & A \\
+	& B
+	\arrow["\al", from=1-1, to=1-2]
+	\arrow["\beta"', from=1-1, to=2-2]
+	\arrow["\psi", dashed, from=1-2, to=2-2]
+\end{tikzcd}\]
+\end{enumerate}
+\end{definition}
+\begin{remark}
+Se una algebra associativa universale esiste allora \`e unica a meno di isomorfismo perch\'e abbiamo dato una propriet\`a universale.
+\end{remark}
+
+\begin{remark}
+Un'algebra associativa universale esiste per ogni $V$ ed \`e datta dall'algebra tensoriale e l'inclusione $V\overset{id}{\to} V^{\otimes 1}\subseteq TV$.
+\end{remark}
+\begin{proof}
+Sia $B$ un'algebra associativa e sia $\beta:V\to B$ lineare. Definiamo
+\[F:\funcDef{TV}{B}{v_1\otimes\cdots\otimes v_n}{\beta(v_1)\cdots \beta(v_n)}\]
+La buona definizione segue dal fatto che il prodotto in un'algebra \`e multilineare.
+\end{proof}
+
+\begin{remark}
+Dato $V$ spazio vettoriale possiamo definire analogamente a prima l'algebra associativa universale simmetrica e l'algebra associativa universale antisimmetrica e un loro modello \`e dato da $SV$ e $\bw V$ rispettivamente.
+\end{remark}
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{Rappresentazioni semplici e semisemplici}
+\begin{definition}[Rappresentazione semplice]
+    Una rappresentazione $S$ di $G$ si dice \textbf{semplice} se $S\ne 0$ e se non ha sottorappresentazioni non banali.
+\end{definition}
+
+\begin{lemma}[Lemma di Schur]\label{LmSchur} Sia $S$ una rappresentazione semplice di $G$. \begin{enumerate}
+    \item Ogni morfismo di $G$-moduli  non nullo $\varphi\colon S \to S$ è invertibile.
+    \item L'insieme $\End_G(S)$ è un corpo e si ha $\K\subseteq Z(\End_G(S))$.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+Per il primo punto, osserviamo che $\ker\varphi$ è un sottomodulo di $S$ che non può essere uguale a $S$, quindi è $0$. Analogamente $\imm\varphi=S$. Per il secondo punto, sia $F=\End_G(S)$. La moltiplicazione per un elemento $\lambda$ di $\K$ è in $F$ e commuta con tutto $F$. Infine, se $\varphi$ è un elemento non nullo di $F$, per il primo punto $\varphi$ è invertibile e l'inverso è un omomorfismo di $G$-moduli.
+\end{proof}
+
+\begin{example}
+    Assumiamo $\K$ algebricamente chiuso e $\dim_\K(S)<+\infty$. Allora abbiamo un contenimento $\K\subseteq Z(\End_G(S))\subseteq \End_G(S)$. Poiché la dimensione di $\End_G(S)$ su $\K$ è finita e $\K$ è algebricamente chiuso, si ottiene $\K=\End_G(S)$.
+\end{example}
+
+\begin{exercise}
+    Nel caso $\K=\C$, supponiamo che $\dim_\C(S)$ sia al più numerabile. Mostrare che $\End_G(S)=\C$.
+\end{exercise}
+
+\begin{example}
+    Sia $G=C_2=\{1,\sigma\}$ e $\K=\overline{\F_2}$. Allora la rappresentazione $V=\K^2$ di $G$ data da  \[[\sigma]_{e_1,e_2}^{e_1,e_2}=\begin{pmatrix}
+        1 & 1 \\ 
+        0 & 1
+    \end{pmatrix}\] non è somma di rappresentazioni semplici. 
+\end{example}
+
+\begin{definition}
+    Sia $V$ una rappresentazione di $G$. \begin{enumerate}
+        \item $V$ si dice \textbf{semisemplice} se è somma diretta di rappresentazioni semplici.
+        \item $V$ si dice \textbf{completamente riducibile} se per ogni sottorappresentazione $W$ di $V$ esiste una sottorappresentazione $U$ di $V$ tale che $V=U\oplus W$.
+    \end{enumerate}
+\end{definition}
+\begin{example}
+    Nel caso $\K=\C$, la rappresentazione $V=\C^2$ del gruppo \[G=\left\{\begin{pmatrix}
+        1 & x \\ 
+        0 & 1
+    \end{pmatrix} \colon x\in \C\right\}\] non è completamente riducibile: consideriamo la sottorappresentazione di $V$ data da $W=\C e_1$; se esistesse $U=\C v_2$ tale che $V=U\oplus W$, allora nella base $e_1,v_2$ tutte gli elementi $g$ in $G$ sarebbero diagonali \[[g]_{e_1,v_2}^{e_1,v_2}=\begin{pmatrix}
+        1 & 0 \\ 
+        0 & 1
+    \end{pmatrix},\]
+    ma $\begin{pmatrix}
+        1 & x \\ 
+        0 & 1
+    \end{pmatrix}$ non è diagonale se $x\ne 0$.
+\end{example}
+
+\begin{proposition}\label{PrSommaSempliciESommaDirettaSemplici} Le seguenti condizioni sono equivalenti.
+    \begin{enumerate}
+        \item  $V$ è somma diretta di rappresentazioni semplici;
+        \item $V$ è somma di rappresentazioni semplici.
+    \end{enumerate}
+    Inoltre, le precedenti condizioni implicano la seguente.
+    \begin{enumerate}
+        \item[3.] $V$ è completamente riducibile.
+    \end{enumerate}
+\end{proposition}
+\begin{proof}
+    Chiaramente la prima condizione implica la seconda. Proviamo il viceversa. 
+    Sia $V=\sum_{i\in I} S_i$ con $S_i$ semplici. Consideriamo la famiglia \[\mathcal{F}=\left\{J\subseteq I    \colon  \sum_{j\in J} S_j = \bigoplus_{j\in J}S_j\right\}.\]
+    La famiglia $\mathcal{F}$ è non vuota in quanto contiene il singoletto $\{i\}$ per ogni $i$ in $I$. Inoltre $\mathcal{F}$ è ordinata parzialmente per inclusione: mostriamo che ogni catena $\{J_\alpha\}_{\alpha \in A}$ di $\mathcal{F}$ ammette il maggiorante $J=\bigcup_{\alpha \in A}J_\alpha$ in $\mathcal{F}$. Basta mostrare che, per ogni $H\subseteq J$ finito, la somma $\sum_{h\in H} S_{h}$ è diretta.
+    %$J_\alpha$ è in $\mathcal{F}$ e per ogni $\alpha,\beta$ si ha $J_\alpha \subseteq J_{\beta}$ o viceversa e ... $J=\cup_{\alpha}J_\alpha$ è in $\mathcal{F}$. Infatti $\sum_{j\in J} S_j$ è diretta e se $H\subseteq J$ è finito e $H=\{i_1\ldots,i_r\}$ e $v_\ell \in S_{i_\ell}$ e $v_{i_1}+\dots+v_{i_r}=0$, allora $v_{i_1}=\dots=v_{i_r}=0$. Essendo 
+    Poiché $H$ è finito, si ha $H\subseteq J_\alpha$ per qualche $\alpha$ in $A$, dunque la somma $\sum_{j\in J_\alpha}S_j$ è diretta. A questo punto, per il Lemma di Zorn esiste un elemento $M$ in $\mathcal{F}$ massimale. Mostriamo che $V=\bigoplus_{j\in M} S_j$. Per assurdo assumiamo $W\doteqdot\bigoplus_{j\in M} S_j\subsetneq V$ e sia $S_0$ tale che $S_0\not\subseteq W$. Allora $S_0\cap W \subseteq S_0$ e $S_0\oplus W \subset V$, allora $\widetilde{M}=M\cup\{0\}$ è in $\mathcal{F}$, contro la massimalità di $M$ in $\mathcal{F}$. \\
+
+    L'implicazione $1. \Rightarrow 3.$ è lasciata per esercizio. 
+\end{proof}
+

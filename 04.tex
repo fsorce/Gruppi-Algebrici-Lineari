@@ -1,0 +1,273 @@
+\chapter{Semisemplice, Unipotente, Nilpotente, Completamente riducibile}
+
+\begin{proposition}[Semisemplice uguale completamente riducibile]\label{PrSemisempliceEquivaleCompletamenteRiducibile}
+Per le rappresentazioni regolari di $G$ abbiamo che se essa \`e completamente riducibile allora \`e semisemplice, cio\`e le due condizioni sono equivalenti in questo caso.
+\end{proposition}
+\begin{proof}
+Se $V$ \`e una rappresentazione regolare non nulla allora $V$ contiene una sottorappresentazione semplice, infatti basta prendere $W\subseteq V$ di dimensione finita e poi la sottorappresentazione di $W$ di dimensione minima.
+
+Se $W\subseteq V$ allora $W$ e $V/W$ sono completamente riducibili, infatti per completa riducibilit\`a $V=W\oplus U$ per $U\cong V/W$, quindi basta mostrarlo per $W$. Sia $X\subseteq W$ sottorappresentazione. Poich\'e $V=X\oplus Y$ (di nuovo applico l'ipotesi su $V$) allora $W=X\oplus Y\cap W$.
+
+Mostriamo ora che $V$ \`e semisemplice. Sia
+\[\Fc=\cpa{\bigoplus_{i\in I}S_i\subseteq V}\]
+con $S_i$ tutti semplici e ordine su $\Fc$ dato da
+\[\bigoplus_{i\in I}S_i\preceq \bigoplus_{j\in J}T_j\coimplies I\subseteq J\text{ e }S_i=T_i\text{ per $i\in I$}.\]
+Ogni catena ammette maggiorante dato sommando sull'unione degli indici. Sia allora $W=\bigoplus S_i\subseteq V$ massimale e sciviamo $V=W\oplus U$. Se $W\neq (0)$ allora esiste una sottorappresentazione semplice $S\subseteq U$ e quindi $W'=W\oplus S$ sarebbe maggiore di $W$, assurdo.
+\end{proof}
+
+
+Vorremmo capire per quali gruppi $G$ le rappresentazioni regolari sono semisemplici.
+
+\section{Elementi semisemplici, unipotenti e nilpotenti}
+\begin{definition}[Elementi unipotenti, nilpotenti e semisemplici]
+Sia $V$ uno spazio vettoriale di dimensione finita e sia $g\in\End(V)$. Affermiamo che $g$ \`e
+\begin{itemize}
+    \item \textbf{semisemplice} se \`e diagonalizzabile
+    \item \textbf{nilpotente} se $g^n=0$ per qualche $n\in\N$
+    \item \textbf{unipotente} se $(g-id_V)^n=0$ per qualche $n\in\N$
+\end{itemize}
+\end{definition}
+
+\begin{remark}
+Se $g$ \`e invertibile allora $\Z$ agisce su $V$ come
+\[n\cdot v=g^nv,\]
+quindi la definizione di semisemplice si sposa bene con quella gi\`a data in quanto $g$ induce una decomposizione in autospazi $g$-invarianti.
+\end{remark}
+
+\begin{definition}[Endomorfismo localmente finito]
+Siano $V$ uno spazio vettoriale e $g\in \End(V)$. $g$ \`e \textbf{localmente finito} se per ogni $v\in V$ esiste $W$ di dimensione finita $g$-stabile con $v\in W$. In tal caso diciamo che
+\begin{itemize}
+    \item $g$ \`e \textbf{semisemplice} se $g\res W$ \`e semisemplice per ogni $W\subseteq V$ $g$-stabile di dimensione finita.
+    \item $g$ \`e \textbf{nilpotente} se $g\res W$ \`e nilpotente per ogni $W\subseteq V$ $g$-stabile di dimensione finita.
+    \item $g$ \`e \textbf{unipotente} se $g\res W$ \`e unipotente per ogni $W\subseteq V$ $g$-stabile di dimensione finita.
+\end{itemize}
+\end{definition}
+
+\begin{definition}[Semisemiplice, unipotente e nilpotente per gruppi algebrici]
+Se $G$ \`e un gruppo algebrico e $g\in G$ allora $g$ \`e
+\begin{itemize}
+    \item \textbf{semisemplice} se l'azione di $g$ su ogni rappresentazione regolare \`e semisemplice, cio\`e l'azione di $g$ su ogni rappresentazione di dimensione finita \`e semisemplice
+    \item \textbf{unipotente} se l'azione di $g$ su ogni rappresentazione regolare \`e unipotente, cio\`e l'azione di $g$ su ogni rappresentazione di dimensione finita \`e unipotente
+    \item \textbf{nilpotente} se l'azione di $g$ su ogni rappresentazione regolare \`e nilpotente, cio\`e l'azione di $g$ su ogni rappresentazione di dimensione finita \`e nilpotente.
+\end{itemize}
+\end{definition}
+
+
+\begin{lemma}[Semisemplice/unipotente/nilpotente passano alle costruzioni lineari]\label{LmPassaggioSemisempliceUnipotenteNilpotenteAdOperazioniVettoriali}
+Siano $g\in\End(V)$ e $h\in\End(W)$ con $V$ e $W$ localmente finite. Allora
+\begin{itemize}
+    \item Se $g$ e $h$ semisemplici allora
+    \begin{align*}
+    &g\oplus h:V\oplus W\to V\oplus W\text{ \`e semisemplice}\\
+    &g\otimes h:V\otimes W\to V\otimes W\text{ \`e semisemplice}
+    \end{align*}
+    \item Se $U\subseteq V$ \`e stabile per $g$ e $g$ semisemplice allora $g\res U$ e $\ol g:V/U\to V/U$ sono semisemplici.
+    \item Se $g$ \`e semisemplice allora l'azione di $g$ su $SV$ \`e semisemplice
+    \item Se $\dim V$ \`e finita e $g$ \`e semisemplice allora $V^\ast$ \`e semisemplice.
+\end{itemize}
+Valgono anche gli analoghi per unipotente e nilpotente.
+\end{lemma}
+\begin{proof}
+Tante verifiche noiose, riportiamo giusto quelle per $g\otimes h$:
+
+Se $V$ e $W$ hanno dimensione finita allora esistono basi di autovettori per $g$ e $h$
+\[gv_i=\la_iv_i,\quad hw_i=\mu_iv_i\]
+Allora
+\[(g\otimes h)(v_i\otimes w_j)=\la_i\mu_j v_i\otimes w_j,\]
+quindi $v_i\otimes w_j$ \`e ancora base di autovettori.
+Se invece $V$ e $W$ hanno dimensione infinita e $U\subseteq V\otimes W$ di dimensione finita allora gli elementi di base di $U$ appartengono a prodotti tensore di sottospazi di dimensione finita di $V$ e $W$, quindi ingrandendo in modo tale da tener conto di tutta la base ricaviamo $U\subseteq \wt V\otimes \wt W$ con $\wt V$ e $\wt W$ di dimensione finita, ora ci restringiamo  sottospazi stabili di $\wt V$ e $\wt W$ e con calma ci rimettiamo nelle ipotesi finite.
+\end{proof}
+
+\begin{lemma}[Rappresentazioni finte si immergono in ${\K[G]^n}$]\label{LmIniezioneRappresentazioniFiniteInPotenzaAnelloCoordinateDiG}
+Sia $V$ una rappresentazione di dimensione finita di $G$, allora abbiamo una iniezione
+\[f:V\inj \K[G]^n\]
+$G$-equivariante
+\end{lemma}
+\begin{proof}
+Sia $v_1,\cdots, v_n$ una base di $V$ e sia $\vp_1,\cdots, \vp_n$ la base duale. Definiamo
+\[\psi:\funcDef{V}{\K[G]^n}{v}{(\vp_1\otimes v,\cdots, \vp_n\otimes v)}\]
+dove se $\vp\in V^\ast$ e $v\in V$ poniamo
+\[(\vp\otimes v)(g)=\vp(g\ii v).\]
+\setlength{\leftmargini}{0cm}
+\begin{itemize}
+\item[$\boxed{G\text{-equivariante}}$] Vogliamo $\psi(gv)=g\psi(v)$, cio\`e $g(\vp\otimes v)=\vp\otimes gv$. Allora calcoliamo
+\[(g(\vp\otimes v))(h)=(\vp\otimes v)(g\ii h)=\vp(h\ii g v)=(\vp\otimes gv)(h)\]
+\item[$\boxed{\text{iniettiva}}$] Supponiamo $\psi(v)=0$, allora per ogni $i$
+\[0=(\vp_i\otimes v)(e)=\vp_i(v)\]
+ma $\vp_i$ era una base del duale, quindi $v=0$.
+\end{itemize}
+\setlength{\leftmargini}{0.5cm}
+\end{proof}
+
+\begin{remark}
+Se $gv=(\al_{i,j}(g))_{1\leq i,j\leq n} v$ allora $\vp_i\otimes v_j=\al_{i,j}$.
+\end{remark}
+
+\begin{corollary}\label{CorControlloSemisempliceSuAnelloCoordinate}
+Se $g\in G$ allora
+\begin{itemize}
+    \item $g$ \`e semisemplice se e solo se l'azione di $g$ su $\K[G]$ \`e semisemplice
+    \item $g$ \`e unipotente se e solo se l'azione di $g$ su $\K[G]$ \`e unipotente
+\end{itemize}
+\end{corollary}
+\begin{proof}
+Facciamo il caso semisemplice
+\setlength{\leftmargini}{0cm}
+\begin{itemize}
+\item[$\boxed{\implies}$] Ovvio
+\item[$\boxed{\impliedby}$] Dobbiamo verificare che l'azione di $g$ su ogni rappresentazione di dimensione finita $V$ \`e semisemplice. Per il lemma (\ref{LmIniezioneRappresentazioniFiniteInPotenzaAnelloCoordinateDiG}) abbiamo che $V\subseteq \K[G]^n$ e questo \`e semisemplice quindi anche $g$ lo \`e per il secondo punto del lemma (\ref{LmPassaggioSemisempliceUnipotenteNilpotenteAdOperazioniVettoriali}) 
+\end{itemize}
+\setlength{\leftmargini}{0.5cm}
+\end{proof}
+
+
+
+\begin{lemma}[Criterio per semisemplice/unipotente in gruppi lineari]\label{LmCriterioSemisempliceUnipotentePerGruppiLineari}
+Se $G\subseteq GL(V)$ \`e un sottogruppo chiuso per $V$ di dimensione finita allora
+\begin{itemize}
+    \item $g\in G$ \`e semisemplice se e solo se l'azione di $g$ su $V$ \`e semisemplice.
+    \item $g\in G$ \`e unipotente se e solo se l'azione di $g$ su $V$ \`e unipotente.
+\end{itemize}
+\end{lemma}
+\begin{proof}
+Diamo le implicazioni per il caso semisemplice
+\setlength{\leftmargini}{0cm}
+\begin{itemize}
+\item[$\boxed{\implies}$] Ovvio
+\item[$\boxed{\impliedby}$] Verifichiamo che l'azione su $\K[G]$ \`e semisemplice. Osserviamo che 
+\[\K[\GL(V)]\onto \K[G]\]
+\`e surgettivo e $G$-equivariante quindi basta far vedere che $g$ agisce in modo semisemplice su $\K[\GL(V)]$.
+\[\K[\GL(V)]=\K[\End(V)]\spa{{{\det}^{-1}}}\]
+Verifichiamo che $g$ agisce in modo semisemplice su $\K[\End(V)]=S(\End(V)^\ast)$. Per il lemma (\ref{LmPassaggioSemisempliceUnipotenteNilpotenteAdOperazioniVettoriali}) basta verificare che $g$ agisce in modo semisemplice su $\End(V)^\ast$ o equivalentemente su $\End(V)$ per lo stesso lemma. Ricordiamo che $g$ agisce tramite la moltiplicazione a sinistra.
+
+Se $\dim V=n$ allora $\End(V)$ con l'azione di moltiplicazione a sinistra di $g$ \`e uguale a considerare l'azione di $g$ su $V^{\oplus n}$ dove la corrispondenza \`e data dal fatto che l'azione per moltiplicazione a sinistra agisce sulle colonne della matrice a destra per restituire le colonne della matrice risultato.
+
+Poich\'e $g$ agiva in modo semisemplice su $V$, agisce in modo semisemplice anche sulla somma che abbiamo considerato, quindi mettendo tutto insieme abbiamo mostrato che $g$ agisce in modo semisemplice su $\K[\End(V)]$.
+
+Sia ora $W\subseteq \K[\End(V)][{\det}\ii]$ un sottospazio di dimensione finita, in particolare
+\[W\subseteq \frac1{{\det}^N}\K[\End(V)]\quad \text{per qualche }N\]
+Consideriamo allora l'azione di $g$ su $\K[\End(V)]\otimes \K$ dove sulla copia di $\K$ abbiamo $g\la=(\det g)^{-N}\la$. Abbiamo una mappa $G$-equivariante surgettiva
+\[\funcDef{\K[\End(V)]\otimes \K}{\frac1{{\det}^N}\K[\End(V)]}{f\otimes \la}{\frac\la{(\det)^N}f}\]
+quindi, poich\'e $g$ agisce in modo semisemplice su $\K[\End(V)]$ e su $\K$, si ha che agisce in modo semisemplice su $\frac1{{\det}^N}\K[\End(V)]$ e quindi su $W$.
+
+
+Mettendo tutto insieme, abbiamo mostrato che $g$ agisce in modo semisemplice su $\K[G]$ e questo conclude per il corollario (\ref{CorControlloSemisempliceSuAnelloCoordinate}).
+\end{itemize}
+\setlength{\leftmargini}{0.5cm}
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{Decomposizione di Jordan}
+\begin{proposition}\label{PrDecomposizioneSemisempliceNilpotente}
+    Sia $V$ un $\K$-spazio vettoriale di dimensione finita e sia $T$ un endomorfismo di $V$. Allora \begin{enumerate}
+        \item Esistono e sono unici $S$ semisemplice e $N$ nilpotente in $\End(V)$ tali che $T=S+N$ e $SN=NS$.
+    \end{enumerate}
+    Gli endomorfismi $S$ e $N$ si dicono \textbf{parte semisemplice} e \textbf{parte nilpotente} di $T$ e li denoteremo $T_s$ e $T_n$ rispettivamente. 
+    \begin{enumerate}
+        \item[2.] Esistono $f,g$ in $\K[x]$, con $f(0)=g(0)=0$, tali che $S=f(T)$ e $N=g(T)$.
+        \item[3.] Se $W$ è un sottospazio $T$-stabile di $V$, allora $W$ è $S$-stabile e $N$-stabile. Inoltre \[\left(\left.T\right|_{W}\right)_s=\left.S\right|_{W} \quad \text{ e } \quad \left(\left.T\right|_{W}\right)_n=\left.N\right|_{W}.\]
+        \item[4.] Se $V'$ è un $\K$-spazio vettoriale di dimensione finita, $T'$ è un endomorfismo di $V'$ e $L\colon V \to V'$ è un'applicazione lineare, allora \[L\circ T_s = T'_s\circ L \quad \text{ e } \quad L\circ T_n = T'_n\circ L.\]
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+Dimostriamo i vari punti. 
+\setlength{\leftmargini}{0cm}
+\begin{enumerate}
+    \item Scriviamo $T$ in forma di Jordan e poniamo $S$ la parte diagonale di $T$ (che è quindi semisemplice). Posto $N=T-S$, si ha che $N$ è nilpotente e $SN=NS$.
+    
+    Mostriamo ora l'unicità: se $S'$ e $N'$ sono tali che $T=S+N=S'+N'$ e $S'N'=N'S'$, allora $S,S',N,N'$ commutano con $T$, quindi $S',N'$ commutano con $S,N$. Osservando che $S-S'=N'-N$, dove il primo membro è diagonale e il secondo è nilpotente, troviamo $S=S'$ e $N=N'$. 
+    \item Consideriamo il polinomio caratteristico $p_T$ di $T$ e scriviamolo nella forma \[p_T(t)=\prod_{i=1}^r(t-\lambda_i)^{n_i},\] dove i $\lambda_i$ sono distinti. Cerchiamo un polinomio $f(t)$ in $\K[t]$ tale che 
+    \[\begin{cases}
+    f(t)\equiv 0 &\pmod{(t)}\\
+    f(t)\equiv \la_i &\pmod{(t-\lambda_i)^{n_i}} \quad \forall i\in\cpa{1,\cdots, r}
+    \end{cases}\]
+    Tale polinomio esiste per il teorema cinese del resto. Inoltre soddisfa $f(T)=S$. Infatti, sul singolo blocco di Jordan $J_i$ relativo all'autovalore $\lambda_i$ (di taglia $m_i\le n_i$), si ha che $f(T)=\lambda_i I$. Poiché $N=T-S$, posto $g(t)=t-f(t)$, si ha $N=g(T)$. 
+    \item Poiché $S=f(T)$ e $N=g(T)$, se $W$ è $T$-stabile, lo sono chiaramente anche $S$ e $N$. Siano ora $t=\left.T\right|_{W}$, $s=\left.S\right|_{W}$ e $n=\left.N\right|_{W}$. Allora $t=s+n$, $sn=ns$ e, per il lemma (\ref{LmPassaggioSemisempliceUnipotenteNilpotenteAdOperazioniVettoriali}), $s$ è semisemplice e $n$ è nilpotente. Quindi la tesi discende dall'unicità della decomposizione.
+    \item Se $L$ è iniettiva (o suriettiva), allora $V$ è un sottospazio (o un quoziente) di $V'$, e la tesi discende dal punto precedente (nel caso del quoziente è analogo considerando la stabilità degli elementi semisemplici e nilpotenti). Nel caso generale, consideriamo il diagramma:
+    % https://q.uiver.app/#q=WzAsNixbMCwwLCJWIl0sWzIsMCwiVlxcb3BsdXMgViciXSxbNCwwLCJWJyJdLFswLDEsIlYiXSxbMiwxLCJWXFxvcGx1cyBWJyJdLFs0LDEsIlYnIl0sWzIsNSwiVCciXSxbMSw0LCJUJyc9VFxcb3BsdXMgVCciXSxbMCwzLCJUIl0sWzAsMSwiTF8xIl0sWzEsMiwiTF8yIl0sWzMsNF0sWzQsNV1d
+\[\begin{tikzcd}
+	V && {V\oplus V'} && {V'} \\
+	V && {V\oplus V'} && {V'}
+	\arrow["{L_1}", from=1-1, to=1-3]
+	\arrow["T", from=1-1, to=2-1]
+	\arrow["{L_2}", from=1-3, to=1-5]
+	\arrow["{T''=T\oplus T'}", from=1-3, to=2-3]
+	\arrow["{T'}", from=1-5, to=2-5]
+	\arrow[from=2-1, to=2-3]
+	\arrow[from=2-3, to=2-5]
+\end{tikzcd}\]    dove $L_1 \colon v \mapsto (v,L(v))$ e $L_2\colon (v,w)\mapsto w$. Per commutatività, si ha $L_1\circ T_s=T''_s\circ L_1$ e $L_2\circ T''_s=T'_s\circ L_2$. Deduciamo quindi che \[L\circ T_s =L_2\circ L_1 \circ T_s= L_2 \circ T''_s\circ L_1= T'_s\circ L_2 \circ L_1= T'_s\circ L.\]
+\end{enumerate}
+\setlength{\leftmargini}{0.5cm}
+    Per il caso nilpotente la dimostrazione è analoga.
+\end{proof}
+
+Vale una decomposizione analoga nel caso moltiplicativo, sostituendo elementi nilpotenti con elementi unipotenti.
+
+\begin{proposition}\label{PrDecomposizioneSemisempliceUnipotente}
+    Sia $V$ un $\K$-spazio vettoriale di dimensione finita e sia $T$ in $\GL(V)$. Allora \begin{enumerate}
+        \item Esistono e sono uniche $S$ semisemplice e $U$ unipotente tali che $T=SU=US$, date da $S=T_S$ e $U=T_U$
+        \item Esistono $f,g$ in $\K[x]$ tali che $S=f(T)$ e $U=g(T)$.
+        \item Se $W$ è un sottospazio $T$-stabile di $V$, allora $W$ è $S$-stabile e $U$-stabile. Inoltre \[\left(\left.T\right|_{W}\right)_s=\left.S\right|_{W} \quad \text{ e } \quad \left(\left.T\right|_{W}\right)_u=\left.U\right|_{W}.\]
+        \item Se $V'$ è un $\K$-spazio vettoriale di dimensione finita, $T'$ è un endomorfismo di $V'$ e $L\colon V \to V'$ è un'applicazione lineare, allora \[L\circ T_s = T'_s\circ L \quad \text{ e } \quad L\circ T_u = T'_u\circ L.\]
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+    Per analogia con la proposizione precedente, ci limitiamo a dimostrare il primo punto. Partendo dalla decomposizione additiva, si ha \[T=S+N=S(I+S^{-1}N).\] Poiché $S^{-1}N$ è nilpotente, l'elemento $U=I+S^{-1}N$ è unipotente. Mostriamo l'unicità: se $S'$ e $U'$ sono tali che $T=S'U'$, posto $U'=I+M$ con $M$ nilpotente, si ha $T=S'+S'M$. Quindi l'unicità discende da quella del caso additivo.
+\end{proof}
+Vogliamo ora estendere quanto fatto al caso localmente finito. Ricordiamo che un'applicazione lineare $T\colon V\to V$ è \emph{localmente finita} se per ogni $v$ in $V$ esiste un sottospazio $W$ di $V$ di dimensione finita contenente $v$ e $T$-stabile.
+\begin{theorem}
+    Sia $V$ un $\K$-spazio vettoriale e sia $T\colon V\to V$ lineare, invertibile e localmente finita. Allora esistono e sono unici $S$ semisemplice e $U$ unipotente tali che $T=SU=US$.
+\end{theorem}
+\begin{proof}
+    Mostriamo dapprima l'esistenza. Per ogni $v$ in $V$, sia $W$ un sottospazio di $V$ di dimensione finita contenente $v$ e $T$-stabile. Consideriamo la restrizione $\left.T\right|_W$ in $\GL(W)$. Consideriamo allora gli elementi $S_W=(\left.T\right|_W)_s$ e $U_W=(\left.T\right|_W)_u$ dati dalla Proposizione (\ref{PrDecomposizioneSemisempliceUnipotente}) e definiamo $S(v)=S_W(v)$. Osserviamo che $S(v)$ non dipende dalla scelta di $W$. Infatti, se $W$ è contenuto in un $W'$, allora $\left.S_{W'}\right|_{W}=S_W$. Procedendo in modo analogo per $U$, otteniamo l'esistenza. 
+
+    Osserviamo che $S$ e $U$ costruite soddisfano le proprietà 3 e 4 dell'enunciato precedente. \begin{mdframed}[topline=false,rightline=false,bottomline=false]  Verifichiamo ad esempio la 4. Mostriamo che, con la notazione della Proposizione (\ref{PrDecomposizioneSemisempliceUnipotente}), si ha $LS=S'L$. Per ogni $v$ in $V$, consideriamo un sottospazio $W$ di dimensione finita, contenente $v$ e $T$-stabile. Sia $W'=L(W)$. Allora \[S'(W')=S'L(W)=LS(W)\subseteq L(W)=W'.\]
+    È quindi sufficiente mostrare che \[\left.L\right|_{W}\circ \left.S\right|_{W} (v)=\left.S'\right|_{W'}\circ \left.L\right|_{W} (v),\] ma ciò segue dal caso di dimensione finita.
+    \end{mdframed}
+Mostriamo ora l'unicità. Assumiamo $T=su=us$ e mostriamo che $S=s$ e $U=u$. Osserviamo che $S,U$ commutano con $s,u$. Infatti, per il punto 4, sappiamo che $LS=SL$ e $LU=UL$. Allora dal diagramma % https://q.uiver.app/#q=WzAsNCxbMCwwLCJWIl0sWzIsMCwiViJdLFswLDEsIlYiXSxbMiwxLCJWIl0sWzEsMywiVCJdLFswLDIsIlQiXSxbMCwxLCJMPXMiXSxbMiwzLCJMPXMiLDJdXQ==
+\[\begin{tikzcd}
+	V && V \\
+	V && V
+	\arrow["{L=s}", from=1-1, to=1-3]
+	\arrow["T", from=1-1, to=2-1]
+	\arrow["T", from=1-3, to=2-3]
+	\arrow["{L=s}"', from=2-1, to=2-3]
+\end{tikzcd}\]
+ricaviamo $Ss=sS$ e $Us=sU$. Analogamente troviamo $Uu=uU$ e $Su=uS$. Scriviamo ora $V=\bigoplus_\lambda V_\lambda(S)$. Poiché $V_\lambda(S)$ è stabile per $U,s,u$, lo spazio \[V_{\lambda,\mu}(S,s)=\{v\in V\colon Sv=\lambda v, \ sv=\mu v\}\] è stabile per $U$ e $u$. Supponiamo per assurdo che esistano $\lambda, \mu$ distinti tali che $V_{\lambda,\mu}\ne 0$. Allora, poiché $U$ e $u$ sono unipotenti, si ha $(V_{\lambda,\mu}(S,s))^U\ne 0$ e, poiché $U$ e $u$ commutano, si ha anche $((V_{\lambda,\mu}(S,s))^U)^u\ne 0$. Scegliendo $v$ non nullo in $((V_{\lambda,\mu}(S,s))^U)^u$, si ottiene $T(v)=SU(v)=S(v)=\lambda v$, ma anche $T(v)=su(v)=s(v)=\mu v$, contro l'ipotesi che $\lambda$ e $\mu$ sono distinti.
+\end{proof}
+
+\begin{theorem}[Decomposizione di Jordan] Sia $G$ un gruppo algebrico e sia $g$ un elemento di $G$. Allora esistono e sono unici $s,u$ in $G$ tali che $s$ è semisemplice, $u$ è unipotente e $g=su=us$.
+\end{theorem}
+\begin{proof}
+    Assumiamo che $G$ sia un sottogruppo chiuso di $\GL(W)$. $G=V(I)$ con $I\subseteq \K[\GL(W)]$. Mostriamo l'esistenza di $s$ e $u$. Poiché $g$ è in $\GL(W)$, possiamo scrivere (\ref{PrDecomposizioneSemisempliceUnipotente}) $g=su=us$ con $u$ unipotente e $s$ semisemplice in $\GL(W)$ (cio\`e $s$ agisce in modo semisemplice su $\K[\GL(W)]$ e $u$ agisce in modo unipotente su $\K[\GL(W)]$). In particolare $g=su$ è la decomposizione di Jordan per l'azione di $g$ su $\K[\GL(W)]$.
+    Mostriamo che effettivamente $u$ e $s$ sono in $G$ verificando che annullano ogni elemento $f$ di $I$. Osserviamo che $I$ è stabile per l'azione di $g$ (e in generale per l'azione di $G$), infatti, per ogni $h$ in $G$ si ha $(gf)(h)=f(g^{-1}h)=0$. Poiché $s$ è la parte semisemplice di $g$, $s(I)$ è contenuto in $I$ e se $f$ è un elemento di $I$, si ha $sf$ è $0$ su $G$. D'altro canto, valutando sull'elemento neutro $e$ di $G$, troviamo \[0=(sf)(e)=f(s^{-1}),\] dunque $s^{-1}$ (e quindi $s$) è in $G$. L'unicità segue direttamente dal fatto che la decomposizione è unica in $\GL(W)$.
+\end{proof}
+\begin{notation}
+    Denotiamo $g_s=s$ e $g_u=u$.
+\end{notation}
+\begin{exercise}
+    Se $\varphi\colon G \to G'$ è un morfismo di gruppi algebrici, allora $\varphi(g_s)=\varphi(g)_s$ e $\varphi(g_u)=\varphi(g)_u$.
+\end{exercise}
+
+\begin{exercise}
+    Sia $\K$ un campo perfetto (assumiamo per l'esercizio $\K=\R$). Consideriamo l'inclusione \[\GL(n,\R)\subset \GL(n,\C).\]
+    Sia $G$ un sottogruppo di $\GL(n,\C)$ definito da un'equazione a coefficienti in $\R$. Sia $G_\R=G\cap \GL(n,\R)$. Consideriamo un elemento $g$ in $G_\R$. Mostrare che $g_s$ e $g_u$ sono in $G_\R$.
+\end{exercise}
+
+

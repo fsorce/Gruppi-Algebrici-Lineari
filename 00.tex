@@ -1,0 +1,20 @@
+\chapter*{Introduzione}
+
+\section*{Di cosa stiamo parlando?}
+Un \textbf{gruppo algebrico lineare} \`e un sottogruppo di $\GL(n)$ definito dall'annullarsi di equazioni polinomiali.
+
+Vogliamo studiare questi gruppi e le loro rappresentazioni.
+
+
+\begin{example}
+Il gruppo $\SL(2,\C)$ agisce su $\C^2$, e quindi anche sulle funzioni definite su $\C^2$, infatti se $f:\C^2\to X$ abbiamo una azione
+\[g(f)(v)=f(g\ii v)\]
+In particolare notiamo che porta funzioni polinomiali in funzioni polinomiali, in quanto
+\[\mat{a&b\\c&d}(x)=dx-by,\quad\mat{a&b\\c&d}(y)=-cx+ay.\]
+Notiamo anche che preserva il grado in quanto manda polinomi lineari in lineari.
+
+\textbf{Domanda:} come funzionano le orbite di questa azione sugli spazi omogenei?
+\[\C[x,y]_d=\ps{x^d,x^{d-1}y,\cdots,y^d}_\C\]
+
+Consideriamo per esempio $V_2=\C[x,y]_2=\ps{x^2,xy,y^2}$. I suoi elementi sono $\alpha x^2+\beta xy+\gamma y^2$. Segue che $\C[\al,\beta,\gamma]$ sono le funzioni polinomiali su $V_2$. Possiamo classificare le orbite in termini dell'invariante $\Delta=\al\gamma-4\beta^2$.
+\end{example}
