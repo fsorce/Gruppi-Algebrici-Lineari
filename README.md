@@ -1,2 +1,4 @@
-# Gruppi-Algebrici-Lineari
-Note del corso di Gruppi Algebrici Lineari tenuto presso l'Università di Pisa in anno accademico 24/25 
+# Gruppi Algebrici Lineari
+Dispense del corso di Gruppi Algebrici Lineari tenuto dal prof. Andrea Maffei in a.a. 2024/25
+
+Questo progetto è stato realizzato in collaborazione con Andrea Di Nunzio.
