@@ -62,7 +62,7 @@ Segue per linearit\`a della traccia che $\tr((g_V-1)a)=0$ per ogni $a\in \End_\K
 \end{remark}
 
 
-\begin{corollary}
+\begin{corollary}\label{CorFissatoDaUnipotenteNonEBanale}
     Se $V$ \`e una rappresentazione di $G$ non nulla allora $V^G\neq 0$.
 \end{corollary}
 
@@ -175,7 +175,10 @@ Ricordando che $\K[\G_m]=\K[t^{\pm1}]$ notiamo che
 Questo spazio ha una base data da $t^\al=t_1^{\al_1}\cdots t_n^{\al_n}$ per $\al\in \Z^n$.
 \end{remark}
 
-\begin{remark}
+\begin{proposition}[Tori algebrici sono semisemplici]\label{PrToriAlgebriciSonoSemisemplici}
+Se $G$ toro algebrico allora $G$ \`e semisemplice.
+\end{proposition}
+\begin{proof}
 Se $g=(\la_1,\cdots, \la_n)$ e $h=(\mu_1,\cdots, \mu_n)$ sono elementi di $\G_m^n=(\K^\times)^n$ si ha che
 \begin{align*}
 (gt^\al)(h)=&t^\al(g\ii h)=t^\al(\la_1\ii \mu_1,\cdots, \la_n\ii\mu_n)=\\
@@ -188,7 +191,7 @@ Segue che $gt^\al=\la^{-\al}t^\al$ e che quindi i $t^\al$ sono autovettori per o
 e ogni $\K t^\al$ \`e semisemplice, segue (\ref{LmPassaggioSemisempliceUnipotenteNilpotenteAdOperazioniVettoriali}) che $\K[G]$ \`e semisemplice.
 
 Quindi le rappresentazioni semplici di $G$ sono di dimensione 1 e sono date da $\K_\al=\K t^{-\al}$ con $gz=t^\al(g)z$
-\end{remark}
+\end{proof}
 
 
 \begin{lemma}
@@ -241,8 +244,77 @@ Consideriamo ora $S^2V=\ps{X^2,xy,y^2}$. Per questioni di caratteristica 2, $gx^
 \end{example}
 
 \begin{exercise}
-Se $G$ \`e completamente riducibile allora $G$ non ha sottogruppi unipotenti normali.
-\end{exercise}
-\begin{exercise}
 Se $\cha \K=p$ allora $\SL(n,\K)$ e $\GL(n,\K)$ non sono completamente riducibili.
 \end{exercise}
+
+
+
+
+\begin{proposition}\label{PrCompletamenteRiducibileNonHaSottogruppiNormaliUnipotenti}
+Se $G$ \`e completamente riducibile allora $G$ non ha sotto-gruppi unipotenti normali non banali.
+\end{proposition}
+\begin{proof}
+Sia $W$ tale che $G\inj \GL(W)$ (definizione di gruppo algebrico lineare).
+
+Sia $V$ una rappresentazione irriducibile di $G$ e sia $U\subseteq G$ un sottogruppo normale unipotente. Poich\'e $V\neq (0)$ e $U$ unipotente, $V^U\neq 0$ per il corollario (\ref{CorFissatoDaUnipotenteNonEBanale}). Poich\'e $U$ \`e normale $V^U$ \`e stabile per $G$ e quindi $V^U=V$, cio\`e $U$ agisce banalmente su tutte le rappresentazioni irriducibili. Questo mostra che per la mappa $G\to \GL(W)$ si ha che $U$ finisce in $\cpa{id_W}$ perch\'e $G$ \`e completamente riducibile, ma questa mappa \`e iniettiva e quindi $U=\cpa{1_G}$.
+\end{proof}
+
+
+
+\begin{definition}[Caratteri di un gruppo]
+Dato un gruppo algebrico $G$ definiamo un \textbf{carattere} di $G$ come un omomorfismo di gruppi
+\[\al:G\to \GL(1)=\K^\times.\]
+L'insieme dei caratteri $X(G)$ forma un gruppo abeliano:
+\[(\al\beta)(g)=\al(g)\beta(g)=\beta(g)\al(g)=(\beta\al)(g).\]
+\end{definition}
+
+\begin{theorem}\label{ThAbelianoConnessoCompletamenteRiducibileImplicaToro}
+Sia $G$ un gruppo abeliano connesso completamente riducibile, allora $G$ \`e un toro algebrico.
+\end{theorem}
+\begin{proof}
+Notiamo che ogni elemento di $G$ \`e semisemplice: se $g\in G$ allora per la decomposizione di Jordan (\ref{PrDecomposizioneSemisempliceUnipotente}) si ha $g=su$ con $u$ unipotente in $G$. Poich\'e $G$ \`e abeliano, $\ps{u}$ \`e un suo sottogruppo normale, quindi per la proposizione sopra (\ref{PrCompletamenteRiducibileNonHaSottogruppiNormaliUnipotenti}) si ha che $\ps{u}=\cpa{1_G}$, cio\`e $u=1_G$. Dunque $g=s1_G=s$, cio\`e $g$ \`e semisemplice.
+
+Poich\'e $G$ \`e abeliano, gli elementi commutano. Dato che ogni elemento \`e semisemplice (cio\`e in ogni rappresentazione \`e diagonalizzabile), si ha che per ogni rappresentazione esiste una base di autovettori dove ogni elemento di $G$ \`e \emph{simultaneamente} diagonalizzabile. In particolare le rappresentazioni irriducibili hanno dimensione $1$.
+\smallskip
+
+Consideriamo allora una decomposizione di $\K[G]$ che rende ogni elemento di $G$ diagonalizzabile
+\[\K[G]=\bigoplus \K^{n_\al}_\al\]
+dove $\K_\al^{n_\al}$ sono le funzioni regolari $f$ tali che $gf=\al(g)f$. Notiamo che 
+\[\al(gh)f=(gh)f=g(hf)=g(\al(h)f)=\al(h)gf=\al(h)\al(g)f\]
+quindi $\al(gh)=\al(g)\al(h)$. Questo ci permette di identificare questa decomposizione con
+\[\K[G]=\bigoplus_{\al\in X(G)}V_\al,\qquad\text{dove }V_\al=\cpa{h\in \K[G]\mid gh=\al(g)h}.\]
+
+Per ogni carattere $\al\in X(G)$ definiamo $f_\al=\al\ii\in \Hom(G,\K^\times)\subseteq\Hom(G,\K)=\K[G]$. Sfruttando il fatto che $\al$ \`e un omomorfismo si ha $f_\al\in V_\al$, infatti
+\begin{align*}
+    (gf_\al)(x)=&f_\al(g\ii x)=\al\ii(g\ii x)=(\al(g\ii x))\ii=\\
+    =&(\al(g)\ii \al(x))\ii=(\al(x))\ii\al(g)=\\
+    =&\al(g) \al\ii(x)=\\
+    =&\al(g)f_\al(x).
+\end{align*}
+Se $h$ ha carattere $\al$, cio\`e $gh=\al(g)h$, allora per ogni $g\in G$
+\[\frac{h(1_G)}{f_\al(1_G)}=\frac{\al(g\ii)h(1_G)}{\al(g\ii)f_\al(1_G)}=\frac{g\ii h(1_G)}{g\ii f_\al(1_G)}=\frac{h(g1_G)}{f_\al(g1_G)}=\frac{h(g)}{f_\al(g)},\]
+cio\`e $h$ \`e un multiplo di $f_\al$ (in particolare $n_\al=1$ nella scrittura sopra).
+\smallskip
+
+Mostriamo che $X(G)\cong \Z^n$ per qualche $n$ mostrando che \`e un gruppo abeliano finitamente generato libero da torsione:
+\setlength{\leftmargini}{0cm}
+\begin{itemize}
+\item[$\boxed{\text{fin.gen.}}$] Sappiamo che $\K[G]$ \`e una $\K$-algebra finitamente generata quindi consideriamo dei generatori $f_{\al_1},\cdots, f_{\al_m}$. Come $\K$-spazio vettoriale, $\K[G]$ \`e generato da elementi della forma
+\[f_{\al_1}^{n_1}\cdots f_{\al_m}^{n_m},\]
+il quale ha carattere $\prod \al_i^{n_i}$. Questo mostra che i caratteri $\al_1,\cdots, \al_m$ sono dei generatori di $X(G)$.
+\item[$\boxed{\text{tor.free}}$] EPer assurdo supponiamo $\al^N=1$ ma $\al\neq 1$, cio\`e $\al(g)^N=1$ per ogni $g\in G$. Notiamo che
+\[G=\coprod_{\omega\ t.c.\ \omega^N=1}\cpa{g\mid \al(g)=\omega},\]
+ma poich\'e $G$ \`e connesso, questa unione disgiunta deve consistere di un solo termine, mostrando che $\al$ assume solo il valore $1$ contraddicendo le ipotesi.
+\end{itemize}
+\setlength{\leftmargini}{0.5cm}
+Abbiamo quindi mostrato che $X(G)\cong \Z^n$. Sia $\al_1,\cdots, \al_n$ una sua base. Se scriviamo $x_i=f_{\al_i}$ troviamo
+\[\K[G]=\bigoplus \ps{f_\al}_\K=\bigoplus \ps{x_1^{m_1}\cdots x_n^{m_n}}_\K\]
+e in questa decomposizione il prodotto \`e esattamente quello che ci aspetteremmo.
+Se scriviamo $\al=\al_1^{m_1}\cdots\al_n^{m_n}$ allora $f_\al=x_1^{m_1}\cdots x_n^{m_n}$, dunque abbiamo proprio mostrato che
+\[\K[G]=\K[x_1^{\pm1},\cdots, x_n^{\pm 1}]=\K[(\K^\times)^n].\]
+Essendo sia $G$ che $(\K^\times)^n$ affini questo mostra che sono isomorfi.
+\end{proof}
+
+
+
+

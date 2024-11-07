@@ -1,0 +1,97 @@
+\chapter{Quozienti}
+\section{Costruzione dei quozienti}
+\begin{lemma}\label{LmSottogruppoEStabilizzatoreDiUnaRettaInQualcheRappresentazione}
+Sia $G$ un gruppo algebrico e $H$ sottogruppo di $G$, allora
+\begin{enumerate}
+    \item Esistono una rappresentazione di dimensione finita $V$ di $G$ e una retta $L\subseteq V$ tali che $H=\stab_G L=\cpa{g\in G\mid g(L)=L}$
+    \item Se $H$ \`e normale allora $V$ si pu\`o scegliere in modo che sia somma dei $V_\al$ per $\al\in X(H)$ e $V_\al=\cpa{v\in V\mid h\cdot v=\al(h)v}$.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+Mostriamo le due affermazioni
+\setlength{\leftmargini}{0cm}
+\begin{enumerate}
+\item Sia $I_H\subseteq \K[G]$ l'ideale che definisce $H$, allora
+\[H=\cpa{g\in G\mid g(I_H)=I_H}\]
+\setlength{\leftmargini}{0cm}
+\begin{itemize}
+\item[$\boxed{\subseteq}$] Se $g\in H$ e $f\in I_H$ allora $gf(k)=f(g\ii k)$, quindi se $k\in H$ allora $g\ii k\in H$ e quindi questa funzione vale $0$, cio\`e $gf\in I_H$. L'altra inclusione segue dallo stesso ragionamento fatto su $g\ii$.
+\item[$\boxed{\supseteq}$] Se $g\ii(I_H)\subseteq I_H$ allora per ogni $f\in I_H$
+\[f(g)=\under{\in I_H}{(g\ii f)}(e)=0\]
+cio\`e $g\in H$.
+\end{itemize}
+\setlength{\leftmargini}{0.5cm}
+Consideriamo ora dei generatori $f_1,\cdots, f_m$ per $I_H$ e sia $V_0\subseteq \K[G]$ una $G$-sotto-rappresentazione di dimensione finita che contiene ogni $f_i$. Consideriamo il sottospazio vettoriale $W_0=I_H\cap V_0$ e notiamo che
+\[H=\cpa{g\in G\mid g(W_0)= W_0}.\]
+\setlength{\leftmargini}{0cm}
+\begin{itemize}
+\item[$\boxed{\subseteq}$] Ovvio per quanto detto sopra.
+\item[$\boxed{\supseteq}$] Se $g(W_0)= W_0$ allora $g(I_H)=I_H$, infatti $g(I_H)\subseteq I_H$ ovvio per costruzione di $W_0$, l'altra inclusione segue dal fatto che $g(W_0)=W_0\coimplies g\ii(W_0)=W_0$.
+\end{itemize}
+\setlength{\leftmargini}{0.5cm}
+Sia $\dim W_0=m$. Poniamo
+\[V=\bw^m V_0,\quad L=\bw^m W_0\subseteq \bw^m V_0.\]
+Per concludere basta mostrare che
+\[H=\cpa{g\in G\mid g(L)=L}\]
+\setlength{\leftmargini}{0cm}
+\begin{itemize}
+\item[$\boxed{\subseteq}$] Se $g(W_0)=W_0$ allora chiaramente 
+\[g(L)=g\pa{\bw^mW_0}=\bw^m g(W_0)=\bw^m W_0=L.\] 
+\item[$\boxed{\supseteq}$] Notiamo che se $u_1,\cdots, u_m$ \`e una base di $U\subseteq V$ sottospazio vettoriale allora 
+\[U=\cpa{u\in V\mid u\wedge u_1\wedge\cdots\wedge u_m=0}.\]
+Fissiamo una base $w_1,\cdots, w_m$ di $W_0$ e osserviamo che $g w_1,\cdots, gw_m$ \`e una base di $g(W_0)$. Se $g(L)=L$ allora per definizione
+\[\ps{g w_1\wedge\cdots\wedge gw_m}=\ps{w_1\wedge\cdots\wedge w_m},\] 
+quindi per il criterio appena citato si ha che
+\begin{align*}
+    W_0=&\cpa{v\in V\mid v\wedge w_1\wedge\cdots\wedge w_m=0}=\\
+    =&\cpa{v\in V\mid u\wedge gw_1\wedge\cdots\wedge gw_m=0}=g(W_0).
+\end{align*}
+\end{itemize}
+\setlength{\leftmargini}{0.5cm}
+\item Sia $V'=\bigoplus_{\al\in X(H)} V_\al\subseteq V$ con $V$ di prima. Mostriamo che $V'$ \`e $G$-invariante:
+Se $v_\al\in V_\al$ per $\al\in X(H)$, $h\in H$ e $g\in G$ allora
+\[h\cdot(g v_\al)=(gg\ii h g)\cdot v_\al=g(\al(g\ii hg)v_\al)=\al(g\ii hg)gv_\al,\]
+cio\`e $gv_\al$ \`e un autovettore per l'azione di $h$ per un qualsiasi $g\in G$ e $h\in H$, ovvero $V'$ \`e $G$-invariante. 
+
+Per concludere \`e dunque sufficiente mostrare che $L\subseteq V'$, ma abbiamo gi\`a visto che 
+\[g(w_1\wedge\cdots \wedge w_m)=gw_1\wedge\cdots \wedge gw_m=\la(g) w_1\wedge\cdots\wedge w_m\] 
+per qualche $\la(g)$ per ogni $g\in H$, quindi $L\subseteq V_\la$.
+\end{enumerate}
+\setlength{\leftmargini}{0.5cm}
+\end{proof}
+
+Siano $H< G$ e $L,V$ come nel lemma. Allora $L\in \Pj(V)$ per definizione di spazio proiettivo. Definiamo la variet\`a proiettiva
+\[Y=\ol{G\cdot L}\subseteq \Pj(V)\]
+e scriviamo $X=G\cdot L$. Mostriamo che $X$ \`e aperto: data la mappa
+\[\funcDef{G}{Y}{g}{gL},\]
+per Chevalley (\ref{ThChevalley}) si ha che $X$ contiene un aperto $U$ di $Y$. Se $x\in U\subseteq X$ allora $gx\in gU\subseteq X$ quindi
+\[X=\bigcup_{g\in G}gU\text{ \`e aperto.}\]
+Insiemisticamente si ha $X=G\cdot L=G/\stab_G(L)=G/H$, quindi prendere la chiusura \`e in un qualche modo il minimo indispensabile per rendere $G/H$ una variet\`a.
+
+
+\begin{exercise}
+Sia $G=\GL(2)$ e $H=B(2)=\cpa{\mat{\ast&\ast\\0&\ast}}$. Sia $V=\K^2$ e $L=\K e_1$, allora effettivamente $H=\stab_G(L)$ e $G\cdot L=\Pj(V)$ (ogni retta si ottiene da $L$ applicando una trasformazione lineare), quindi $G/H\leftrightarrow \Pj(V)$.
+\end{exercise}
+
+\begin{exercise}
+Sia $G=\GL(n,\C)$ e $H=O(n,\C)$. Sia $V=\Sym(n,\C)$ lo spazio delle matrici simmetriche. Se $A\in V$ e $g\in G$ agisce su $A$ tramite 
+\[g\cdot A=gA g^\top\]
+allora $H=\stab_G(I_n)$ (stabilizzatore della matrice identit\`a).
+\[X=G\cdot I_n=\cpa{gg^\top\mid g\in \GL(n)}=\cpa{A\in \Sym(n)\mid \det(A)\neq 0}\subseteq\ol{G\cdot I_n}=Y\subseteq \Pj(V).\]
+%Siano $V'=V\oplus \K$ e $L=\ps{(I_n,1)}$, allora \[\stab_G(L)=H\text{ e }\Pj(V')=V\oplus \Pj(V).\]
+\end{exercise}
+
+\begin{proposition}
+Se $H$ \`e normale, $G/H$ \`e un gruppo algebrico affine.
+\end{proposition}
+\begin{proof}
+Costruiamo $L$ e $V=\bigoplus V_\al$ come nel punto 2. del lemma (\ref{LmSottogruppoEStabilizzatoreDiUnaRettaInQualcheRappresentazione}). Sia
+\[W=\cpa{T:V\to V\mid \forall \al\in X(H),\ T(V_\al)\subseteq V_\al}\]
+e notiamo che $G$ agisce su $W$ come $gT=g\circ T\circ g\ii$. Per rendere valido quanto detto dobbiamo verificare che $g T g\ii(V_\al)=V_\al$, ma questo segue dal fatto che se $g\ii(V_\al)=V_\beta$ allora
+\[g T g\ii(V_\al)=gT(V_\beta)\subseteq gV_\beta=V_\al.\]
+Notiamo ora che
+\[\cpa{g\in G\mid g\res W=id_W}=\cpa{g\in G\mid g\res{V_\al}=\la_\al id_{V_\al}\ \forall \al\in X(H)}=H,\]
+la seconda uguaglianza segue dalla definizione di carattere mentre la prima si ricava osservando le matrici associate agli elementi di $g$ visti come automorfismi di $V$: gli elementi di $W$ sono diagonali a blocchi e ci\`o che commuta\footnote{$g\res W=id_W$ significa che per ogni $T\in W$ $gTg\ii=T$, cio\`e $gT=Tg$.} con tutte le diagonali a blocchi sono le cose che sono multiplo di identit\`a su ogni blocco.
+
+Abbiamo dunque costruito un omomorfismo di gruppi algebrici $\vp:G\to \GL(W)$ il cui nucleo \`e $H$. Poich\'e $\vp(G)$ \`e un sottogruppo chiuso di $\GL(W)$ per Chevalley (\ref{PrMorfismoTraGruppiAlgebriciAffiniHaImmagineChiusa}) si ha che $G/H\cong \vp(G)$ eredita la struttura di gruppo algebrico lineare da $\vp(G)$.
+\end{proof}
