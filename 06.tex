@@ -95,3 +95,300 @@ la seconda uguaglianza segue dalla definizione di carattere mentre la prima si r
 
 Abbiamo dunque costruito un omomorfismo di gruppi algebrici $\vp:G\to \GL(W)$ il cui nucleo \`e $H$. Poich\'e $\vp(G)$ \`e un sottogruppo chiuso di $\GL(W)$ per Chevalley (\ref{PrMorfismoTraGruppiAlgebriciAffiniHaImmagineChiusa}) si ha che $G/H\cong \vp(G)$ eredita la struttura di gruppo algebrico lineare da $\vp(G)$.
 \end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\begin{remark}
+    Se $H$ è un sottogruppo di $G$ e $\pi\colon G \to X=G\cdot L$, allora $\pi$ è $G$-equivariante e induce una bigezione tra $G/H$ e $X$.
+\end{remark}
+
+
+Nel seguito supporremo $\cha(\K)=0$.
+
+\begin{proposition} Se $H$ è un sottogruppo di $G$ e $\pi\colon G \to X$ una mappa $H$-equivariante, valgono le seguenti proprietà.
+    \begin{enumerate}
+        \item Per ogni varietà $Z$, la mappa \[G\times Z \xrightarrow{(\pi,id)}X\times Z\] è aperta.
+        \item Per ogni aperto $U$ di $X$, si ha un isomorfismo \[\pi^\ast:\Oc_X(U)\xrightarrow{\sim}(\Oc_G(\pi^{-1}(U)))^H.\]
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+Notiamo che $\pi\colon G \to X$ induce una bigezione insiemistica tra $G/H$ e $X$. Poiché per ogni varietà $Z$ la mappa $(\pi,id)\colon G\times Z \to X\times Z$ è liscia ($\pi$ è liscia), tale mappa è anche aperta (\ref{ThMappaLisciaEAperta}).
+
+Sia $U$ un aperto di $X$, poniamo $V=\pi\ii(U)$, e consideriamo la mappa
+\[\pi^\ast:\Oc_X(U)\to \Oc_G(V)^H.\]
+Osserviamo che tale mappa è iniettiva, infatti se $f(\pi(x))=0$ per ogni $x$ in $V=\pi\ii (U)$, si ha $f(y)=0$ per ogni $y$ in $U$, per cui $f=0$. 
+
+Mostriamo che la mappa $\pi^{-1}(U)\to U$ è surgettiva.
+Posso ridurmi al caso $U$ irriducibile:
+
+In $G$ le componenti connesse coincidono con le componenti irriducibili (\ref{ReInGruppoComponentiConnesseSonoIrriducibili}). Lo stesso vale per $X$, infatti se $G^0$ \`e la componente connessa di $1_G$ allora da $X=G/H$ troviamo che $X^0=G^0/H\cap G^0$ \`e aperto e $X$ \`e unione finita disgiunta dei traslati di $X^0$ ($G$ ha finite componenti irriducibili per Noetherianit\`a).
+
+Se $U$ \`e un aperto di $X$ allora 
+\[X=X^0\sqcup g_1X^0\sqcup\cdots\sqcup g_nX^0\implies U=U\cap X^0\sqcup \cdots\sqcup U\cap g_n X^0.\]
+Poich\'e $X^0$ irriducibile i suoi aperti sono irriducibili, quindi per localit\`a della verifica di surgettivit\`a sui pullback per aperti di $X^0$, ci siamo quindi ricondotti al caso $X$ e $U$ irriducibili.
+
+Sia $f:V\to \K$ regolare $H$-equivariante e consideriamo il grafico $\Gamma(f)\subseteq V\times \K$. Sia $g$ la fattorizzazione 
+% https://q.uiver.app/#q=WzAsMyxbMCwwLCJWIl0sWzIsMCwiVT1WL0giXSxbMCwyLCJcXEsiXSxbMCwyLCJmIiwyXSxbMCwxLCJcXHBpIl0sWzEsMiwiZyIsMCx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dXQ==
+\[\begin{tikzcd}
+	V && {U=V/H} \\
+	\\
+	\K
+	\arrow["\pi", from=1-1, to=1-3]
+	\arrow["f"', from=1-1, to=3-1]
+	\arrow["g", dashed, from=1-3, to=3-1]
+\end{tikzcd}\]
+Decomponiamo $V$ in irriducibili $V=V_1\sqcup\cdots\sqcup V_n$ e per irriducibilit\`a di $U$ deve essere il caso che $H$ agisce transitivamente su $\cpa{V_1,\cdots, V_n}$.
+
+Per il punto 1., $(\pi,id):G\times \K\to X\times\K$ \`e una mappa aperta, quindi la restrizione $\psi:V\times \K\to U\times \K$ resta aperta perch\'e $V\times \K$ \`e un aperto di $G\times \K$. Segue che\footnote{Se $(v,f(v))\in\Gamma(f)$ allora $\psi(v,f(v))=(\pi(v),f(v))=(\pi(v),g(\pi(v)))$.} $\psi(\Gamma(f))=\Gamma(g)$ \`e un chiuso di $U\times \K$. In realt\`a notando che $\Gamma(g)$ \`e $H$ invariante e che esso \`e immagine di $\Gamma(f)=\bigsqcup \Gamma(f)\cap V_i$ si ha che in realt\`a possiamo scrivere $\Gamma(g)$ solo come immagine di un singolo $\Gamma(f)\cap V_i$, in particolare \`e irriducible (altrimenti potremmo decomporre $V$ ulteriormente).
+
+Consideriamo ora il diagramma
+% https://q.uiver.app/#q=WzAsMyxbMCwwLCJcXEdhbW1hKGcpIl0sWzIsMCwiVVxcdGltZXMgXFxLIl0sWzIsMiwiVSJdLFswLDEsIiIsMCx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn19fV0sWzEsMiwicF9VIl0sWzAsMiwicSIsMl1d
+\[\begin{tikzcd}
+	{\Gamma(g)} && {U\times \K} \\
+	\\
+	&& U
+	\arrow[hook, from=1-1, to=1-3]
+	\arrow["q"', from=1-1, to=3-3]
+	\arrow["{p_U}", from=1-3, to=3-3]
+\end{tikzcd}\]
+dove $p_U$ \`e la proiezione su $U$ e $q$ \`e la restrizione a $\Gamma(g)$. Chiaramente $q$ \`e regolare in quanto composizione di regolari. $q$ \`e anche bigettiva perch\'e $(u,g(u))\mapsto u$ pu\`o essere facilmente invertita. Poich\'e $U$ \`e liscio e $\Gamma(g)$ irriducibile, per il teorema di Zariski (\ref{ThZariski}) si ha che $q$ \`e un isomorfismo, quindi la mappa $u\mapsto (u,g(u))$ un morfismo e in particolare $g$ stesso \`e un morfismo. Questo mostra che $\pi^\ast$ effettivamente \`e surgettiva perch\'e abbiamo trovato $g\in \Oc_X(U)$ tale che $\pi^\ast(g)=g\circ \pi=f$.
+\end{proof}
+
+
+\begin{theorem}
+    Per ogni $G$-varietà $Y$ e per ogni $y_0$ in $Y$ tale che $H$ è contenuto in $\stab_G(y_0)$, vale la seguente proprietà: se $\varphi\colon G \to Y$ è la mappa definita da $\varphi(g)=gy_0$, allora esiste un'unica $\psi\colon X \to Y$  tale che $\psi\circ\pi=\varphi$.
+    % https://q.uiver.app/#q=WzAsMyxbMCwwLCJHIl0sWzIsMCwiWCJdLFsxLDEsIlkiXSxbMCwxLCJcXHBpIl0sWzAsMiwiXFx2YXJwaGkiLDJdLFsxLDIsIlxcZXhpc3RzICFcXHBzaSIsMCx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dXQ==
+\[\begin{tikzcd}
+	G && X \\
+	& Y
+	\arrow["\pi", from=1-1, to=1-3]
+	\arrow["\varphi"', from=1-1, to=2-2]
+	\arrow["{\exists !\psi}", dashed, from=1-3, to=2-2]
+\end{tikzcd}\]
+\end{theorem}
+
+\begin{proof}
+    Insiemisticamente, la mappa $\psi\colon gH \mapsto gy_0$ è definita. Inoltre $\psi$ è continua: se $U$ è un aperto di $Y$, allora \[\psi^{-1}(U)=\pi(\pi^{-1}(\psi^{-1}(U)))=\pi(\varphi^{-1}(U)),\] che è aperto. Dato un aperto $U$ di $Y$, verifichiamo che l'immagine della mappa 
+    \[\psi^\ast:\Oc_Y(U)\to\Hom_{(\mathrm{Set})}(\psi^{-1}(U),\K)\]
+    è contenuta nell'insieme delle funzioni regolari su $X$. Consideriamo una funzione $f\colon U\to \K$. Allora $\wt{f}:= f\circ \psi\circ\pi =f \circ \varphi$ è in $\Oc_G(\varphi^{-1}(U))$ in quanto $\varphi$ è un morfismo di varietà. Mostriamo che in realtà è in $\Oc_G(\varphi^{-1}(U))^H$. Sia $\lambda$ in $\Oc_G(\varphi^{-1}(U))$ e sia $h$ in $H$. Allora per ogni $x$ in $G$ si ha \[(h\widetilde{f})(x)=\widetilde{f}(xh)=f(\varphi(xh))=f(xhy_0)=f(x y_0)=f(\varphi(x))=\widetilde{f}(x).\]
+    %\[(g\cdo \lambda)(x)=\lamb\]
+\end{proof}
+
+\begin{definition}
+Una variet\`a \`e \textbf{omogenea} rispetto al gruppo $G$ se l'azione di $G$ su $X$ \`e transitiva.
+\end{definition}
+
+\begin{corollary}
+    Se $X$ è una varietà omogenea rispetto a $G$, allora $X$ è liscia.
+\end{corollary}
+\begin{proof}
+    Poiché $X$ ha un aperto $U$ di punti lisci, la tesi segue dal fatto che $X=\bigcup_{g\in G} gU$.
+\end{proof}
+
+
+\begin{corollary}\label{CorEquivarianteTraVarietaOmogeneeELiscia}
+    Se $X$ e $Y$ sono varietà omogenee per $G$ e $\varphi\colon X \to Y$ è $G$-equivariante, allora $\varphi$ è liscia.
+\end{corollary}
+\begin{proof}
+    Sicuramente $\varphi$ è surgettiva, perché $X$ e $Y$ sono varietà omogenee per $G$ e $\varphi$ è $G$-equivariante. Per il teorema (\ref{ThMorfismoDominanteTraLisceHaRestrizioneLisciaSuAperto}) esiste un aperto non vuoto $U$ di $Y$ tale che $\varphi\res{\varphi^{-1}(U)}\colon \varphi^{-1}(U) \to U$ è liscia. Allora si ha un diagramma commutativo % https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXHZhcnBoaV57LTF9KGdVKSJdLFsyLDAsImdVIl0sWzAsMiwiXFx2YXJwaGleey0xfShVKSJdLFsyLDIsIlUiXSxbMCwxLCJcXHZhcnBoaVxccmVze2dcXHZhcnBoaV57LTF9KFUpfSJdLFsyLDMsIlxcdmFycGhpXFxyZXN7XFx2YXJwaGleey0xfShVKX0iXSxbMiwwLCJcXHNpbSJdLFszLDEsIlxcc2ltIiwyXV0=
+\[\begin{tikzcd}
+	{\varphi^{-1}(gU)} && gU \\
+	\\
+	{\varphi^{-1}(U)} && U
+	\arrow["{\varphi\res{g\varphi^{-1}(U)}}", from=1-1, to=1-3]
+	\arrow["\sim", from=3-1, to=1-1]
+	\arrow["{\varphi\res{\varphi^{-1}(U)}}", from=3-1, to=3-3]
+	\arrow["\sim"', from=3-3, to=1-3]
+\end{tikzcd}\] 
+Poiché $Y=\bigcup gU$, $\varphi$ è liscia in ogni punto e quindi è liscia.
+
+%\[\varphi\res{g\varphi^{-1}(U)}\colon \varphi^{-1}(gU) \to gU\]
+\end{proof}
+
+
+
+
+
+
+
+
+
+\section{Sottogruppo generato}
+\begin{lemma}
+Sia $G$ un gruppo algebrico e siano $X_i$ delle variet\`a irriducibili. Siano $\vp_i:X_i\to G$ tali che $1_G\in \imm\vp_i$ per ogni $i$. Poniamo $Y_i=\vp_i(X_i)$.
+
+Sia $H=\ps{\cpa{Y_i}_i}$ il sottogruppo generato dalle immagini delle $\vp_i$. Allora
+
+\begin{enumerate}
+	\item $H$ \`e chiuso
+	\item esistono $i_1,\cdots, i_n$, $\e_1,\cdots, \e_n$ tali che
+	\[H=Y_{i_1}^{\e_1}\cdots Y_{i_n}^{\e_n},\qquad \e_j\in\cpa{1,-1}\]
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+Supponiamo $X_i=Y_i\subseteq G$ e supponiamo che tra le $X_i$ compaiano anche le $X_i\ii$ (cos\`i evitiamo gli $\e$).
+
+Definiamo iterativamente
+\begin{align*}
+	Z_1&=X_1, &W_1&=\ol{Z_1},\\
+	Z_2&=X_1\cdot X_2, &W_2&=\ol{Z_2},\\ 
+	&\;\;\vdots &&\;\;\vdots\\	
+	Z_n&=X_1\cdots X_n, &W_n&=\ol{Z_n},\\
+	Z_{n+1}&=X_1\cdots X_nX_1, &W_{n+1}&=\ol{Z_{n+1}}\\
+	&\;\;\vdots &&\;\;\vdots
+\end{align*}
+Notiamo che $Z_i$ \`e l'immagine di $X_1\times\cdots\times X_i\to G$, quindi $Z_i$ \`e irriducible per ogni $i$, dunque anche $W_i=\ol{Z_i}$ \`e irriducibile.
+
+Notiamo ora che $W_1\subseteq W_2\subseteq\cdots\subseteq G$ \`e una catena di chiusi, ma dato che $G$ ha dimensione finita essa stabilizza, cio\`e esiste $N$ tale che $W_N=W_{N+1}$, ovvero $W_N\cdot X_i\subseteq W_N$ per ogni $i$.
+
+Allora $W_NZ_N\subseteq W_N$ cio\`e $W_N\cdot W_N\subseteq W_N$ perch\'e $W_n$ \`e chiuso. Quindi\footnote{$Z_N\ii W_N\subseteq W_N\implies Z_N\ii\subseteq W_N\implies \ol{Z_N\ii}\subseteq W_N$ e $\ol{Z_N\ii}=\ol{Z_N}\ii=W_N\ii$.} $W_N\ii\subseteq W_N$ e in particolare $Z_N\ii\subseteq W_N$, ma $Z_N\ii=X_N\ii\cdots X_1\ii=X_{i_1}\cdots X_{i_N}$, cio\`e mettendo tutto insieme $H\subseteq W_N$
+
+Mostriamo che $W_N=Z_N\cdot Z_N$: abbiamo una mappa
+\[\under{irrid.}{X_1\times\cdots\times X_N}\to Z_N\to W_N,\]
+quindi per Chevalley (\ref{ThChevalley}) $Z_N\supseteq U$ per $U$ aperto non vuoto di $W_N$, dunque $U\cdot U=W_N$ perch\'e $W_N$ \`e irriducibile.
+
+Questo mostra che $W_N\subseteq H$ ma ci sono tutti gli elementi di $H$ quindi effettivamente $H=W_N$.
+\end{proof}
+
+
+\section{Variet\`a complete}
+
+\begin{definition}[Variet\`a separata]
+$X$ \`e \textbf{separata} se la diagonale $X\to X\times X$ \`e un morfismo chiuso.
+\end{definition}
+\begin{center}
+	\textbf{Supporremo che sia tutto separato.}
+\end{center}
+
+\begin{definition}[Variet\`a completa]
+$X$ \`e \textbf{completa} se per ogni $Z$ variet\`a, $\pi:X\times Z\to Z$ \`e un morfismo chiuso.
+\end{definition}
+
+\begin{remark}\label{ReRegolariSuCompleteIrriducibiliSonoCostanti}
+Se $X$ \`e irriducibile e completa allora $\Oc_X(X)\cong \K$.
+\end{remark}
+\begin{proof}
+Sia $f:X\to \K$ regolare e consideriamo $\Gamma(f)\subseteq X\times \K\to \K$. Questa proiezione \`e chiusa quindi $\pi(\Gamma(f))=f(X)$ \`e un chiuso irriducibile (immagine di irriducibile) di $\K$. Ma i chiusi irriducibili di $\K$ non vuoti sono o tutto $\K$ o solo un punto.
+
+Consideriamo ora $W=\cpa{(x,y)\in X\times \K\mid yf(x)=1}$. Se $f(X)=\K$ allora l'immagine di $W$ tramite la proiezione $X\times \K\to \K$ \`e $\K^\times$, che non \`e chiuso in $\K$, assurdo.
+
+Quindi $f(X)$ \`e un solo punto, cio\`e $f$ \`e costante.
+\end{proof}
+\begin{corollary}
+Se $X$ \`e completa, affine e connessa allora $\K[X]=\K$ significa che $X$ \`e un solo punto $\cpa{(0)}$.
+
+In generale le affini complete sono un numero finito di punti.
+\end{corollary}
+
+\begin{theorem}[I proiettivi sono completi]\label{ThProiettiviSonoCompleti}
+Se $V$ \`e uno spazio vettoriale di dimensione finita, $\Pj(V)$ \`e completa.
+\end{theorem}
+
+\begin{center}
+	Moralmente ``completo=compatto" in senso classico, per esempio valgono:
+\end{center}
+
+\begin{remark}
+Se $X$ \`e completa e $Z\subseteq X$ chiuso allora $Z$ \`e completo.
+\end{remark}
+
+\begin{remark}
+Se $\vp:X\to Y$ \`e surgettiva e $X$ \`e completa allora $Y$ \`e completa
+\end{remark}
+
+\subsection{Punto fisso di Borel}
+\begin{proposition}[Esiste orbita chiusa]\label{PrEsisteOrbitaChiusa}
+Se $K$ \`e un gruppo che agisce su una variet\`a $Y$ allora $K$ ha un'orbita chiusa in $Y$.
+\end{proposition}
+\begin{proof}
+Consideriamo un'orbita che ha dimensione minima $Z=G\cdot y$. Notiamo che $Gy$ \`e un aperto denso di $\ol Z$ per Chevalley (\ref{ThChevalley}) (contiene un aperto ed \`e omogeneo), quindi $\dim \ol Z\bs Z<\dim Z$, ma se questa differenza \`e non vuota allora $G$ agisce su questa differenza e quindi esiste un'orbita di dimensione pi\`u piccola.
+
+Dunque $\ol Z\bs Z=\emptyset$, cio\`e $\ol Z=Z$.
+\end{proof}
+
+\begin{theorem}[Punto fisso di Borel]\label{ThPuntoFissoBorel}
+Se $G$ \`e un gruppo risolubile connesso che agisce su una variet\`a completa allora $G$ ha un punto fisso.
+\end{theorem}
+\begin{proof}
+Se $\dim G=0$ allora $G$ \`e un singolo punto e quindi \`e l'indetit\`a e agisce banalmente.
+
+
+Supponiamo $\dim G>0$. Sia $H=[G,G]$ il sottogruppo dei commutatori. Questo \`e un sottogruppo algebrico connesso. Dato che $G$ \`e risolubile, $H\subsetneq G$, quindi per ipotesi induttiva $X^H\neq \emptyset$.
+
+Notiamo ora che su $X^H$ agisce $A=G/H$, quindi su $X^H$ abbiamo un'orbita chiusa (\ref{PrEsisteOrbitaChiusa}) $A\cdot x\subseteq X^H\subseteq X$. Notiamo che $A\cdot x$ \`e completa perch\'e chiuso di $X$ completa, ma $A\cdot x=A/\stab_A x$, quindi \`e anche una variet\`a affine. $A\cdot x$ \`e anche connessa perch\'e $A$ \`e connesso in quanto $G$ lo \`e.
+
+$A\cdot x$ \`e affine, completa e connessa, quindi \`e un punto, cio\`e $x$ \`e un punto fisso per $A$ in $X^H$, ma allora $x$ \`e un punto fisso per $G$.
+\end{proof}
+\begin{corollary}\label{CorCaratterizzazioneConnessiRisolubili}
+Sia $G$ un gruppo conneso, sono equivalenti
+\begin{enumerate}
+	\item $G$ \`e risolubile
+	\item le uniche rappresentazioni irriducibili di $G$ hanno dimesione 1
+	\item $G\subseteq B_n$ matrici triangolari superiori di qualche taglia $n$.
+\end{enumerate}
+\end{corollary}
+
+
+\begin{example}
+Consideriamo $\C^\ast\acts \Pj^n$ come segue:
+\[\la\cdot [x_0:\cdots:x_n]=[x_0:\la x_1:\cdots:\la^n x_n]\]
+Questa azione ha come punti fissi quelli della forma $[0:\cdots:0:1:0:\cdots:0]$.
+\end{example}
+
+\subsection{Sottogruppi parabolici e di Borel}
+\begin{definition}[Sottogruppi parabolici e di Borel]
+Sia $G$ un gruppo algebrico e $P\subseteq G$ sottogruppo chiuso.
+\begin{enumerate}
+	\item $P$ si dice \textbf{parabolico} se $G/P$ \`e completo
+	\item $B\subseteq G$ si dice \textbf{sottogruppo di Borel} se \`e un sottogruppo risolvibile connesso massimale.
+\end{enumerate}
+\end{definition}
+
+\begin{remark}
+Se $P$ \`e un sottogruppo parabolico, $G/P\subseteq \Pj(V)$ per qualche $V$.
+\end{remark}
+\begin{proof}
+Ricorda (\ref{LmSottogruppoEStabilizzatoreDiUnaRettaInQualcheRappresentazione}) che esistono una rappresentazione $V$ di $G$ e una retta $L\subseteq V$ tali che $\stab_G L=P$. Per questa rappresentazione $G/P=G\cdot L\subseteq \Pj(V)$.
+
+Notiamo che l'immagine di $G/P$ in $\Pj(V)$ \`e chiusa, infatti se $\Gamma$ \`e il grafico di $G/P\inj \Pj(V)$ allora esso \`e contenuto in $G/P \times \Pj(V)\to \Pj(V)$ e per definizione di sottogruppo parabolico $G/P$ \`e completa.
+
+Questo mostra che $G/P$ \`e una sottovariet\`a di $\Pj(V)$.
+\end{proof}
+
+\begin{example}
+Sia $G=\GL(n)$, $B\subseteq G$ le matrici triangolari superiori, diagonale inclusa.
+
+\[G/B=\cpa{0\subseteq F_1\subseteq \cdots\subseteq F_n=\K^n\mid \dim F_1=1}\]
+\end{example}
+
+\begin{lemma}\label{LmConnessoRisolubileSSENoSottogruppiParabolici}
+$G$ \`e un gruppo connesso e risolubile se e solo se $G$ non ha sottogruppi parabolici propri.
+\end{lemma}
+\begin{proof}
+Diamo le due implicazioni
+\setlength{\leftmargini}{0cm}
+\begin{itemize}
+\item[$\boxed{\implies}$] Sia $P\subseteq G$ parabolico. Per il teorema del punto fisso di Borel (\ref{ThPuntoFissoBorel}) si ha che $G/P$ ha un punto fisso per $G$, ma per omogeneit\`a questo significa che $G/P$ consiste di un solo punto, cio\`e $P=G$.
+\item[$\boxed{\impliedby}$] Sia $P=G^0$ e mostriamo che $G/G^0$ \`e completo, questo basta perch\'e in tal caso $G^0$ \`e parabolico e quindi per ipotesi $G^0=G$.
+
+Per il corollario (\ref{CorCaratterizzazioneConnessiRisolubili}) basta dimostrare che le rappresentazioni irriducibili hanno dimensione 1: se $V$ irriducibile, $G$ agisce su $\Pj(V)$ e ha un'orbita chiusa $G\cdot \ell\subseteq\Pj(V)$ per (\ref{PrEsisteOrbitaChiusa}). Sia $P=\stab_G(\ell)$, questo gruppo deve essere parabolico perch\'e il quoziente \`e $G\ell$ orbita chiusa ma allora $P=G$ e per irriducibilit\`a questo mostra $V=\ell$.
+\end{itemize}
+\setlength{\leftmargini}{0.5cm}
+\end{proof}
+
+

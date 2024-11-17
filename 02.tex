@@ -337,3 +337,141 @@ Se $\pf$ è un ideale primo di $\K[X]$, la sua \textbf{altezza} è definita come
         \item Se $f$ è un elemento non nullo e non invertibile di $\K[X]$, allora $V(f)$ è un chiuso di $X$. Se la sua decomposizione in componenti irriducibili è data da $V(f)=Y_1\cup\ldots\cup Y_h$, allora \[\dim(Y_i)=\dim(X)-1.\]
     \end{enumerate}
 \end{theorem}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{Variet\`a liscie}
+\begin{notation}
+Sia $X$ una varietà (affine) e sia $x$ un punto di $X$. In questa sezione poniamo $A=\K[X]$ e $\mf_x=\{f\in A\colon f(x)=0\}$.
+\end{notation}
+
+
+\begin{definition}
+    Lo \textbf{spazio cotangente} di $X$ nel punto $x$ è il quoziente 
+    \[T^\ast_x X:= \mf_x/\mf_x^2.\]
+    Dato un elemento $f$ in $A$, definiamo il \textbf{differenziale} di $f$ come la classe 
+    \[df:= [f-f(x)]\in T^\ast_x X.\] 
+    Lo \textbf{spazio tangente} di $X$ nel punto $x$ è il duale 
+    \[T_x X=(\mf_x/\mf_x^2)^\ast\]
+    dello spazio cotangente di $X$ in $x$.
+\end{definition}
+
+\begin{definition}
+    Una \textbf{derivazione} su $A$ è una funzione $\partial\colon A \to \K$ che soddisfa la seguente proprietà \[\partial(fg)=f(x)\partial g + g(x)\partial f.\]
+    Indichiamo con $\Der_\K(A,\K)$ l'insieme delle derivazioni su $A$.
+\end{definition}
+
+\begin{exercise}
+    La mappa $T_xX \to \Der_\K(A,\K)$ definita da $\varphi\mapsto \widetilde{\varphi}$, dove \[\widetilde{\varphi}(a+\mu)=\varphi(\mu)\] definisce una bigezione (stiamo usando la decomposizione $A=\K\oplus \mf_x$).
+\end{exercise}
+
+\begin{example}
+    Se $X=\K$ e $p$ è un punto di $\K$, allora $\mf=\mf_p=(x-p)$ e $\mf/\mf^2=\K(x-p)=\K d_p x$.
+\end{example}
+
+\begin{example}
+    Se $X=\K^n$ e $p=(p_1,\ldots,p_n)$, allora $\mf=\mf_p=(x_1-p_1,\ldots,x_n-p_n)$ e si ha \[\Der_p(\K[x_1,\ldots,x_n],\K)=\bigoplus_{i=1}^n \K \left.\frac{\partial}{\partial x_i}\right\lvert_{p}\]
+\end{example}
+
+\begin{example}
+    Se $X=V(I)$ è contenuta in $\K^n$ e $p$ è un punto di $X$, allora $I\subseteq \mf=(x_1-p_1,\ldots,x_n-p_n)$. Posto $\overline{\mf}=\mf/I$, si ha \[\frac{\overline{\mf}}{\overline{\mf}^2}=\frac{\mf}{\mf^2+I} \] e si ha un'immersione 
+    \[\Der_p(A/I,\K)=\left\{\partial\in \Der_p(A,\K) \colon \partial(I)=0\right\}\hookrightarrow \Der_p(A,\K) \]
+    data da $\partial\mapsto \partial\circ \pi$, dove $\pi\colon A \to A/I$ è la proiezione canonica.
+\end{example}
+
+\begin{remark}
+    Se $\varphi\colon X \to Y$ è un morfismo di varietà e $p$ è un punto di $X$, posto $q=\varphi(p)$ si ha una mappa \[d_p\varphi \colon  T_qX \to  T_p Y\] definita tramite
+    \[\begin{array}{ccc}
+         \Der_p(A,\K) &\to & \Der_q(B,\K)  \\
+        \partial &\mapsto & \partial\circ \varphi
+    \end{array}\]
+    dove $B=\K[Y]$. 
+\end{remark}
+
+\begin{example}
+Se $Y=\K$ e $\varphi(p)=q$, la mappa $d_p\varphi\colon T_p X \to T_q \K=\K \left.\frac{\partial}{\partial x}\right\lvert_q$ è definita da $\partial \mapsto \widetilde{\partial}$, dove 
+\[\widetilde{\partial}(f)=\partial(f\circ \varphi).\] 
+Se $\widetilde{\partial}(x)=\lambda$, allora $\widetilde{\partial}=\lambda\left.\frac{\partial}{\partial x}\right\lvert_q $.
+\end{example}
+
+\begin{remark}
+Se $X$ è affine e $\varphi$ è in $A$, allora $\varphi$ definisce una mappa $\K[x]\to A$ data da $g\mapsto g\circ \varphi$. In particolare $x\mapsto \varphi$. Quindi \[\widetilde{\partial}(x)=\partial(x\circ \varphi)=\partial(\varphi).\]
+\end{remark}
+
+
+\begin{remark}
+Nel caso di $\varphi=(\varphi_1,\ldots,\varphi_n)\colon X \to \K^n$, si ha \[d_p\vp:\funcDef{T_pX}{T_q \K^n}{\del}{\sum_{i=1}^n \partial(\varphi_i)\left.\frac{\partial}{\partial x_i}\right\lvert_q}\]
+Nel caso in cui $X$ sia $\K^m$ (con coordinata $y$), si ha
+\[d_p\vp:\funcDef{T_p\K^m}{T_q \K^n}{\left.\frac{\partial}{\partial y_j}\right\lvert_p}{\displaystyle\sum_{i=1}^n \left.\left.\frac{\partial \vp_i}{\partial y_j} \right\lvert_p\frac{\partial}{\partial x_i}\right\lvert_q}\]
+cio\`e $d_p\vp=\Dc_p\vp$ a meno di rinominare i vettori base.
+\end{remark}
+
+
+
+\begin{theorem}
+    Se $X$ è una varietà irriducibile di dimensione $n$, allora \[\dim(\mf/\mf^2)=\dim T_pX \ge n.\]
+\end{theorem}
+
+\begin{definition}
+    Sia $X$ una varietà di dimensione $n$. Un punto $p$ di $X$ si dice \textbf{liscio} se $\dim \mf_p/\mf_p^2 =n$.
+\end{definition}
+
+\begin{remark}
+Se $X$ è una varietà irriducibile di dimensione $d$ contenuta in $\K^n$, consideriamo il punto $p=0$ in $X$. Vogliamo capire se $0$ è liscio. Scriviamo $X=V(I)$, con $I=(f_1,\ldots,f_r)$. In questo caso $\mf=\mf_0=(x_1,\ldots,x_n)$. I generatori $f_i$ di $I$ si scrivono come $f_i=\ell_i+f_{1,i}$ con $\ell_i$ lineare omogeneo e $f_{1,i}$ di grado superiore a $\deg(\ell_i)$. Quindi $\mf=\mf^2+\K x_1\oplus \ldots \oplus \K x_n$, da cui \[\frac{\overline{\mf}}{\overline{\mf}^2}=\frac{\mf}{\mf^2+I}=\frac{\mf}{\mf^2+\langle
+\ell_1,\ldots,\ell_r\rangle}=\frac{\K x_1\oplus \ldots \oplus \K x_n}{\langle
+\ell_1,\ldots,\ell_r\rangle}.\] Dunque $X$ è liscio in $0$ se $\dim_\K\langle
+\ell_1,\ldots,\ell_r\rangle=n-d$.
+\end{remark}
+
+\begin{example}
+    Consideriamo $X$ la curva affine definita dall'equazione $y^2=x^3$ (notiamo che $\dim X=1$). Posto $f=y^2-x^3$, si ha\footnote{$y^2-x^3$ non ha parte lineare}
+    \[\frac{\mf_0}{\mf_0^2}=\frac{\K x\oplus \K y}{0},\] 
+    che ha dimensione $2$, quindi $X$ non è liscia in $(0,0)$. Se invece consideriamo $X$ definita da $y^2=x^3+x$, allora 
+    \[\frac{\mf_0}{\mf_0^2}=\frac{\K x\oplus \K y}{x}\]
+    che ha dimensione $1$, quindi $X$ è liscia in $0$.
+\end{example}
+
+\begin{example}
+    Se $X=V(I)$ in $\K^n$, con $I=(f_1,\ldots,f_r)$, consideriamo la mappa \[f=(f_1,\ldots,f_r)\colon \K^n \to \K^r.\] Allora 
+    \[d_0f:\funcDef{T_0 \K^n_x}{T_0 \K^r_y}{\del}{\sum_j \left.\partial(f_j)\frac{\partial}{\partial x_j}\right\lvert_0}\]
+    e \[T_0 X=\{\partial\colon \partial(I)=0\}=\{\partial\colon \partial(f_j)=0 \text{ per ogni }j=1,\ldots,r\}=\ker d_0f.\]
+\end{example}
+
+\begin{theorem}
+    Se $X$ è una varietà, allora esiste un aperto $U$ in $X$ costituito da punti lisci.
+\end{theorem}
+
+
+
+\begin{theorem}[Zariski]\label{ThZariski}
+Supponiamo $\cha(\K)=0$. Se $X$ \`e irriducibile e $Y$ \`e liscia, ogni morfismo $\varphi\colon X\to Y$ bigettivo è un isomorfismo.    
+\end{theorem}
+
+In caratteristica $p$ il teorema va enunciato in modo diverso: $\K=\overline{\F_p}$, $\varphi\colon \K \to \K$ definito da $x\mapsto x^p$.
+
+
+\begin{definition}
+    Sia $\varphi\colon X\to Y$ un morfismo di varietà lisce. Diciamo che $\varphi$ è \textbf{liscio} in un punto $p$ di $X$ se la mappa $d_p\varphi\colon T_pX\to T_{\varphi(p)}Y$ è surgettiva.
+\end{definition}
+
+\begin{theorem}\label{ThMorfismoDominanteTraLisceHaRestrizioneLisciaSuAperto}
+    Assumiamo $\cha(\K)=0$. Se $\varphi\colon X\to Y$ è un morfismo \textbf{dominante} di varietà lisce (cioè $\overline{\varphi(X)}=Y$), allora esiste un aperto non vuoto $U$ di $Y$ tale che la restrizione \[\varphi\res{\varphi^{-1}(U)}\colon \varphi^{-1}(U) \to U\] è liscia.
+\end{theorem}
+
+\begin{theorem}\label{ThMappaLisciaEAperta}
+    Ogni mappa $\varphi\colon X \to Y$ liscia è aperta. Inoltre, per ogni varietà $Z$ (non necessariamente liscia), la mappa \[(\varphi,id)\colon X\times Z \to Y\times Z\] è aperta.
+\end{theorem}
+
