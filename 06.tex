@@ -582,6 +582,16 @@ Se $U=\langle w_1,\ldots,w_h\rangle$, allora esiste una matrice invertibile $A$ 
 Infine $(v)\longrightarrow [p_I(M)]$ e $(w)\longrightarrow [p_I(N)]=[p_I(M)\det (A)]=[p_I(M)]$.
 \end{example}
 
+\begin{example}[Parabolici di $\GL(n)$]
+Sia $P\supseteq B$ con $P$ parabolico e $B$ di Borel, $P$ connesso.
+
+Guardiamo $T_e P$ e notiamo che $T_e P\supseteq T_e B=\cpa{\text{triang.sup.}}$. Sia $A=(a_{i,j})\in T_e P$. Si ha che $B$ agisce per coniugio su $P$. In particolare se fissiamo $b\in B$ allora definiamo
+\[AD_b:\funcDef{P}{P}{p}{bpb\ii}\quad\leadsto\quad Ad_b:\funcDef{T_eP}{E_eP}{C}{bCb\ii}\]
+quindi $T_e P\subseteq T_e\GL(n)=\Mat_{n\times n}$ \`e stabile per $Ad_b$ per ogni $b\in B$. Se $b=diag(\la_1,\cdots,\la_n)$ allora
+\[Ad_b(A)=\pa{\la_i\la_j\ii a_{i,j}}\]
+se $a_{i,j}\neq 0$ allora $E_{i,j}\in T_eP$ 
+\end{example}
+
 
 \subsection{Matrici ortogonali speciali}
 
@@ -592,7 +602,7 @@ Ora consideriamo $G=\SO(n)$. Cerchiamo di capire come \`e definito questo gruppo
 \item[$\boxed{n=2}$] Scegliamo la forma quadratica $q(x,y)=xy$. Lo stabilizzatore di tale forma è dato da 
 \[\left\{A\in \SO(2)\colon A \begin{pmatrix}
     0 & 1 \\ 1& 0
-\end{pmatrix}A^t=\begin{pmatrix}
+\end{pmatrix}A^\top=\begin{pmatrix}
     0 & 1 \\ 1& 0
 \end{pmatrix}\right\}.\] 
 Scriviamo 
@@ -630,9 +640,9 @@ In particolare $b$ è non degenere. Inoltre, anche la restrizione $\beta \colone
 Imponendo $g e_{11}=e_{11}$ e $g e_{22}=e_{22}$, troviamo $g=\pm I$, quindi abbiamo un'immersione $\SL(2)/\{\pm I\}\hookrightarrow \SO(\beta)$. Mostriamo che è suriettiva. Osserviamo che $\GL(2)$ è isomorfo (come varietà) a $\SL(2)\times \K^\times$ tramite la mappa $(A,\lambda)\mapsto A \begin{pmatrix}
     \lambda & 0 \\ 0 & 1
 \end{pmatrix}$. Quindi $\dim\SL(2)=3$. Calcoliamo la dimensione di $\SO(\beta)$ (e in generale di $\SO(n)$). Consideriamo la mappa 
-\[\vp:\funcDef{\Mat_{n\times n}}{\Mat_{n\times n}}{A}{A^t A}.\] 
+\[\vp:\funcDef{\Mat_{n\times n}}{\Mat_{n\times n}}{A}{A^\top A}.\] 
 Allora $\operatorname{O}(n)=\varphi^{-1}(I)$. Quindi abbiamo una mappa tra gli spazi tangenti a $I$ data da 
-\[T:\funcDef{T_I\Mat_{n\times n}}{T_I\Mat_{n\times n}}{B}{B+B^t}\]
+\[T:\funcDef{T_I\Mat_{n\times n}}{T_I\Mat_{n\times n}}{B}{B+B^\top}\]
 Quindi $T_I\operatorname{O}(n)=\ker T$. Quindi $\dim\SO(n)=\binom{n}{2}$ e in particolare $\dim\SO(3)=3=\dim\SL(2)$.  Inoltre, il quoziente $\SL(2)/\{\pm I\}$ coincide con la componente connessa di $\SO(\beta)$, quindi è sufficiente mostrare che $\SO(\beta)$ (e più in generale $\SO(n)$) è connesso. 
 
 Procediamo per induzione su $n\ge 1$. Per $n=1$ e $n=2$ sappiamo già che ciò è vero. Assumiamo $n>2$. Consideriamo la forma quadratica standard rappresentata dalla matrice identità, consideriamo $e_1$ in $\K^n$ e 
@@ -641,26 +651,6 @@ Procediamo per induzione su $n\ge 1$. Per $n=1$ e $n=2$ sappiamo già che ciò �
     \end{pmatrix} \colon x_1^2+\ldots+x_n^2=1\right\}\] 
 Poiché il polinomio $x_1^2+\ldots+x_n^2-1$ è irriducibile, la varietà $Y$ è connessa. Inoltre si ha $Y\cong \SO(n)/\SO(n-1)$, che, in quanto connesso, ci permette di concludere.
 \end{proof}
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -677,8 +667,6 @@ e, notando che $e_1^n\in W$, si ha $\stab_G[e_1^n]=B$.
 Possiamo descrivere il quoziente anche come
 \[\Pj(V)=\Pj^1\cong G/B=G[e_1^n]\subseteq \Pj(W)=\Pj(S^n V)\]
 dove l'immersione \`e data da $v\mapsto v^n$. Questa mappa \`e un morfismo equivariante e una immersione chiusa $\Pj(V)\inj \Pj(W)$.
-
-
 
 
 
@@ -770,12 +758,83 @@ e quindi $\frac{\SO(n)}{B_{\SO}}$ \`e proiettivo.
 \end{remark}
 
 
-\begin{example}[Parabolici di $\GL(n)$]
-Sia $P\supseteq B$ con $P$ parabolico e $B$ di Borel, $P$ connesso.
 
-Guardiamo $T_e P$ e notiamo che $T_e P\supseteq T_e B=\cpa{\text{triang.sup.}}$. Sia $A=(a_{i,j})\in T_e P$. Si ha che $B$ agisce per coniugio su $P$. In particolare se fissiamo $b\in B$ allora definiamo
-\[AD_b:\funcDef{P}{P}{p}{bpb\ii}\quad\leadsto\quad Ad_b:\funcDef{T_eP}{E_eP}{C}{bCb\ii}\]
-quindi $T_e P\subseteq T_e\GL(n)=\Mat_{n\times n}$ \`e stabile per $Ad_b$ per ogni $b\in B$. Se $b=diag(\la_1,\cdots,\la_n)$ allora
-\[Ad_b(A)=\pa{\la_i\la_j\ii a_{i,j}}\]
-se $a_{i,j}\neq 0$ allora $E_{i,j}\in T_eP$ 
+
+
+Vogliamo descrivere la componente data da $\SO(2m)/B$.
+\begin{theorem}
+Sia $V=\K^{2m}$ munito di una forma bilineare, simmetrica e non degenere $b(\cdot,\cdot)$. Siano $L,M$ 
+sottospazi isotropi (lagrangiani) di $V$ tali che $\dim L=\dim M$. Allora \[\exists\,g\in \SO(V)\colon \ gL=M\quad \iff \quad \dim(L\cap M)\equiv m \pmod{2}.\] 
+\end{theorem}
+
+%\[\SO(2m)\cdot \xi =\{F_1\subset \ldots\subset F_{2m} \colon F_i^\perp=F_{2m-i}, \ \dim(F_m\cap \langle e_1,\ldots,e_m\rangle )\equiv m \pmod{2}\}.\] 
+\begin{proof}
+Scegliamo una base $e_1,\ldots,e_m,e_{m+1},\ldots,e_{2m}$ di $V$ tale che $e_1,\ldots,e_m$ è base di $L$ e tale che $b$ è rappresentata in questa base dalla matrice 
+\[\begin{pmatrix}
+    0 & I_m \\ I_m & 0
+\end{pmatrix}.\] 
+Sia inoltre $L'=\langle e_1,\ldots,e_{m-1},e_{2m}\rangle$. Notiamo che $L'$ è isotropo. Mostriamo che se $g$ è un elemento di $\SO(2m)$, allora 
+\begin{align}
+    \label{cong1}\dim(gL\cap L)&\equiv m \pmod{2} \\
+    \label{cong2}\dim(gL\cap L')&\not\equiv m \pmod{2}
+\end{align}
+Iniziamo mostrando la \eqref{cong1}. Sia $P$ il sottogruppo di $\SO(V)$ costituito dalle matrici del tipo 
+\[\begin{pmatrix}
+    A & B \\ 0 & C
+\end{pmatrix}.\] 
+Notiamo che una matrice di questa forma è in $\SO(V)$ se e solo se $A^\top=C^{-1}$ e $B^\top C+C^\top B=0$, per cui
+\[\dim P= \dim \GL(m)+\binom{m}{2}=m^2+\binom{m}{2}.\] 
+Sia $U$ il sottogruppo di $\SO(V)$ costituito dalle matrici del tipo \[\begin{pmatrix}
+    I_m & 0 \\ X& I_m 
+\end{pmatrix}\]
+Osserviamo che una matrice di questo tipo appartiene a $\SO(V)$ se e solo se $X^\top=-X$, cioè se e solo $X$ è antisimmetrica, quindi $\dim U=\binom{m}{2}$. Ne consegue che $\dim P +\dim U= 2m^2-m$. Ricordiamo che $\dim \SO(2m)=\dim \operatorname{O}(2m)=2m^2-m$, infatti la mappa 
+\[\begin{array}{ccc}
+    \GL(2m)& \longrightarrow & \operatorname{Sim}(2m) \\
+     A&\longmapsto& AA^\top
+\end{array}\] 
+è surgettiva e ha nucleo $\operatorname{O}(2m)$, che quindi ha dimensione $4m^2-\binom{2m+1}{2}=2m^2-m$. Consideriamo la mappa $U\times P \to \SO(V)$ data da
+
+
+\[\begin{array}{cccccc}
+    U\times P & \xrightarrow{\sim} & U\times P &\longrightarrow & \SO(V) \\
+     (u,p^{-1}) &\longmapsto& (u,p)&\longmapsto& u I p \\
+     (u,p) &\longmapsto& (u,p^{-1})&\longmapsto& u I p^{-1}
+\end{array}\]
+Ora $UP$ è aperto in $\overline{UP}$ e poiché $U\cap P=\{I_{2m}\}$, si ha 
+\[\dim(UP)=\dim (U \times P)= \dim \SO(2m),\] 
+da cui $\overline{UP}=\SO(2m)$. Consideriamo gli aperti $V_1=UP$ e
+$V_2=PU$ in $\SO(2m)$. Mostriamo che $V_2V_1=\SO(2m)$. %e quindi che $g$ è in $V_2 V_1$. Infatti s
+Sia $g$ in $\SO(2m)$ e sia $v_2$ nell'intersezione $V_2\cap gV_2$ (che è non vuota in quanto $V_1$ e $V_2$ sono aperti in una varietà irriducibile). Allora $v_2=gv_2'$ per qualche $v_2'$ in $V_2$. Poiché $(v_2')^{-1}\in UP=V_1$, si ha $g=v_2(v_2')^{-1}\in V_2V_1$. Ne deduciamo che 
+\[\SO(2m)= P U\cdot U P=PUP\] 
+e quindi, posto $g=p_1 u p_2$, si ha 
+\[\dim(gL\cap L)=\dim(p_1 u p_2L \cap L)=\dim(u p_2 L \cap p_1^{-1}L)=\dim(uL \cap L).\] 
+Quindi ci siamo ridotti a considerare il caso di un elemento 
+\[u=\begin{pmatrix}
+    I_m & 0 \\ X & I_m
+\end{pmatrix}\in U.\]
+Osserviamo che, poiché $L=\operatorname{span}\{e_1,\ldots,e_m\}$, si ha 
+\[uL=\operatorname{span}\left\{\begin{pmatrix}
+    I_m & 0\\ X & I_m
+\end{pmatrix} e_i,\  i=1,\ldots,m \right\}, %\quad L=\operatorname{span}\left\{\begin{pmatrix}
+    %I_m & 0 \\ 0
+%\end{pmatrix}\right\}
+\] 
+quindi 
+\[uL\cap L=\operatorname{span}\left\{\begin{pmatrix}
+    v \\ Xv
+\end{pmatrix}, \  v\in \K^m \colon  Xv=0\right\} \cong \ker X,\] 
+da cui $\dim(uL\cap L)=\dim(\ker X)=m-\rnk(X) \equiv m \pmod{2}$ perché le matrici antisimmetriche hanno rango pari. 
+
+Mostriamo la \eqref{cong2}. Sia $g$ un elemento in $\operatorname{O}(2m)$. Sappiamo che se $g$ è in $\SO(2m)$, allora $\dim(gL\cap L)\equiv m \pmod{2}$; se invece $g$ non è in $\SO(2m)$, allora $\dim(gL\cap L)\not\equiv m \pmod{2}$. Sia $h$ in $\operatorname{O}(2m)\setminus \SO(2m)$ che scambia $e_m$ con $e_{2m}$ e lascia fissi gli altri $e_i$. Allora $L'=hL$  %Supponiamo $g\in \operatorname{O}(2m)\setminus \SO(2m)$. 
+ed esiste $\widetilde{g}$ in $\SO(2m)$ tale che $g=h\widetilde{g}$. Dunque \[\dim(gL\cap L)=\dim(h\widetilde{g}L\cap L)=\dim(\widetilde{g}L \cap L')\not\equiv m \pmod{2}\] e ciò conclude la dimostrazione. 
+\end{proof}
+
+\begin{example}[Caso $m=1$] Consideriamo $V=\K^2$ munito della forma bilineare la cui forma quadratica associata è data da $xy$. Allora i sottospazi isotropi $\K e_1$ e $\K e_2$ si intersecano banalmente e quindi non vengono scambiati dagli elementi di $\SO(V)$.  In effetti 
+    \[\SO(V)=\left\{\begin{pmatrix}
+    a & 0 \\
+    0 & a^{-1}
+\end{pmatrix}, \ a\in \K^\times\right\}.\]
+\end{example}
+\begin{example}
+    [Caso $m=2$] Consideriamo $\K^4$ con la forma quadratica $x_1x_4-x_2x_3$. Cerchiamo i sottospazi di dimensione $2$ contenuti nel radicale della forma: cerchiamo quindi rette in $\Pj(\K^4)$ contenute nella quadrica $x_1x_4=x_2x_3$. Questa quadrica corrisponde a $\Pj^1 \times \Pj^1$ tramite la mappa $([a:b],[c:d])\mapsto [ac:ad:bc:bd]$. Il gruppo $\SO(4)$ agisce su ciascun fattore $\Pj^1$, ma non scambia i due fattori tra loro. %Concretamente, la quadrica è composta da due famiglie di rette ...
 \end{example}
