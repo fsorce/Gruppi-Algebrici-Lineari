@@ -1,6 +1,5 @@
 \chapter{Fibrati vettoriali}
 
-\section{Fibrati vettoriali}
 \begin{definition}
     Un \textbf{fibrato vettoriale} di rango $m$ su una varietà $X$ è una mappa $p\colon E \to X$ che soddisfa le seguenti proprietà. Lo spazio 
     \[E \times_X E \coloneqq \left\{(a,b)\in E \times E \mid p(a)=p(b)\right\}\] 
@@ -46,6 +45,129 @@ Inoltre vale una condizione di trivializzazione locale, cio\`e per ogni $x$ in $
     \end{enumerate}
 \end{exercise}
 
+\section{Cocicli e banalizzazioni}
+\begin{remark}
+Se $p:E\to X$ \`e un fibrato vettoriale su $X$ di rango $m$ allora esiste un ricoprimento (finito) $\cpa{U_i}$ di $X$ tale che per ogni $i$
+% https://q.uiver.app/#q=WzAsMyxbMCwwLCJwXnstMX0oVV9pKSJdLFsyLDAsIlVfaVxcdGltZXMgXFxLXm0iXSxbMSwxLCJVX2kiXSxbMCwxLCJcXHNpbSIsMl0sWzAsMiwicCIsMl0sWzEsMiwiXFxwaV97VV9pfSJdLFswLDEsIlxcdmFycGhpX2kiXV0=
+\[\begin{tikzcd}
+	{p^{-1}(U_i)} && {U_i\times \K^m} \\
+	& {U_i}
+	\arrow["\sim"', from=1-1, to=1-3]
+	\arrow["{\varphi_i}", from=1-1, to=1-3]
+	\arrow["p"', from=1-1, to=2-2]
+	\arrow["{\pi_{U_i}}", from=1-3, to=2-2]
+\end{tikzcd}\]
+\end{remark}
+
+\begin{definition}[Cocicli]
+Dato un ricoprimento $\Uc=\cpa{U_i}$ di $X$ definiamo gli \textbf{1-cocicli} relativi al ricoprimento come
+\[Z^1(\Uc,\GL(m))=\cpa{\cpa{\al_{i,j}}\mid \al_{i,j}:U_{i,j}\to\GL(m),\ \al_{i,h}=\al_{j,h}\al_{i,j},\ \al_{i,i}(u)=I_m}.\]
+\end{definition}
+\begin{proposition}
+Se $\Uc$ \`e un ricoprimento banalizzante per il fibrato $p:E\to X$ allora esso definisce dei cocili indotti dalle mappe di transizione.
+\end{proposition}
+\begin{proof}
+Se $U_{i,j}=U_i\cap U_j$ allora abbiamo degli isomorfismi\footnote{da ora in poi eviteremo di scrivere ogni volta le restrizioni}
+\[\vp_{i,j}=\vp_j\res{U_{i,j}}\circ \vp_i\res{U_{i,j}}\ii:U_{i,j}\times\K^m\to U_{i,j}\times \K^m\]
+Sia $\vp_{i,j}(u,v)=(u,\al_{i,j}(u)(v))$. Questo definisce delle mappe regolari
+\[\al_{i,j}:U_{i,j}\to \GL(m).\]
+Notiamo inoltre che su $U_{i,j,h}\times \K^m$
+\[\vp_{j,h}\circ \vp_{i,j}=\vp_h\circ \vp_{j}\ii\circ \vp_j\circ \vp_i\ii=\vp_{i,h}.\]
+Vedendo queste identit\`a in termini delle $\al_{i,j}$ abbiamo mostrato
+\[\al_{i,h}(u)=\al_{j,h}(u)\al_{i,j}(u).\]
+Chiaramente $\vp_i\circ \vp_i\ii=id_{U_i\times\K^m}$ quindi $\al_{i,i}(u)=I_m$.
+\end{proof}
+
+\begin{proposition}[]\label{PrCocicliDeterminanoFibrato}
+Sia $\Uc$ un ricoprimento di $X$. Una collezione di cocicli $\al\in Z^1(\Uc,\GL(m))$ determina un fibrato vettoriale su $X$.
+\end{proposition}
+\begin{proof}
+Definiamo lo spazio totale come il seguente coprodotto fibrato
+\[E_\al:=\frac{\coprod(U_i\times \K^m)}{(u,v)\sim (u,\al_{i,j}(u)(v))}.\]
+Siano $\psi_i:U_i\times\K^m\to E_\al$ le mappe ovvie verso il coprodotto.
+\smallskip
+
+Su $E_\al$ imponiamo la seguente topologia: $V$ \`e aperto in $E_\al$ se e solo se $\psi_i\ii(V)$ \`e aperto in $U_i\times\K^m$ per ogni $i$.
+
+\smallskip
+
+Se $V$ \`e aperto in $E_\al$ allora, poich\'e la regolarit\`a \`e una condizione locale, si ha
+\[f\in \Oc_{E_\al}(V)\coimplies f\circ \psi_i\in \Oc_{U_i}(\psi_i\ii(V)) \quad\forall i.\]
+Affermiamo che $\psi_i$ \`e iniettiva, aperta e regolare per ogni $i$:
+\setlength{\leftmargini}{0cm}
+\begin{itemize}
+\item[$\boxed{\text{Iniettiva}}$] Supponiamo $\psi_i(u,v)=\psi_i(u',v')$, allora
+\[U_i\times \K^m\ni(u,v)\sim (u',v')\in U_i\times \K^m\overset{\al_{i,i}=id_{U_i}}\implies u=u',\ v=v'.\]
+\item[$\boxed{\text{Aperta}}$] Se $W\subseteq U_i\times\K^m$ aperto e $\wt W=\psi_i(W)\subseteq E_\al$ allora dobbiamo verificare che $\psi_j\ii(\wt W)$ \`e aperto per ogni $j$. Consideriamo la seguente catena di equivalenze:
+\begin{gather*}
+(u,v)\in \psi_j\ii(\wt W)\subseteq U_j\times\K^m\\
+\psi_j(u,v)\in \wt W=\psi_i(W)\\
+\exists (u',v')\in W\subseteq U_i\times\K^m\ t.c.\ \psi_j(u,v)=\psi_i(u',v')\text{ in }E_\al\\
+\exists (u',v')\in W\ t.c.\ U_j\times \K^m\ni(u,v)\sim (u',v')\in U_i\times \K^m\\
+(u,\al_{j,i}(u)(v))\in W
+\end{gather*}
+cio\`e $\psi_j\ii(\wt W)$ \`e la preimmagine di $W$ tramite la mappa $U_{i,j}\times \K^m\to U_i\times \K^m$ che \`e continua.
+\item[$\boxed{\text{Regolare}}$] $\psi_i$ \`e continua per definizione della topologia di $E_\al$. Essendo la regolarit\`a una condizione locale, per come abbiamo definito la topologia su $E_\al$ anche la condizione sui pullback \`e chiara.
+\end{itemize}
+\setlength{\leftmargini}{0.5cm}
+
+Abbiamo dunque mostrato che $\psi_i(U_i\times \K^m)\cong U_i\times\K^m$.
+\medskip
+
+\noindent
+La struttura vettoriale sulle fibre di $E_\al$ \`e quella indotta dal coprodotto in modo ovvio.
+\end{proof}
+
+
+\begin{remark}
+Se $U_i$ \`e un aperto di $X$ che banalizza $p:E\to X$ notiamo che possono essere definiti diversi isomorfismi tra $p\ii(U_i)$ e $U_i\times \K^m$
+% https://q.uiver.app/#q=WzAsMyxbMCwwLCJwXnstMX0oVV9pKSJdLFsyLDAsIlVfaVxcdGltZXMgXFxLXm0iXSxbMSwxLCJVX2kiXSxbMCwxLCJcXHd0XFx2cF9pIiwyLHsiY3VydmUiOjF9XSxbMCwyLCJwIiwyXSxbMSwyLCJcXHBpX3tVX2l9Il0sWzAsMSwiXFx2YXJwaGlfaSIsMCx7ImN1cnZlIjotMX1dXQ==
+\[\begin{tikzcd}
+	{p^{-1}(U_i)} && {U_i\times \K^m} \\
+	& {U_i}
+	\arrow["{\wt\vp_i}"', curve={height=6pt}, from=1-1, to=1-3]
+	\arrow["{\varphi_i}", curve={height=-6pt}, from=1-1, to=1-3]
+	\arrow["p"', from=1-1, to=2-2]
+	\arrow["{\pi_{U_i}}", from=1-3, to=2-2]
+\end{tikzcd}\]
+In particolare questi definiscono diverse mappe di transizione e diversi cocicli.
+
+
+Studiamo la ``differenza" tra le mappe di transizione 
+\[\chi_i:=\wt\vp_i\circ \vp_i\ii:U_i\times\K^m\to U_i\times\K^m\] 
+Come notazione scriviamo $\chi_i(u,v)=(u,\beta_i(u)(v))$.
+Notiamo che
+\[\wt\vp_{i,j}=\wt\vp_j\circ \wt\vp_i\ii=\wt\vp_j\circ\vp_j\ii\circ\vp_j\circ\vp_i\ii\circ\vp_i\circ \wt\vp_i\ii=\chi_j\circ\vp_{i,j}\circ\chi_i\ii,\]
+quindi in termini di cocicli $\wt \al_{i,j}=\beta_j\al_{i,j}\beta_i\ii$ o equivalentemente $\wt\al_{i,j}\beta_i=\beta_j\al_{i,j}$.
+\end{remark}
+
+Questo ci spinge a dare la seguente definizione:
+\begin{definition}[Coomologia]
+Definiamo due cocicli $\al_{i,j}$ e $\wt\al_{i,j}$ \textit{equivalenti} se esiste $\beta_i:U_i\to \GL(m)$ tale che $\wt \al_{i,j}=\beta_j\al_{i,j}\beta_i\ii$. Definiamo il \textbf{primo insieme di coomologia} come
+\[H^1(\Uc,\GL(m))=\quot{Z^1(\Uc,\GL(m))}\sim.\]
+\end{definition}
+
+
+\begin{theorem}[]\label{ThCorrispondenzaFibratiECoomologia}
+Se $\Uc$ \`e un ricoprimento aperto di $X$ allora abbiamo una corrispondenza biunivoca
+\[\quot{\cpa{\text{Fibrati vett. che si banalizzano su $\Uc$}}}{\text{iso. di fibr.}}\longleftarrow H^1(\Uc,\GL(m)).\]
+\end{theorem}
+\begin{proof}
+Ad un fibrato associo una collezione di cocicli e quindi una classe in coomologia. Questa associazione \`e ben definita perch\'e cambiando cocicli associati alla stessa banalizzazione essi sono equivalenti.
+
+Cambiare la classe di isomorfismo del fibrato non cambia la classe di coomologia perch\'e l'isomorfismo sugli aperti banalizzanti induce un automorfismo che corrisponde a cambiare cocicli.
+
+\bigskip
+\noindent Viceversa, dati dei coclicli sappiamo costruire un fibrato come in (\ref{PrCocicliDeterminanoFibrato}). Se $\al$ e $\wt \al$ sono cocicli equivalenti allora mostriamo che $E_\al\cong E_{\wt\al}$ come fibrati. Se $\beta_i$ sono tali che $\wt \al_{i,j}=\beta_i\al_{i,j}\beta_i\ii$ allora abbiamo una ovvia mappa tra i fibrati
+% https://q.uiver.app/#q=WzAsMixbMCwwLCJcXGRmcmFje1xcY29wcm9kKFVfaVxcdGltZXMgXFxLXm0pfXtcXHNpbV9cXGFsfSJdLFszLDAsIlxcZGZyYWN7XFxjb3Byb2QoVV9pXFx0aW1lcyBcXEtebSl9e1xcc2ltX3tcXHd0XFxhbH19Il0sWzAsMSwiXFxjb3Byb2QgaWRfe1VfaX1cXHRpbWVzIFxcYmV0YV9pKHUpKHYpIl1d
+\[\begin{tikzcd}
+	{\dfrac{\coprod(U_i\times \K^m)}{\sim_\al}} &&& {\dfrac{\coprod(U_i\times \K^m)}{\sim_{\wt\al}}}
+	\arrow["{\coprod id_{U_i}\times \beta_i(u)(v)}", from=1-1, to=1-4]
+\end{tikzcd}\]
+che si verifica essere un isomorfismo (Esercizio).
+\end{proof}
+
+\section{Sezioni di un fibrato}
 \begin{definition}[Sezioni di un fibrato]
 Dato un fibrato vettoriale $p\colon E \to X$ e dato un aperto $U$ di $X$, definiamo le \textbf{sezioni} di $U$ come 
 \[\Gamma(U,E)\coloneqq \{\sigma\colon U \to E \mid p\circ \sigma = id_U\}.\]
@@ -74,73 +196,129 @@ Dato un fibrato vettoriale $p\colon E \to X$ e dato un aperto $U$ di $X$, defini
     \[\Gamma(U,U\times \K^m)\cong \Oc_X(U)^m.\]
 \end{example}
 
-\section{Fibrati con azione equivariante di un gruppo}
+Studiamo ora le sezioni di un fibrato qualsiasi.
 
-\begin{definition}
-    Se $X$ è una $G$-varietà, un \textbf{$G$-fibrato} su $X$ è un fibrato vettoriale $p\colon E \to X$ su $X$ per cui esiste un'azione lineare di $G$ su $E$ tale che $p$ è $G$-equivariante.
-\end{definition}
-\begin{remark}
-In questo caso, $\Gamma(X,E)$ ha un'azione lineare di $G$, data da 
-\[(g\cdot \sigma)(x)=g(\sigma(g^{-1}x)).\] 
-\end{remark}
-
-Si potrebbe dimostrare che $G$ agisce in modo regolare su $\Gamma(X,E)$, e quindi che $\Gamma(X,E)$ è una rappresentazione algebrica di $G$. (Non lo faremo.) 
-
-\begin{definition}
-    Dati due fibrati vettoriali $p_1\colon E_1 \to X$ e $p_2\colon E_2 \to X$ su $X$, un \textbf{morfismo di fibrati} è una mappa $\varphi\colon E_1 \to E_2$ che preserva la somma e il prodotto per scalare e tale che $p_2\circ\varphi=p_1$. Diciamo che $\varphi$ è \textbf{equivariante} se commuta con $G$.
-\end{definition}
-
-\begin{remark}
-Per ogni $x_0$ in $X$, un morfismo $\varphi$ definisce una mappa lineare $\varphi_{x_0}\colon (E_1)_{x_0}\to (E_2)_{x_0}$. 
-\end{remark}
-
-\subsection{Classificazione dei fibrati vettoriali equivarianti}
-\begin{proposition}\label{PrClassificazioneFibratiSuGruppoQuoziente}
-Le classi di isomorfismo fibrati vettoriali $G$-equivarianti di rango $m$ su $X=G/H$ sono in corrispondenza con le classi di isomorfismo delle rappresentazioni $m$-dimensionali di $H$.
+\begin{proposition}\label{PrSezioniDiFibrato}
+Siano $p:E\to X$ un fibrato vettoriale e $\Uc$ un ricoprimento banalizzante per questo.
+Dare $\sigma\in \Gamma(X,E)$ \`e equivalente a dare delle $\sigma_i:U_i\to \K^m$ per ogni aperto del ricoprimento che verificano
+\begin{center}
+	\begin{tabular}[width=\pagewidth]{ccr}
+		~\hspace{4.3cm}~&$\sigma_j=\al_{i,j}\sigma_i$ &\hspace{1cm}(\textbf{condizione di cociclo})
+	\end{tabular} 
+\end{center}
+dove $\al_{i,j}$ sono dei cocicli per il fibrato.
 \end{proposition}
 \begin{proof}
-Costruiamo esplicitamente questa corrispondenza:
-\smallskip
+Fissiamo $\vp_i:E\res{U_i}\to U_i\times \K^m$ e $\al_{i,j}$ come prima. Se $\sigma\in\Gamma(X,E)$ allora
+\[\wt \sigma_i=\sigma\res{U_i}:U_i\to E\res{U_i},\quad \sigma_i:=\pi_{\K^m}\circ\vp_i\circ\wt\sigma_i\]
+\[\vp_i\circ \wt\sigma_i:\funcDef{U_i}{U_i\times\K^m}{u}{(u,\sigma_i(u))}\]
+Su $U_{i,j}$ abbiamo
+\[\wt \sigma_j=\vp_{i,j}\circ \wt \sigma_i,\quad \sigma_j=\al_{i,j}\sigma_i\]
+quindi da $\sigma$ abbiamo trovato delle $\sigma_i:U_i\to \K^m$ che verificano $\sigma_j=\al_{i,j}\sigma_i$.
 
-\noindent
-Dato un fibrato vettoriale $G$-equivariante $p\colon E\to G/H$ e posto $x_0=H=e_{G/H}$, possiamo considerare la fibra $E_{x_0}$ e chiaramente $H$ agisce su $E_{x_0}$. 
-\smallskip
+Viceversa dati questi dati essi si possono incollare a $\sigma:X\to E$ perch\'e la condizione di cocliclo garantisce che le $\sigma_i$ coincidano sulle intersezioni degli aperti del ricoprimento.
+\end{proof}
 
-\noindent
-Data una rappresentazione $V$ di $H$, consideriamo $G\times V$ con l'azione di $H$ data da 
-\[h(g,v)=(gh^{-1},hv).\]
-Passando al quoziente in $H$ abbiamo
-% https://q.uiver.app/#q=WzAsNCxbMCwwLCJFPVxcZGZyYWN7R1xcdGltZXMgVn17SH0iXSxbMCwxLCJbZyx2XSJdLFsxLDAsIlg9e0d9L3tIfSJdLFsxLDEsIltnXSJdLFswLDJdLFsxLDMsIiIsMCx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Im1hcHMgdG8ifX19XSxbMSwwLCJcXGluIiwzLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoibm9uZSJ9LCJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzMsMiwiXFxpbiIsMyx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dXQ==
-\[\begin{tikzcd}
-	{E=\dfrac{G\times V}{H}} & {X={G}/{H}} \\
-	{[g,v]} & {[g]}
-	\arrow[from=1-1, to=1-2]
-	\arrow["\in"{marking, allow upside down}, draw=none, from=2-1, to=1-1]
-	\arrow[maps to, from=2-1, to=2-2]
-	\arrow["\in"{marking, allow upside down}, draw=none, from=2-2, to=1-2]
-\end{tikzcd}\]
-Notiamo che 
-\[[g,v]+[gh,u]=[g,v]+[g,hu]=[g,v+hu]\] 
-e che 
-\[\lambda[g,v]=[g,\lambda v],\]
-quindi le fibre hanno una struttura vettoriale.
 
-Per concludere andrebbe mostrato che $E$ è una varietà algebrica, che la mappa costruita è regolare e che abbiamo la trivializzazione locale.
+\subsection{Fibrati lineari sulla retta proiettiva}
+\begin{notation}
+Scriviamo $\A^1\cong U_0=\Pj^1\bs\cpa\infty$ e $\A^1\cong U_\infty=\Pj^1\nz$, da cui
+\[\A^1\nz\cong U_{0,\infty}=\Pj^1\bs\cpa{0,\infty}.\]
+Scriviamo dunque $\K[U_0]=\K[z]$, $\K[U_\infty]=\K[w]$ e $\K[U_{0,\infty}]=\K[z,z\ii]$ con $w=z\ii$.
+\end{notation}
+
+\begin{remark}
+Rispetto a questo ricoprimento i coclicli sono
+\[Z^1(\Uc)=\cpa{\al_{0,\infty}:U_{0,\infty}\to\GL(1)}=\cpa{\funcDef{U_{0,\infty}}{\GL(1)}{z}{\la z^n}\mid n\in\Z,\ \la\in\K^\times}\]
+A priori sono mappe della forma $z\mapsto p(z)$ ma se comparissero pi\`u monomi allora ci sarebbero radici diverse da $0$, quindi esisterebbe $a\in U_{0,\infty}$ tale che $p(a)=0\notin \GL(1)$.
+\end{remark}
+
+
+
+\begin{remark}
+Si ha
+\[H^1(\Uc,\GL(1))=\cpa{z^n}_{n\in\Z}.\]
+\end{remark}
+\begin{proof}
+Se $\al=\la z^n$ e $\wt \al=\mu z^m$ sono cocicli equivalenti allora esistono $\beta_0:U_0\to \GL(1)$ e $\beta_\infty:U_{\infty}\to\GL(1)$ tali che
+\[\mu z^m=\wt\al=\beta_\infty\al\beta_0\ii=\la\beta_\infty\beta_0\ii z^n\implies n=m\]
+Se $n=m$ allora possiamo sempre trovare $\beta_0$ e $\beta_\infty$, quindi abbiamo mostrato
+\[H^1(\Uc,\GL(1))=\cpa{z^n}_{n\in\Z}.\]
+\end{proof}
+
+\begin{proposition}
+Le sezioni globali dei fibrati lineari su $\Pj^1$ sono
+\[\Gamma(\Pj^1,E_{z^{-n}})=\begin{cases}
+	\K[z]_{n} & n\geq 0\\
+	0 &n<0
+\end{cases}\]
+\end{proposition}
+\begin{proof}
+Consideriamo due sezioni $\sigma_0=f(z)$ e $\sigma_\infty=g(w)$ tali che $\sigma_\infty=\al_{0,\infty}\sigma_0$. Per quanto detto possiamo scegliere $\al_{0,\infty}=z^{-n}$, da cui sull'intersezione $U_{0,\infty}$ abbiamo 
+\[g(z\ii)=z^{-n}f(z).\]
+Scrivendo le espansioni troviamo
+\[g(z\ii)=a_0+a_1 z\ii+\cdots\qquad z^{-n}f(z)=b_0 z^{-n}+b_1 z^{1-n}+\cdots\]
+dunque:
+\setlength{\leftmargini}{0cm}
+\begin{itemize}
+\item[$\boxed{n<0}$] In questo caso imporre uguaglianza impone che ogni coefficiente sia nullo, cio\`e $\sigma_0=\sigma_\infty=0$ e quindi il $\sigma$ a cui corrispondono \`e $0$.
+\item[$\boxed{n\geq0}$] Imponendo l'uguaglianza troviamo
+\[f(z)=a_0z^n+\cdots+a_{n-1}z+a_n\]
+cio\`e un generico polinomio di grado $n$.
+\end{itemize}
+\setlength{\leftmargini}{0.5cm}
 \end{proof}
 
 
 
-\begin{example}
-Se vogliamo costruire fibrati $G$-equivarianti lineari (cioè di rango $1$) su $\GL(n)/B_n$, sappiamo che questi corrispondono alle rappresentazioni $1$-dimensionali di $B_n$ 
-% https://q.uiver.app/#q=WzAsMyxbMCwwLCJCX24iXSxbMiwwLCJcXEteXFx0aW1lcyJdLFsxLDEsIlQ9Ql9uL1VfbiJdLFswLDJdLFsyLDFdLFswLDFdXQ==
+\subsection{Fibrati vettoriali su variet\`a affini}
+
+\begin{remark}
+Se $X$ \`e una variet\`a affine, $A=\K[X]$ e $E$ \`e un fibrato vettoriale di rango $m$ su $X$ allora $M=\Gamma(X,E)$ \`e un $A$-modulo.
+\end{remark}
+
+\begin{remark}
+Supponiamo che $E$ si banalizzi su aperti affini $X_i$ tali che\footnote{ricordiamo che aperti di questo tipo formano una base per la topologia di Zariski.} $\K[X_i]=A_{f_i}$. Siano $\al_{i,j}$ i cocicli e consideriamo la mappa
+\[J:\funcDef{\bigoplus_i (A_{f_i})^m}{\bigoplus_{i,j} (A_{f_if_j})^m}{(\sigma_i)}{(\sigma_j-\al_{i,j}\sigma_i)}\]
+Per quanto detto $\Gamma(X,E)=\ker J$.
+\end{remark}
+
+\begin{proposition}
+$\Gamma(X_f,E)=\Gamma(X,E)_f$
+\end{proposition}
+\begin{proof}
+Su $X_f=U\subseteq X$ abbiamo 
+% https://q.uiver.app/#q=WzAsMTIsWzAsMCwiMCJdLFsxLDAsIlxcR2FtbWEoWCxFKSJdLFsxLDEsIlxcR2FtbWEoVSxFKSJdLFswLDEsIjAiXSxbMiwwLCJcXGJpZ29wbHVzXFxLW1VfaV1ebSJdLFsyLDEsIlxcYmlnb3BsdXNcXEtbVV9pXFxjYXAgVV1ebSJdLFszLDAsIlxcYmlnb3BsdXNcXEtbVV97aSxqfV1ebSJdLFszLDEsIlxcYmlnb3BsdXNcXEtbVV97aSxqfVxcY2FwIFVdXm0iXSxbMiwyLCJcXGJpZ29wbHVzXFxLW1VfaV1ebV9mIl0sWzMsMiwiXFxiaWdvcGx1c1xcS1tVX3tpLGp9XV5tX2YiXSxbMSwyLCJcXEdhbW1hKFgsRSlfZiJdLFswLDIsIjAiXSxbMTEsMTBdLFsxMCw4XSxbOCw5XSxbMywyXSxbMiw1XSxbNSw3XSxbMCwxXSxbMSw0XSxbNCw2XSxbNCw1XSxbNiw3XSxbNSw4LCI9IiwzLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoibm9uZSJ9LCJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzcsOSwiPSIsMyx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFsxMCwyLCI9IiwzLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoibm9uZSJ9LCJoZWFkIjp7Im5hbWUiOiJub25lIn19fV1d
 \[\begin{tikzcd}
-	{B_n} && {\K^\times} \\
-	& {T=B_n/U_n}
-	\arrow[from=1-1, to=1-3]
-	\arrow[from=1-1, to=2-2]
-	\arrow[from=2-2, to=1-3]
+	0 & {\Gamma(X,E)} & {\bigoplus\K[U_i]^m} & {\bigoplus\K[U_{i,j}]^m} \\
+	0 & {\Gamma(U,E)} & {\bigoplus\K[U_i\cap U]^m} & {\bigoplus\K[U_{i,j}\cap U]^m} \\
+	0 & {\Gamma(X,E)_f} & {\bigoplus\K[U_i]^m_f} & {\bigoplus\K[U_{i,j}]^m_f}
+	\arrow[from=1-1, to=1-2]
+	\arrow[from=1-2, to=1-3]
+	\arrow[from=1-3, to=1-4]
+	\arrow[from=1-3, to=2-3]
+	\arrow[from=1-4, to=2-4]
+	\arrow[from=2-1, to=2-2]
+	\arrow[from=2-2, to=2-3]
+	\arrow[from=2-3, to=2-4]
+	\arrow["{=}"{marking, allow upside down}, draw=none, from=2-3, to=3-3]
+	\arrow["{=}"{marking, allow upside down}, draw=none, from=2-4, to=3-4]
+	\arrow[from=3-1, to=3-2]
+	\arrow["{=}"{marking, allow upside down}, draw=none, from=3-2, to=2-2]
+	\arrow[from=3-2, to=3-3]
+	\arrow[from=3-3, to=3-4]
 \end{tikzcd}\]
-Quindi queste possono essere caratterizzate attraverso i caratteri del toro.
-\end{example}
+\end{proof}
+\begin{corollary}
+Se $E$ su $X_f$ \`e banale allora
+\[\Gamma(X,E)_f\cong \K[X_f]^m=(A_f)^m.\]
+\end{corollary}
+
+
+\begin{remark}
+Il modulo $M=\Gamma(X,E)$ \`e localmente libero, cio\`e per ogni $x\in X$ esiste $f\in A$ tale che $f(x)\neq 0$ e $M_f\cong (A_f)^m$.
+\end{remark}
+
+
 
 

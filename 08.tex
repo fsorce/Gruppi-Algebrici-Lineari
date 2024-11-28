@@ -1,0 +1,72 @@
+\chapter{Fibrati con azione di gruppo}
+
+\begin{definition}
+    Se $X$ è una $G$-varietà, un \textbf{$G$-fibrato} su $X$ è un fibrato vettoriale $p\colon E \to X$ su $X$ per cui esiste un'azione lineare di $G$ su $E$ tale che $p$ è $G$-equivariante.
+\end{definition}
+\begin{remark}
+In questo caso, $\Gamma(X,E)$ ha un'azione lineare di $G$, data da 
+\[(g\cdot \sigma)(x)=g(\sigma(g^{-1}x)).\] 
+\end{remark}
+
+Si potrebbe dimostrare che $G$ agisce in modo regolare su $\Gamma(X,E)$, e quindi che $\Gamma(X,E)$ è una rappresentazione algebrica di $G$. (Non lo faremo.) 
+
+\begin{definition}
+    Dati due fibrati vettoriali $p_1\colon E_1 \to X$ e $p_2\colon E_2 \to X$ su $X$, un \textbf{morfismo di fibrati} è una mappa $\varphi\colon E_1 \to E_2$ che preserva la somma e il prodotto per scalare e tale che $p_2\circ\varphi=p_1$. Diciamo che $\varphi$ è \textbf{equivariante} se commuta con $G$.
+\end{definition}
+
+\begin{remark}
+Per ogni $x_0$ in $X$, un morfismo $\varphi$ definisce una mappa lineare $\varphi_{x_0}\colon (E_1)_{x_0}\to (E_2)_{x_0}$. 
+\end{remark}
+
+\section{Classificazione dei fibrati vettoriali equivarianti}
+\begin{proposition}\label{PrClassificazioneFibratiSuGruppoQuoziente}
+Le classi di isomorfismo fibrati vettoriali $G$-equivarianti di rango $m$ su $X=G/H$ sono in corrispondenza con le classi di isomorfismo delle rappresentazioni $m$-dimensionali di $H$.
+\end{proposition}
+\begin{proof}
+Costruiamo esplicitamente questa corrispondenza:
+\smallskip
+
+\noindent
+Dato un fibrato vettoriale $G$-equivariante $p\colon E\to G/H$ e posto $x_0=H=e_{G/H}$, possiamo considerare la fibra $E_{x_0}$ e chiaramente $H$ agisce su $E_{x_0}$. 
+\smallskip
+
+\noindent
+Data una rappresentazione $V$ di $H$, consideriamo $G\times V$ con l'azione di $H$ data da 
+\[h(g,v)=(gh^{-1},hv).\]
+Passando al quoziente in $H$ abbiamo
+% https://q.uiver.app/#q=WzAsNCxbMCwwLCJFPVxcZGZyYWN7R1xcdGltZXMgVn17SH0iXSxbMCwxLCJbZyx2XSJdLFsxLDAsIlg9e0d9L3tIfSJdLFsxLDEsIltnXSJdLFswLDJdLFsxLDMsIiIsMCx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Im1hcHMgdG8ifX19XSxbMSwwLCJcXGluIiwzLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoibm9uZSJ9LCJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzMsMiwiXFxpbiIsMyx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dXQ==
+\[\begin{tikzcd}
+	{E=\dfrac{G\times V}{H}} & {X={G}/{H}} \\
+	{[g,v]} & {[g]}
+	\arrow[from=1-1, to=1-2]
+	\arrow["\in"{marking, allow upside down}, draw=none, from=2-1, to=1-1]
+	\arrow[maps to, from=2-1, to=2-2]
+	\arrow["\in"{marking, allow upside down}, draw=none, from=2-2, to=1-2]
+\end{tikzcd}\]
+Notiamo che 
+\[[g,v]+[gh,u]=[g,v]+[g,hu]=[g,v+hu]\] 
+e che 
+\[\lambda[g,v]=[g,\lambda v],\]
+quindi le fibre hanno una struttura vettoriale.
+
+Per concludere andrebbe mostrato che $E$ è una varietà algebrica, che la mappa costruita è regolare e che abbiamo la trivializzazione locale.
+\end{proof}
+
+
+
+\begin{example}
+Se vogliamo costruire fibrati $G$-equivarianti lineari (cioè di rango $1$) su $\GL(n)/B_n$, sappiamo che questi corrispondono alle rappresentazioni $1$-dimensionali di $B_n$ 
+% https://q.uiver.app/#q=WzAsMyxbMCwwLCJCX24iXSxbMiwwLCJcXEteXFx0aW1lcyJdLFsxLDEsIlQ9Ql9uL1VfbiJdLFswLDJdLFsyLDFdLFswLDFdXQ==
+\[\begin{tikzcd}
+	{B_n} && {\K^\times} \\
+	& {T=B_n/U_n}
+	\arrow[from=1-1, to=1-3]
+	\arrow[from=1-1, to=2-2]
+	\arrow[from=2-2, to=1-3]
+\end{tikzcd}\]
+Quindi queste possono essere caratterizzate attraverso i caratteri del toro.
+\end{example}
+
+
+
+
