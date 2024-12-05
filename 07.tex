@@ -167,6 +167,93 @@ Cambiare la classe di isomorfismo del fibrato non cambia la classe di coomologia
 che si verifica essere un isomorfismo (Esercizio).
 \end{proof}
 
+\section{Operazioni sui fibrati}
+
+\begin{definition}[Morfismo di fibrati]
+Se $E\to X$ e $F\to X$ sono fibrati, un \textbf{morfismo di fibrati} $T:E\to F$ \`e un morfismo di variet\`a $E\to X$ che commuta con i cocicli. Pi\`u precisamente, definite $T_i$
+% https://q.uiver.app/#q=WzAsNCxbMCwwLCJFXFxyZXN7VV9pfSJdLFsxLDAsIkZcXHJlc3tVX2l9Il0sWzAsMSwiXFxLXm5cXHRpbWVzIFVfaSJdLFsxLDEsIlxcS15tXFx0aW1lcyBVX2kiXSxbMCwxLCJUXFxyZXN7RVxccmVze1VfaX19Il0sWzIsMywiVF9pIl0sWzAsMiwiXFxlX2kiLDJdLFsxLDMsIlxcdnBfaSJdXQ==
+\[\begin{tikzcd}
+	{E\res{U_i}} & {F\res{U_i}} \\
+	{\K^n\times U_i} & {\K^m\times U_i}
+	\arrow["{T\res{E\res{U_i}}}", from=1-1, to=1-2]
+	\arrow["{\e_i}"', from=1-1, to=2-1]
+	\arrow["{\vp_i}", from=1-2, to=2-2]
+	\arrow["{T_i}", from=2-1, to=2-2]
+\end{tikzcd}\]
+dove $\e_i$ e $\vp_i$ sono isomorfismi fissati, che inducono i cocicli $\e_{i,j}=\e_j\e_i\ii$ e $\vp_{i,j}=\vp_j\vp_i\ii$, chiediamo che commuti il diagramma 
+% https://q.uiver.app/#q=WzAsNixbMCwxLCJFXFxyZXN7VV97aSxqfX0iXSxbMSwxLCJGXFxyZXN7VV97aSxqfX0iXSxbMCwyLCJcXEteblxcdGltZXMgVV97aSxqfSJdLFsxLDIsIlxcS15tXFx0aW1lcyBVX3tpLGp9Il0sWzAsMCwiXFxLXm5cXHRpbWVzIFVfe2ksan0iXSxbMSwwLCJcXEtebVxcdGltZXMgVV97aSxqfSJdLFswLDEsIlQiXSxbMiwzLCJUX2kiXSxbMCwyLCJcXGVfaSIsMl0sWzEsMywiXFx2cF9pIl0sWzEsNSwiXFx2cF9qIiwyXSxbMCw0LCJcXGVfaiJdLFs0LDUsIlRfaiJdLFsyLDQsIlxcZV97aSxqfSIsMCx7ImN1cnZlIjotNX1dLFszLDUsIlxcdnBfe2ksan0iLDIseyJjdXJ2ZSI6NX1dXQ==
+\[\begin{tikzcd}
+	{\K^n\times U_{i,j}} & {\K^m\times U_{i,j}} \\
+	{E\res{U_{i,j}}} & {F\res{U_{i,j}}} \\
+	{\K^n\times U_{i,j}} & {\K^m\times U_{i,j}}
+	\arrow["{T_j}", from=1-1, to=1-2]
+	\arrow["{\e_j}", from=2-1, to=1-1]
+	\arrow["T", from=2-1, to=2-2]
+	\arrow["{\e_i}"', from=2-1, to=3-1]
+	\arrow["{\vp_j}"', from=2-2, to=1-2]
+	\arrow["{\vp_i}", from=2-2, to=3-2]
+	\arrow["{\e_{i,j}}", curve={height=-30pt}, from=3-1, to=1-1]
+	\arrow["{T_i}", from=3-1, to=3-2]
+	\arrow["{\vp_{i,j}}"', curve={height=30pt}, from=3-2, to=1-2]
+\end{tikzcd}\]
+cio\`e che valga la relazione 
+\[\vp_{i,j}\circ T_i=T_j\circ \e_{i,j}.\]
+\end{definition}
+
+
+\begin{definition}[Somma diretta]
+Dati due fibrati $p_E:E\to X$ e $p_F\to X$ possiamo definire la loro \textbf{somma diretta} come
+\[E\oplus F=\cpa{(e,f)\in E\times F\mid p_E(e)=p_F(f)}\to X\]
+dove la proiezione \`e definita mandando $(e,f)$ in $x=p_E(e)=p_F(f)$.
+\end{definition}
+\begin{remark}
+$E\oplus F$ \`e il prodotto fibrato su $X$ dei due fibrati.
+% https://q.uiver.app/#q=WzAsNCxbMCwxLCJFIl0sWzEsMCwiRiJdLFsxLDEsIlgiXSxbMCwwLCJFXFxvcGx1cyBGIl0sWzAsMiwicF9FIiwyXSxbMSwyLCJwX0YiXSxbMywwXSxbMywxXSxbMywyLCIiLDAseyJzdHlsZSI6eyJuYW1lIjoiY29ybmVyIn19XV0=
+\[\begin{tikzcd}
+	{E\oplus F} & F \\
+	E & X
+	\arrow[from=1-1, to=1-2]
+	\arrow[from=1-1, to=2-1]
+	\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=2-2]
+	\arrow["{p_F}", from=1-2, to=2-2]
+	\arrow["{p_E}"', from=2-1, to=2-2]
+\end{tikzcd}\]
+\end{remark}
+
+\begin{remark}
+Se $\e_{i,j}$ \`e un cociclo per $E$ e $\vp_{i,j}$ per $F$ allora $\e_{i,j}+\vp_{i,j}$ \`e un cociclo di $E\oplus F$ (stiamo considerando un ricoprimento che banalizza sia $E$ che $F$).
+\end{remark}
+
+\begin{definition}[Prodotto tensore]
+Dati due fibrati $p_E:E\to X$ e $p_F\to X$ possiamo definire il loro \textbf{prodotto tensore} $E\otimes F$ come il fibrato associato al cociclo
+\[\e_{i,j}\otimes \vp_{i,j}:U_{i,j}\to \GL(\K^n\otimes \K^m)\]
+dove $n=\rnk E$ e $m=\rnk F$.
+\end{definition}
+
+\begin{definition}[Fibrato duale]
+Dato un fibrato $p:E\to X$ definiamo il \textbf{fibrato duale} come quello associato al cociclo $(\e_{i,j}\ii)^\top:U_{i,j}\to \GL(n)$.
+\end{definition}
+
+
+
+\begin{remark}
+Abbiamo un morfismo 
+\[E^\ast\otimes E\to \K\times X\]
+dato mandando il cociclo $\wt\e_{i,j}:=(\e_{i,j}\ii)^\top\otimes \e_{i,j}$ a $h_{i,j}=1$.
+\end{remark}
+\begin{proof}
+Se ci restringiamo ad un ricorprimento $\cpa{U_i}$ che banalizza $E$ definiamo
+\[T_i:\funcDef{(\K^n\otimes \K^n)\times U_i}{\K\times U_i}{((\la\otimes v),u)}{(\la^\top v,u)}\]
+e notiamo che queste $T_i$ si incollano ad un mosrfismo di fibrati:
+
+\noindent
+Data la definizione delle mappe di incollamento sui fibrati, verificare
+\[h_{i,j}\circ T_i\circ \wt\e_{i,j}\ii=T_j\]
+mostra anche che le $T_i$ si incollano come funzioni e questo incollamento sar\`a un morfismo di fibrati.
+La formula vale perch\'e $h_{i,j}=1$ e
+\[T_i(\wt\e_{i,j}\ii((\la,v),u))=T_i((\e_{i,j}^\top\la,\e_{i,j}\ii v),u)=(\la^\top\e_{i,j}\e_{i,j}\ii v,u)=(\la^\top v,u)=T_j((\la\otimes v),u).\]
+\end{proof}
+
 \section{Sezioni di un fibrato}
 \begin{definition}[Sezioni di un fibrato]
 Dato un fibrato vettoriale $p\colon E \to X$ e dato un aperto $U$ di $X$, definiamo le \textbf{sezioni} di $U$ come 
@@ -271,7 +358,7 @@ cio\`e un generico polinomio di grado $n$.
 
 
 
-\subsection{Fibrati vettoriali su variet\`a affini}
+\section{Fibrati vettoriali su variet\`a affini}
 
 \begin{remark}
 Se $X$ \`e una variet\`a affine, $A=\K[X]$ e $E$ \`e un fibrato vettoriale di rango $m$ su $X$ allora $M=\Gamma(X,E)$ \`e un $A$-modulo.
@@ -309,16 +396,158 @@ Su $X_f=U\subseteq X$ abbiamo
 	\arrow[from=3-3, to=3-4]
 \end{tikzcd}\]
 \end{proof}
-\begin{corollary}
+\begin{corollary}\label{CorLocalizzazioneSezioniFibratoSuAffine}
 Se $E$ su $X_f$ \`e banale allora
 \[\Gamma(X,E)_f\cong \K[X_f]^m=(A_f)^m.\]
 \end{corollary}
 
 
-\begin{remark}
-Il modulo $M=\Gamma(X,E)$ \`e localmente libero, cio\`e per ogni $x\in X$ esiste $f\in A$ tale che $f(x)\neq 0$ e $M_f\cong (A_f)^m$.
+\subsection{Caratterizzazione con i moduli proiettivi}
+
+Ricordiamo il seguente 
+\begin{theorem}[]\label{ThSuLocaleNoetherianoUnFinitamenteGeneratoEPiattoImplicaLibero}
+$A$ locale e Noetheriano, $M$ finitamente generato, allora
+\begin{center}
+	$M$ \`e piatto $\coimplies$ $M$ \`e proiettivo $\coimplies$ $M$ \`e libero.
+\end{center}
+\end{theorem}
+
+\begin{lemma}[]\label{LmLocalizzazioneDiHom}
+Sia $A$ un anello, $X$ un $A$ modulo e $M$ un $A$-modulo finitamente presentato, allora per $\mf$ massimale di $A$ abbiamo un isomorfismo
+\[\funcDef{(\Hom_A(M,X))_\mf}{\Hom_{A_\mf}(M_\mf,X_\mf)}{\vp/s}{\frac ut\mapsto \frac{\vp(u)}{st}}\]
+\end{lemma}
+\begin{proof}
+Se $M$ \`e libero allora la tesi \`e vera in quanto
+\[(\Hom_A(M,X))_\mf\cong (X^n)_\mf=X_\mf^n\cong \Hom_{A_\mf}(A_\mf^n,X_\mf)=\Hom_{A_\mf}(M_\mf,X_\mf)\]
+e la mappa data \`e questo isomorfismo.
+
+Se ora $A^h\to A^k\to M\to 0$ \`e una presentazione finita di $M$ costruiamo il diagramma commutativo con righe esatte\footnote{le righe sono esatte per esattezza della localizzazione e esattezza a sinistra degli $\Hom$}
+% https://q.uiver.app/#q=WzAsOCxbMCwwLCIwIl0sWzEsMCwiXFxIb20oTSxYKV9cXG1mIl0sWzIsMCwiXFxIb20oQV5rLFgpX1xcbWYiXSxbMywwLCJcXEhvbShBXmgsWClfXFxtZiJdLFsxLDEsIlxcSG9tKE1fXFxtZixYX1xcbWYpIl0sWzIsMSwiXFxIb20oQV5rX1xcbWYsWF9cXG1mKSJdLFszLDEsIlxcSG9tKEFeaF9cXG1mLFhfXFxtZikiXSxbMCwxLCIwIl0sWzAsMV0sWzEsMl0sWzIsM10sWzcsNF0sWzQsNV0sWzUsNl0sWzMsNl0sWzIsNV0sWzEsNF1d
+\[\begin{tikzcd}
+	0 & {\Hom(M,X)_\mf} & {\Hom(A^k,X)_\mf} & {\Hom(A^h,X)_\mf} \\
+	0 & {\Hom(M_\mf,X_\mf)} & {\Hom(A^k_\mf,X_\mf)} & {\Hom(A^h_\mf,X_\mf)}
+	\arrow[from=1-1, to=1-2]
+	\arrow[from=1-2, to=1-3]
+	\arrow[from=1-2, to=2-2]
+	\arrow[from=1-3, to=1-4]
+	\arrow[from=1-3, to=2-3]
+	\arrow[from=1-4, to=2-4]
+	\arrow[from=2-1, to=2-2]
+	\arrow[from=2-2, to=2-3]
+	\arrow[from=2-3, to=2-4]
+\end{tikzcd}\]
+Poich\'e le due mappe a destra sono isomorfismi anche la prima lo \`e per diagram chasing.
+\end{proof}
+
+\begin{theorem}[]\label{ThCaratterizzazioneProiettivoNoetheriano}
+Sia $A$ Noetheriano e $M$ finitamente generato. Le seguenti sono equivalenti
+\begin{enumerate}
+	\item $M$ \`e proiettivo
+	\item $M$ \`e piatto
+	\item $M_\mf$ \`e libero per ogni $\mf$ massimale in $A$
+	\item $M$ \`e localmente libero, cio\`e esistono $f_1,\cdots, f_n\in A$ tali che $(f_1,\cdots, f_n)=A$ e $M_{f_i}$ \`e libero.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+Diamo le implicazioni
+\setlength{\leftmargini}{0cm}
+\begin{itemize}
+\item[$\boxed{1.\implies2.}$] ovvio. 
+\item[$\boxed{2.\implies3.}$] ovvio per il teorema (\ref{ThSuLocaleNoetherianoUnFinitamenteGeneratoEPiattoImplicaLibero}) dato che $A_\mf$ \`e locale e $M_\mf$ sarebbe piatto finitamente generato su locale noetheriano, quindi libero.
+\item[$\boxed{4.\implies3.}$] Se $\mf$ \`e massimale esiste $f_i$ che non appartiene a $\mf$. Allora $M_\mf=(M_{f_i})_\mf$ ma $M_{f_i}$ \`e libero.
+\item[$\boxed{3.\implies1.}$] Mostriamo che $\Hom_A(M,\bullet)$ \`e esatto. Consideriamo una successione esatta corta di moduli
+\[0\to X\to Y\to Z\to 0\]
+e mostriamo che
+\[0\to \Hom_A(M,X)\to \Hom_A(M,Y)\to \Hom_A(M,Z)\to 0\]
+\`e esatta. Per fare ci\`o basta mostrare che per ogni $\mf$ massimale \`e esatta
+\[0\to (\Hom_A(M,X))_\mf\to (\Hom_A(M,Y))_\mf\to (\Hom_A(M,Z))_\mf\to 0\]
+Per il lemma (\ref{LmLocalizzazioneDiHom}) la mappa
+\[\funcDef{(\Hom_A(M,X))_\mf}{\Hom_{A_\mf}(M_\mf,X_\mf)}{\vp/s}{\frac ut\mapsto \frac{\vp(u)}{st}}\]
+\`e un isomorfismo (poich\'e $A$ noetheriano si ha che $M$ \`e finitamente generato esattamente se \`e finitamente presentato). Otteniamo dunque un diagramma commutativo
+% https://q.uiver.app/#q=WzAsMTAsWzAsMCwiMCJdLFsxLDAsIlxcSG9tKE0sWClfXFxtZiJdLFsyLDAsIlxcSG9tKE0sWSlfXFxtZiJdLFszLDAsIlxcSG9tKE0sWilfXFxtZiJdLFsxLDEsIlxcSG9tKE1fXFxtZixYX1xcbWYpIl0sWzIsMSwiXFxIb20oTV9cXG1mLFlfXFxtZikiXSxbMywxLCJcXEhvbShNX1xcbWYsWl9cXG1mKSJdLFswLDEsIjAiXSxbNCwwLCIwIl0sWzQsMSwiMCJdLFswLDFdLFsxLDJdLFsyLDNdLFs3LDRdLFs0LDVdLFs1LDZdLFszLDZdLFsyLDVdLFsxLDRdLFs2LDldLFszLDhdXQ==
+\[\begin{tikzcd}
+	0 & {\Hom(M,X)_\mf} & {\Hom(M,Y)_\mf} & {\Hom(M,Z)_\mf} & 0 \\
+	0 & {\Hom(M_\mf,X_\mf)} & {\Hom(M_\mf,Y_\mf)} & {\Hom(M_\mf,Z_\mf)} & 0
+	\arrow[from=1-1, to=1-2]
+	\arrow[from=1-2, to=1-3]
+	\arrow[from=1-2, to=2-2]
+	\arrow[from=1-3, to=1-4]
+	\arrow[from=1-3, to=2-3]
+	\arrow[from=1-4, to=1-5]
+	\arrow[from=1-4, to=2-4]
+	\arrow[from=2-1, to=2-2]
+	\arrow[from=2-2, to=2-3]
+	\arrow[from=2-3, to=2-4]
+	\arrow[from=2-4, to=2-5]
+\end{tikzcd}\]
+con mappe verticali date da isomorfismi, dunque la riga sopra \`e esatta se e solo se la riga sotto lo \`e, ma la riga sotto \`e esatta perch\'e $M_\mf$ \`e libero (e quindi proiettivo).
+\item[$\boxed{3.\implies4.}$] Mostriamo che per ogni $\mf$ esiste $f\notin \mf$ tale che $M_f$ \`e libero come $A_f$ modulo. Questo \`e sufficiente perch\'e $X=\bigcup_{\mf\in\Spec_{max}(A)} X_f$ per queste $f$ e per compattezza estraiamo un sottoricoprimento finito. Le $f_i$ corrispondenti a questo ricoprimento per costruzione sono della forma cercata.
+
+Mostriamo il claim: Poich\'e $M_\mf$ \`e libero esso ha una base $m_1,\cdots,m_n$. Consideriamo la mappa
+\[0\to A_\mf^n\xrightarrow{\al}M_\mf\to 0\]
+che manda $v_i$ in $m_i$, dove $v_1,\cdots, v_n$ \`e la base canonica di $A_\mf^n$. Per definizione della localizzazione esiste $f\notin \mf$ tale che
+\[v_i=\frac{u_i}f,\ m_i=\frac{x_i}{f},\qquad \text{per degli }u_i\in A^n,\ x_i\in M.\]
+Segue dunque che abbiamo una successione esatta
+\[0\to K\to A_f^n\to M_f\to 0\]
+dato che l'unico elemento che appare al denominatore \`e $f$.
+
+Notiamo che $K$ \`e finitamente generato per Noetherianit\`a, per esempio da $w_1,\cdots, w_t$, e che $K_\mf=0$, dunque esiste $g\notin \mf$ tale che $gw_i=0$ per ogni $i$, cio\`e $K_g=0$. Se allora localizziamo la successione di prima troviamo una nuova successione esatta
+\[0\to K_g\to A_{fg}^n\to M_{fg}\to 0\]
+ma dato che $K_g=0$ abbiamo dimostrato che $M_{fg}$ \`e libero. Per costruzione $fg\notin \mf$ in quanto il complementare di $\mf$ \`e una parte moltiplicativa.
+\end{itemize}
+\setlength{\leftmargini}{0.5cm}
+\end{proof}
+
+\begin{corollary}
+Se $p:E\to X$ \`e un fibrato vettoriale e $M=\Gamma(X,E)$ allora $M$ \`e proiettivo.
+\end{corollary}
+\begin{proof}
+Ricordando (\ref{CorLocalizzazioneSezioniFibratoSuAffine}) che $\Gamma(X_f,E)=M_f$, se scegliamo un ricoprimento $\cpa{X_f}$ che banalizza $E\to X$ si ha che $M_f$ \`e libero, dunque abbiamo mostrato che $M$ \`e localmente libero, che implica proiettivo per il teorema (\ref{ThCaratterizzazioneProiettivoNoetheriano}) se $M$ \`e finitamente generato.
+
+Poich\'e ogni $M_{f_i}$ (dove $f_1,\cdots, f_n$ determinano il ricoprimento banalizzante) \`e finitamente generato (libero di rango pari al rango del fibrato), esistono $m_1,\cdots, m_T\in M$ tali che $m_1,\cdots, m_T$ generano $M_{f_i}$ per ogni $i$. Se $N=\ps{m_1,\cdots, m_T}\subseteq M$ si ha che $N_{f_i}=M_{f_i}$ per ogni $f_i$ per costruzione, dunque localizzando ulteriormente $N_\mf=M_\mf$ per ogni $\mf$ massimale e quindi $N=M$.
+\end{proof}
+
+\begin{definition}[Rango di un modulo proiettivo]
+Sia $P$ un modulo proiettivo. Affermiamo $n$ \`e il \textbf{rango} di $P$ se per ogni $\mf$ massimale $P_\mf\cong A_\mf^n$.
+\end{definition}
+
+\begin{proposition}[]\label{PrModuloProiettivoDefinisceFibrato}
+A un $A$-modulo proiettivo $P$ di rango $n$ corrisponde un fibrato vettoriale di rango $n$ sulla variet\`a associata ad $A$.
+\end{proposition}
+\begin{proof}
+Poich\'e $P$ \`e proiettivo esistono $f_1,\cdots, f_N$ tali che $(f_1,\cdots, f_N)=A$ e $P_{f_i}\cong A_{f_i}^n$. Sia $\al_i:P_{f_i}\to A_{f_i}^n$ un fissato isomorfismo.
+Questi isomorfismi si restringono a isomorfismi $P_{f_if_j}\to A_{f_if_j}^n$, quindi possiamo definire 
+\[\al_{i,j}=\al_j\circ \al_i\ii\in \GL(A_{f_i f_j}^n).\] 
+Per definizione $\al_{ih}=\al_{jh}\al_{ij}$.
+Ricordiamo che
+\[A_{f_if_j}=\Oc(X_{f_if_j})=\Oc(X_{f_i}\cap X_{f_j})\]
+quindi effettivamente $\al_{i,j}:X_{f_if_j}\to \GL_n(\Oc(X_{f_if_j}))$. Avendo verificato la condizione di cociclo si ha che questo definisce un fibrato.
+\end{proof}
+
+Possiamo dare una descrizione pi\`u concreta di questo fibrato:
+
+\begin{remark}[Costruzione intrinseca del fibrato]
+~
+
+\noindent
+Sia $P$ un modulo proiettivo e consideriamo il duale
+\[P^\ast=\Hom_A(P,A)\]
+e poi l'algebra simmetrica
+\[\Sym_A P^\ast=\frac{A\oplus (P^\ast)\oplus (P^\ast\otimes_A P^\ast)\oplus\cdots}{(u\otimes v-v\otimes u)}.\]
+Chiaramente $\Sym_AP^\ast$ \`e un anello. Si pu\`o verificare che esso \`e finitamente generato e ridotto, quindi \`e l'anello di coordinate di una variet\`a affine $E$.
+
+Notiamo che se $P$ \`e libero allora $\Sym_AP^\ast$ \`e un anello di polinomi:
+chiamiamo $x_1,\cdots, x_n$ i generatori di $P^\ast$ duali alla base di $P$, allora \`e evidente che 
+\[\Sym_AP^\ast=A[x_1,\cdots, x_n]=A\otimes \K[x_1,\cdots, x_n]=\Oc(X\times \K^n).\]
+Quindi $E$ \`e coperto da intorni della forma $X\times\K^n$ e la mappa di proiezione \`e quella ovvia.
 \end{remark}
 
+
+\begin{theorem}[]
+C'\`e una corrispondenza biunivoca
+\[\quot{\cpa{\emat{\text{Moduli proiettivi su $A$}\\\text{di rango $n$}}}}{iso.}\longleftrightarrow \quot{\cpa{\emat{\text{Fibrati vettoriali su $X$}\\\text{di rango $n$}}}}{iso.}\]
+e la mappa dal fibrato $E$ ai moduli \`e $E\mapsto \Gamma(X,E)$.
+\end{theorem}
 
 
 
