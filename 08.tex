@@ -36,11 +36,40 @@ Sotto questo linguaggio, un modulo su $A$ \`e un fascio quasicoerente su $\Spec 
 
 
 \begin{remark}
-$\Spec(A[t])=\Spec A\times \A^1$.
+$\Spec(A[t_1,\cdots, t_n])=\Spec A\times \A^n$.
 \end{remark}
+
+\begin{definition}
+Definiamo lo \textbf{spazio proiettivo} di dimensione $n$ su $A$ come
+\[\Pj^n_A:=\Pj^n\times \Spec A.\]
+\end{definition}
 
 
 \section{Teorema di incollamento di Quillen}
+
+\begin{definition}
+Sia $M$ un $A[t_1,\cdots,t_n]$-modulo. Diciamo che $M$ è \textbf{esteso} da $A$ se esiste un $A$-modulo $N$ tale che $M\cong N[t_1,\cdots,t_n]$.
+\end{definition}
+
+\begin{remark}
+A meno di isomorfismo, l'$A$-modulo $N$ della definizione precedente è univocamente determinato, infatti 
+\[N\cong M/(t_1,\cdots,t_n)M=R\otimes_{R[t_1,\cdots,t_n]}M.\]
+\end{remark}
+
+\begin{remark}
+Geometricamente un fascio quasicoerente su $\A^n_A$ \`e esteso da $\Spec A$ se esiste un fascio quasicoerente su $\Spec A$ del quale \`e pullback tramite il fibrato banale $\A^n_A\to \Spec A$.
+\end{remark}
+
+Il teorema che vogliamo dimostrare in questa sezione \`e
+
+\begin{theorem}[di incollamento di Quillen]
+Siano $R,A$ anelli noetheriani dove $A$ è una $R$-algebra. Sia $M$ un $A[t_1,\cdots,t_n]$-modulo finitamente generato. 
+
+Allora $M$ è esteso da $A$ se e solo se, per ogni ideale massimale $\mf$ di $R$, $M_\mf$ è esteso da $A_\mf$.
+\end{theorem}
+
+
+
 
 \subsection{Lemmi geometrici}
 
@@ -166,18 +195,6 @@ Geometricamente, il lemma afferma che possiamo incollare morfismi di fasci quasi
 \end{remark}
 
 \subsection{Lemmi su polinomi invertibili a coefficienti in algebra}
-\begin{definition}
-Sia $M$ un $A[t_1,\cdots,t_n]$-modulo. Diciamo che $M$ è \textbf{esteso} da $A$ se esiste un $A$-modulo $N$ tale che $M\cong N[t_1,\cdots,t_n]$.
-\end{definition}
-
-\begin{remark}
-A meno di isomorfismo, l'$A$-modulo $N$ della definizione precedente è univocamente determinato, infatti 
-\[N\cong M/(t_1,\cdots,t_n)M=R\otimes_{R[t_1,\cdots,t_n]}M.\]
-\end{remark}
-
-\begin{remark}
-Geometricamente un fascio quasicoerente su $\A^n_A$ \`e esteso da $\Spec A$ se esiste un fascio quasicoerente su $\Spec A$ del quale \`e pullback tramite il fibrato banale $\A^n_A\to \Spec A$.
-\end{remark}
 
 \begin{notation}
 Sia $E$ una $B$-algebra (eventualmente non commutativa) con centro $B$. Definiamo
@@ -189,26 +206,29 @@ Sia $\theta(t)\in E_f[t]^u$. Per $k\gg 0$ tale che
 \[\theta((x+f^ky)t)\theta(xt)\ii\in E[x,y][t]^u\]
 \end{lemma}
 \begin{proof}
-Scriviamo
-\[\theta(x+y)-\theta(x)=y\vp(x,y)\]
-(abbiamo sostituito $x+y$ per $t$ e abbiamo raccolto il termine noto rispetto a $y$).
-Ora scriviamo
+Sostituendo $x+y=t$ in $\theta(t)$ e sottraendo il termine noto rispetto a $y$ troviamo che esiste $\vp\in E_f[x,y]$ tale che 
+\[\theta(x+y)-\theta(x)=y\vp(x,y).\]
+Espandiamo l'elemento nel testo del lemma usando la relazione appena ricavata:
 \begin{align*}
 	\theta((x+f^ky)t)\theta(xt)\ii=&\pa{\theta(xt+yf^kt)-\theta(xt)+\theta(xt)}\theta(xt)\ii=\\
-	=&yf^kt\under{\in E_f[x,y,t]}{\vp(xt,yf^kt)\theta(xt)\ii}+1
+	=&yf^kt\under{\in E_f[x,y,t]}{\vp(xt,yf^kt)\theta(xt)\ii}+1.
 \end{align*}
-Per $k\gg0$ esiste $\beta\in E[x,y,t]$ tale che
-\[\beta(x,f^ky,t)=f^k\vp()\theta(xt)\ii\]
-allora
-\[\theta((x+f^ky)t)\theta(xt)\ii\in E[x,y][t].\]
+Per definizione di localizzazione, per $k\gg0$, esiste $\beta\in E[x,y,t]$ tale che\footnote{l'$f^k$ nel secondo argomento di $\vp$ non causa problemi, anzi per $k\gg 0$ contribuisce a cancellare le eventuali $f$ al denominatore dei coefficienti di $\vp$.}
+\[\beta(x,f^ky,t)=f^k\vp(xt,yf^kt)\theta(xt)\ii,\]
+dunque
+\[\theta((x+f^ky)t)\theta(xt)\ii=1+yt\beta(x,f^ky,t)\in E[x,y][t].\]
 Per un conto analogo
-\[\theta(xt)\theta((x+f^ky)t)\ii=1+ty\gamma(x,f^ky,t)\in E[x,y][t].\]
+\[\theta(xt)\theta((x+f^hy)t)\ii=1+ty\gamma(x,f^hy,t)\in E[x,y][t].\]
+Semplifichiamo la notazione ponendo
 \begin{align*}
-	\wt \gamma=&\theta(xt)\theta((x+f^ky)t)=1+ty\gamma\\
-	\wt\beta=\theta((x+f^ky)t)\theta(xt)\ii=1+ty\beta 
+	\wt \gamma=&\theta(xt)\theta((x+f^hy)t)\ii=1+ty\gamma\\
+	\wt\beta=&\theta((x+f^ky)t)\theta(xt)\ii=1+ty\beta.
 \end{align*}
-dunque $\wt \beta\wt \gamma=1$ in $E_f[t]$ e $\wt \beta\wt \gamma=1+y(t\gamma+t\beta+t^2y\beta\gamma)=1+y\delta$
-quindi $f^h\delta=0$ per $h$ grande. Se sostituisco $y$ e $f^hy$ ottengo che $\wt \gamma\wt \beta=1$ in $E[x,y][t]$. Per $i\geq h+k$ abbiamo la tesi.
+Per definizione $\wt \beta\wt \gamma=1$ in $E_f[x,y,t]$. Per le formule in $E[x,y,t]$ appena trovate si ha 
+\[\wt \beta\wt \gamma=1+y(t\gamma+t\beta+t^2y\beta\gamma)\doteqdot1+y\delta\]
+quindi mettendo i due fatti assieme $f^i\delta=0$ per $i$ grande. A meno di sostituire $y$ con $f^hy$ (cio\`e semplicemente aumentare la potenza di $f$ che moltiplica $y$) otteniamo che $\wt \gamma\wt \beta=1$ in $E[x,y][t]$. Otteniamo l'identit\`a $\wt \beta\wt \gamma=1$ in $E[x,y][t]$ in modo analogo.
+
+Questo mostra che per $k\gg0$, $\wt\beta=\theta((x+f^ky)t)\theta(xt)\ii$ \`e invetibile. Valutando $\wt \beta$ in $t=0$ troviamo $\theta(0)\theta(0)\ii=id$ come voluto.
 \end{proof}
 
 \begin{lemma}\label{LmSpezzoLocalizzazioniDiPolinomiACoefficientiInAlgebre}
@@ -216,13 +236,11 @@ Per ogni $f,g\in B$ con $(f,g)=B$
 	\[E_{fg}[t]^u\cong E_f[t]^u E_g[t]^u\]
 \end{lemma}
 \begin{proof}
-Se $k\gg0$ e $a\equiv b\pmod{f^k}$ allora se $\theta\in E_f[t]^u$ si ha per il lemma (\ref{LmTecnicoSuPolinomiACoeffInAlgebre})
-\[\theta(at)\theta(bt)\ii\in E[t]^u\]
-(dove $x=b$ e $a=b+f^ky$ per qualche $y$ perch\'e $a$ e $b$ congrui modulo $f^k$).
-
-Scriviamo
-\[\theta(t)=\under{\in E_f[t]^u}{\theta(t)\theta(bt)\ii}\under{\in E_g[t]^u}{\theta(bt)\theta(0)\ii}\]
-dove i contenimenti valgono se $b=1\pmod{f^k}$ e $b=0\pmod{g^k}$ ma dato che $(f,g)=B$ possiamo trovare una tale coppia per il teorema cinese del resto.
+Se $k\gg0$ e $a=b+h^ky$ allora se\footnote{scriviamo $\wt E$ per indicare che l'algebra non \`e necessariamente quella del testo. Sotto infatti useremo $\wt E=E_f$ e $\wt E=E_g$.} $\theta\in \wt E_h[t]^u$ si ha per il lemma (\ref{LmTecnicoSuPolinomiACoeffInAlgebre})
+\[\theta(at)\theta(bt)\ii\in \wt E[t]^u.\]
+Se ora $\theta(t)\in E_{fg}[t]^u$ allora scriviamo (ricordiamo che $\theta(0)=id$)
+\[\theta(t)=\under{\in E_f[t]^u}{\theta(t)\theta(bt)\ii}\ \under{\in E_g[t]^u}{\theta(bt)\theta(0)\ii}\]
+dove, per quanto detto, i contenimenti valgono se $b=1\pmod{f^k}$ e $b=0\pmod{g^k}$ per $k\gg0$, ma dato che $(f,g)=B$ possiamo trovare un tale $b$ per il teorema cinese del resto.
 \end{proof}
 
 
@@ -293,7 +311,7 @@ Osserviamo che $(f,g)R_{f+g}=R_{f+g}$, quindi a meno di sostiuire $R$ con $R_{f+
 	\arrow[from=2-3, to=2-2]
 \end{tikzcd}\]
 Poich\'e $f,g\in Q(M)$ esistono degli isomorfismi $\vp:M_f\to N_f[t]$ e $\psi:M_g\to N_g[t]$, che inducono isomorfismi $\vp_1,\psi_1:M_{fg}\to N_{fg}[t]$. Diagrammaticamente
-% https://q.uiver.app/#q=WzAsNyxbMCwwLCJNX2YiXSxbNCwwLCJNX2ciXSxbMCwxLCJOX2ZbdF0iXSxbNCwxLCJOX2dbdF0iXSxbMiwwLCJNX3tmZ30iXSxbMSwxLCJOX3tmZ31bdF0iXSxbMywxLCJOX3tmZ31bdF0iXSxbMCwyLCJcXHZhcnBoaSIsMl0sWzEsMywiXFxwc2kiXSxbMCw0XSxbMCwyLCJcXHNpbSJdLFsxLDMsIlxcc2ltIiwyXSxbMSw0XSxbNCw1LCJcXHZhcnBoaV8xIiwyXSxbNCw2LCJcXHZhcnBoaV8yIl0sWzUsNiwiXFx0aGV0YSIsMix7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRvdHRlZCJ9fX1dLFsyLDVdLFs2LDNdLFs0LDUsIlxcc2ltIl0sWzQsNiwiXFxzaW0iLDJdXQ==
+% https://q.uiver.app/#q=WzAsNyxbMCwwLCJNX2YiXSxbNCwwLCJNX2ciXSxbMCwxLCJOX2ZbdF0iXSxbNCwxLCJOX2dbdF0iXSxbMiwwLCJNX3tmZ30iXSxbMSwxLCJOX3tmZ31bdF0iXSxbMywxLCJOX3tmZ31bdF0iXSxbMCwyLCJcXHZhcnBoaSIsMl0sWzEsMywiXFxwc2kiXSxbMCw0XSxbMCwyLCJcXHNpbSJdLFsxLDMsIlxcc2ltIiwyXSxbMSw0XSxbNCw1LCJcXHZhcnBoaV8xIiwyXSxbNCw2LCJcXHZhcnBoaV8yIl0sWzUsNiwiXFx0aGV0YSIsMix7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dLFsyLDVdLFs2LDNdLFs0LDUsIlxcc2ltIl0sWzQsNiwiXFxzaW0iLDJdXQ==
 \[\begin{tikzcd}
 	{M_f} && {M_{fg}} && {M_g} \\
 	{N_f[t]} & {N_{fg}[t]} && {N_{fg}[t]} & {N_g[t]}
@@ -302,13 +320,13 @@ Poich\'e $f,g\in Q(M)$ esistono degli isomorfismi $\vp:M_f\to N_f[t]$ e $\psi:M_
 	\arrow["\sim", from=1-1, to=2-1]
 	\arrow["{\varphi_1}"', from=1-3, to=2-2]
 	\arrow["\sim", from=1-3, to=2-2]
-	\arrow["{\psi_1}", from=1-3, to=2-4]
+	\arrow["{\varphi_2}", from=1-3, to=2-4]
 	\arrow["\sim"', from=1-3, to=2-4]
 	\arrow[from=1-5, to=1-3]
 	\arrow["\psi", from=1-5, to=2-5]
 	\arrow["\sim"', from=1-5, to=2-5]
 	\arrow[from=2-1, to=2-2]
-	\arrow["\theta"', dotted, from=2-2, to=2-4]
+	\arrow["\theta"', dashed, from=2-2, to=2-4]
 	\arrow[from=2-4, to=2-5]
 \end{tikzcd}\]
 dove $\theta=\psi_1\circ\varphi_1^{-1}$. Se $\theta=id_{N_{fg}[t]}$ allora avremmo concluso per quanto detto, quindi il nostro obiettivo \`e sostituire $\vp$ e $\psi$ con opportune $\vp'$ e $\psi'$ tali che la mappa indotta su $N_{fg}[t]$ sia effettivamente l'identit\`a.
@@ -350,11 +368,6 @@ come voluto.
 
 \section{Teoremi di Horrocks}
 
-\begin{definition}
-Definiamo lo \textbf{spazio proiettivo} di dimensione $n$ su $A$ come\footnote{Se $A$ \`e una $\K$-algebra allora con $\Pj^n$ si intende $\Pj^n_\K$. Nel contesto della teoria degli schemi la definizione \`e comunque vera ma dovremmo definire $\Pj^n_\Z$.} 
-\[\Pj^n_A:=\Pj^n\times \Spec A.\]
-\end{definition}
-
 \begin{notation}
 Scriviamo $R\ps t$ per indicare la localizzazione di $R[t]$ ai polinomi monici\footnote{formano una parte moltiplicativa perch\'e $1$ \`e monico, $0$ non \`e monico e il coefficiente di testa di un prodotto di polinomi \`e il prodotto dei coefficienti di testa, ma $1\cdot 1=1$.}
 \end{notation}
@@ -392,68 +405,63 @@ Se $E$ \`e un fibrato vettoriale su $\Pj^1_A$ con $A$ locale, allora $E\res{\A^1
 	\arrow[Rightarrow, from=2-1, to=2-2]
 	\arrow[color={rgb,255:red,224;green,0;blue,22}, Rightarrow, from=2-2, to=2-3]
 \end{tikzcd}\]
-Per raggiungere il teorema di Quillen-Suslin mostriamo le implicazioni rosse e poi Horrocks geometrico locale.
-
-
-
-
-\begin{proposition}[]\label{PrHGLimplicaHGG}
-Horrocks geometrico locale implica Horrocks geometrico globale.
-\end{proposition}
-\begin{proof}
-Sia $U_0=(\Pj^1\bs\cpa{\infty})_A$ e $U_\infty=(\Pj^1\bs\cpa0)_A$ e gli ``anelli delle coordinate"\footnote{formalizzare questo significa fare teoria degli schemi, fidatevi che torna} sono $A[t]$ e $A[t\ii]$.
-
-Dare un fibrato vettoriale \`e come dare $M_0$ e $M_\infty$ con $M_0$ un $A[t]$-modulo proiettivo finitamente generato e $M_\infty$ un $A[t\ii]$-modulo proiettivo finitamente generato tali che
-\[(M_0)_t\cong (M_\infty)_{t\ii}\]
-cio\`e $M_0$ \`e esteso da $A$, quindi per il teorema di incollamento di Quillen (\ref{ThIncollamentoQuillen}) basta mostrare che $(M_0)_\mf$  \`e esteso da $A_\mf$ per ogni $\mf$ massimale in $A$.
-
-Basta osservare che $(M_0)_\mf$ \`e la restrizione di $(M_0)_\mf$ e $(M_\infty)_\mf$ con $(M_0)_{\mf,t}\cong (M_\infty)_{\mf,t}$ (che vale per il caso locale), quindi $(M_0)_\mf$ \`e esteso.
-\end{proof}
-
-\begin{proposition}[]\label{PrHGGimplicaHAG} Horrocks geometrico globale implica Horrocks algebrico globale.
-\end{proposition}
-\begin{proof}
-Notiamo che esiste $f\in A[t]$ monico e quindi $M_f$ \`e libero.
-
-Vogliamo costruire un fibrato vettoriale su $\Pj^1_A$ tale che la sua restrizione a $\A^1_A=(\Pj^1\bs\cpa\infty)_A$ sia uguale a $M$. 
-
-Supponiamo $A=\K[X]$ con $X$ variet\`a. $M$ \`e un fibrato vettoriale su $X\times \A^1\supseteq U=X\times \A^1\bs V(f)$ e $M\res U$ \`e $\K^n\times U$ per HGG (\ref{ThHorrocksGeometricoGlobale}).
-
-Considero $V=(X\times \Pj^1\bs0)\bs V(f)$. Notiamo che \`e un aperto e su di esso consideriamo il fibrato vettoriale. Incolliamo questo fibrato banale a $M$.
-% https://q.uiver.app/#q=WzAsNCxbMCwwLCJXIl0sWzIsMCwiViJdLFsxLDAsIlhcXHRpbWVzIFxcUGpeMSJdLFsxLDEsIlUiXSxbMCwyLCJcXHN1YnNldGVxIiwzLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoibm9uZSJ9LCJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzIsMSwiXFxzdXBzZXRlcSIsMyx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFswLDMsIlxcc3Vwc2V0ZXEiLDMseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJub25lIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbMywxLCJcXHN1YnNldGVxIiwzLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoibm9uZSJ9LCJoZWFkIjp7Im5hbWUiOiJub25lIn19fV1d
-\[\begin{tikzcd}
-	W & {X\times \Pj^1} & V \\
-	& U
-	\arrow["\subseteq"{marking, allow upside down}, draw=none, from=1-1, to=1-2]
-	\arrow["\supseteq"{marking, allow upside down}, draw=none, from=1-1, to=2-2]
-	\arrow["\supseteq"{marking, allow upside down}, draw=none, from=1-2, to=1-3]
-	\arrow["\subseteq"{marking, allow upside down}, draw=none, from=2-2, to=1-3]
-\end{tikzcd}\]
-dove $W=X\times \A^1=X\times(\Pj^1\bs\cpa{\infty})$ e notiamo che $W\cap V=U$. Poich\'e $M\res U$ \`e banale si ha che questi fibrati si incollano definendo un fibrato vettoriale su sutto $\Pj^1_A$ tale che $M=M_0$.
-
-Per il teorema di Horrocks geometrico globale (\ref{ThHorrocksGeometricoGlobale}) questo mostra che $M_0$ \`e esteso da $A$.
-
-Voglio mostrare che \`e libero. Per definizione ci esteso
-\[M_0\cong N[t]\]
-con $N=M_0/tM_0\cong M_0/(t-1)M_0$.
-
-Abbiamo un fibrato su $X\times \Pj^1$, che si scrive come incollamento di $M_0$ e $M_\infty$
-\[\frac{M_0}{tM_0}\cong \frac{M_0}{(t-1)M_0}\cong \frac{M_\infty}{(t\ii-1)M_\infty}\cong \frac{M_\infty}{t\ii M_\infty}\]
-ma $M_\infty$ era il fibrato banale. Sia $f(t)$ di grado $n$ quello monico di prima e sia $g(s)$ tale che $g(t\ii)t^n=f(t)$. Si pu\`o verificare che
-\[X\times(\Pj^1\nz)\bs V(f)=X\times(\Pj^1\bs\cpa\infty)\bs V(g)\]
-Per costruzione $g(0)=1\neq0$ quindi $\frac{M_\infty}{t\ii M_\infty}=\pa{\frac{M_\infty}{t\ii M_\infty}}_g$, dunque
-\[\frac{M_\infty}{t\ii M_\infty}\cong \frac{(M_\infty)_g}{t\ii (M_\infty)_g}\]
-e poich\'e $(M_\infty)_g$ \`e il fibrato banale allora questo quoziente \`e banale e quindi $N$ \`e banale seguendo la catena di isomorfismi.
-\end{proof}
-
+Per raggiungere il teorema di Quillen-Suslin mostriamo le implicazioni rosse e Horrocks geometrico locale.
 
 
 \subsection{Dimostrazione Horrocks geometrico locale}
 
 
+\subsection{Implicazioni verso Horrocks algebrico globale}
 
+\begin{proposition}[]\label{PrHGLimplicaHGG}
+Horrocks geometrico locale implica Horrocks geometrico globale.
+\end{proposition}
+\begin{proof}
+Siano $U_0=(\Pj^1\bs\cpa{\infty})_A=\Spec A[t]$ e $U_\infty=(\Pj^1\bs\cpa0)_A=\Spec A[t\ii]$.
 
+Dare un fibrato vettoriale \`e come dare (\ref{LmFasciQuasicoerentiSonoIncollamentoDiRestrizioniSuRicoprimento}) moduli proiettivi finitamente generati $M_0$ su $A[t]$ e $M_\infty$ e $A[t\ii]$ tali che
+\[(M_0)_t\cong (M_\infty)_{t\ii}.\]
+Per avere la tesi vogliamo che un tale fibrato sia banale quando ristretto a $U_0$, cio\`e che $M_0$ sia esteso da $A$.
 
+Per il teorema di incollamento di Quillen (\ref{ThIncollamentoQuillen}) basta mostrare che $(M_0)_\mf$ \`e esteso da $A_\mf$ per ogni $\mf$ massimale in $A$. Osserviamo che localizzare il fibrato a $\mf$ restituisce comunque un fibrato (stavolta su $\Pj^1_{A_\mf}$), definito dai moduli $(M_0)_\mf$ e $(M_\infty)_\infty$ (definiscono un fibrato perch\'e per esattezza della localizzazione $(M_0)_{\mf,t}\cong (M_\infty)_{\mf,t\ii}$). Per il teorema di Horrocks geometrico locale (\ref{ThHorrocksGeometricoLocale}) si ha che $(M_0)_\mf$ \`e esteso da $A_\mf$ come voluto.
+\end{proof}
+
+\begin{proposition}[]\label{PrHGGimplicaHAG} Horrocks geometrico globale implica Horrocks algebrico globale.
+\end{proposition}
+\begin{proof}
+Per ipotesi $M\ps t$ \`e libero, quindi esiste $f\in A[t]$ monico tale che $M_f$ \`e libero (il minimo comune denominatore di una base di $M\ps t$).
+
+Vogliamo costruire un fibrato vettoriale su $\Pj^1_A$ tale che la sua restrizione a $\A^1_A=(\Pj^1\bs\cpa\infty)_A$ sia uguale a $M$, cos\`i facendo, per Horrocks geometrico globale (\ref{ThHorrocksGeometricoGlobale}), avremo mostrato che $M$ corrisponde al fibrato banale su $A[t]$.
+
+Sia $X=\Spec A$. Notiamo che $M$ corrisponde a un fibrato vettoriale su 
+\[X\times \A^1\supseteq U=X\times \A^1\bs V(f)\]
+e che $M_f$ corrisponde alla restrizione di questo fibrato a $U$, che quindi \`e il fibrato banale su $U$ dato che $M_f$ \`e libero.
+Definiamo I seguenti aperti di $X\times \Pj^1$
+\begin{align*}
+	V=&(X\times (\Pj^1\nz))\bs V(f)\\
+	W=&X\times(\Pj^1\bs\cpa{\infty})=X\times \A^1
+\end{align*}
+e notiamo che $U$ \`e la loro intersezione, cio\`e abbiamo un diagramma cartesiano
+% https://q.uiver.app/#q=WzAsNCxbMCwxLCJXIl0sWzEsMCwiViJdLFsxLDEsIlhcXHRpbWVzIFxcUGpeMSJdLFswLDAsIlUiXSxbMCwyLCIiLDMseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6ImJvdHRvbSJ9fX1dLFsxLDIsIiIsMyx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoiYm90dG9tIn19fV0sWzMsMCwiIiwzLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJib3R0b20ifX19XSxbMywyLCIiLDMseyJzdHlsZSI6eyJuYW1lIjoiY29ybmVyIn19XSxbMywxLCIiLDMseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6ImJvdHRvbSJ9fX1dXQ==
+\[\begin{tikzcd}
+	U & V \\
+	W & {X\times \Pj^1}
+	\arrow[hook', from=1-1, to=1-2]
+	\arrow[hook', from=1-1, to=2-1]
+	\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=2-2]
+	\arrow[hook', from=1-2, to=2-2]
+	\arrow[hook', from=2-1, to=2-2]
+\end{tikzcd}\]
+Se su $W$ consideriamo il fibrato $M$ e su $V$ consideriamo il fibrato banale dello stesso rango allora notiamo che questi si incollano in quanto su $W\cap V=U$ entrambi i fibrati si restringono al fibrato banale su $U$. Poich\'e $W$ e $V$ formano un ricoprimento di $X\times \Pj^1$ ($f$ non si annulla all'infinito perch\'e \`e monico) abbiamo definito un fibrato vettoriale su sutto $\Pj^1_A$ tale che $M=M_0$.
+
+Per il teorema di Horrocks geometrico globale (\ref{ThHorrocksGeometricoGlobale}) questo mostra che $M=M_0$ \`e esteso da $A$, quindi per mostrare che $M_0$ \`e libero basta mostrare che $N=M_0/tM_0$ \`e un $A$-modulo libero. Poich\'e $M_0$ deriva da un fibrato su $X\times \Pj^1$, che si scrive come incollamento di $M_0$ e $M_\infty$, vale la seguente catena di isomorfismi
+\[N=\frac{M_0}{tM_0}\cong \frac{M_0}{(t-1)M_0}\overset{s:=t\ii}\cong \frac{M_\infty}{(1-s)M_\infty}\cong \frac{M_\infty}{s M_\infty}.\]
+Se $f$ come prima \`e monico di grado $n$ e $g(s)$ \`e tale che $g(t\ii)t^n=f(t)$, si pu\`o verificare che
+\[V=X\times(\Pj^1\nz)\bs V(f)=X\times(\Pj^1\bs\cpa\infty)\bs V(g).\]
+Per costruzione $g(0)=1\neq0$ quindi $\frac{M_\infty}{s M_\infty}=\pa{\frac{M_\infty}{s M_\infty}}_g$, ma su $V$ sappiamo che il fibrato di $X\times \Pj^1$ \`e banale, cio\`e $(M_\infty)_g$ \`e un $A[s]$-modulo libero. Dunque
+\[\frac{M_\infty}{s M_\infty}\cong \frac{(M_\infty)_g}{s (M_\infty)_g}=(M_{\infty})_g\otimes_{A[s]}A\cong A[s]^{\oplus r}\otimes_{A[s]}A\cong A^{r}\]
+\`e un $A$-modulo libero e quindi $N$ \`e libero seguendo la catena di isomorfismi.
+\end{proof}
 
 
 \subsection{Dimostrazione di Quillen-Suslin}
