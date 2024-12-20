@@ -1,72 +1,498 @@
-\chapter{Fibrati con azione di gruppo}
+\chapter{Teorema di Quillen-Suslin}
 
-\begin{definition}
-    Se $X$ è una $G$-varietà, un \textbf{$G$-fibrato} su $X$ è un fibrato vettoriale $p\colon E \to X$ su $X$ per cui esiste un'azione lineare di $G$ su $E$ tale che $p$ è $G$-equivariante.
-\end{definition}
-\begin{remark}
-In questo caso, $\Gamma(X,E)$ ha un'azione lineare di $G$, data da 
-\[(g\cdot \sigma)(x)=g(\sigma(g^{-1}x)).\] 
-\end{remark}
 
-Si potrebbe dimostrare che $G$ agisce in modo regolare su $\Gamma(X,E)$, e quindi che $\Gamma(X,E)$ è una rappresentazione algebrica di $G$. (Non lo faremo.) 
-
-\begin{definition}
-    Dati due fibrati vettoriali $p_1\colon E_1 \to X$ e $p_2\colon E_2 \to X$ su $X$, un \textbf{morfismo di fibrati} è una mappa $\varphi\colon E_1 \to E_2$ che preserva la somma e il prodotto per scalare e tale che $p_2\circ\varphi=p_1$. Diciamo che $\varphi$ è \textbf{equivariante} se commuta con $G$.
-\end{definition}
+Vogliamo mostrare il seguente risultato:
+\begin{theorem}[Quillen-Suslin]
+Se $R$ \`e un PID e $M$ \`e proiettivo finitamente generato su $R[t_1,\cdots, t_n]$, allora $M$ \`e libero.
+\end{theorem}
 
 \begin{remark}
-Per ogni $x_0$ in $X$, un morfismo $\varphi$ definisce una mappa lineare $\varphi_{x_0}\colon (E_1)_{x_0}\to (E_2)_{x_0}$. 
+Geometricamente il teorema afferma che i fibrati vettoriali su $\A^n_R$ sono banali.
 \end{remark}
 
-\section{Classificazione dei fibrati vettoriali equivarianti}
-\begin{proposition}\label{PrClassificazioneFibratiSuGruppoQuoziente}
-Le classi di isomorfismo fibrati vettoriali $G$-equivarianti di rango $m$ su $X=G/H$ sono in corrispondenza con le classi di isomorfismo delle rappresentazioni $m$-dimensionali di $H$.
-\end{proposition}
+
+
+\begin{example}[Quillen-Suslin non vale per moduli qualsiasi]
+Consideriamo 
+\[M[t_1,\cdots,t_n]=R[t_1,\cdots,t_n]\otimes_R M.\]
+Allora 
+\[R\otimes_{R[t_1,\cdots,t_n]} M[t_1,\cdots,t_n]\cong \frac{M[t_1,\cdots,t_n]}{(t_1,\cdots,t_n)M[t_1,\cdots,t_n]}\cong M.\] 
+Quindi se $M$ è proiettivo, allora $M[t_1,\ldots,t_n]$ è proiettivo; se $M[t_1,\ldots,t_n]$ è libero, allora $M$ è libero.
+\end{example}
+
+\begin{notation}
+Se $A$ \`e un anello scriviamo $\Spec A$ per indicare la variet\`a affine tale che 
+\[A=\K[\Spec A].\] 
+Usando solo le nozioni definite durante il corso questa operazione ha senso solo quando $A$ \`e una $\K$-algebra ridotta finitamente generata, ma nel contesto della teoria degli schemi questo oggetto \`e ben definito per ogni anello commutativo con 1 e quanto diremo in seguito \`e valido anche in questo caso generale.
+
+Ai fini del corso questi sono dettagli tecnici che possiamo trascurare dato che a noi interesseranno solo applicazioni dove $A$ \`e una $\K$-alegbra ridotta finitamente generata.
+\end{notation}
+
+\begin{remark}
+Per chi conosce un minimo la teoria degli schemi, inseriremo alcune osservazioni che legano i risultati algebrici alla loro interpretazione geometrica quando opportuno.
+
+Sotto questo linguaggio, un modulo su $A$ \`e un fascio quasicoerente su $\Spec A$, un modulo finitamente generato \`e un fascio coerente e un modulo proiettivo \`e un fibrato vettoriale (quest'ultimo fatto ha un significato rigoroso anche all'interno di questo corso grazie al teorema (\ref{ThCorrispondenzaFibratiVettorialiModuliProiettivi}))
+\end{remark}
+
+
+\begin{remark}
+$\Spec(A[t])=\Spec A\times \A^1$.
+\end{remark}
+
+
+\section{Teorema di incollamento di Quillen}
+
+\subsection{Lemmi geometrici}
+
+\begin{lemma}\label{LmComportamentoSuSpigaSiSollevaAIntorno}
+Sia $R$ un anello noetheriano e siano $M,N$ due $R$-moduli, con $M$ finitamente generato. 
+\begin{enumerate}
+\item Se $\varphi\colon M\to N$ è tale che $\varphi_\mf\colon M_\mf \to N_\mf$ è la mappa nulla, allora esiste $f$ in $R\setminus \mf$ tale che $\varphi_f=0$. 
+\item Se $\psi\colon M_\mf\to N_\mf$, allora esistono $f$ in $R\setminus \mf$ e $\varphi\colon M_f\to N_f$ tali che $\psi$ è la localizzazione di $\varphi$.
+\item Se $N$ è finitamente generato e $\psi\colon M_\mf\to N_\mf$ è un isomorfismo, allora esistono $f$ in $R\setminus \mf$ e un isomorfismo $\varphi\colon M_f\to N_f$.
+\end{enumerate}
+\end{lemma}
 \begin{proof}
-Costruiamo esplicitamente questa corrispondenza:
-\smallskip
-
-\noindent
-Dato un fibrato vettoriale $G$-equivariante $p\colon E\to G/H$ e posto $x_0=H=e_{G/H}$, possiamo considerare la fibra $E_{x_0}$ e chiaramente $H$ agisce su $E_{x_0}$. 
-\smallskip
-
-\noindent
-Data una rappresentazione $V$ di $H$, consideriamo $G\times V$ con l'azione di $H$ data da 
-\[h(g,v)=(gh^{-1},hv).\]
-Passando al quoziente in $H$ abbiamo
-% https://q.uiver.app/#q=WzAsNCxbMCwwLCJFPVxcZGZyYWN7R1xcdGltZXMgVn17SH0iXSxbMCwxLCJbZyx2XSJdLFsxLDAsIlg9e0d9L3tIfSJdLFsxLDEsIltnXSJdLFswLDJdLFsxLDMsIiIsMCx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Im1hcHMgdG8ifX19XSxbMSwwLCJcXGluIiwzLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoibm9uZSJ9LCJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzMsMiwiXFxpbiIsMyx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dXQ==
+La dimostrazione è simile a quella localmente libero implica proiettivo (\ref{ThCaratterizzazioneProiettivoNoetheriano}).
+\setlength{\leftmargini}{0cm}
+\begin{enumerate}
+\item Siano $x_1,\cdots,x_k$ dei generatori di $M$. Poiché $\varphi_\mf=0$, si ha $\varphi(x_1)=\cdots=\varphi(x_k)=0$ in $N_\mf$, quindi esiste $f\notin \mf$ tale che $f\varphi(x_1)=\cdots=f\varphi(x_k)=0$ in $M$. Allora $\varphi_f=0$. 
+\item Consideriamo il diagramma % https://q.uiver.app/#q=WzAsOCxbMCwwLCJBXmgiXSxbMSwwLCJBXmsiXSxbMiwwLCJNIl0sWzMsMCwiMCJdLFswLDEsIkFfXFxtZl5oIl0sWzEsMSwiQV5rX1xcbWYiXSxbMiwxLCJNX1xcbWYiXSxbMiwyLCJOX1xcbWYiXSxbNCw1XSxbNSw2XSxbNiw3XSxbMCwxXSxbMSwyXSxbMiwzXV0=
 \[\begin{tikzcd}
-	{E=\dfrac{G\times V}{H}} & {X={G}/{H}} \\
-	{[g,v]} & {[g]}
+	{A^h} & {A^k} & M & 0 \\
+	{A_\mf^h} & {A^k_\mf} & {M_\mf} \\
+	&& {N_\mf}
 	\arrow[from=1-1, to=1-2]
-	\arrow["\in"{marking, allow upside down}, draw=none, from=2-1, to=1-1]
-	\arrow[maps to, from=2-1, to=2-2]
-	\arrow["\in"{marking, allow upside down}, draw=none, from=2-2, to=1-2]
+	\arrow[from=1-2, to=1-3]
+	\arrow[from=1-3, to=1-4]
+	\arrow[from=2-1, to=2-2]
+	\arrow[from=2-2, to=2-3]
+	\arrow[from=2-3, to=3-3]
 \end{tikzcd}\]
-Notiamo che 
-\[[g,v]+[gh,u]=[g,v]+[g,hu]=[g,v+hu]\] 
-e che 
-\[\lambda[g,v]=[g,\lambda v],\]
-quindi le fibre hanno una struttura vettoriale.
+e scriviamo $\psi(x_i)=y_i/f$ con $f\notin \mf$ e $y_i\in N$. In particolare gli $\psi(x_i)$ sono in $N_f$. Consideriamo il diagramma 
+% https://q.uiver.app/#q=WzAsNSxbMCwwLCJBX2ZeaCJdLFsxLDAsIkFea19mIl0sWzIsMCwiTV9mIl0sWzIsMSwiTl9mIl0sWzMsMCwiMCJdLFswLDEsIlxcYmV0YV9mIl0sWzEsMiwiXFxhbHBoYV9mIl0sWzIsM10sWzIsNF0sWzEsMywiXFxwaGkiXV0=
+\[\begin{tikzcd}
+	{A_f^h} & {A^k_f} & {M_f} & 0 \\
+	&& {N_f}
+	\arrow["{\beta_f}", from=1-1, to=1-2]
+	\arrow["{\alpha_f}", from=1-2, to=1-3]
+	\arrow["\phi", from=1-2, to=2-3]
+	\arrow[from=1-3, to=1-4]
+	\arrow[from=1-3, to=2-3]
+\end{tikzcd}\]
+dove $\phi(e_i)=y_i/f$. Segue per esattezza della prima riga che $\phi_\mf\circ \beta_\mf=0$ e quindi per il punto 1. esiste $g\notin \mf$ tale che \[(\phi_{g}\circ (\beta_{f})_g)\colon A_{fg}^h \to N_{fg}\] è la mappa nulla. A meno di sostituire $f$ con $fg$, possiamo assumere che $\phi\circ \beta_f=0$ e quindi otteniamo una mappa $\vp\colon M_f=A^k_f/\imm(\beta_f)\to N_f$ per il primo teorema di omomorfismo. Per costruzione $\vp_\mf=\psi$ come voluto.
+\item Per il punto 2. possiamo sollevare $\psi$ e $\psi\ii$ a $\vp:M_f\to N_f$ e $\wt vp:N_f\to M_f$ (scegliendo un opportuno $f$). Notiamo che $(\vp\circ \wt \vp-id_{N_f})_\mf=\psi\circ \psi\ii-id_{N_\mf}=0$, quindi per il punto 1. $\vp\circ \wt \vp=id_{N_f}$ a meno di localizzare ulteriormente. Analogamente sistemiamo anche l'altra composizione.
+\end{enumerate}
+\setlength{\leftmargini}{0.5cm}  
+\end{proof}
+\begin{remark}
+Geometricamente, il lemma afferma che il comportamento su una spiga di un fascio coerente determina il comportamento in un intorno.
+\end{remark}
 
-Per concludere andrebbe mostrato che $E$ è una varietà algebrica, che la mappa costruita è regolare e che abbiamo la trivializzazione locale.
+
+
+\begin{lemma}\label{LmFasciQuasicoerentiSonoIncollamentoDiRestrizioniSuRicoprimento}
+Siano $f,g$ in $R$ coprimi (cioè $(f,g)=R$) e sia $M$ un $R$-modulo. Allora $M$ \`e il prodotto fibrato di $M_f$ e $M_g$ su $M_{fg}$
+% https://q.uiver.app/#q=WzAsNCxbMSwwLCJNX2YiXSxbMSwxLCJNX3tmZ30iXSxbMCwxLCJNX2ciXSxbMCwwLCJNIl0sWzAsMSwiXFxhbHBoYSJdLFszLDAsImIiXSxbMiwxLCJcXGJldGEiLDJdLFszLDIsImEiLDJdLFszLDEsIiIsMSx7InN0eWxlIjp7Im5hbWUiOiJjb3JuZXIifX1dXQ==
+\[\begin{tikzcd}
+	M & {M_f} \\
+	{M_g} & {M_{fg}}
+	\arrow["b", from=1-1, to=1-2]
+	\arrow["a"', from=1-1, to=2-1]
+	\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=2-2]
+	\arrow["\alpha", from=1-2, to=2-2]
+	\arrow["\beta"', from=2-1, to=2-2]
+\end{tikzcd}\]
+cio\`e
+\[M\cong \{(x,y)\in M_f\times M_g \colon \alpha(x)=\beta(y) \}\] 
+tramite la mappa $m\mapsto (a(m),b(m))$. 
+\end{lemma}
+\begin{proof}
+Verifichiamo iniettivit\`a e suriettivit\`a:
+\setlength{\leftmargini}{0cm}
+\begin{itemize}
+\item[$\boxed{\text{inj.}}$] Se esiste $h$ tale che $f^hm=0$ e $g^hm=0$, poiché esistono $u,v$ in $R$ tali che $uf^h+vg^h=1$, si ottiene $m=(uf^h+vg^h)m=0$.
+\item[$\boxed{\text{surj.}}$] Sia $(x,y)$ in $M_f\times M_g$ tale che $\alpha(x)=\beta(y)$. Scriviamo $x=z/f^s$ e $y=w/g^s$ con $z,w$ in $M$. Allora esiste $t\ge s$ tale che $(fg)^t (z/f^s-w/g^s)=0$, cioè in $M$ si ha l'uguaglianza $f^{t-s}g^t z= f^tg^{t-s}w$. Come prima, esistono $u,v$ tali che $uf^t+vg^t=1$. Sia $m=zu f^{t-s}+wvg^{t-s}$ e verifichiamo che $x=a(m)$ e $y=b(m)$:
+In $M_f$ 
+\[x=(uf^t+vg^t)x=zuf^{t-s}+\frac{zvg^{t}}{f^s}=zu f^{t-s}+wvg^{t-s}=m.\]  
+Analogamente si trova $y=m$ in $M_g$ come voluto.
+\end{itemize}
+\setlength{\leftmargini}{0.5cm}
+\end{proof}
+\begin{remark}
+Geometricamente, il lemma afferma che possiamo ricostruire un fascio quasicoerente a partire dalle sue restrizioni su un ricoprimento.
+\end{remark}
+
+\begin{lemma}\label{LmMorfismiDiFasciQuasicoerentiSiIncollanoSuRicoprimento}
+Siano $f,g$ in $R$ coprimi e siano $M,N$ due $R$-moduli. Supponiamo di avere un diagramma commutativo 
+% https://q.uiver.app/#q=WzAsNixbMSwwLCJOX2YiXSxbMSwxLCJOX3tmZ30iXSxbMCwxLCJNX3tmZ30iXSxbMCwwLCJNX2YiXSxbMCwyLCJNX2ciXSxbMSwyLCJOX2ciXSxbMywwLCJcXHZhcnBoaSJdLFs1LDFdLFs0LDJdLFs0LDUsIlxccHNpIiwyXSxbMywyXSxbMCwxXSxbMiwxXV0=
+\[\begin{tikzcd}
+	{M_f} & {N_f} \\
+	{M_{fg}} & {N_{fg}} \\
+	{M_g} & {N_g}
+	\arrow["\varphi", from=1-1, to=1-2]
+	\arrow[from=1-1, to=2-1]
+	\arrow[from=1-2, to=2-2]
+	\arrow[from=2-1, to=2-2]
+	\arrow[from=3-1, to=2-1]
+	\arrow["\psi"', from=3-1, to=3-2]
+	\arrow[from=3-2, to=2-2]
+\end{tikzcd}\]
+Allora esiste una mappa $\chi\colon M\to N$ tale che $\chi_f=\varphi$ e $\chi_g=\psi$.
+\end{lemma}
+\begin{proof}
+Considerando il diagramma seguente, l'esistenza di $\chi$ segue dal lemma precedente. 
+% https://q.uiver.app/#q=WzAsOCxbMywxLCJOX2YiXSxbMywyLCJOX3tmZ30iXSxbMiwyLCJOX2ciXSxbMSwwLCJNX2YiXSxbMiwxLCJOIl0sWzEsMSwiTV97Zmd9Il0sWzAsMSwiTV9nIl0sWzAsMCwiTSJdLFszLDAsIlxcdmFycGhpIl0sWzAsMV0sWzIsMSwiXFxiZXRhIiwyXSxbNCwyXSxbNCwwXSxbNiw1XSxbMyw1XSxbNiwyXSxbNywzXSxbNyw2XSxbNSwxXSxbNyw0LCIiLDIseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkb3R0ZWQifX19XV0=
+\[\begin{tikzcd}
+	M & {M_f} \\
+	{M_g} & {M_{fg}} & N & {N_f} \\
+	&& {N_g} & {N_{fg}}
+	\arrow[from=1-1, to=1-2]
+	\arrow[from=1-1, to=2-1]
+	\arrow[dotted, from=1-1, to=2-3]
+	\arrow[from=1-2, to=2-2]
+	\arrow["\varphi", from=1-2, to=2-4]
+	\arrow[from=2-1, to=2-2]
+	\arrow[from=2-1, to=3-3]
+	\arrow[from=2-2, to=3-4]
+	\arrow[from=2-3, to=2-4]
+	\arrow[from=2-3, to=3-3]
+	\arrow[from=2-4, to=3-4]
+	\arrow["\beta"', from=3-3, to=3-4]
+\end{tikzcd}\]
+\end{proof}
+\begin{remark}
+Geometricamente, il lemma afferma che possiamo incollare morfismi di fasci quasicoerenti definiti su un ricoprimento che coincidono sulle intersezioni.
+\end{remark}
+
+\subsection{Lemmi su polinomi invertibili a coefficienti in algebra}
+\begin{definition}
+Sia $M$ un $A[t_1,\cdots,t_n]$-modulo. Diciamo che $M$ è \textbf{esteso} da $A$ se esiste un $A$-modulo $N$ tale che $M\cong N[t_1,\cdots,t_n]$.
+\end{definition}
+
+\begin{remark}
+A meno di isomorfismo, l'$A$-modulo $N$ della definizione precedente è univocamente determinato, infatti 
+\[N\cong M/(t_1,\cdots,t_n)M=R\otimes_{R[t_1,\cdots,t_n]}M.\]
+\end{remark}
+
+\begin{remark}
+Geometricamente un fascio quasicoerente su $\A^n_A$ \`e esteso da $\Spec A$ se esiste un fascio quasicoerente su $\Spec A$ del quale \`e pullback tramite il fibrato banale $\A^n_A\to \Spec A$.
+\end{remark}
+
+\begin{notation}
+Sia $E$ una $B$-algebra (eventualmente non commutativa) con centro $B$. Definiamo
+\[E[t]^u=\cpa{f(t)\in E[t]\mid f(0)=1,\ \text{ invertibili}}.\]
+\end{notation}
+
+\begin{lemma}[]\label{LmTecnicoSuPolinomiACoeffInAlgebre}
+Sia $\theta(t)\in E_f[t]^u$. Per $k\gg 0$ tale che
+\[\theta((x+f^ky)t)\theta(xt)\ii\in E[x,y][t]^u\]
+\end{lemma}
+\begin{proof}
+Scriviamo
+\[\theta(x+y)-\theta(x)=y\vp(x,y)\]
+(abbiamo sostituito $x+y$ per $t$ e abbiamo raccolto il termine noto rispetto a $y$).
+Ora scriviamo
+\begin{align*}
+	\theta((x+f^ky)t)\theta(xt)\ii=&\pa{\theta(xt+yf^kt)-\theta(xt)+\theta(xt)}\theta(xt)\ii=\\
+	=&yf^kt\under{\in E_f[x,y,t]}{\vp(xt,yf^kt)\theta(xt)\ii}+1
+\end{align*}
+Per $k\gg0$ esiste $\beta\in E[x,y,t]$ tale che
+\[\beta(x,f^ky,t)=f^k\vp()\theta(xt)\ii\]
+allora
+\[\theta((x+f^ky)t)\theta(xt)\ii\in E[x,y][t].\]
+Per un conto analogo
+\[\theta(xt)\theta((x+f^ky)t)\ii=1+ty\gamma(x,f^ky,t)\in E[x,y][t].\]
+\begin{align*}
+	\wt \gamma=&\theta(xt)\theta((x+f^ky)t)=1+ty\gamma\\
+	\wt\beta=\theta((x+f^ky)t)\theta(xt)\ii=1+ty\beta 
+\end{align*}
+dunque $\wt \beta\wt \gamma=1$ in $E_f[t]$ e $\wt \beta\wt \gamma=1+y(t\gamma+t\beta+t^2y\beta\gamma)=1+y\delta$
+quindi $f^h\delta=0$ per $h$ grande. Se sostituisco $y$ e $f^hy$ ottengo che $\wt \gamma\wt \beta=1$ in $E[x,y][t]$. Per $i\geq h+k$ abbiamo la tesi.
+\end{proof}
+
+\begin{lemma}\label{LmSpezzoLocalizzazioniDiPolinomiACoefficientiInAlgebre}
+Per ogni $f,g\in B$ con $(f,g)=B$
+	\[E_{fg}[t]^u\cong E_f[t]^u E_g[t]^u\]
+\end{lemma}
+\begin{proof}
+Se $k\gg0$ e $a\equiv b\pmod{f^k}$ allora se $\theta\in E_f[t]^u$ si ha per il lemma (\ref{LmTecnicoSuPolinomiACoeffInAlgebre})
+\[\theta(at)\theta(bt)\ii\in E[t]^u\]
+(dove $x=b$ e $a=b+f^ky$ per qualche $y$ perch\'e $a$ e $b$ congrui modulo $f^k$).
+
+Scriviamo
+\[\theta(t)=\under{\in E_f[t]^u}{\theta(t)\theta(bt)\ii}\under{\in E_g[t]^u}{\theta(bt)\theta(0)\ii}\]
+dove i contenimenti valgono se $b=1\pmod{f^k}$ e $b=0\pmod{g^k}$ ma dato che $(f,g)=B$ possiamo trovare una tale coppia per il teorema cinese del resto.
+\end{proof}
+
+
+\subsection{Dimostrazione}
+\begin{theorem}[di incollamento di Quillen]\label{ThIncollamentoQuillen}
+Siano $R,A$ anelli noetheriani dove $A$ è una $R$-algebra. Sia $M$ un $A[t_1,\cdots,t_n]$-modulo finitamente generato. 
+
+Allora $M$ è esteso da $A$ se e solo se, per ogni ideale massimale $\mf$ di $R$, $M_\mf$ è esteso da $A_\mf$.
+\end{theorem}
+\begin{proof}
+Chiaramente se $M$ \`e esteso da $A$ allora per esattezza della localizzazione sappiamo anche che $M_\mf$ \`e esteso da $A_\mf$ per ogni $\mf$ massimale di $R$. Mostriamo l'altra implicazione. 
+Definiamo il seguente oggetto:
+\[Q(M)\coloneqq\{f\in R\mid M_f \text{ è esteso da } A_f\}\]
+e diamo un nome ai seguenti enunciati:
+\setlength{\leftmargini}{0cm}
+\begin{enumerate}
+\item[$(\alpha_n)$] $Q(M)$ è un ideale.
+\item[$(\beta_n)$] Se $M_\mf$ è esteso da $A_\mf$ per ogni $\mf$ massimale in $R$ allora $M$ è esteso da $A$.
+\end{enumerate}
+\setlength{\leftmargini}{0.5cm}
+dove l'indice $n$ \`e il numero di variabili come nell'enunciato. La tesi \`e che valga $(\beta_n)$ per ogni $n\geq 1$. Possiamo definire formalmente anche $(\beta_0)$ ma la tesi in quel caso \`e triviale perch\'e avremmo $N=M\otimes_{R}R=M$.
+
+\setlength{\leftmargini}{0cm}
+\begin{itemize}
+\item[$\boxed{(\al_n)\implies(\beta_n)}$] Siano \[N\coloneqq M/(t_1,\cdots,t_n)M \quad \text{ e } \quad N_\mf\coloneqq M_\mf/(t_1,\cdots,t_n)M_\mf.\] Per ogni $\mf$ esiste un isomorfismo $\varphi_\mf\colon M_\mf \xrightarrow{\sim} N_\mf[t_1,\cdots,t_n]$ di $A_\mf[t_1,\cdots,t_n]$-moduli ed esiste un $f_\mf\notin \mf$ tale che $\varphi_{f_\mf}\colon M_{f_\mf}\xrightarrow{\sim} N_{f_\mf}$ è un isomorfismo per il punto 3. del lemma (\ref{LmComportamentoSuSpigaSiSollevaAIntorno}). Quindi $f_\mf$ è in $Q(M)$ per ogni $\mf$ e quindi $Q(M)$ non è contenuto in alcun ideale massimale $\mf$. In particolare $Q(M)=R$, cioè $1\in Q(M)$, da cui concludiamo che $M$ è esteso da $A$. 
+\item[$\boxed{(\beta_1),(\beta_{n-1})\implies(\beta_n)}$] Sia $N=M/(t_1,\cdots,t_n)M$. Consideriamo $A'\coloneqq A[t_1,\cdots,t_{n-1}]$ e l'$A'$-modulo $M'\coloneqq M/t_n M$. 
+Localizzando $M'$ rispetto a $\mf$ si ottiene 
+\[M'_\mf=M_\mf/t_n M_\mf\cong \frac{N_\mf[t_1,\cdots,t_n]}{t_n N_\mf[t_1,\cdots,t_n]}\cong N_\mf[t_1,\cdots,t_{n-1}].\] 
+Quindi $M'_\mf$ è esteso da $A_\mf$ per ogni massimale di $R$, dunque per $(\beta_{n-1})$ $M'$ è esteso da $A$, cioè $M'\cong N[t_1,\cdots,t_{n-1}]$.
+
+Grazie a questo risultato abbiamo il seguente diagramma commutativo
+% https://q.uiver.app/#q=WzAsNCxbMCwwLCJNX1xcbWYiXSxbMiwwLCJNX1xcbWYnW3Rfbl0iXSxbMCwyLCJOX1xcbWZbdF8xLFxcY2RvdHMsdF9uXSJdLFsyLDIsIk5fXFxtZlt0XzEsXFxjZG90cyx0X3tuLTF9XVt0X25dIl0sWzAsMV0sWzIsMywiXFxzaW0iXSxbMCwyLCJcXHNpbSJdLFsxLDMsIlxcc2ltIl1d
+\[\begin{tikzcd}
+	{M_\mf} && {M_\mf'[t_n]} \\
+	\\
+	{N_\mf[t_1,\cdots,t_n]} && {N_\mf[t_1,\cdots,t_{n-1}][t_n]}
+	\arrow[from=1-1, to=1-3]
+	\arrow["\sim", from=1-1, to=3-1]
+	\arrow["\sim", from=1-3, to=3-3]
+	\arrow["\sim", from=3-1, to=3-3]
+\end{tikzcd}\]
+dove la prima freccia verticale \`e un isomorfismo per ipotesi, la seconda \`e un isomorfismo per quanto appena detto e l'orizzontale in fondo \`e l'identit\`a. Segue che $M\cong M'[t_n]$.
+
+Osserviamo che è possibile applicare $(\beta_1)$ ad $A'[t_n]$ e a $M$ in quanto $M_\mf/t_n M_\mf=M'_\mf$ e 
+\[M_\mf\cong N_\mf[t_1,\cdots, t_n]\cong N_\mf[t_1,\cdots,t_{n-1}][t_n]\cong M_\mf'[t_n]\]
+per quanto detto. Quindi $M$ \`e esteso da $A'$, cio\`e 
+\[M\cong M/t_n M[t_n]=M'[t_n]=N[t_1,\cdots,t_{n-1}][t_n]\]
+come voluto.
+\item[$\boxed{(\al_1)}$] Scriviamo $t=t_1$ per comodit\`a e poniamo $N=M/tM$. 
+
+Sia $f$ in $Q(M)$ e $g\in R$ qualsiasi. Per definizione $M_f\cong N_f[t]$ e per esattezza della localizzazione segue $M_{fg}\cong N_{fg}[t]$, cio\`e $fg\in Q(M)$. 
+
+
+Mostriamo ora che se $f,g$ sono in $Q(M)$ allora lo è anche $f+g$, cio\`e vogliamo mostrare che $M_{f+g}\cong N_{f+g}[t]$. 
+
+
+Osserviamo che $(f,g)R_{f+g}=R_{f+g}$, quindi a meno di sostiuire $R$ con $R_{f+g}$ ci siamo ricondotti a mostrare che se $(f,g)=R$ e\footnote{va bene perch\'e $Q(M)\subseteq Q(M_{f+g})$} $f,g\in Q(M)$ allora $M$ \`e esteso da $A$. Per il lemma (\ref{LmFasciQuasicoerentiSonoIncollamentoDiRestrizioniSuRicoprimento}) ci basta dunque mostrare che $N[t]$ \`e isomorfo a $M_f\oplus_{M_{fg}}M_g$. Grazie al lemma (\ref{LmMorfismiDiFasciQuasicoerentiSiIncollanoSuRicoprimento}), un modo per farlo \`e mostrare che esiste un diagramma commutativo della forma
+% https://q.uiver.app/#q=WzAsNixbMCwwLCJNX2YiXSxbMiwwLCJNX2ciXSxbMSwwLCJNX3tmZ30iXSxbMiwxLCJOX2dbdF0iXSxbMCwxLCJOX2ZbdF0iXSxbMSwxLCJOX3tmZ31bdF0iXSxbMCwyXSxbMSwyXSxbNCw1XSxbMyw1XSxbMCw0LCJcXHNpbSIsMl0sWzEsMywiXFxzaW0iXSxbMiw1LCJcXHNpbSJdXQ==
+\[\begin{tikzcd}
+	{M_f} & {M_{fg}} & {M_g} \\
+	{N_f[t]} & {N_{fg}[t]} & {N_g[t]}
+	\arrow[from=1-1, to=1-2]
+	\arrow["\sim"', from=1-1, to=2-1]
+	\arrow["\sim", from=1-2, to=2-2]
+	\arrow[from=1-3, to=1-2]
+	\arrow["\sim", from=1-3, to=2-3]
+	\arrow[from=2-1, to=2-2]
+	\arrow[from=2-3, to=2-2]
+\end{tikzcd}\]
+Poich\'e $f,g\in Q(M)$ esistono degli isomorfismi $\vp:M_f\to N_f[t]$ e $\psi:M_g\to N_g[t]$, che inducono isomorfismi $\vp_1,\psi_1:M_{fg}\to N_{fg}[t]$. Diagrammaticamente
+% https://q.uiver.app/#q=WzAsNyxbMCwwLCJNX2YiXSxbNCwwLCJNX2ciXSxbMCwxLCJOX2ZbdF0iXSxbNCwxLCJOX2dbdF0iXSxbMiwwLCJNX3tmZ30iXSxbMSwxLCJOX3tmZ31bdF0iXSxbMywxLCJOX3tmZ31bdF0iXSxbMCwyLCJcXHZhcnBoaSIsMl0sWzEsMywiXFxwc2kiXSxbMCw0XSxbMCwyLCJcXHNpbSJdLFsxLDMsIlxcc2ltIiwyXSxbMSw0XSxbNCw1LCJcXHZhcnBoaV8xIiwyXSxbNCw2LCJcXHZhcnBoaV8yIl0sWzUsNiwiXFx0aGV0YSIsMix7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRvdHRlZCJ9fX1dLFsyLDVdLFs2LDNdLFs0LDUsIlxcc2ltIl0sWzQsNiwiXFxzaW0iLDJdXQ==
+\[\begin{tikzcd}
+	{M_f} && {M_{fg}} && {M_g} \\
+	{N_f[t]} & {N_{fg}[t]} && {N_{fg}[t]} & {N_g[t]}
+	\arrow[from=1-1, to=1-3]
+	\arrow["\varphi"', from=1-1, to=2-1]
+	\arrow["\sim", from=1-1, to=2-1]
+	\arrow["{\varphi_1}"', from=1-3, to=2-2]
+	\arrow["\sim", from=1-3, to=2-2]
+	\arrow["{\psi_1}", from=1-3, to=2-4]
+	\arrow["\sim"', from=1-3, to=2-4]
+	\arrow[from=1-5, to=1-3]
+	\arrow["\psi", from=1-5, to=2-5]
+	\arrow["\sim"', from=1-5, to=2-5]
+	\arrow[from=2-1, to=2-2]
+	\arrow["\theta"', dotted, from=2-2, to=2-4]
+	\arrow[from=2-4, to=2-5]
+\end{tikzcd}\]
+dove $\theta=\psi_1\circ\varphi_1^{-1}$. Se $\theta=id_{N_{fg}[t]}$ allora avremmo concluso per quanto detto, quindi il nostro obiettivo \`e sostituire $\vp$ e $\psi$ con opportune $\vp'$ e $\psi'$ tali che la mappa indotta su $N_{fg}[t]$ sia effettivamente l'identit\`a.
+
+Notiamo che 
+\begin{align*}
+	\theta\in& \End_{A_{fg}[t]}(N_{fg}[t])=\Hom_{A_{fg}}(N_{fg},N_{fg}[t])=\\
+	&=\Hom_{A_{fg}}(N_{fg},N_{fg})[t]\pasgnl\cong{(\ref{LmLocalizzazioneDiHom})}\pa{\Hom_A(N,N)}_{fg}[t].
+\end{align*}
+Se $E=\Hom_A(N,N)$ allora abbiamo mostrato che $\theta\in E_{fg}[t]^u$ infatti \`e un isomorfismo per costruzione e $\theta(0)=id_N$ in quanto $N$ \`e il prodotto fibrato di $N_f$ e $N_g$ su $N_{fg}$ per le mappe di localizzazione (\ref{LmFasciQuasicoerentiSonoIncollamentoDiRestrizioniSuRicoprimento}).
+
+Per il lemma (\ref{LmSpezzoLocalizzazioniDiPolinomiACoefficientiInAlgebre}) esistono dunque $\al\in E_f[t]^u$ e $\beta\in E_g[t]^u$ tali che $\theta=\beta\al$, le quali ci permettono di costruire il diagramma
+% https://q.uiver.app/#q=WzAsOSxbMywwLCJNX3tmZ30iXSxbMiwxLCJOX3tmZ31bdF0iXSxbNCwxLCJOX3tmZ31bdF0iXSxbMSwxLCJOX2ZbdF0iXSxbNSwxLCJOX2dbdF0iXSxbMSwwLCJNX2YiXSxbNSwwLCJNX2ciXSxbMCwxLCJOX2ZbdF0iXSxbNiwxLCJOX2dbdF0iXSxbNSwwXSxbNiwwXSxbMCwxXSxbMCwyXSxbNSwzLCJcXHZhcnBoaSJdLFs2LDQsIlxccHNpIiwyXSxbNCwyXSxbMywxXSxbMSwyLCJcXGJldGFcXGFscGhhIl0sWzMsNywiXFxhbHBoYSJdLFs0LDgsIlxcYmV0YV57LTF9IiwyXSxbNiw4LCJcXHBzaSciXSxbNSw3LCJcXHZhcnBoaSciLDJdXQ==
+\[\begin{tikzcd}
+	& {M_f} && {M_{fg}} && {M_g} \\
+	{N_f[t]} & {N_f[t]} & {N_{fg}[t]} && {N_{fg}[t]} & {N_g[t]} & {N_g[t]}
+	\arrow[from=1-2, to=1-4]
+	\arrow["{\varphi'}"', from=1-2, to=2-1]
+	\arrow["\varphi", from=1-2, to=2-2]
+	\arrow[from=1-4, to=2-3]
+	\arrow[from=1-4, to=2-5]
+	\arrow[from=1-6, to=1-4]
+	\arrow["\psi"', from=1-6, to=2-6]
+	\arrow["{\psi'}", from=1-6, to=2-7]
+	\arrow["\alpha", from=2-2, to=2-1]
+	\arrow[from=2-2, to=2-3]
+	\arrow["{\beta\alpha}", from=2-3, to=2-5]
+	\arrow[from=2-6, to=2-5]
+	\arrow["{\beta^{-1}}"', from=2-6, to=2-7]
+\end{tikzcd}\]
+Sostituendo $\vp$ con $\vp'=\al\circ \vp$ e $\psi$ con $\psi'=\beta\ii\circ \psi$ allora il $\theta$ che inducono \`e 
+\[\beta\ii\circ \psi_1\circ \vp_1\ii\circ \al\ii=\beta\ii\circ\theta\circ \al\ii=\beta\ii\circ\beta\circ\al\circ \al\ii=id_{N_{fg}[t]}\]
+come voluto.
+\end{itemize}
+\setlength{\leftmargini}{0.5cm}
 \end{proof}
 
 
 
-\begin{example}
-Se vogliamo costruire fibrati $G$-equivarianti lineari (cioè di rango $1$) su $\GL(n)/B_n$, sappiamo che questi corrispondono alle rappresentazioni $1$-dimensionali di $B_n$ 
-% https://q.uiver.app/#q=WzAsMyxbMCwwLCJCX24iXSxbMiwwLCJcXEteXFx0aW1lcyJdLFsxLDEsIlQ9Ql9uL1VfbiJdLFswLDJdLFsyLDFdLFswLDFdXQ==
+\section{Teoremi di Horrocks}
+
+\begin{definition}
+Definiamo lo \textbf{spazio proiettivo} di dimensione $n$ su $A$ come\footnote{Se $A$ \`e una $\K$-algebra allora con $\Pj^n$ si intende $\Pj^n_\K$. Nel contesto della teoria degli schemi la definizione \`e comunque vera ma dovremmo definire $\Pj^n_\Z$.} 
+\[\Pj^n_A:=\Pj^n\times \Spec A.\]
+\end{definition}
+
+\begin{notation}
+Scriviamo $R\ps t$ per indicare la localizzazione di $R[t]$ ai polinomi monici\footnote{formano una parte moltiplicativa perch\'e $1$ \`e monico, $0$ non \`e monico e il coefficiente di testa di un prodotto di polinomi \`e il prodotto dei coefficienti di testa, ma $1\cdot 1=1$.}
+\end{notation}
+
+Per dimostrare il teorema di Quillen-Suslin facciamo uso del seguente risultato:
+
+\begin{theorem}[Horrocks algebrico globale]\label{ThHorrocksAlgebricoGlobale}
+Sia $M$ un $A[t]$ modulo proiettivo finitamente generato. Se $M\ps{t}$ \`e libero allora $M$ \`e libero.
+\end{theorem}
+
+Esso si inserisce in un gruppo di quattro risultati che prendono tutti il nome da Horrocks. Gli altri tre sono
+
+\begin{theorem}[Horrocks algebrico locale]\label{ThHorrocksAlgebricoLocale}
+Sia $M$ un $A[t]$ modulo proiettivo finitamente generato con $A$ locale. Se $M\ps{t}$ \`e libero allora $M$ \`e libero.
+\end{theorem}
+
+
+
+\begin{theorem}[Horrocks geometrico globale]\label{ThHorrocksGeometricoGlobale}
+Se $E$ \`e un fibrato vettoriale su $\Pj^1_A$ allora $E\res{\A^1_A}$ \`e banale.
+\end{theorem}
+
+\begin{theorem}[Horrocks geometrico locale]\label{ThHorrocksGeometricoLocale}
+Se $E$ \`e un fibrato vettoriale su $\Pj^1_A$ con $A$ locale, allora $E\res{\A^1_A}$ \`e banale.
+\end{theorem}
+
+\noindent Vale il seguente diagramma di implicazioni
+% https://q.uiver.app/#q=WzAsNSxbMCwwLCJIR0wiXSxbMSwwLCJIR0ciXSxbMSwxLCJIQUciXSxbMCwxLCJIQUwiXSxbMiwxLCJcXHRleHR7UXVpbGxlbiBTdXNsaW59Il0sWzIsNCwiIiwwLHsibGV2ZWwiOjIsImNvbG91ciI6WzM1NCwxMDAsNDRdfV0sWzEsMiwiIiwwLHsibGV2ZWwiOjIsImNvbG91ciI6WzM1NCwxMDAsNDRdfV0sWzAsMSwiIiwwLHsibGV2ZWwiOjIsImNvbG91ciI6WzM1NCwxMDAsNDRdfV0sWzAsMywiIiwyLHsibGV2ZWwiOjJ9XSxbMywyLCIiLDIseyJsZXZlbCI6Mn1dXQ==
 \[\begin{tikzcd}
-	{B_n} && {\K^\times} \\
-	& {T=B_n/U_n}
-	\arrow[from=1-1, to=1-3]
-	\arrow[from=1-1, to=2-2]
-	\arrow[from=2-2, to=1-3]
+	HGL & HGG \\
+	HAL & HAG & {\text{Quillen Suslin}}
+	\arrow[color={rgb,255:red,224;green,0;blue,22}, Rightarrow, from=1-1, to=1-2]
+	\arrow[Rightarrow, from=1-1, to=2-1]
+	\arrow[color={rgb,255:red,224;green,0;blue,22}, Rightarrow, from=1-2, to=2-2]
+	\arrow[Rightarrow, from=2-1, to=2-2]
+	\arrow[color={rgb,255:red,224;green,0;blue,22}, Rightarrow, from=2-2, to=2-3]
 \end{tikzcd}\]
-Quindi queste possono essere caratterizzate attraverso i caratteri del toro.
-\end{example}
+Per raggiungere il teorema di Quillen-Suslin mostriamo le implicazioni rosse e poi Horrocks geometrico locale.
 
 
 
 
+\begin{proposition}[]\label{PrHGLimplicaHGG}
+Horrocks geometrico locale implica Horrocks geometrico globale.
+\end{proposition}
+\begin{proof}
+Sia $U_0=(\Pj^1\bs\cpa{\infty})_A$ e $U_\infty=(\Pj^1\bs\cpa0)_A$ e gli ``anelli delle coordinate"\footnote{formalizzare questo significa fare teoria degli schemi, fidatevi che torna} sono $A[t]$ e $A[t\ii]$.
+
+Dare un fibrato vettoriale \`e come dare $M_0$ e $M_\infty$ con $M_0$ un $A[t]$-modulo proiettivo finitamente generato e $M_\infty$ un $A[t\ii]$-modulo proiettivo finitamente generato tali che
+\[(M_0)_t\cong (M_\infty)_{t\ii}\]
+cio\`e $M_0$ \`e esteso da $A$, quindi per il teorema di incollamento di Quillen (\ref{ThIncollamentoQuillen}) basta mostrare che $(M_0)_\mf$  \`e esteso da $A_\mf$ per ogni $\mf$ massimale in $A$.
+
+Basta osservare che $(M_0)_\mf$ \`e la restrizione di $(M_0)_\mf$ e $(M_\infty)_\mf$ con $(M_0)_{\mf,t}\cong (M_\infty)_{\mf,t}$ (che vale per il caso locale), quindi $(M_0)_\mf$ \`e esteso.
+\end{proof}
+
+\begin{proposition}[]\label{PrHGGimplicaHAG} Horrocks geometrico globale implica Horrocks algebrico globale.
+\end{proposition}
+\begin{proof}
+Notiamo che esiste $f\in A[t]$ monico e quindi $M_f$ \`e libero.
+
+Vogliamo costruire un fibrato vettoriale su $\Pj^1_A$ tale che la sua restrizione a $\A^1_A=(\Pj^1\bs\cpa\infty)_A$ sia uguale a $M$. 
+
+Supponiamo $A=\K[X]$ con $X$ variet\`a. $M$ \`e un fibrato vettoriale su $X\times \A^1\supseteq U=X\times \A^1\bs V(f)$ e $M\res U$ \`e $\K^n\times U$ per HGG (\ref{ThHorrocksGeometricoGlobale}).
+
+Considero $V=(X\times \Pj^1\bs0)\bs V(f)$. Notiamo che \`e un aperto e su di esso consideriamo il fibrato vettoriale. Incolliamo questo fibrato banale a $M$.
+% https://q.uiver.app/#q=WzAsNCxbMCwwLCJXIl0sWzIsMCwiViJdLFsxLDAsIlhcXHRpbWVzIFxcUGpeMSJdLFsxLDEsIlUiXSxbMCwyLCJcXHN1YnNldGVxIiwzLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoibm9uZSJ9LCJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzIsMSwiXFxzdXBzZXRlcSIsMyx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFswLDMsIlxcc3Vwc2V0ZXEiLDMseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJub25lIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbMywxLCJcXHN1YnNldGVxIiwzLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoibm9uZSJ9LCJoZWFkIjp7Im5hbWUiOiJub25lIn19fV1d
+\[\begin{tikzcd}
+	W & {X\times \Pj^1} & V \\
+	& U
+	\arrow["\subseteq"{marking, allow upside down}, draw=none, from=1-1, to=1-2]
+	\arrow["\supseteq"{marking, allow upside down}, draw=none, from=1-1, to=2-2]
+	\arrow["\supseteq"{marking, allow upside down}, draw=none, from=1-2, to=1-3]
+	\arrow["\subseteq"{marking, allow upside down}, draw=none, from=2-2, to=1-3]
+\end{tikzcd}\]
+dove $W=X\times \A^1=X\times(\Pj^1\bs\cpa{\infty})$ e notiamo che $W\cap V=U$. Poich\'e $M\res U$ \`e banale si ha che questi fibrati si incollano definendo un fibrato vettoriale su sutto $\Pj^1_A$ tale che $M=M_0$.
+
+Per il teorema di Horrocks geometrico globale (\ref{ThHorrocksGeometricoGlobale}) questo mostra che $M_0$ \`e esteso da $A$.
+
+Voglio mostrare che \`e libero. Per definizione ci esteso
+\[M_0\cong N[t]\]
+con $N=M_0/tM_0\cong M_0/(t-1)M_0$.
+
+Abbiamo un fibrato su $X\times \Pj^1$, che si scrive come incollamento di $M_0$ e $M_\infty$
+\[\frac{M_0}{tM_0}\cong \frac{M_0}{(t-1)M_0}\cong \frac{M_\infty}{(t\ii-1)M_\infty}\cong \frac{M_\infty}{t\ii M_\infty}\]
+ma $M_\infty$ era il fibrato banale. Sia $f(t)$ di grado $n$ quello monico di prima e sia $g(s)$ tale che $g(t\ii)t^n=f(t)$. Si pu\`o verificare che
+\[X\times(\Pj^1\nz)\bs V(f)=X\times(\Pj^1\bs\cpa\infty)\bs V(g)\]
+Per costruzione $g(0)=1\neq0$ quindi $\frac{M_\infty}{t\ii M_\infty}=\pa{\frac{M_\infty}{t\ii M_\infty}}_g$, dunque
+\[\frac{M_\infty}{t\ii M_\infty}\cong \frac{(M_\infty)_g}{t\ii (M_\infty)_g}\]
+e poich\'e $(M_\infty)_g$ \`e il fibrato banale allora questo quoziente \`e banale e quindi $N$ \`e banale seguendo la catena di isomorfismi.
+\end{proof}
+
+
+
+\subsection{Dimostrazione Horrocks geometrico locale}
+
+
+
+
+
+
+
+\subsection{Dimostrazione di Quillen-Suslin}
+\begin{lemma}[]\label{PIDImplicaLocalizzazioneAMoniciPID}
+Se $R$ \`e un PID allora $R\ps t$ \`e un PID.
+\end{lemma}
+\begin{proof}
+Sia $\qf$ un ideale primo in $R[t]$ e sia $\pf=\qf\cap R\pasgnl={$R$ PID}(p)$. Consideriamo due casi:
+\setlength{\leftmargini}{0cm}
+\begin{itemize}
+\item[$\boxed{p\neq 0}$] Dato che $\pf=R\cap \qf$, l'estensione $\pf[t]$ di $\pf$ a $R[t]$ è contenuta in $\qf$. Abbiamo dunque un omomorfismo iniettivo
+\[\frac\qf{\pf[t]}\inj \frac{R[t]}{\pf[t]}=\quot R{(p)}[t]\]
+dove $R/(p)$ \`e un campo per ipotesi.
+Dato che $(R/(p))[t]$ \`e un PID e $\qf/(\pf[t])$ si identifica con un suo ideale, segue che 
+\[\qf=\pf[t]=(p)\text{ oppure }\qf=(p,f(t))\] 
+per qualche $f(t)$ monico. In entrambi i casi nella localizzazione $R\ps t$ si ha che $\qf=(p)$. 
+\item[$\boxed{p=0}$] Sia $S=R\setminus \{0\}$. Allora $\qf$ è contenuto\footnote{questo ideale \`e un primo ben definito di $S\ii R[t]$ perch\'e $S\cap \qf=\emptyset$ per ipotesi.} in 
+\[S^{-1}\qf=(f(t))\subset S^{-1}R[t]=\Frac(R)[t],\] 
+con $f(t)=\sum_i a_it^i$ in $\qf$. Sia $d\coloneqq\gcd(a_i)$ e sia $g=f/d$. Poich\'e $g\in R[t]$, per primalit\`a di $\qf$ necessariamente $g\in \qf$.
+
+Mostriamo che $\qf=(g(t))$: se $h$ è un elemento di $\qf$ allora $h=f\ell_1\overset{\ell\doteqdot d\ell_1}=g\ell$ per qualche $\ell_1$ in $\Frac(R)[t]$. Poich\'e $g\in R[t]$ e $g\ell=h\in R[t]$, per il lemma di Gauss $\ell$ è in $R[t]$ e quindi $h\in (g)$ come ideale in $R[t]$. 
+\end{itemize}
+\setlength{\leftmargini}{0.5cm}
+In conclusione, localizzando rispetto ai polinomi monici ogni ideale di $R[t]$ diventa principale.
+\end{proof}
+
+\begin{theorem}[Quillen-Suslin]\label{ThQuillenSuslin}
+Se $R$ \`e un PID e $M$ \`e proiettivo finitamente generato su $R[t_1,\cdots, t_n]$, allora $M$ \`e libero.
+\end{theorem}
+\begin{proof}
+Procediamo per induzione su $n$. 
+\setlength{\leftmargini}{0cm}
+\begin{itemize}
+\item[$\boxed{n=0}$] Se $M$ \`e un modulo proiettivo finitamente generato su $R$ PID allora \`e anche libero per noti risulati di algebra commutativa.
+\item[$\boxed{n>0}$] Se $M$ \`e un $R[t_1,\cdots,t_n]$ modulo proiettivo finitamente generato allora $M\ps{t_1}$ \`e un $R\ps{t_1}[t_2,\cdots, t_n]$-modulo proiettivo finitamente generato. Dato che $R\ps{t_1}$ \`e un PID (\ref{PIDImplicaLocalizzazioneAMoniciPID}), per ipotesi induttiva questo mostra che $M\ps{t_1}$ \`e libero. Ora considero $A=R[t_2,\cdots, t_n]$ e noto che $M$ \`e un $A[t_1]$ modulo proiettivo finitamente generato per ipotesi, inoltre abbiamo mostrato che $M\ps{t_1}$ \`e libero, quindi per il teorema di Horrocks algebrico globale (\ref{ThHorrocksAlgebricoGlobale}) si ha che $M$ \`e libero.
+\end{itemize}
+\setlength{\leftmargini}{0.5cm}
+\end{proof}
+
+\begin{remark}
+Effettivamente nell'implicazione $HAG\implies$Quillen-Suslin usiamo solo anelli di polinomi quindi come avevamo anticipato non serve davvero la teoria degli schemi per formalizzare questa dimostrazione.
+\end{remark}

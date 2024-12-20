@@ -150,7 +150,7 @@ Definiamo due cocicli $\al_{i,j}$ e $\wt\al_{i,j}$ \textit{equivalenti} se esist
 
 \begin{theorem}[]\label{ThCorrispondenzaFibratiECoomologia}
 Se $\Uc$ \`e un ricoprimento aperto di $X$ allora abbiamo una corrispondenza biunivoca
-\[\quot{\cpa{\text{Fibrati vett. che si banalizzano su $\Uc$}}}{\text{iso. di fibr.}}\longleftarrow H^1(\Uc,\GL(m)).\]
+\[\quot{\cpa{\text{Fibrati vett. che si banalizzano su $\Uc$}}}{\text{iso. di fibr.}}\longleftrightarrow H^1(\Uc,\GL(m)).\]
 \end{theorem}
 \begin{proof}
 Ad un fibrato associo una collezione di cocicli e quindi una classe in coomologia. Questa associazione \`e ben definita perch\'e cambiando cocicli associati alla stessa banalizzazione essi sono equivalenti.
@@ -305,58 +305,6 @@ quindi da $\sigma$ abbiamo trovato delle $\sigma_i:U_i\to \K^m$ che verificano $
 
 Viceversa dati questi dati essi si possono incollare a $\sigma:X\to E$ perch\'e la condizione di cocliclo garantisce che le $\sigma_i$ coincidano sulle intersezioni degli aperti del ricoprimento.
 \end{proof}
-
-
-\subsection{Fibrati lineari sulla retta proiettiva}
-\begin{notation}
-Scriviamo $\A^1\cong U_0=\Pj^1\bs\cpa\infty$ e $\A^1\cong U_\infty=\Pj^1\nz$, da cui
-\[\A^1\nz\cong U_{0,\infty}=\Pj^1\bs\cpa{0,\infty}.\]
-Scriviamo dunque $\K[U_0]=\K[z]$, $\K[U_\infty]=\K[w]$ e $\K[U_{0,\infty}]=\K[z,z\ii]$ con $w=z\ii$.
-\end{notation}
-
-\begin{remark}
-Rispetto a questo ricoprimento i coclicli sono
-\[Z^1(\Uc)=\cpa{\al_{0,\infty}:U_{0,\infty}\to\GL(1)}=\cpa{\funcDef{U_{0,\infty}}{\GL(1)}{z}{\la z^n}\mid n\in\Z,\ \la\in\K^\times}\]
-A priori sono mappe della forma $z\mapsto p(z)$ ma se comparissero pi\`u monomi allora ci sarebbero radici diverse da $0$, quindi esisterebbe $a\in U_{0,\infty}$ tale che $p(a)=0\notin \GL(1)$.
-\end{remark}
-
-
-
-\begin{remark}
-Si ha
-\[H^1(\Uc,\GL(1))=\cpa{z^n}_{n\in\Z}.\]
-\end{remark}
-\begin{proof}
-Se $\al=\la z^n$ e $\wt \al=\mu z^m$ sono cocicli equivalenti allora esistono $\beta_0:U_0\to \GL(1)$ e $\beta_\infty:U_{\infty}\to\GL(1)$ tali che
-\[\mu z^m=\wt\al=\beta_\infty\al\beta_0\ii=\la\beta_\infty\beta_0\ii z^n\implies n=m\]
-Se $n=m$ allora possiamo sempre trovare $\beta_0$ e $\beta_\infty$, quindi abbiamo mostrato
-\[H^1(\Uc,\GL(1))=\cpa{z^n}_{n\in\Z}.\]
-\end{proof}
-
-\begin{proposition}
-Le sezioni globali dei fibrati lineari su $\Pj^1$ sono
-\[\Gamma(\Pj^1,E_{z^{-n}})=\begin{cases}
-	\K[z]_{n} & n\geq 0\\
-	0 &n<0
-\end{cases}\]
-\end{proposition}
-\begin{proof}
-Consideriamo due sezioni $\sigma_0=f(z)$ e $\sigma_\infty=g(w)$ tali che $\sigma_\infty=\al_{0,\infty}\sigma_0$. Per quanto detto possiamo scegliere $\al_{0,\infty}=z^{-n}$, da cui sull'intersezione $U_{0,\infty}$ abbiamo 
-\[g(z\ii)=z^{-n}f(z).\]
-Scrivendo le espansioni troviamo
-\[g(z\ii)=a_0+a_1 z\ii+\cdots\qquad z^{-n}f(z)=b_0 z^{-n}+b_1 z^{1-n}+\cdots\]
-dunque:
-\setlength{\leftmargini}{0cm}
-\begin{itemize}
-\item[$\boxed{n<0}$] In questo caso imporre uguaglianza impone che ogni coefficiente sia nullo, cio\`e $\sigma_0=\sigma_\infty=0$ e quindi il $\sigma$ a cui corrispondono \`e $0$.
-\item[$\boxed{n\geq0}$] Imponendo l'uguaglianza troviamo
-\[f(z)=a_0z^n+\cdots+a_{n-1}z+a_n\]
-cio\`e un generico polinomio di grado $n$.
-\end{itemize}
-\setlength{\leftmargini}{0.5cm}
-\end{proof}
-
-
 
 \section{Fibrati vettoriali su variet\`a affini}
 
@@ -543,7 +491,7 @@ Quindi $E$ \`e coperto da intorni della forma $X\times\K^n$ e la mappa di proiez
 \end{remark}
 
 
-\begin{theorem}[]
+\begin{theorem}[]\label{ThCorrispondenzaFibratiVettorialiModuliProiettivi}
 C'\`e una corrispondenza biunivoca
 \[\quot{\cpa{\emat{\text{Moduli proiettivi su $A$}\\\text{di rango $n$}}}}{iso.}\longleftrightarrow \quot{\cpa{\emat{\text{Fibrati vettoriali su $X$}\\\text{di rango $n$}}}}{iso.}\]
 e la mappa dal fibrato $E$ ai moduli \`e $E\mapsto \Gamma(X,E)$.
@@ -551,3 +499,209 @@ e la mappa dal fibrato $E$ ai moduli \`e $E\mapsto \Gamma(X,E)$.
 
 
 
+\section{Fibrati vettoriali sulla retta proiettiva}
+\subsection{Fibrati lineari}
+\begin{notation}
+Scriviamo $\A^1\cong U_0=\Pj^1\bs\cpa\infty$ e $\A^1\cong U_\infty=\Pj^1\nz$, da cui
+\[\A^1\nz\cong U_{0,\infty}=\Pj^1\bs\cpa{0,\infty}.\]
+Scriviamo dunque $\K[U_0]=\K[z]$, $\K[U_\infty]=\K[w]$ e $\K[U_{0,\infty}]=\K[z,z\ii]$ con $w=z\ii$.
+\end{notation}
+
+\begin{remark}
+Rispetto a questo ricoprimento i coclicli sono
+\[Z^1(\Uc)=\cpa{\al_{0,\infty}:U_{0,\infty}\to\GL(1)}=\cpa{\funcDef{U_{0,\infty}}{\GL(1)}{z}{\la z^n}\mid n\in\Z,\ \la\in\K^\times}\]
+A priori sono mappe della forma $z\mapsto p(z)$ ma se comparissero pi\`u monomi allora ci sarebbero radici diverse da $0$, quindi esisterebbe $a\in U_{0,\infty}$ tale che $p(a)=0\notin \GL(1)$.
+\end{remark}
+
+
+
+\begin{remark}
+Si ha
+\[H^1(\Uc,\GL(1))=\cpa{z^n}_{n\in\Z}.\]
+\end{remark}
+\begin{proof}
+Se $\al=\la z^n$ e $\wt \al=\mu z^m$ sono cocicli equivalenti allora esistono $\beta_0:U_0\to \GL(1)$ e $\beta_\infty:U_{\infty}\to\GL(1)$ tali che
+\[\mu z^m=\wt\al=\beta_\infty\al\beta_0\ii=\la\beta_\infty\beta_0\ii z^n\implies n=m\]
+Se $n=m$ allora possiamo sempre trovare $\beta_0$ e $\beta_\infty$, quindi abbiamo mostrato
+\[H^1(\Uc,\GL(1))=\cpa{z^n}_{n\in\Z}.\]
+\end{proof}
+
+\begin{proposition}
+Le sezioni globali dei fibrati lineari su $\Pj^1$ sono
+\[\Gamma(\Pj^1,E_{z^{-n}})=\begin{cases}
+	\K[z]_{n} & n\geq 0\\
+	0 &n<0
+\end{cases}\]
+\end{proposition}
+\begin{proof}
+Consideriamo due sezioni $\sigma_0=f(z)$ e $\sigma_\infty=g(w)$ tali che $\sigma_\infty=\al_{0,\infty}\sigma_0$. Per quanto detto possiamo scegliere $\al_{0,\infty}=z^{-n}$, da cui sull'intersezione $U_{0,\infty}$ abbiamo 
+\[g(z\ii)=z^{-n}f(z).\]
+Scrivendo le espansioni troviamo
+\[g(z\ii)=a_0+a_1 z\ii+\cdots\qquad z^{-n}f(z)=b_0 z^{-n}+b_1 z^{1-n}+\cdots\]
+dunque:
+\setlength{\leftmargini}{0cm}
+\begin{itemize}
+\item[$\boxed{n<0}$] In questo caso imporre uguaglianza impone che ogni coefficiente sia nullo, cio\`e $\sigma_0=\sigma_\infty=0$ e quindi il $\sigma$ a cui corrispondono \`e $0$.
+\item[$\boxed{n\geq0}$] Imponendo l'uguaglianza troviamo
+\[f(z)=a_0z^n+\cdots+a_{n-1}z+a_n\]
+cio\`e un generico polinomio di grado $n$.
+\end{itemize}
+\setlength{\leftmargini}{0.5cm}
+\end{proof}
+
+\begin{remark}\label{ReRangoSezioniGlobaliFibratiLineariSuP1}
+Segue immediatamente che
+\[\dim\Gamma(\Pj^1,E_{z^{-n}})=\begin{cases}
+	n+1&\text{se }n\geq 0\\
+	0 &\text{se }n<0
+\end{cases}.\]
+\end{remark}
+
+\subsection{Fibrati vettoriali}
+\begin{theorem}[]\label{ThClassificazioneFibratiVettorialiSuP1}
+Su $\Pj^1$ gli unici fibrati vettoriali sono $E\cong E_{n_1}\oplus\cdots\oplus E_{n_k}$ per degli interi $n_i$, dove $E_{n}$ \`e il fibrato associato al cociclo $z^{-n}$ in $H^1(\cpa{U_0,U_\infty},\GL(1))$.
+\end{theorem}
+\begin{proof}
+Scriviamo $\Pj^1=U_0\cup U_\infty$ e procediamo per induzione su $n$ il rango del fibrato.
+\setlength{\leftmargini}{0cm}
+\begin{itemize}
+\item[$\boxed{n=1}$] Notiamo che $E\res {U_0}$ e $E\res{U_\infty}$ sono banali perch\'e $U_0=\Pj^1\bs V(x_1)$, $U_\infty=\Pj^1\bs V(x_0)$ e vale (\ref{ThCaratterizzazioneProiettivoNoetheriano}).
+
+Sia $\Uc=\cpa{U_0,U_\infty}$ e consideriamo $H^1(\Uc,\GL(1))$, che per il teorema (\ref{ThCorrispondenzaFibratiECoomologia}) e quanto appena osservato determina tutti i fibrati di rango 1 che si banalizzano su $\Uc$ a meno di isomorfismo. Per quanto osservato nella sottosezione precedente questo conclude.
+\item[$\boxed{n>1}$] In modo del tutto analogo vogliamo considerare $H^1(\Uc,\GL(n))$. Ricordando che i cocicli per questo ricoprimento sono
+\[Z^1(\Uc,\GL(n))=\cpa{C:U_{0,\infty}\to \GL(k)}\]
+e che la relazione per cui quozientiamo per trovare la coomologia \'e
+\[C\sim D\coimplies \exists \al:U_\infty\to\GL(n),\ \beta:U_0\to\GL(n)\ t.c.\ D=\al C\beta\ii.\]
+Scriviamo 
+\begin{align*}
+	C(t)=&(c_{i,j}(t))\in \GL_n(\K[t^{\pm}])\\
+	\al(t)=& (a_{i,j}(t))\in \GL_n(\K[t])\\
+	\beta(t)=&(b_{i,j}(t))\in \GL_n(\K[t\ii])
+\end{align*}
+Per definizione di somma diretta di fibrati vista dal punto di vista dei cocicli \`e sufficiente mostrare che per ogni $C\in \GL_n(\K[t^{\pm1}])$ possiamo trovare $\al$ e $\beta$ matrici in $\GL_n(\K[t])$ tali che
+\[\beta C\al=\mat{t^{m_1} & &\\
+&\ddots&\\&&t^{m_k}}\]
+con $m_1\geq\cdots\geq m_k$. Se $c_{i,j}\in \K[t]$ per ogni $i,j$ vogliamo anche poter scegliere $m_\ell\geq 0$ per ogni $\ell$.
+
+[CONTACCI, INSERISCO DOPO]
+
+
+\end{itemize}
+\setlength{\leftmargini}{0.5cm}
+\end{proof}
+
+\begin{proposition}[]\label{PrUnicitaDecomposizioneFibratiVettorialiInLineariPerP1}
+Se $E$ \`e un fibrato vettoriale su $\Pj^1$ e (per il teorema (\ref{ThClassificazioneFibratiVettorialiSuP1})) esso \`e isomorfo a $E_{n_1}\oplus\cdots\oplus E_{n_k}$ per $n_1\geq\cdots\geq n_k$ allora gli $n_i$ sono univocamente determinati.
+\end{proposition}
+\begin{proof}
+Supponiamo di avere un'altra scrittura $E\cong E_{m_1}\oplus\cdots\oplus E_{m_k}$ con $m_1\geq\cdots\geq m_{k}$ (il numero di addendi \`e lo stesso perch\'e \`e pari al rango del fibrato). Senza perdita di generalit\`a supponiamo $m_1\geq n_1$ e tensorizziamo per $E_{-m_1}$ per ottenere
+\[E_0^a\oplus \under{E'}{E_{n_2'}\oplus\cdots\oplus E_{n_k'}}\overset\vp\cong E_0^b\oplus \under{F'}{E_{m_2'}\oplus\cdots\oplus E_{m_k'}}\]
+dove $n_i'$ e $m_i'$ sono gli opportuni interi che codificano le differenze $n_j-m_1$ e $m_j-m_1$ dopo aver raccolto le copie di $E_0$. Per costruzione tutti gli addendi diretti sono fibrati lineari con sezioni globali nulle (eccetto per le copie  di $E_0$), quindi
+\[\dim \Gamma(\Pj^1,E_0^a\oplus E')=a\cdot (0+1)+(k-a)\cdot 0=a,\quad \dim \Gamma(\Pj^1,E_0^b\oplus F')=b\]
+e cio\`e $a=b$.
+
+Scriviamo l'isomorfismo $\vp:E_0^a\oplus E'\to E_0^a\oplus F'$ in forma matriciale come
+\[\vp=\mat{\al &\beta\\
+\gamma&\delta}\]
+(cio\`e $\al:E_0^a\to E_0^a$, $\beta:E'\to E_0^a$ eccetera). Notiamo che dare un morfismo $E_0\to F'$ \`e la stessa cosa di dare una sezione di $F'$, quindi $\gamma=0$, dunque $\vp\res{E_0^a}=\al:E_0^a\to E_0^a$ \`e un isomorfismo e quindi abbiamo un isomorfismo
+\[E'=E/E_0^a\xrightarrow{\vp}E/E_0^a=F'\]
+e per induzione la scrittura di questi due pezzi \`e unica. Ritensorizzando per $E_{m_1}$ troviamo che la scrittura originale era unica.
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{Fibrati con azione di gruppo}
+
+\begin{definition}
+    Se $X$ è una $G$-varietà, un \textbf{$G$-fibrato} su $X$ è un fibrato vettoriale $p\colon E \to X$ su $X$ per cui esiste un'azione lineare di $G$ su $E$ tale che $p$ è $G$-equivariante.
+\end{definition}
+\begin{remark}
+In questo caso, $\Gamma(X,E)$ ha un'azione lineare di $G$, data da 
+\[(g\cdot \sigma)(x)=g(\sigma(g^{-1}x)).\] 
+\end{remark}
+
+Si potrebbe dimostrare che $G$ agisce in modo regolare su $\Gamma(X,E)$, e quindi che $\Gamma(X,E)$ è una rappresentazione algebrica di $G$. (Non lo faremo.) 
+
+\begin{definition}
+    Dati due fibrati vettoriali $p_1\colon E_1 \to X$ e $p_2\colon E_2 \to X$ su $X$, un \textbf{morfismo di fibrati} è una mappa $\varphi\colon E_1 \to E_2$ che preserva la somma e il prodotto per scalare e tale che $p_2\circ\varphi=p_1$. Diciamo che $\varphi$ è \textbf{equivariante} se commuta con $G$.
+\end{definition}
+
+\begin{remark}
+Per ogni $x_0$ in $X$, un morfismo $\varphi$ definisce una mappa lineare $\varphi_{x_0}\colon (E_1)_{x_0}\to (E_2)_{x_0}$. 
+\end{remark}
+
+\begin{proposition}\label{PrClassificazioneFibratiSuGruppoQuoziente}
+Le classi di isomorfismo fibrati vettoriali $G$-equivarianti di rango $m$ su $X=G/H$ sono in corrispondenza con le classi di isomorfismo delle rappresentazioni $m$-dimensionali di $H$.
+\end{proposition}
+\begin{proof}
+Costruiamo esplicitamente questa corrispondenza:
+\smallskip
+
+\noindent
+Dato un fibrato vettoriale $G$-equivariante $p\colon E\to G/H$ e posto $x_0=H=e_{G/H}$, possiamo considerare la fibra $E_{x_0}$ e chiaramente $H$ agisce su $E_{x_0}$. 
+\smallskip
+
+\noindent
+Data una rappresentazione $V$ di $H$, consideriamo $G\times V$ con l'azione di $H$ data da 
+\[h(g,v)=(gh^{-1},hv).\]
+Passando al quoziente in $H$ abbiamo
+% https://q.uiver.app/#q=WzAsNCxbMCwwLCJFPVxcZGZyYWN7R1xcdGltZXMgVn17SH0iXSxbMCwxLCJbZyx2XSJdLFsxLDAsIlg9e0d9L3tIfSJdLFsxLDEsIltnXSJdLFswLDJdLFsxLDMsIiIsMCx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Im1hcHMgdG8ifX19XSxbMSwwLCJcXGluIiwzLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoibm9uZSJ9LCJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzMsMiwiXFxpbiIsMyx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dXQ==
+\[\begin{tikzcd}
+	{E=\dfrac{G\times V}{H}} & {X={G}/{H}} \\
+	{[g,v]} & {[g]}
+	\arrow[from=1-1, to=1-2]
+	\arrow["\in"{marking, allow upside down}, draw=none, from=2-1, to=1-1]
+	\arrow[maps to, from=2-1, to=2-2]
+	\arrow["\in"{marking, allow upside down}, draw=none, from=2-2, to=1-2]
+\end{tikzcd}\]
+Notiamo che 
+\[[g,v]+[gh,u]=[g,v]+[g,hu]=[g,v+hu]\] 
+e che 
+\[\lambda[g,v]=[g,\lambda v],\]
+quindi le fibre hanno una struttura vettoriale.
+
+Per concludere andrebbe mostrato che $E$ è una varietà algebrica, che la mappa costruita è regolare e che abbiamo la trivializzazione locale.
+\end{proof}
+
+
+
+\begin{example}
+Se vogliamo costruire fibrati $G$-equivarianti lineari (cioè di rango $1$) su $\GL(n)/B_n$, sappiamo che questi corrispondono alle rappresentazioni $1$-dimensionali di $B_n$ 
+% https://q.uiver.app/#q=WzAsMyxbMCwwLCJCX24iXSxbMiwwLCJcXEteXFx0aW1lcyJdLFsxLDEsIlQ9Ql9uL1VfbiJdLFswLDJdLFsyLDFdLFswLDFdXQ==
+\[\begin{tikzcd}
+	{B_n} && {\K^\times} \\
+	& {T=B_n/U_n}
+	\arrow[from=1-1, to=1-3]
+	\arrow[from=1-1, to=2-2]
+	\arrow[from=2-2, to=1-3]
+\end{tikzcd}\]
+Quindi queste possono essere caratterizzate attraverso i caratteri del toro.
+\end{example}
