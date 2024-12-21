@@ -515,7 +515,7 @@ A priori sono mappe della forma $z\mapsto p(z)$ ma se comparissero pi\`u monomi 
 
 
 
-\begin{remark}
+\begin{remark}\label{RmCoclicliFibratiLineariSuRettaProiettiva}
 Si ha
 \[H^1(\Uc,\GL(1))=\cpa{z^n}_{n\in\Z}.\]
 \end{remark}
@@ -562,6 +562,54 @@ Segue immediatamente che
 \end{remark}
 
 \subsection{Fibrati vettoriali}
+
+\begin{lemma}[]\label{LmMatriciDiCocicliPerFibrativettorialiSuRettaProiettiva}
+Per ogni $C\in \GL_n(\K[t^{\pm1}])$ possiamo trovare $\al$ e $\beta$ matrici in $\GL_n(\K[t])$ tali che
+\[\beta C\al=\mat{t^{m_1} & &\\
+&\ddots&\\&&t^{m_k}}\]
+con $m_1\geq\cdots\geq m_k$. Se $c_{i,j}\in \K[t]$ per ogni $i,j$ vogliamo anche poter scegliere $m_\ell\geq 0$ per ogni $\ell$.
+\end{lemma}
+\begin{proof}
+Per $k=1$ la tesi \`e esattamente il contenuto dei conti nell'osservazione (\ref{RmCoclicliFibratiLineariSuRettaProiettiva}).
+
+Mostriamo ora il caso di $k>1$. A meno di moltiplicare per una potenza alta di $t$ supponiamo $c_{i,j}\in \K[t]$ per ogni $i$ e $j$, finito il conto in questo caso possiamo moltiplicare per $t\ii$ alla stessa potenza e questo non influisce sulla forma diagonale che vorremmo ottenere.
+
+
+Mostriamo che possiamo intanto trovare una $\al\in \GL_k(\K[t])$ tale che
+\[C\al=\mat{t^m &0 &\cdots&0\\
+\ast &\ast&\cdots&\ast}\]
+Osserviamo che se abbiamo $c_{1,1}$ e $c_{1,j}$ sulla prima riga possiamo moltiplicare a destra per una matrice in modo da ottenere $m=\gcd(c_{1,1},c_{1,j})$ e $0$ al loro posto: se
+\[m=c_{1,1}a+c_{1,j}c,\quad 1=da-bc\]
+dove $a,c$ esistono per l'identit\`a di B\'ezout e $d,b$ esistono perch\'e $a$ e $c$ devono essere coprimi affinch\'e $m$ sia il massimo comune divisore, possiamo definire la matrice 
+\[M=\mat{a&b\\c&d}\mat{1 & -\frac{c_{1,1}b+c_{1,j}d}{m}\\ 0&1}\] 
+e ``inserirla" in una matrice identit\`a di taglia $k$ in modo da fare l'operazione richiesta, per esempio se $j=2$ allora
+\[C\mat{M & &&&\\
+&1&&\\
+&&\ddots&\\
+&&&1}=\mat{m &0 &\ast &\cdots&\ast\\
+\ast &\ast&\ast &\cdots&\ast\\
+\vdots &\vdots&\vdots &\ddots&\vdots\\
+\ast &\ast&\ast &\cdots&\ast}\]
+Reiterando questo procedimento prendendo la prima e seconda colonna, poi prima e terza, prima e quarta eccetera troviamo $\al$ tale che
+\[C\al=\mat{\gcd(\cpa{c_{1,j}\mid 1\leq j\leq k}) &0 &\cdots&0\\
+\ast &\ast&\cdots&\ast}\]
+ma questo massimo comune divisore deve essere della forma $t^\ell$ perch\'e deve dividere $\det C$ e questo deve essere un elemento invertibile di $\K[t^{\pm1}]$ (ogni eventuale coefficiente di $t^\ell$ pu\`o essere inglobato da $\al$). Notiamo che $\ell\geq 0$ perch\'e i singoli $c_{i,j}$ sono elementi di $\K[t]$.
+
+Per ipotesi induttiva esistono $\al'$ e $\beta'$ che riducono la sottomatrice sud-est, cio\`e
+\[\mat{1&0\\0&\beta'}C\al\mat{1&0\\0&\al'}=\mat{t^{\ell_1} & 0 & \cdots &0\\
+\ast & t^{\ell_2} & \cdots & 0\\
+\vdots &\vdots&\ddots &\vdots\\
+\ast & 0 &\cdots &t^{\ell_k}}\]
+con $\ell_i\geq 0$ per ogni $1\leq i\leq k$. In particolare $\det C=t^n$ con $n=\sum_{i=1}^k\ell_i$. Poich\'e dunque $\ell_1$ \`e limitato da $n$, esiste un $\ell_1$ massimo che possiamo ottenere a meno di moltiplicare a destra o sinistra per matrici in $\GL_k(\K[t])$.
+
+Affermiamo che per un tale $\ell_1$ massimale $\ell_1\geq \ell_2$, infatti se $\ell_1<\ell_2$, poich\'e
+\[\mat{t^{\ell_1}&0\\c_{2,1}&t^{\ell_2}}\text{ \`e equivalente a }\mat{t^{\ell_2} & c_{2,1}\\ 0 &t^{\ell_1}},\]
+se $c_{2,1}=0$ allora evidentemente $\ell_1$ non era massimale, se $c_{2,1}\neq 0$ allora riusciamo a sostituire questo pezzo $2\times 2$ con $\pa{\smat{t^{\ell_1+1}&0\\\ast&t^{m}}}$, negando ancora la massimalit\`a di $\ell_1$.
+
+
+Quindi $\ell_1\geq \ell_2$ (e analogamente $\ell_1\geq \ell_i$ per ogni $2\leq i\leq k$) quindi possiamo agire sulle colonne e sulle righe con elementi della forma $\pa{\smat{1&0\\f(t)&1}}$ per rindurre $c_{2,1}(t)$ as un polinomio che contemporaneamente dovrebbe avere grado minore di $\ell_2$ ma maggiore di $\ell_1$, che \`e assurdo e quindi $c_{1,2}=0$.
+\end{proof}
+
 \begin{theorem}[]\label{ThClassificazioneFibratiVettorialiSuP1}
 Su $\Pj^1$ gli unici fibrati vettoriali sono $E\cong \Oc(n_1)\oplus\cdots\oplus \Oc(n_k)$ per degli interi $n_i$.
 \end{theorem}
@@ -582,18 +630,7 @@ Scriviamo
 	\al(t)=& (a_{i,j}(t))\in \GL_n(\K[t])\\
 	\beta(t)=&(b_{i,j}(t))\in \GL_n(\K[t\ii])
 \end{align*}
-Per definizione di somma diretta di fibrati vista dal punto di vista dei cocicli \`e sufficiente mostrare che per ogni $C\in \GL_n(\K[t^{\pm1}])$ possiamo trovare $\al$ e $\beta$ matrici in $\GL_n(\K[t])$ tali che
-\[\beta C\al=\mat{t^{m_1} & &\\
-&\ddots&\\&&t^{m_k}}\]
-con $m_1\geq\cdots\geq m_k$. Se $c_{i,j}\in \K[t]$ per ogni $i,j$ vogliamo anche poter scegliere $m_\ell\geq 0$ per ogni $\ell$.
-
-[CONTACCI, INSERISCO DOPO]
-
-
-
-
-
-
+Per definizione di somma diretta di fibrati vista dal punto di vista dei cocicli il lemma (\ref{LmMatriciDiCocicliPerFibrativettorialiSuRettaProiettiva}) conclude.
 \end{itemize}
 \setlength{\leftmargini}{0.5cm}
 \end{proof}
