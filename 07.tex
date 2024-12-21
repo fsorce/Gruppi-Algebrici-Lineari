@@ -526,9 +526,13 @@ Se $n=m$ allora possiamo sempre trovare $\beta_0$ e $\beta_\infty$, quindi abbia
 \[H^1(\Uc,\GL(1))=\cpa{z^n}_{n\in\Z}.\]
 \end{proof}
 
-\begin{proposition}
+\begin{notation}
+Indichiamo il fibrato lineare $E_{z^{-n}}\to \Pj^1_\K$ con $\Oc_{\Pj^1_\K}(n)$ (o solo $\Oc(n)$ se chiaro dal contesto).
+\end{notation}
+
+\begin{proposition}\label{PrSezioniGlobaliFibratiLineariSuP1}
 Le sezioni globali dei fibrati lineari su $\Pj^1$ sono
-\[\Gamma(\Pj^1,E_{z^{-n}})=\begin{cases}
+\[\Gamma(\Pj^1,\Oc(n))=\begin{cases}
 	\K[z]_{n} & n\geq 0\\
 	0 &n<0
 \end{cases}\]
@@ -551,7 +555,7 @@ cio\`e un generico polinomio di grado $n$.
 
 \begin{remark}\label{ReRangoSezioniGlobaliFibratiLineariSuP1}
 Segue immediatamente che
-\[\dim\Gamma(\Pj^1,E_{z^{-n}})=\begin{cases}
+\[\dim\Gamma(\Pj^1,\Oc(n))=\begin{cases}
 	n+1&\text{se }n\geq 0\\
 	0 &\text{se }n<0
 \end{cases}.\]
@@ -559,7 +563,7 @@ Segue immediatamente che
 
 \subsection{Fibrati vettoriali}
 \begin{theorem}[]\label{ThClassificazioneFibratiVettorialiSuP1}
-Su $\Pj^1$ gli unici fibrati vettoriali sono $E\cong E_{n_1}\oplus\cdots\oplus E_{n_k}$ per degli interi $n_i$, dove $E_{n}$ \`e il fibrato associato al cociclo $z^{-n}$ in $H^1(\cpa{U_0,U_\infty},\GL(1))$.
+Su $\Pj^1$ gli unici fibrati vettoriali sono $E\cong \Oc(n_1)\oplus\cdots\oplus \Oc(n_k)$ per degli interi $n_i$.
 \end{theorem}
 \begin{proof}
 Scriviamo $\Pj^1=U_0\cup U_\infty$ e procediamo per induzione su $n$ il rango del fibrato.
@@ -595,21 +599,21 @@ con $m_1\geq\cdots\geq m_k$. Se $c_{i,j}\in \K[t]$ per ogni $i,j$ vogliamo anche
 \end{proof}
 
 \begin{proposition}[]\label{PrUnicitaDecomposizioneFibratiVettorialiInLineariPerP1}
-Se $E$ \`e un fibrato vettoriale su $\Pj^1$ e (per il teorema (\ref{ThClassificazioneFibratiVettorialiSuP1})) esso \`e isomorfo a $E_{n_1}\oplus\cdots\oplus E_{n_k}$ per $n_1\geq\cdots\geq n_k$ allora gli $n_i$ sono univocamente determinati.
+Se $E$ \`e un fibrato vettoriale su $\Pj^1$ e (per il teorema (\ref{ThClassificazioneFibratiVettorialiSuP1})) esso \`e isomorfo a $\Oc(n_1)\oplus\cdots\oplus \Oc(n_k)$ per $n_1\geq\cdots\geq n_k$ allora gli $n_i$ sono univocamente determinati.
 \end{proposition}
 \begin{proof}
-Supponiamo di avere un'altra scrittura $E\cong E_{m_1}\oplus\cdots\oplus E_{m_k}$ con $m_1\geq\cdots\geq m_{k}$ (il numero di addendi \`e lo stesso perch\'e \`e pari al rango del fibrato). Senza perdita di generalit\`a supponiamo $m_1\geq n_1$ e tensorizziamo per $E_{-m_1}$ per ottenere
-\[E_0^a\oplus \under{E'}{E_{n_2'}\oplus\cdots\oplus E_{n_k'}}\overset\vp\cong E_0^b\oplus \under{F'}{E_{m_2'}\oplus\cdots\oplus E_{m_k'}}\]
-dove $n_i'$ e $m_i'$ sono gli opportuni interi che codificano le differenze $n_j-m_1$ e $m_j-m_1$ dopo aver raccolto le copie di $E_0$. Per costruzione tutti gli addendi diretti sono fibrati lineari con sezioni globali nulle (eccetto per le copie  di $E_0$), quindi
-\[\dim \Gamma(\Pj^1,E_0^a\oplus E')=a\cdot (0+1)+(k-a)\cdot 0=a,\quad \dim \Gamma(\Pj^1,E_0^b\oplus F')=b\]
+Supponiamo di avere un'altra scrittura $E\cong \Oc(m_1)\oplus\cdots\oplus \Oc(m_k)$ con $m_1\geq\cdots\geq m_{k}$ (il numero di addendi \`e lo stesso perch\'e \`e pari al rango del fibrato). Senza perdita di generalit\`a supponiamo $m_1\geq n_1$ e tensorizziamo per $\Oc(-m_1)$ per ottenere
+\[\Oc(0)^a\oplus \under{E'}{\Oc(n_2')\oplus\cdots\oplus \Oc(n_k')}\overset\vp\cong \Oc(0)^b\oplus \under{F'}{\Oc(m_2')\oplus\cdots\oplus \Oc(m_k')}\]
+dove $n_i'$ e $m_i'$ sono gli opportuni interi che codificano le differenze $n_j-m_1$ e $m_j-m_1$ dopo aver raccolto le copie di $\Oc(0)$. Per costruzione tutti gli addendi diretti sono fibrati lineari con sezioni globali nulle (eccetto per le copie  di $\Oc(0)$), quindi
+\[\dim \Gamma(\Pj^1,\Oc(0)^a\oplus E')=a\cdot (0+1)+(k-a)\cdot 0=a,\quad \dim \Gamma(\Pj^1,\Oc(0)^b\oplus F')=b\]
 e cio\`e $a=b$.
 
-Scriviamo l'isomorfismo $\vp:E_0^a\oplus E'\to E_0^a\oplus F'$ in forma matriciale come
+Scriviamo l'isomorfismo $\vp:\Oc(0)^a\oplus E'\to \Oc(0)^a\oplus F'$ in forma matriciale come
 \[\vp=\mat{\al &\beta\\
 \gamma&\delta}\]
-(cio\`e $\al:E_0^a\to E_0^a$, $\beta:E'\to E_0^a$ eccetera). Notiamo che dare un morfismo $E_0\to F'$ \`e la stessa cosa di dare una sezione di $F'$, quindi $\gamma=0$, dunque $\vp\res{E_0^a}=\al:E_0^a\to E_0^a$ \`e un isomorfismo e quindi abbiamo un isomorfismo
-\[E'=E/E_0^a\xrightarrow{\vp}E/E_0^a=F'\]
-e per induzione la scrittura di questi due pezzi \`e unica. Ritensorizzando per $E_{m_1}$ troviamo che la scrittura originale era unica.
+(cio\`e $\al:\Oc(0)^a\to \Oc(0)^a$, $\beta:E'\to \Oc(0)^a$ eccetera). Notiamo che dare un morfismo $\Oc(0)\to F'$ \`e la stessa cosa di dare una sezione di $F'$, quindi $\gamma=0$, dunque $\vp\res{\Oc(0)^a}=\al:\Oc(0)^a\to \Oc(0)^a$ \`e un isomorfismo e quindi abbiamo un isomorfismo
+\[E'=E/\Oc(0)^a\xrightarrow{\vp}E/\Oc(0)^a=F'\]
+e per induzione la scrittura di questi due pezzi \`e unica. Ritensorizzando per $\Oc(m_1)$ troviamo che la scrittura originale era unica.
 \end{proof}
 
 

@@ -39,10 +39,41 @@ Sotto questo linguaggio, un modulo su $A$ \`e un fascio quasicoerente su $\Spec 
 $\Spec(A[t_1,\cdots, t_n])=\Spec A\times \A^n$.
 \end{remark}
 
+\section{Retta proiettiva su un anello}
+
 \begin{definition}
 Definiamo lo \textbf{spazio proiettivo} di dimensione $n$ su $A$ come
 \[\Pj^n_A:=\Pj^n\times \Spec A.\]
 \end{definition}
+
+\begin{notation}
+In analogia con il caso $A=\K$ definiamo $\Oc_{\Pj^1_A}(n)$ come il fibrato su $\Pj^1_A$ ottenuto ponendo $M_0=A[t]$, $M_\infty=A[t\ii]$ e considerando come isomorfismo $(M_0)_t=A[t,t\ii]\to A[t,t\ii]=(M_\infty)_{t\ii}$ quello dato da $f\mapsto t^{-n} f$.
+
+Per abbreviare scriveremo anche $\Oc_A(n)$.
+\end{notation}
+\begin{definition}
+Dato un fibrato vettoriale $\Mf$ su $\Pj^1_A$ definiamo
+\[\ol\Mf:=\frac{\Mf}{\mf\Mf}\cong \Mf\otimes \frac A\mf\]
+cio\`e $\ol\Mf$ \`e il fibrato vettoriale su $\Pj^1_{A/\mf}$ ottenuto incollando i moduli proiettivi $M_0/\mf$ e $M_\infty/\mf$.
+\end{definition}
+
+\begin{remark}
+Per la classificazione dei fibrati vettoriali sulla retta proiettiva su un campo (\ref{ThClassificazioneFibratiVettorialiSuP1}) si ha
+\[\overline{\mathfrak{M}}=\bigoplus_{i=1}^N \Oc(n_i).\]
+\end{remark}
+
+\begin{notation}
+Se tensorizziamo $\mathfrak{M}$ per $\Oc_{A}(n)$ otteniamo un fibrato
+\[\mathfrak{M}(n):=\mathfrak{M}\otimes \Oc(n)\]
+dello stesso rango ma dove moltiplichiamo i coclicli. 
+\end{notation}
+
+\begin{remark}
+Sfruttando di nuovo (\ref{ThClassificazioneFibratiVettorialiSuP1}) si ha
+\[\overline{\mathfrak{M}(n)}\cong \bigoplus_{i=1}^N \Oc_{A/\mf}(n_i)\otimes \Oc_{A/\mf}(n)=\bigoplus_{i=1}^N \Oc_{A/\mf}(n+n_i),\]
+in particolare per un opportuno $n$ si ha che $n+n_i\geq 0$ per ogni $i$ e che esista un $i$ tale che $n+n_i=0$.
+\end{remark} 
+
 
 
 \section{Teorema di incollamento di Quillen}
@@ -365,6 +396,128 @@ come voluto.
 \end{proof}
 
 
+\section{Coomologia di \v Cech di fibrati su rette proiettive}
+Fissato un anello noetheriano $A$ poniamo $X=\Spec A$ e scriviamo $\Pj^1_A=X\times \Pj^1$.
+Fissiamo il ricoprimento standard $U_0=\Pj^1_A\bs \cpa{\infty}$ e $U_\infty=\Pj^1_A\nz$. Un fibrato vettoriale $\Mf$ su $\Pj^1_A$ \`e dato da due moduli proiettivi finitamente generati $M_0$ su $A[t]$ e $M_\infty$ su $A[t\ii]$ tali che $M_{0,\infty}:=(M_0)_{t}\cong (M_\infty)_{t\ii}$.
+
+\begin{notation}
+Poniamo $H^0(\Mf):=\Gamma(\Pj^1_A,\Mf)$.
+\end{notation}
+
+Consideriamo ora la mappa
+\[\funcDef{M_0\oplus M_\infty}{M_{0,\infty}}{(x,y)}{(x\res{U_{0,\infty}}-y\res{U_{0,\infty}})}\]
+cio\`e prendiamo la differenza delle immagini di $x$ e $y$ nella localizzazioni $(M_0)_{t}$ e $(M_\infty)_{t\ii}$, che identifichiamo applicando implicitamente un opportuno isomorfismo a (senza perdita di generalit\`a) $y/1$.
+
+\begin{definition}
+Definiamo il \textbf{primo gruppo di coomologia} (\textbf{di \v Cech}) del fibrato $\Mf$ come
+\[H^1(\Mf)=\coker(M_0\oplus M_\infty\to M_{0,\infty}).\] 
+\end{definition}
+
+\begin{remark}
+Per definizione abbiamo una successione esatta
+\[0\to H^0(\Mf)\to M_0\oplus M_\infty\to M_{0,\infty}\to H^1(\Mf)\to 0\]
+dove l'identit\`a $H^0(\Mf)=\ker(M_0\oplus M_\infty\to M_{0,\infty})$ corrisponde alla decomposizione di sezioni su un ricoprimento (\ref{PrSezioniDiFibrato}), infatti essere nel nucleo corrisponde esattamente al rispettare l'opportuna propriet\`a di cociclo.
+\end{remark}
+
+
+\begin{notation}
+Definiamo
+\[\overline{\mathfrak{M}_n}\coloneqq\mathfrak{M}\otimes \frac{\mf^n}{\mf^{n+1}}\]
+\end{notation}
+\begin{remark}\label{ReFibratoTensorizzatoConPotenzeDelMassimaleESommaDirettaDelFibratoTensorizzatoConIlCampo}
+Per un opportuno $\ell_n$ abbiamo $\ol{\Mf_n}\cong \ol\Mf^{\ell_n}$. In particolare $H^i(\ol{\Mf_n})=(H^i(\ol\Mf))^{\ell_n}$.
+\end{remark}
+
+\begin{remark}[Successione esatta lunga]\label{ReSuccessioneEsattaLunga}
+Consideriamo una successione esatta corta di fibrati vettoriali su $\Pj^1_A$
+\[0\to \Mf\to \Nf\to \Pf\to 0\]
+cio\`e abbiamo il seguente diagramma commutativo con righe esatte
+% https://q.uiver.app/#q=WzAsMTAsWzAsMCwiMCJdLFsxLDAsIk1fMFxcb3BsdXMgTV9cXGluZnR5Il0sWzEsMSwiTV97MFxcLCxcXGluZnR5fSJdLFsyLDEsIk5fezBcXCwsXFxpbmZ0eX0iXSxbMywxLCJQX3swXFwsLFxcaW5mdHl9Il0sWzQsMSwiMCJdLFsyLDAsIk5fMFxcb3BsdXMgTl9cXGluZnR5Il0sWzMsMCwiUF8wXFxvcGx1cyBQX1xcaW5mdHkiXSxbNCwwLCIwIl0sWzAsMSwiMCJdLFsxLDJdLFs2LDNdLFs3LDRdLFswLDFdLFsxLDZdLFs2LDddLFs3LDhdLFs5LDJdLFsyLDNdLFszLDRdLFs0LDVdXQ==
+\[\begin{tikzcd}
+	0 & {M_0\oplus M_\infty} & {N_0\oplus N_\infty} & {P_0\oplus P_\infty} & 0 \\
+	0 & {M_{0\,,\infty}} & {N_{0\,,\infty}} & {P_{0\,,\infty}} & 0
+	\arrow[from=1-1, to=1-2]
+	\arrow[from=1-2, to=1-3]
+	\arrow[from=1-2, to=2-2]
+	\arrow[from=1-3, to=1-4]
+	\arrow[from=1-3, to=2-3]
+	\arrow[from=1-4, to=1-5]
+	\arrow[from=1-4, to=2-4]
+	\arrow[from=2-1, to=2-2]
+	\arrow[from=2-2, to=2-3]
+	\arrow[from=2-3, to=2-4]
+	\arrow[from=2-4, to=2-5]
+\end{tikzcd}\]
+dove le mappe verticali sono come nella definizione di $H^1$. In particolare possiamo estendere il diagramma inserendo i nuclei e i conuclei
+% https://q.uiver.app/#q=WzAsMTgsWzAsMSwiMCJdLFsxLDEsIk1fMFxcb3BsdXMgTV9cXGluZnR5Il0sWzEsMiwiTV97MFxcLCxcXGluZnR5fSJdLFsyLDIsIk5fezBcXCwsXFxpbmZ0eX0iXSxbMywyLCJQX3swXFwsLFxcaW5mdHl9Il0sWzQsMiwiMCJdLFsyLDEsIk5fMFxcb3BsdXMgTl9cXGluZnR5Il0sWzMsMSwiUF8wXFxvcGx1cyBQX1xcaW5mdHkiXSxbNCwxLCIwIl0sWzAsMiwiMCJdLFsxLDAsIkheMChcXE1mKSJdLFsyLDAsIkheMChcXE5mKSJdLFszLDAsIkheMChcXFBmKSJdLFsxLDMsIkheMShcXE1mKSJdLFsyLDMsIkheMShcXE5mKSJdLFszLDMsIkheMShcXFBmKSJdLFs0LDMsIjAiXSxbMCwwLCIwIl0sWzEsMl0sWzYsM10sWzcsNF0sWzAsMV0sWzEsNl0sWzYsN10sWzcsOF0sWzksMl0sWzIsM10sWzMsNF0sWzQsNV0sWzEwLDFdLFsyLDEzXSxbMTEsNl0sWzMsMTRdLFsxMiw3XSxbMTUsMTZdLFs0LDE1XSxbMTcsMTBdLFsxMCwxMV0sWzExLDEyXSxbMTMsMTRdLFsxNCwxNV0sWzEyLDEzLCIiLDEseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XV0=
+\[\begin{tikzcd}
+	0 & {H^0(\Mf)} & {H^0(\Nf)} & {H^0(\Pf)} \\
+	0 & {M_0\oplus M_\infty} & {N_0\oplus N_\infty} & {P_0\oplus P_\infty} & 0 \\
+	0 & {M_{0\,,\infty}} & {N_{0\,,\infty}} & {P_{0\,,\infty}} & 0 \\
+	& {H^1(\Mf)} & {H^1(\Nf)} & {H^1(\Pf)} & 0
+	\arrow[draw=none, from=2-3, to=3-3, ""{coordinate, name=Z}]
+	\arrow[dashed, from=1-4, to=4-2, rounded corners, to path={
+		-- ([xshift=10ex]\tikztostart.east) 
+		|- ([xshift=-15ex]Z) [near end]\tikztonodes
+		-| ([xshift=-10ex]\tikztotarget.west)
+		-- (\tikztotarget.west)
+	}]
+	\arrow[from=1-1, to=1-2]
+	\arrow[from=1-2, to=1-3]
+	\arrow[from=1-2, to=2-2]
+	\arrow[from=1-3, to=1-4]
+	\arrow[from=1-3, to=2-3]
+	\arrow[from=1-4, to=2-4]
+	\arrow[from=2-1, to=2-2]
+	\arrow[from=2-2, to=2-3]
+	\arrow[from=2-2, to=3-2]
+	\arrow[from=2-3, to=2-4]
+	\arrow[from=2-3, to=3-3]
+	\arrow[from=2-4, to=2-5]
+	\arrow[from=2-4, to=3-4]
+	\arrow[from=3-1, to=3-2]
+	\arrow[from=3-2, to=3-3]
+	\arrow[from=3-2, to=4-2]
+	\arrow[from=3-3, to=3-4]
+	\arrow[from=3-3, to=4-3]
+	\arrow[from=3-4, to=3-5]
+	\arrow[from=3-4, to=4-4]
+	\arrow[from=4-2, to=4-3]
+	\arrow[from=4-3, to=4-4]
+	\arrow[from=4-4, to=4-5]
+\end{tikzcd}\]
+dove la freccia tratteggiata \`e quella del lemma del serpente. Questo restituisce una successione esatta lunga
+\[0\to H^0(\Mf)\to H^0(\Nf)\to H^0(\Pf)\to H^1(\Mf)\to H^1(\Nf)\to H^1(\Pf)\to 0\]
+\end{remark}
+
+\begin{exercise}\label{ExCoomologiaDiFibratiLineariSuP1A}
+Per $\Oc(n)$, si ha 
+\[H^0(\Oc(n))=
+\begin{cases}
+	0 & n\le -1 \\
+	A^{n+1} & n\ge0
+\end{cases} 
+\quad \text{ e } \quad H^1(\Oc(n))=\begin{cases}
+	0 & n\ge -1 \\
+	A^{-n-1} & n\le-2
+\end{cases}\]
+\end{exercise}
+\begin{proof}
+Il caso di $H^0$ segue facendo lo stesso conto della proposizione (\ref{PrSezioniGlobaliFibratiLineariSuP1}) sostituendo $\K$ con $A$. I rispettivi $H^1$ si calcolano sfruttando l'esattezza di 
+\[0\to H^0(\Oc(n))\to A[t]\oplus A[t\ii]\to A[t,t\ii]\to H^1(\Oc(n))\to 0\]
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
 
 \section{Teoremi di Horrocks}
 
@@ -410,6 +563,118 @@ Per raggiungere il teorema di Quillen-Suslin mostriamo le implicazioni rosse e H
 
 \subsection{Dimostrazione Horrocks geometrico locale}
 
+\begin{remark}
+Se $\Mf$ \`e un fibrato vettoriale su $\Pj^1_A$ allora osserviamo che $\Mf\res{\A^1_A}=M_0$ \`e libero se e solo se 
+\[\Mf(n)\res{\A^1_A}=\Mf\res{\A^1_A}\otimes\Oc_{A}(n)\res{\A^1_A}=M_0\otimes_{A[t]}A[t]=M_0\] 
+\`e libero, indipendentemente da $n$.
+\end{remark}
+
+Grazie a questa osservazione, ai fini di dimostrare HGL, possiamo supporre\footnote{non occorre specificare quale massimale $\mf$ scegliamo perch\'e $A$ \`e un anello locale.}
+\[\overline{\mathfrak{M}}=\Oc(0)^k\oplus \bigoplus_{i=1}^\ell \Oc(n_i), \quad n_i>0.\]
+
+\begin{proposition}[]\label{PrAnnullamentoCoomologiaFibratoTensorizzatoConPotenzeDelMassimaleModuloMassimale}
+Sotto queste ipotesi $H^1(\ol{\Mf_n})=0$ per ogni $n\geq 0$.
+\end{proposition}
+\begin{proof}
+Per $n=0$ il risultato segue dell'esercizio (\ref{ExCoomologiaDiFibratiLineariSuP1A}), in quanto in questo caso $H^1(\ol\Mf)$ \`e somma di moduli banali ($H^1(\Oc(k))=0$ per ogni $k\geq 0$).
+Per $n\geq 1$ basta notare che 
+\[H^1(\ol{\Mf_n})\overset{(\ref{ReFibratoTensorizzatoConPotenzeDelMassimaleESommaDirettaDelFibratoTensorizzatoConIlCampo})}\cong H^1(\ol\Mf)^{\ell_0}=0\]
+per quanto appena detto.
+\end{proof}
+
+\begin{proposition}
+$H^1(\mathfrak{M})=0$.
+\end{proposition}
+\begin{proof}
+Osserviamo che $H^1(\Mf)$ \`e un $A$-modulo finitamente generato, infatti considerando la successione esatta 
+\[M_0\oplus M_\infty\to M_{0\,\infty}\to H^1(\mathfrak{M})\to 0\]
+se $\cpa{v_i}$ sono generatori per $M_0$ e $\cpa{u_i}$ per $M_\infty$ allora le loro immagini generano il nucleo di $M_{0\,\infty}\to H^1(\mathfrak{M})$, quindi otteniamo una nuova successione esatta corta
+\[0\to\ps{v_i-u_j}\to M_{0,\infty}\to H^1(\Mf)\to 0\]
+e dato che $M_{0,\infty}$ \`e finitamente generato anche i termini laterali, e quindi in particolare anche $H^1(\Mf)$, sono finitamente generati.
+\medskip
+
+Considerando ora nuovamente la successione esatta
+\[M_0\oplus M_\infty\to M_{0\,\infty}\to H^1(\mathfrak{M})\to 0\] 
+e tensorizzandola per $A/\mf$, otteneniamo la successione esatta
+\[\frac{M_0}{\mf M_0}\oplus \frac{M_\infty}{\mf M_\infty}\to \frac{M_{0,\infty}}{\mf M_{0,\infty}}\to \frac{H^1(\Mf)}{\mf H^1(\Mf)}\to 0\]
+ma per definizione di $\ol \Mf$ si ha
+\[\frac{M_0}{\mf M_0}\oplus \frac{M_\infty}{\mf M_\infty}\to \frac{M_{0,\infty}}{\mf M_{0,\infty}}\to H^1(\ol\Mf)\to0\]
+quindi $\frac{H^1(\Mf)}{\mf H^1(\Mf)}\cong H^1(\ol\Mf)=0$, dunque $H^1(\Mf)=\mf H^1(\Mf)$ e quindi per Nakayama otteniamo $H^1(\Mf)=0$ in quanto modulo finitamente generato.
+\end{proof}
+
+\begin{proposition}[]\label{PrH1FibratoConInfinitesimiNulloEMappaTraSezioniGlobaliDiFibratoConInfinitesimiESurgettiva}
+\begin{enumerate}
+    \item $H^1(\mathfrak{M}\otimes  A/\mf^n)=0$ per ogni $n\geq 0$.
+    \item La mappa $H^0(\mathfrak{M}\otimes  A/\mf^n)\to H^0(\mathfrak{M}\otimes  A/\mf^{n-1})$ è suriettiva.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+Consideriamo la successione esatta 
+\[0\to {\mf^{n-1}}/{\mf^{n}}\to A/\mf^n \to A/\mf^{n-1}\to 0\] 
+e tensorizziamola con $\mathfrak{M}$, ottenendo 
+\[0\to \mathfrak{M}\otimes {\mf^{n-1}}/{\mf^{n}}\to \mathfrak{M}\otimes  A/\mf^n \to\mathfrak{M}\otimes  A/\mf^{n-1}\to 0,\] 
+da cui troviamo la successione esatta lunga (\ref{ReSuccessioneEsattaLunga})
+% https://q.uiver.app/#q=WzAsOSxbMCwwLCIwIl0sWzEsMCwiSF4wXFxwYXtcXG9se1xcTWZfe24tMX19fSJdLFsyLDAsIkheMFxccGF7XFxtYXRoZnJha3tNfVxcb3RpbWVzICBcXGZyYWMgQXtcXG1mXm59fSJdLFszLDAsIkheMFxccGF7XFxtYXRoZnJha3tNfVxcb3RpbWVzICBcXGZyYWMgQXtcXG1mXntuLTF9fX0iXSxbMywxLCJIXjFcXHBhe1xcb2x7XFxNZl97bi0xfX19Il0sWzIsMSwiSF4xXFxwYXtcXG1hdGhmcmFre019XFxvdGltZXMgIFxcZnJhYyBBe1xcbWZebn19Il0sWzEsMSwiSF4xXFxwYXtcXG1hdGhmcmFre019XFxvdGltZXMgIFxcZnJhYyBBe1xcbWZee24tMX19fSJdLFszLDIsIjAiXSxbMSwyLCIwIl0sWzAsMV0sWzEsMl0sWzIsM10sWzMsNF0sWzQsNV0sWzUsNl0sWzQsNywiPSIsMyx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFs4LDYsIj0iLDMseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJub25lIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19XV0=
+\[\begin{tikzcd}
+	0 & {H^0\pa{\ol{\Mf_{n-1}}}} & {H^0\pa{\mathfrak{M}\otimes  \frac A{\mf^n}}} & {H^0\pa{\mathfrak{M}\otimes  \frac A{\mf^{n-1}}}} \\
+	& {H^1\pa{\mathfrak{M}\otimes  \frac A{\mf^{n-1}}}} & {H^1\pa{\mathfrak{M}\otimes  \frac A{\mf^n}}} & {H^1\pa{\ol{\Mf_{n-1}}}} \\
+	& 0 && 0
+	\arrow[from=1-1, to=1-2]
+	\arrow[from=1-2, to=1-3]
+	\arrow[from=1-3, to=1-4]
+	\arrow[from=1-4, to=2-4]
+	\arrow[from=2-3, to=2-2]
+	\arrow[from=2-4, to=2-3]
+	\arrow["{=}"{marking, allow upside down}, draw=none, from=2-4, to=3-4]
+	\arrow["{=}"{marking, allow upside down}, draw=none, from=3-2, to=2-2]
+\end{tikzcd}\]
+dove $H^1\pa{\ol{\Mf_{n-1}}}=0$ per la proposizione (\ref{PrAnnullamentoCoomologiaFibratoTensorizzatoConPotenzeDelMassimaleModuloMassimale}) e $H^1\pa{\mathfrak{M}\otimes  \frac A{\mf^{n-1}}}=0$ per ipotesi induttiva ($H^1\pa{\mathfrak{M}\otimes  \frac A{\mf^0}}=H^1(\Mf)=0$ per la proposizione precedente quindi abbiamo un passo base).
+
+La suriettivit\`a della mappa nella richiesta segue dall'esattezza e dal fatto che $H^1\pa{\ol{\Mf_{n-1}}}=0$.
+\end{proof}
+
+
+Citiamo il seguente 
+\begin{theorem}[]
+Si ha il seguente isomorfismo \[\varprojlim_{n\in \N} H^0(\mathfrak{M})/\mf^nH^0(\mathfrak{M}) \cong \varprojlim_{n\in\N} H^0(\mathfrak{M}\otimes  A/\mf^n),\] dove il sistema proiettivo è dato dalle proiezioni 
+\[H^0(\mathfrak{M})/\mf^nH^0(\mathfrak{M})\to H^0(\mathfrak{M})/\mf^{n-1}H^0(\mathfrak{M}).\]
+\end{theorem}
+
+per dimostrare che 
+\begin{proposition}[]
+La mappa
+\[H^0(\mathfrak{M})\to H^0(\overline{\mathfrak{M}})=H^0(\mathfrak{M}\otimes A/\mf)\] 
+definita da 
+\[s\mapsto \overline{s}\in \Oc(0)^h\oplus \bigoplus \Oc(n_i)\]
+è suriettiva.
+\end{proposition}
+\begin{proof}
+Basta osservare il diagramma
+% https://q.uiver.app/#q=WzAsMyxbMiwwLCJcXHZhcnByb2psaW0gSF4wKFxcbWF0aGZyYWt7TX1cXG90aW1lcyBBL1xcbWZebikiXSxbMiwyLCJIXjAoXFxtYXRoZnJha3tNfVxcb3RpbWVzIEEvXFxtZikiXSxbMCwwLCJcXHZhcnByb2psaW0gSF4wKFxcbWF0aGZyYWt7TX0pL1xcbWZebkheMChcXG1hdGhmcmFre019KSJdLFswLDEsIiIsMCx7InN0eWxlIjp7ImhlYWQiOnsibmFtZSI6ImVwaSJ9fX1dLFsyLDFdLFsyLDAsIlxcc2ltIl1d
+\[\begin{tikzcd}
+	{\varprojlim H^0(\mathfrak{M})/\mf^nH^0(\mathfrak{M})} && {\varprojlim H^0(\mathfrak{M}\otimes A/\mf^n)} \\
+	\\
+	&& {H^0(\mathfrak{M}\otimes A/\mf)}
+	\arrow["\sim", from=1-1, to=1-3]
+	\arrow[from=1-1, to=3-3]
+	\arrow[two heads, from=1-3, to=3-3]
+\end{tikzcd}\]
+dove la mappa verticale \`e suriettiva perch\'e \`e la mappa nel punto 2. di (\ref{PrH1FibratoConInfinitesimiNulloEMappaTraSezioniGlobaliDiFibratoConInfinitesimiESurgettiva}).
+\end{proof}
+
+
+\begin{center}
+	\textbf{La conclusione della dimostrazione di HGL presentata durante il corso adesso comincerebbe a presentare un argomento fallace, quindi ci fermiamo qu\`i e prendiamo il risultato per buono.}
+\end{center}
+
+
+
+
+
+
+
+
+
 
 \subsection{Implicazioni verso Horrocks algebrico globale}
 
@@ -419,11 +684,11 @@ Horrocks geometrico locale implica Horrocks geometrico globale.
 \begin{proof}
 Siano $U_0=(\Pj^1\bs\cpa{\infty})_A=\Spec A[t]$ e $U_\infty=(\Pj^1\bs\cpa0)_A=\Spec A[t\ii]$.
 
-Dare un fibrato vettoriale \`e come dare (\ref{LmFasciQuasicoerentiSonoIncollamentoDiRestrizioniSuRicoprimento}) moduli proiettivi finitamente generati $M_0$ su $A[t]$ e $M_\infty$ e $A[t\ii]$ tali che
+Dare un fibrato vettoriale $\Mf$ \`e come dare (\ref{LmFasciQuasicoerentiSonoIncollamentoDiRestrizioniSuRicoprimento}) moduli proiettivi finitamente generati $M_0$ su $A[t]$ e $M_\infty$ e $A[t\ii]$ tali che
 \[(M_0)_t\cong (M_\infty)_{t\ii}.\]
-Per avere la tesi vogliamo che un tale fibrato sia banale quando ristretto a $U_0$, cio\`e che $M_0$ sia esteso da $A$.
+Per avere la tesi vogliamo che $\Mf$ sia banale quando ristretto a $U_0$, cio\`e che $M_0$ sia esteso da $A$.
 
-Per il teorema di incollamento di Quillen (\ref{ThIncollamentoQuillen}) basta mostrare che $(M_0)_\mf$ \`e esteso da $A_\mf$ per ogni $\mf$ massimale in $A$. Osserviamo che localizzare il fibrato a $\mf$ restituisce comunque un fibrato (stavolta su $\Pj^1_{A_\mf}$), definito dai moduli $(M_0)_\mf$ e $(M_\infty)_\infty$ (definiscono un fibrato perch\'e per esattezza della localizzazione $(M_0)_{\mf,t}\cong (M_\infty)_{\mf,t\ii}$). Per il teorema di Horrocks geometrico locale (\ref{ThHorrocksGeometricoLocale}) si ha che $(M_0)_\mf$ \`e esteso da $A_\mf$ come voluto.
+Per il teorema di incollamento di Quillen (\ref{ThIncollamentoQuillen}) basta mostrare che $(M_0)_\mf$ \`e esteso da $A_\mf$ per ogni $\mf$ massimale in $A$. Osserviamo che localizzare\footnote{tensorizzare con $A_\mf[t]$} $\Mf$ a $\mf$ restituisce comunque un fibrato (stavolta su $\Pj^1_{A_\mf}$), definito dai moduli $(M_0)_\mf$ e $(M_\infty)_\infty$ (definiscono un fibrato perch\'e per esattezza della localizzazione $(M_0)_{\mf,t}\cong (M_\infty)_{\mf,t\ii}$). Per il teorema di Horrocks geometrico locale (\ref{ThHorrocksGeometricoLocale}) si ha che $(M_0)_\mf$ \`e esteso da $A_\mf$ come voluto.
 \end{proof}
 
 \begin{proposition}[]\label{PrHGGimplicaHAG} Horrocks geometrico globale implica Horrocks algebrico globale.
@@ -452,13 +717,13 @@ e notiamo che $U$ \`e la loro intersezione, cio\`e abbiamo un diagramma cartesia
 	\arrow[hook', from=1-2, to=2-2]
 	\arrow[hook', from=2-1, to=2-2]
 \end{tikzcd}\]
-Se su $W$ consideriamo il fibrato $M$ e su $V$ consideriamo il fibrato banale dello stesso rango allora notiamo che questi si incollano in quanto su $W\cap V=U$ entrambi i fibrati si restringono al fibrato banale su $U$. Poich\'e $W$ e $V$ formano un ricoprimento di $X\times \Pj^1$ ($f$ non si annulla all'infinito perch\'e \`e monico) abbiamo definito un fibrato vettoriale su sutto $\Pj^1_A$ tale che $M=M_0$.
+Se su $W$ consideriamo il fibrato $M$ e su $V$ consideriamo il fibrato banale dello stesso rango allora notiamo che questi si incollano in quanto su $W\cap V=U$ entrambi i fibrati si restringono al fibrato banale su $U$. Poich\'e $W$ e $V$ formano un ricoprimento di $X\times \Pj^1$ ($f$ non si annulla all'infinito perch\'e \`e monico) abbiamo definito un fibrato vettoriale $\Mf$ su sutto $\Pj^1_A$ tale che $M=M_0$.
 
 Per il teorema di Horrocks geometrico globale (\ref{ThHorrocksGeometricoGlobale}) questo mostra che $M=M_0$ \`e esteso da $A$, quindi per mostrare che $M_0$ \`e libero basta mostrare che $N=M_0/tM_0$ \`e un $A$-modulo libero. Poich\'e $M_0$ deriva da un fibrato su $X\times \Pj^1$, che si scrive come incollamento di $M_0$ e $M_\infty$, vale la seguente catena di isomorfismi
 \[N=\frac{M_0}{tM_0}\cong \frac{M_0}{(t-1)M_0}\overset{s:=t\ii}\cong \frac{M_\infty}{(1-s)M_\infty}\cong \frac{M_\infty}{s M_\infty}.\]
 Se $f$ come prima \`e monico di grado $n$ e $g(s)$ \`e tale che $g(t\ii)t^n=f(t)$, si pu\`o verificare che
 \[V=X\times(\Pj^1\nz)\bs V(f)=X\times(\Pj^1\bs\cpa\infty)\bs V(g).\]
-Per costruzione $g(0)=1\neq0$ quindi $\frac{M_\infty}{s M_\infty}=\pa{\frac{M_\infty}{s M_\infty}}_g$, ma su $V$ sappiamo che il fibrato di $X\times \Pj^1$ \`e banale, cio\`e $(M_\infty)_g$ \`e un $A[s]$-modulo libero. Dunque
+Per costruzione $g(0)=1\neq0$ quindi $\frac{M_\infty}{s M_\infty}=\pa{\frac{M_\infty}{s M_\infty}}_g$, ma su $V$ sappiamo che $\Mf$ \`e banale, cio\`e $(M_\infty)_g$ \`e un $A[s]$-modulo libero. Dunque
 \[\frac{M_\infty}{s M_\infty}\cong \frac{(M_\infty)_g}{s (M_\infty)_g}=(M_{\infty})_g\otimes_{A[s]}A\cong A[s]^{\oplus r}\otimes_{A[s]}A\cong A^{r}\]
 \`e un $A$-modulo libero e quindi $N$ \`e libero seguendo la catena di isomorfismi.
 \end{proof}
