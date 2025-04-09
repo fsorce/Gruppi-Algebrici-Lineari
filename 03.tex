@@ -1,6 +1,7 @@
 \chapter{Gruppi algebrici}
 
 \section{Definizioni generali}
+I due tipi di gruppo algebrico che tratteremo (che a breve mostreremo essere la stessa cosa) sono
 \begin{definition}[Gruppo algebrico lineare]
 Un gruppo $G$ \`e un \textbf{gruppo algebrico lineare} se \`e un sottogruppo di $\GL(n)$ per qualche $n$ definito da equazioni polinomiali.
 \end{definition}
@@ -28,10 +29,12 @@ I gruppi $\GL(n)$, $\GL(1)=\G_m$ e $\SL(n)\subseteq \GL(n)$ sono evidentemente g
 \begin{example}
 Il gruppo
 \[\G_a=\cpa{\mat{1&x\\0&1}}\]
-\`e un gruppo algebrico lineare (definito da $x_{11}=x_{22}=1$ e $x_{21}=0$). Notiamo per\`o che
+\`e un gruppo algebrico lineare (definito da $x_{11}=x_{22}=1$ e $x_{21}=0$). Notiamo che
 \[\mat{1&x\\0&1}\mat{1&y\\0&1}=\mat{1&x+y\\0&1}\]
-quindi questo gruppo lo si pu\`o interpretare come $(\K,+)$, dando una realizzazione di questo come gruppo algebrico lineare.
+quindi questo gruppo \`e isomorfo a $(\K,+)$, dando una realizzazione di questo come gruppo algebrico lineare.
 \end{example}
+
+Avendo a disposizione gruppi cerchiamo di capire le loro azioni e rappresentazioni.
 
 \begin{definition}[Azione regolare di gruppo algebrico]
 Sia $G$ un gruppo algebrico affine e sia $X$ una variet\`a affine qualsiasi. Se $G$ agisce su $X$ affermiamo che questa azione \`e \textbf{regolare} se $\sigma:G\times X\to X$ \`e un morfismo di variet\`a algebriche.
@@ -42,7 +45,7 @@ Se $V$ \`e uno spazio vettoriale di dimensione finita su $\K$ e l'azione di $G$ 
 
 Se $V$ \`e una rappresentazione di $G$ (di dimensione qualsiasi) diciamo che \`e \textbf{regolare} se
 \begin{enumerate}
-    \item per ogni $v\in V$ si ha $\dim\ps{gv}_{g\in G}<\infty$
+    \item per ogni $v\in V$ si ha\footnote{cio\`e l'orbita di ogni elemento \`e contenuta in un sottospazio di dimensione finita.} $\dim\ps{gv}_{g\in G}<\infty$
     \item per ogni $W\subseteq V$ sottospazio di dimensione finita, $W$ \`e una rappresentazione regolare finito dimensionale.
 \end{enumerate}
 \end{definition}
@@ -50,7 +53,7 @@ Se $V$ \`e una rappresentazione di $G$ (di dimensione qualsiasi) diciamo che \`e
 
 \begin{remark}
 Se $G$ \`e un gruppo algebrico affine, ai morfismi di moltiplicazione $\mu$ e inverso $i$ corrispondono omomorfismi di $\K$-algebre
-\[\mu^\ast:\funcDef{\K[G]}{\K[G]\otimes\K[G]}{f}{(x\otimes y)\mapsto f(xy)},\quad i^\ast:\funcDef{\K[G]}{\K[G]}{f}{x\mapsto f(x\ii)}\]
+\[\mu^\ast:\funcDef{\K[G]}{\K[G]\otimes\K[G]}{f}{(x,y)\mapsto f(xy)},\quad i^\ast:\funcDef{\K[G]}{\K[G]}{f}{x\mapsto f(x\ii)}\]
 \end{remark}
 
 \begin{remark}
@@ -76,7 +79,7 @@ Quindi abbiamo una propriet\`a analoga sulla comoltiplicazione $\mu^\ast$ consid
 \begin{remark}
 Se $X=V$ \`e una rappresentazione regolare fin.dim. e $\sigma:G\times V\to V$ abbiamo un omomorfismo di algebre
 \[\sigma^\ast:\K[V]\to \K[G]\otimes\K[V]\]
-Ricordiamo per\`o che $\K[V]=SV^\ast$, quindi possiamo restringere $\sigma^\ast$ a solo $V^\ast\subseteq SV^\ast$.
+Ricordiamo per\`o che $\K[V]=SV^\ast$, quindi possiamo considerare equivalentemente la restrizione $\sigma^\ast$ a $V^\ast\subseteq SV^\ast$.
 \end{remark}
 
 \begin{lemma}
@@ -85,11 +88,11 @@ $\sigma^\ast(V^\ast)\subseteq \K[G]\otimes V^\ast$.
 \begin{proof}
 Sia $e_1,\cdots, e_n$ una base di $V$ e $\vp_1,\cdots, \vp_n$ la base duale. Se $g$ agisce come $(g_{ij})$ su $V$ e $v=\sum v_ie_i$ allora
 \begin{align*}
-    \sigma^\ast \vp_k(g,v)=&\vp_k(gv)=\vp_k\pa{\sum g_{ij}v_je_i}=\\
-    =&\sum g_{ij}v_j\vp_k(e_i)=\sum g_{kj}v_j=\\
-    =&\pa{\sum x_{kj}\otimes \vp_j}(g,v),
+    \sigma^\ast \vp_k(g,v)=&\vp_k(gv)=\vp_k\pa{\sum_{i,j} g_{ij}v_je_i}=\\
+    =&\sum_{i,j} g_{ij}v_j\vp_k(e_i)=\sum_j g_{kj}v_j=\\
+    =&\pa{\sum_j x_{kj}\otimes \vp_j}(g,v),
 \end{align*}
-dove $x_{kj}\in \K[G]$ \`e la funzione che per ogni $g$ restituisce $g_{kj}$.
+dove $x_{kj}\in \K[G]$ \`e la funzione che per ogni $g$ restituisce $g_{kj}$ (che \`e regolare perch\'e la rappresentazione lo \`e).
 \end{proof}
 
 
@@ -103,16 +106,21 @@ Sia $G$ che agisce su $X$ in modo regolare con entrambi affini. Allora
 \end{itemize}
 \end{lemma}
 \begin{proof}
-Se $f\in \K[X]$ allora $\dim \ps{Gf}<\infty$. Notiamo che $\sigma(f)=\sum_{i=1}^k \al_i\otimes \beta_i$ con somma finita. Notiamo che, per definizione
-\[f(gx)=\sum_i \al_i(g)\beta_i(x)\]
+Il primo punto \`e ovvio e l'ultimo \`e il caso particolare $X=G$ e $G\acts G$ per traslazione. Mostriamo dunque che $G\acts \K[X]$ \`e regolare.
+\setlength{\leftmargini}{0cm}
+\begin{itemize}
+\item[$\boxed{\dim \ps{Gf}<\infty}$] Sia $f\in \K[X]$. Notiamo che $\sigma(f)=\sum_{i=1}^k \al_i\otimes \beta_i$ con somma finita e che per definizione
+\[f(gx)=\sum_i \al_i(g)\beta_i(x),\]
 quindi
 \[(gf)(x)=f(g\ii x)=\sum \al_i(g\ii)\beta_i(x)\coimplies gf=\sum_{i=1}^k \al_i(g\ii)\beta_i\in \ps{\beta_1,\cdots,\beta_k}\]
 Questo mostra che $\dim\ps{Gf}$ \`e finita.
+\item[$\boxed{\text{reg. su fin.dim.}}$] Vogliamo dimostrare che su $W\subseteq \K[X]$ di dimensione finita l'azione di $G$ \`e regolare, cio\`e che $\sigma^\ast\res{\K[W]}$ \`e un omomorfismo di $\K$-algebre con codominio $k[G]\otimes k[W]$. Concretamente, per ogni $\vp\in W^\ast$ (generatori di $SW^\ast=\K[W]$) mostriamo che $\psi=\sigma^\ast\vp$ data da $\psi(g,f)=\vp(gf)$ \`e regolare su $G\times W$.
 
-Vogliamo dimostrare che su $W\subseteq \K[X]$ di dimensione finita l'azione di $G$ \`e regolare, cio\`e voglio mostrare che per ogni $\vp\in W^\ast$ (generatori di $SW^\ast=\K[W]$) si ha $\vp(gf)$ regolare.
-
-Sia $f_1,\cdots, f_k$ una base di $W$. Poich\'e sono una base $\sigma^\ast(f_i)=\sum_j\al_{ij}\otimes f_j$. Se $\vp(f_i)=\la_i$ abbiamo che $\psi=\sigma^\ast\vp$ \`e tale che
-\[\psi(g,f_i)=\vp(gf_i)=\vp(\sum \al_{ij}(g\ii)f_j)=\sum\al_{ij}(g\ii)\la_j\]
+Sia $f_1,\cdots, f_k$ una base di $W$ e $f_1^\ast,\cdots,f_k^\ast$ la relativa base duale di $W^\ast$. Poich\'e sono una base $\sigma^\ast(f_i)=\sum_j\al_{ij}\otimes f_j$. Ponendo $\vp(f_i)=\la_i$ si ha
+\[\psi(g,f)=\vp(\sum \mu_i gf_i)=\vp\pa{\sum f_i^\ast(f)\al_{ij}(g\ii)f_j}=\sum_{j}\pa{\sum_i\al_{ij}(i(g))f_i^\ast(f)}\la_j,\]
+che \`e regolare su $G\times W$ in quanto $i:G\to G$ \`e l'inversa (morfismo) e $f_i^\ast:W^\ast\subseteq \K[W]$.
+\end{itemize}
+\setlength{\leftmargini}{0.5cm}
 \end{proof}
 
 \subsection{Componente connessa dell'identit\`a}
@@ -120,24 +128,24 @@ Sia $f_1,\cdots, f_k$ una base di $W$. Poich\'e sono una base $\sigma^\ast(f_i)=
     Sia $G$ un gruppo algebrico affine e sia $G^0$ la componente connessa di $e_G$. Allora $G^0$ è un sottogruppo normale chiuso.
 \end{proposition}
 \begin{proof}
-    Sicuramente $G^0$ è chiuso in quanto componente connessa. L'insieme $G^0\times G^0$ è connesso e la mappa \[ m^0=\left.m\right|_{G^0\times G^0}\colon G^0\times G^0 \longrightarrow G\] ha immagine connessa in $G$. Poiché $e_G$ è nell'immagine di $m^0$, si ha $\imm(m^0)=G^0$. Dato $g$ in $G$, si ha \[gG^0g^{-1}\subset G^0,\]
+    Sicuramente $G^0$ è chiuso in quanto componente connessa. La variet\`a $G^0\times G^0$ è connessa\footnote{topologia di Zariski \`e meno fine della topologia prodotto.} e la mappa \[ m^0=\left.m\right|_{G^0\times G^0}\colon G^0\times G^0 \longrightarrow G\] ha immagine connessa in $G$ per continuit\`a. Poiché $e_G$ è nell'immagine di $m^0$, si ha $\imm(m^0)\subseteq G^0$, cio\`e $G^0$ \`e un sottogruppo. 
+    \medskip
+    
+    \noindent
+    Mostriamo ora la normalit\`a: dato $g$ in $G$, si ha \[gG^0g^{-1}\subseteq G^0,\]
     infatti la mappa
     \[AD_g:\funcDef{G^0}{G}{x}{gxg\ii}\]
     \`e continua e fissa $e_G$, quindi $\imm(AD_g)\subset G^0$.
 \end{proof}
-\begin{remark}\label{ReInGruppoComponentiConnesseSonoIrriducibili}
-In gruppo algebrico affine le componenti connesse sono irriducibili.
-\end{remark}
 
 \begin{exercise}
     Il sottogruppo $G^0$ è irriducibile.
 \end{exercise}
 
-Citiamo il seguente teorema:
+\begin{remark}\label{ReInGruppoComponentiConnesseSonoIrriducibili}
+In un gruppo algebrico affine le componenti connesse sono irriducibili.
+\end{remark}
 
-\begin{theorem}[Chevalley]\label{ThChevalley}
-    Se $\varphi\colon X \to Y$ è una mappa regolare tra due varietà, allora $\varphi(X)$ contiene un aperto di $\overline{\varphi(X)}$.
-\end{theorem}
 
 \begin{remark}\label{RmDecomposizioneG0}
     Se $G$ è un gruppo algebrico, allora esistono $g_1,\ldots,g_k$ in $G$ tali che \[G=G^0 \cup G^0 g_1 \cup \ldots\cup G^0g_k.\]
@@ -148,13 +156,16 @@ Citiamo il seguente teorema:
     Se $\varphi\colon G \to H$ è un morfismo di gruppi algebrici affini, allora $\varphi(G)$ è un chiuso di $H$.
 \end{proposition}
 \begin{proof}
-    Sfruttando la decomposizione dell'Osservazione (\ref{RmDecomposizioneG0}), abbiamo
+    Sfruttando la decomposizione dell'osservazione (\ref{RmDecomposizioneG0}), abbiamo
     \[\varphi(G)=\varphi(G^0) \cup \varphi(G^0 g_1) \cup \ldots\cup \varphi(G^0g_k),\]
     quindi basta mostrare che $\varphi(G^0)$ è chiuso. In particolare, possiamo ricondurci al caso $G=G^0$. \\
-    Il sottogruppo $X=\overline{\varphi(G)}$ di $H$ è irriducibile, e per il Teorema di Chevalley (\ref{ThChevalley}) esiste un aperto $U$ di $X$ contenuto in $\varphi(G)$. Mostriamo che $X=\varphi(G)$. Poiché $X$ e $\varphi(G)$ sono sottogruppi di $H$, si ha \[U\cdot U \subseteq \varphi(G)\subseteq X\]
-    Se $x$ è un elemento di $X$, poiché $i(U)=U^{-1}$ è un aperto di $X$, anche $xU^{-1}$ è un aperto di $X$. Per irriducibilità di $X$, si ha $U\cap xU^{-1} \ne \emptyset$, quindi esistono $u,v$ in $U$ tali che $x=uv$, da cui $X=U\cdot U =\varphi(G)$.
+    Il sottogruppo $X=\overline{\varphi(G)}$ di $H$ è irriducibile per continuit\`a di $\vp$, quindi basta mostrare che $X=\vp(G)$.
+    
+    
+    Per il Teorema di Chevalley (\ref{ThChevalley}) esiste un aperto $U$ di $X$ contenuto in $\varphi(G)$. Poiché $X$ e $\varphi(G)$ sono sottogruppi di $H$, si ha \[U\cdot U \subseteq \varphi(G)\subseteq X.\]
+    Se $x$ è un elemento di $X$, poiché $i(U)=U^{-1}$ è un aperto di $X$, anche $xU^{-1}$ è un aperto di $X$. Per irriducibilità di $X$, si ha $U\cap xU^{-1} \ne \emptyset$, quindi esistono $u,v$ in $U$ tali che 
+    \[u=xv\ii\coimplies x=uv,\] da cui $X\subseteq U\cdot U \subseteq \varphi(G)\subseteq X$ e abbiamo l'uguaglianza cercata.
 \end{proof}
-
 
 
 
@@ -235,40 +246,34 @@ ESERCIZIO
 Ogni gruppo affine \`e lineare.
 \end{theorem}
 \begin{proof}
-Consideriamo l'azione di $G$ su se stesso per moltiplicazione a sinistra. Questa rende $\K[G]$ una rappresentazione di $G$. Notiamo che $\K[G]$ \`e una $\K$-algebra finitamente generata, con generatori $f_1,\cdots, f_n$. Notiamo che esiste $V$ uno spazio vettoriale di dimensione finita che contiene $f_1,\cdots, f_n$ che \`e stabile per l'azione di $G$ e una rappresentazione regolare di $G$.
+Consideriamo l'azione di $G$ su se stesso per moltiplicazione a sinistra. Questa rende $\K[G]$ una rappresentazione di $G$. Notiamo che $\K[G]$ \`e una $\K$-algebra finitamente generata. Siano $f_1,\cdots, f_n$ dei generatori. Osserviamo che $V=\Span_\K(G f_1\cup\cdots\cup G f_n)$ \`e uno spazio vettoriale di dimensione finita che contiene $f_1,\cdots, f_n$, \`e stabile per l'azione di $G$ ed \`e una rappresentazione regolare di $G$, quindi senza perdita di generalit\`a scegliere un numero finito di generatori di $\K[G]$ linearmente indipendenti tali che il loro span $V$ \`e una rappresentazione regolare di $G$.
 
-Supponiamo $f_1,\cdots, f_N$ base di $V$. Sia
+Consideriamo la comoltiplicazione
 \[\mu:\funcDef{\K[G]}{\K[G]\otimes\K[G]=\K[G\times G]}{f}{(g,h)\mapsto f(gh)}\]
-e scriviamo $\mu(f_j)=\sum \wt\al_{i,j}\otimes f_i$.
-\[(g f_j)(h)=f_j(g\ii h)=\mu(f)(g\ii,h)=\sum \wt \al_{i,j}(g\ii)f_i(h).\]
-Poniamo $\al_{i,j}(g)=\wt\al_{i,j}(g\ii)$.
+Poich\'e $gf_j=\sum_{i}\al_{i,j}(g)f_i$, si ha che $\mu(f_j)=\sum \wt\al_{i,j}\otimes f_i$ dove $\wt \al_{i,j}=\al_{i,j}\circ i$ per $i:G\to G$ inverso, infatti
+\[\pa{\sum \al_{i,j}(g) f_i}(h)=(g f_j)(h)=f_j(g\ii h)=\mu(f)(g\ii,h)=\sum \wt \al_{i,j}(g\ii)f_i(h).\]
 Consideriamo ora la mappa
-\[\vp:\funcDef{G}{\GL(V)}{g}{[g]^{\cpa{f_j}}_{\cpa{f_j}}=(\al_{i,j}(g))}\]
+\[\vp:\funcDef{G}{\GL(V)}{g}{[g]^{\cpa{f_j}}_{\cpa{f_j}}=(\wt\al_{i,j}(g))}\]
 che a livello di algebre diventa
-\[\psi:\funcDef{\K[\GL(V)]=\K[x_{i,j},\det\ii]}{\K[G]}{x_{i,j}}{\al_{i,j}}.\]
+\[\psi:\funcDef{\K[\GL(V)]=\K[x_{i,j},\det\ii]}{\K[G]}{x_{i,j}}{\wt\al_{i,j}}.\]
 Dalla definizione \`e evidente che $\vp$ \`e una mappa regolare. Se mostriamo che $\vp$ \`e iniettiva e che $\psi$ \`e surgettiva allora per (\ref{PrImmagineChiusaSeTraAlgebraSurgettiva}) avremo che $\vp(G)$ \`e un chiuso, quindi $\vp$ identifica $G$ con un chiuso di $\GL(V)$, rendendo $G$ un gruppo algebrico lineare.
 
-Siano $g, h\in G$ tali che $\al_{i,j}(g)=\al_{i,j}(h)$ per ogni $i,j$, allora $gf_j=hf_j$ per ogni $j$, quindi $g$ e $h$ hanno lo stesso effetto su $\K[G]$, in particolare\footnote{$e$ \`e l'identit\`a di $G$}
-\[f(g\ii)=(gf)(e)=(hf)(e)=g(h\ii)\]
-per ogni $f\in\K[G]$, e questo significa che $g\ii=h\ii$, cio\`e $g=h$, mostrando l'iniettivit\`a.
+Siano $g, h\in G$ tali che $\wt\al_{i,j}(g)=\wt\al_{i,j}(h)$ per ogni $i,j$, allora $g\ii f_j=h\ii f_j$ per ogni $j$, quindi $g\ii$ e $h\ii$ hanno lo stesso effetto su $\K[G]$, in particolare\footnote{$e$ \`e l'identit\`a di $G$}
+\[f(g)=(g\ii f)(e)=(h\ii f)(e)=g(h)\]
+per ogni $f\in\K[G]$, e questo significa che $g=h$, mostrando l'iniettivit\`a.
 
 Notiamo che per ogni $g\in G$
-\[f_j(g\ii)=(gf_j)(e)=\sum \al_{i,j}(g)\under{\in\K}{f_j(e)}.\]
-Questo mostra che i generatori $f_j$ di $\K[G]$ appartengono all'immagine di $\psi$ (perch\'e combinazioni lineari delle $\al_{i,j}$), quindi $\psi$ \`e surgettiva.
+\[f_j(g)=(g\ii f_j)(e)=\sum \wt\al_{i,j}(g)\under{\in\K}{f_j(e)}.\]
+Questo mostra che i generatori $f_j$ di $\K[G]$ appartengono all'immagine di $\psi$ (perch\'e combinazioni lineari delle $\wt \al_{i,j}$), quindi $\psi$ \`e surgettiva.
 \end{proof}
 
 
-Ricordiamo il 
-\begin{theorem}[di Chevalley]
-Sia $\vp:X\to Y$ morfismo di variet\`a, allora $\vp(X)$ contiene un aperto di $\ol{\vp(X)}$.
-\end{theorem}
-
-\begin{corollary}
+\begin{proposition}
 Se $G$ e $H$ gruppi algebrici affini con $\vp:G\to H$ morfismo di gruppi algebrici allora $\vp(G)$ \`e un chiuso di $H$.
-\end{corollary}
+\end{proposition}
 \begin{proof}
 Sia $T=\vp(G)\subseteq H$. Vogliamo mostrare che $T=\ol T\subseteq H$. Per Chevalley (\ref{ThChevalley}), $T\supseteq U$ per $U$ aperto di $\ol T$. Notiamo che $\ol T$ \`e un sottogruppo di $H$. Dunque per ogni $t\in \ol T$, $tU\subseteq \ol T$.
 
-Poich\'e la moltiplicazione per $t$ \`e un omeomorfismo, $U$ e $tU$ sono aperti di $\ol T$, quindi per irriducibilit\`a $U\cap tU\neq \empty$, dunque esiste $g,h\in U$ tali che $g=th$, cio\`e $t=gh\ii\in T$ e dato che $t$ era un generico elemento di $T$ abbiamo finito.
+Poich\'e la moltiplicazione per $t$ \`e un omeomorfismo, $U$ e $tU$ sono aperti di $\ol T$, quindi per irriducibilit\`a $U\cap tU\neq \emptyset$, dunque esistono $g,h\in U$ tali che $g=th$, cio\`e $t=gh\ii\in T$ e dato che $t$ era un generico elemento di $T$ abbiamo finito.
 \end{proof}
 
