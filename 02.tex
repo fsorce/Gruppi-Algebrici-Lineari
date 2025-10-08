@@ -211,12 +211,12 @@ $\K[X\times Y]\cong \K[X]\otimes\K[Y]$
 \end{proposition}
 \begin{proof}
 L'anello delle coordinate del prodotto di due variet\`a affini \`e dato da
-\[\K[X\times Y]=\frac{\K{x_1,\cdots, x_\ell,y_1,\cdots, x_\ell}}{f(x),g(y)}\cong \K[X]\otimes \K[Y]\]
+\[\K[X\times Y]=\frac{\K[x_1,\cdots, x_\ell,y_1,\cdots, y_m]}{(f(x),g(y))}\cong \K[X]\otimes \K[Y]\]
 Infatti abbiamo un morfismo bilineare da $\K[X]\times\K[Y]\to \K[X\times Y]$ dato dal prodotto dei polinomi. Il morfismo indotto $\Phi $\`e surgettivo perch\'e $x_i=\Phi(x_i\times 1)$ e $y_i=\Phi(1\otimes y_i)$, quindi abbiamo i generatori. Per l'iniettivit\`a procediamo per casi
 \begin{itemize}
 	\item Supponiamo $X=\K^\ell$ e $Y=\K^m$, allora abbiamo una inversa di $\Phi$ data da
 	\[x_i\mapsto x_i\otimes 1,\qquad y_i\mapsto 1\otimes y_i\]
-	\item Scrivendo $\K[X\times Y]$ come $\frac{\K[x_1,\cdots, y_\ell]}{(f(x),g(y))}$ abbiamo un morfismo dal numeratore verso $\K[X]\otimes \K[Y]$ ben definito e notiamo che il nucleo \`e esattamente $(f(x),g(y))$. (dimostrare che protto tensore di $\K$-alegbre ridotte finitamente generate \`e ridotta.)
+	\item Scrivendo $\K[X\times Y]$ come $\frac{\K[x_1,\cdots, y_m]}{(f(x),g(y))}$ abbiamo un morfismo dal numeratore verso $\K[X]\otimes \K[Y]$ ben definito e notiamo che il nucleo \`e esattamente $(f(x),g(y))$. (dimostrare che protto tensore di $\K$-alegbre ridotte finitamente generate \`e ridotta.)
 \end{itemize}
 \end{proof}
 
@@ -235,7 +235,7 @@ Se $X,Y,Z$ variet\`a affini e morfismi $f:X\to Z$ e $g:Y\to Z$, definiamo $W=\cp
 \end{definition}
 
 \begin{remark}
-Notiamo che $W$ \`e un chiuso, infatti \`e luogo di zeri di $f(x)-g(y)$ in $X\times Y$. Osserviamo per\`o che queste equazioni non sono ridotte a priori.
+Notiamo che $W$ \`e un chiuso, infatti \`e luogo di zeri di $f(x)-g(y)$ in $X\times Y$. Osserviamo per\`o che queste equazioni non sono ridotte a priori\footnote{ed \`e naturale che sia cos\`i. Intersezioni sono in particolare prodotti fibrati e quando intersechiamo due variet\`a \`e naturale trovare delle molteplicit\`a, per esempio $V(x)\cap V(y-x^2)$ in $\A^2$ \`e il punto $(0,0)$ ma con molteplicit\`a 2.}.
 \end{remark}
 
 
@@ -399,7 +399,7 @@ Se $X$ \`e una variet\`a affine irriducibile definiamo il suo \textbf{campo dell
 
 \section{Variet\`a liscie}
 \begin{notation}
-Sia $X$ una varietà (affine) e sia $x$ un punto di $X$. In questa sezione poniamo $A=\K[X]$ e $\mf_x=\{f\in A\colon f(x)=0\}$.
+Sia $X$ una varietà (affine) e sia $x$ un punto di $X$. In questa sezione poniamo $A=\K[X]_{\mf_x}$ e $\mf_x=\{f\in A\colon f(x)=0\}$.
 \end{notation}
 
 
@@ -414,12 +414,12 @@ Sia $X$ una varietà (affine) e sia $x$ un punto di $X$. In questa sezione ponia
 \end{definition}
 
 \begin{definition}
-    Una \textbf{derivazione} su $A$ è una funzione $\partial\colon A \to \K$ lineare che soddisfa la seguente proprietà \[\partial(fg)=f(x)\partial g + g(x)\partial f.\]
-    Indichiamo con $\Der_\K(A,\K)$ l'insieme delle derivazioni su $A$.
+    Una \textbf{derivazione} su $A$ in $x$ è una funzione $\partial\colon A \to \K$ lineare che soddisfa la seguente proprietà \[\partial(fg)=f(x)\partial g + g(x)\partial f.\]
+    Indichiamo con $\Der_x(A,\K(x))$ l'insieme delle derivazioni su $A$.
 \end{definition}
 
 \begin{exercise}
-    La mappa $T_xX \to \Der_\K(A,\K)$ definita da $\varphi\mapsto \widetilde{\varphi}$, dove \[\widetilde{\varphi}(\la+\mu)=\varphi(\mu)\] definisce una bigezione (stiamo usando la decomposizione $A=\K\oplus \mf_x$).
+    La mappa $T_xX \to \Der_x(A,\K)$ definita da $\varphi\mapsto \widetilde{\varphi}$, dove \[\widetilde{\varphi}(\la+\mu)=\varphi(\mu)\] definisce una bigezione (stiamo usando la decomposizione $A=\K\oplus \mf_x$).
 \end{exercise}
 
 \begin{example}

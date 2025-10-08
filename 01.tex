@@ -37,7 +37,7 @@ Se $U\subseteq V$ \`e una sottorappresentazione, $U\subseteq V$ \`e morfismo di 
     Se $U\subseteq V$ \`e una sottorappresentazione, $V\to V/U$ \`e morfismo di $G$-moduli
 \end{example}
 
-\begin{remark}
+\begin{remark}[Propriet\`a universale del quoziente]
 La mappa $\pi:V\to V/U$ \`e tale che per ogni $\vp:V\to V'$ di $G$-moduli, se $\vp(U)=0$ allora esiste $\chi:V/U\to V'$ di $G$-moduli t.c. $\vp=\chi\circ \pi$.
 % https://q.uiver.app/#q=WzAsNixbMSwwLCJVIl0sWzIsMCwiViJdLFszLDAsIlYvVSJdLFsyLDEsIlYnIl0sWzQsMCwiMCJdLFswLDAsIjAiXSxbMCwxXSxbMSwyXSxbNSwwXSxbMiw0XSxbMSwzLCJcXHZwIiwxXSxbMCwzLCIwIiwyXSxbMiwzLCJcXGNoaSIsMCx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dXQ==
 \[\begin{tikzcd}
@@ -63,7 +63,7 @@ Analogamente definiamo lo \textbf{spazio dei coinvarianti} come
 Notiamo che $\ps{v-gv\mid v\in V,g\in G}$ \`e effettivamente una sottorappresentazione ($h(v-gv)=hv-(hgh\ii)(hv)$), quindi questo quoziente \`e ben definito. Notiamo che $G$ agisce banalmente anche $V_G$.
 \end{definition}
 
-\begin{remark}[(Non parte del corso)]
+\begin{remark}[{[Non parte del corso]}]
 $V^G$ \`e l'equalizzatore delle mappe $g:V\to V$ e $V_G$ \`e il coequalizzatore delle stesse mappe, quindi sono esempi di limite e colimite rispettivamente nella categoria dei $G$-moduli.
 \end{remark}
 
@@ -107,7 +107,17 @@ La rappresentazione cos\`i definita \`e detta \textbf{duale} alla rappresentazio
 \end{definition}
 
 \begin{remark}
-Usiamo $g\ii$ al posto di $g$ per continuare ad avere una azione destra di $G$ su $V^\ast$.
+Usiamo $g\ii$ al posto di $g$ per continuare ad avere una azione destra di $G$ su $V^\ast$. Un altro motivo \`e la coerenza di questo diagramma
+% https://q.uiver.app/#q=WzAsMyxbMCwwLCJWIl0sWzIsMSwiXFxLIl0sWzAsMiwiViJdLFswLDEsIlxcdnAiXSxbMiwxLCJnXFxjZG90IFxcdnAiLDJdLFswLDIsImciLDAseyJjdXJ2ZSI6LTJ9XSxbMiwwLCJnXFxpaSIsMCx7ImN1cnZlIjotMn1dXQ==
+\[\begin{tikzcd}
+	V \\
+	&& \K \\
+	V
+	\arrow["\vp", from=1-1, to=2-3]
+	\arrow["g", curve={height=-12pt}, from=1-1, to=3-1]
+	\arrow["{g\ii}", curve={height=-12pt}, from=3-1, to=1-1]
+	\arrow["{g\cdot \vp}"', from=3-1, to=2-3]
+\end{tikzcd}\]
 \end{remark}
 
 \begin{remark}
@@ -124,27 +134,34 @@ Se $V$ e $W$ rappresentazioni di $G$, definiamo una azione sul prodotto tensore 
     \[(gL)(v)=g(L(g\ii v)).\]
 \end{definition}
 \begin{remark}
+La definizione sopra corrisponde alla commutativit\`a di
+% https://q.uiver.app/#q=WzAsNCxbMCwwLCJWIl0sWzEsMCwiVyJdLFswLDEsIlYiXSxbMSwxLCJXIl0sWzAsMSwiTCJdLFsyLDMsImdMIl0sWzAsMiwiZyIsMl0sWzEsMywiZyJdXQ==
+\[\begin{tikzcd}
+	V & W \\
+	V & W
+	\arrow["L", from=1-1, to=1-2]
+	\arrow["g"', from=1-1, to=2-1]
+	\arrow["g", from=1-2, to=2-2]
+	\arrow["gL", from=2-1, to=2-2]
+\end{tikzcd}\]
+\end{remark}
+\begin{remark}
 $(\Hom_\K(V,W))^G=\cpa{L\mid gL=L}$, ma
 \[gL=L\coimplies g(L(g\ii v))=gL(v)=L(v)\coimplies L(g\ii v)=g\ii L(v)\]
 e poich\'e questo vale per ogni $g\in G$ ricaviamo che
 \[(\Hom_\K(V,W))^G=\Hom_G(V,W).\]
 \end{remark}
 
-Consideriamo la mappa canonica
-\[\Phi:\funcDef{V^\ast\otimes W}{\Hom_\K(V,W)}{\vp\otimes w}{\cpa{v\mapsto \vp(v)w}}\]
-\begin{remark}
-$\Phi$ \`e iniettiva e $\imm \Phi=\cpa{L:V\to W\mid \rnk L<\infty}$
-\end{remark}
-\begin{proof}
-ESERCIZIO
-\end{proof}
 
-\begin{remark}
-$\Phi$ \`e di $G$-moduli
-\end{remark}
+\begin{proposition}[]
+La mappa canonica
+\[\Phi:\funcDef{V^\ast\otimes W}{\Hom_\K(V,W)}{\vp\otimes w}{\cpa{v\mapsto \vp(v)w}}\]
+\`e un omomorfismo iniettivo di $G$-moduli con immagine data dalle mappe lineari di rango finito.
+\end{proposition}
 \begin{proof}
-Per linearit\`a basta considerare elementi della forma $\vp\otimes w$.
+Mostriamo che \`e un $G$-omomorfismo: per linearit\`a basta considerare elementi della forma $\vp\otimes w$.
 \[\Phi(g(\vp\otimes w))(v)=\Phi(g\vp\otimes gw)(v)=g\vp(v)gw=\vp(g\ii v)gw=g(\Phi(\vp\otimes w))(v).\]
+L'immagine cosiste sicuramente di mappe di rango finito: $\Phi(\sum_{i=1}^r \vp_i\otimes w_i)$ ha rango al massimo $r$ perch\'e ha immagine contenuta in $\Span(w_1,\cdots, w_r)$. Viceversa, data $L:V\to W$ lineare di rango finito sia $w_1,\cdots, w_r$ una base di $\imm L$ e siano $\vp_i:V\to \K$ i funzionali che a $v$ associano la $i$-esima coordinata di $L(v)$ nella base scelta. Segue che $L(v)=\sum \vp_i(v)w_i$ e quindi $L=\Phi(\sum \vp_i\otimes w_i)$. La costruzione data fornisce una inversa di $\Phi$ definita sul sottospazio delle funzioni di rango finito, quindi $\Phi$ in particolare \`e iniettiva.
 \end{proof}
 
 \subsection{Algebre tensoriali}
@@ -267,6 +284,10 @@ Assumiamo $\K$ algebricamente chiuso e $\dim_\K(S)<+\infty$. Allora abbiamo un c
         \item $V$ si dice \textbf{completamente riducibile} se per ogni sottorappresentazione $W$ di $V$ esiste una sottorappresentazione $U$ di $V$ tale che $V=U\oplus W$.
     \end{enumerate}
 \end{definition}
+
+\begin{remark}
+Se $V$ \`e una rappresentazione semisemplice di $G$ allora la scrittura $V=\bigoplus S_i$ significa che per ogni $g\in G$, $g$ agisce su $V$ come una matrice a blocchi se consideriamo una base di $V$ che rispetta la decomposizione.
+\end{remark}
 
 \begin{example}
     Sia $G=\znz2=\{1,\sigma\}$ e $\K=\overline{\F_2}$. Allora la rappresentazione $V=\K^2$ di $G$ data da  \[[\sigma]_{e_1,e_2}^{e_1,e_2}=\begin{pmatrix}

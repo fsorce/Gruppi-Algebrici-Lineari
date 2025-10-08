@@ -46,9 +46,13 @@ Se $V$ \`e uno spazio vettoriale di dimensione finita su $\K$ e l'azione di $G$ 
 Se $V$ \`e una rappresentazione di $G$ (di dimensione qualsiasi) diciamo che \`e \textbf{regolare} se
 \begin{enumerate}
     \item per ogni $v\in V$ si ha\footnote{cio\`e l'orbita di ogni elemento \`e contenuta in un sottospazio di dimensione finita.} $\dim\ps{gv}_{g\in G}<\infty$
-    \item per ogni $W\subseteq V$ sottospazio di dimensione finita, $W$ \`e una rappresentazione regolare finito dimensionale.
+    \item per ogni $W\subseteq V$ sottorappresentazione di dimensione finita, $W$ \`e una rappresentazione regolare finito dimensionale.
 \end{enumerate}
 \end{definition}
+
+\begin{remark}
+Ogni rappresentazione regolare non banale ammette una sottorappresentazione regolare finito dimensionale, basta prendere un vettore non nullo e poi il sottospazio generato dall'orbita.
+\end{remark}
 
 
 \begin{remark}
@@ -77,7 +81,7 @@ Quindi abbiamo una propriet\`a analoga sulla comoltiplicazione $\mu^\ast$ consid
 \end{remark}
 
 \begin{remark}
-Se $X=V$ \`e una rappresentazione regolare fin.dim. e $\sigma:G\times V\to V$ abbiamo un omomorfismo di algebre
+Se $X=V$ \`e una rappresentazione regolare finito dimensionale e $\sigma:G\times V\to V$ abbiamo un omomorfismo di algebre
 \[\sigma^\ast:\K[V]\to \K[G]\otimes\K[V]\]
 Ricordiamo per\`o che $\K[V]=SV^\ast$, quindi possiamo considerare equivalentemente la restrizione $\sigma^\ast$ a $V^\ast\subseteq SV^\ast$.
 \end{remark}
@@ -88,7 +92,7 @@ $\sigma^\ast(V^\ast)\subseteq \K[G]\otimes V^\ast$.
 \begin{proof}
 Sia $e_1,\cdots, e_n$ una base di $V$ e $\vp_1,\cdots, \vp_n$ la base duale. Se $g$ agisce come $(g_{ij})$ su $V$ e $v=\sum v_ie_i$ allora
 \begin{align*}
-    \sigma^\ast \vp_k(g,v)=&\vp_k(gv)=\vp_k\pa{\sum_{i,j} g_{ij}v_je_i}=\\
+    (\sigma^\ast \vp_k)(g,v)=&\vp_k(gv)=\vp_k\pa{\sum_{i,j} g_{ij}v_je_i}=\\
     =&\sum_{i,j} g_{ij}v_j\vp_k(e_i)=\sum_j g_{kj}v_j=\\
     =&\pa{\sum_j x_{kj}\otimes \vp_j}(g,v),
 \end{align*}
