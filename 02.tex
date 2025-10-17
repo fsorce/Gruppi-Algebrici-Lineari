@@ -121,7 +121,7 @@ Una \textbf{variet\`a algebrica} su $\K$ \`e uno spazio topologico compatto $X$ 
 \end{definition}
 
 \begin{remark}
-Quello che abbiamo appena definito \`e pi\`u propriamente detto \textit{schema di tipo finito su $\K$ ridotto}.
+Quello che abbiamo appena definito \`e pi\`u propriamente detto \textit{schema ridotto di tipo finito su $\K$}.
 \end{remark}
 
 
@@ -268,23 +268,23 @@ Sia $X$ uno spazio topologico connesso. Allora
     Uno spazio topologico $X$ si dice \textbf{riducibile} se esistono due sottospazi chiusi propri $Z$ e $W$ di $X$ tali che $X=Z\cup W$. Lo spazio $X$ si dice \textbf{irriducibile} se non è riducibile.
 \end{definition}
 
-\begin{remark}
+\begin{proposition}
     Se $X$ è uno spazio di Hausdorff irriducibile, allora $X$ è un punto.
-\end{remark}
+\end{proposition}
 \begin{proof}
     Se $x,y$ sono punti distinti di $X$, allora esistono due intorni disgiunti $U_x$ e $U_y$ di $x$ e $y$ rispettivamente. Posti $Z=X\setminus U_y$ e $W=X\setminus U_x$, si ottiene $X=Z\cup W$.
 \end{proof}
 
-\begin{remark}
+\begin{proposition}
     Sia $X$ una varietà affine. Allora $X$ è irriducibile se e solo se l'anello delle coordinate $\K[X]$ è un dominio d'integrità.
-\end{remark}
+\end{proposition}
 
 \begin{proof}
     Siano $f,g$ in $\K[X]$ tali che $f g=0$. Consideriamo $Z=V(f)$ e $W=V(g)$. Allora $Z$ e $W$ sono due chiusi tali che $X=Z\cup W$, dunque $X=Z$ oppure $X=W$, cioè $f=0$ oppure $g=0$.
 \end{proof}
 
 \begin{example}
-    La variet\`a $X=\{(x,y)\in \K^2 \colon xy=0\}$ non \`e irriducibile.
+    La variet\`a $X=\cpa{(x,y)\in \K^2 \mid xy=0}$ non \`e irriducibile.
 \end{example}
 
 \begin{remark}
@@ -508,9 +508,22 @@ In caratteristica $p$ il teorema va enunciato in modo diverso: $\K=\overline{\F_
 
 
 \begin{definition}
-    Sia $\varphi\colon X\to Y$ un morfismo di varietà lisce. Diciamo che $\varphi$ è \textbf{liscio} in un punto $p$ di $X$ se la mappa $d_p\varphi\colon T_pX\to T_{\varphi(p)}Y$ è surgettiva.
+    Sia $\varphi\colon X\to Y$ un morfismo di varietà lisce. Diciamo che $\varphi$ è \textbf{liscio}\footnote{In geometria differenziale sarebbe una sommersione.} in un punto $p$ di $X$ se la mappa $d_p\varphi\colon T_pX\to T_{\varphi(p)}Y$ è surgettiva.
 \end{definition}
 
+La definizione di morfismo liscio \`e il seguente risultato
+\begin{theorem}\label{ThFibrePerMappeLiscie}
+Siano $X$ e $Y$ variet\`a lisce e $\vp:X\to Y$ una mappa liscia, allora
+\begin{enumerate}
+	\item $X_y=\vp\ii(y)$ \`e una variet\`a liscia di dimensione $\dim X-\dim Y$
+	\item Se $x\in X_y$ allora
+	\[0\to T_x X_y\to T_x X\xrightarrow{d\vp_x} T_y Y\to 0\]
+    cio\`e $T_x (\vp\ii(y))=\ker d\vp_x$.
+\end{enumerate}
+\end{theorem}
+
+
+Enunciamo altri teoremi utili sulle mappe lisce:
 \begin{theorem}\label{ThMorfismoDominanteTraLisceHaRestrizioneLisciaSuAperto}
     Assumiamo $\cha(\K)=0$. Se $\varphi\colon X\to Y$ è un morfismo \textbf{dominante} di varietà lisce (cioè $\overline{\varphi(X)}=Y$), allora esiste un aperto non vuoto $U$ di $Y$ tale che la restrizione \[\varphi\res{\varphi^{-1}(U)}\colon \varphi^{-1}(U) \to U\] è liscia.
 \end{theorem}
@@ -520,12 +533,3 @@ In caratteristica $p$ il teorema va enunciato in modo diverso: $\K=\overline{\F_
 \end{theorem}
 
 
-\begin{theorem}\label{ThFibrePerMappeLiscie}
-Siano $X$ e $Y$ variet\`a lisce e $\vp:X\to Y$ una mappa liscia tale che $d\vp_x$ \`e surgettivo per ogni $x\in X$, allora
-\begin{enumerate}
-	\item $X_y=\vp\ii(y)$ \`e una variet\`a liscia di dimensione $\dim X-\dim Y$
-	\item Se $x\in X_y$ allora
-	\[0\to T_x X_y\to T_x X\xrightarrow{d\vp_x} T_y Y\to 0\]
-    cio\`e $T_x (\vp\ii(y))=\ker d\vp_x$.
-\end{enumerate}
-\end{theorem}
