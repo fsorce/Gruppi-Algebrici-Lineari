@@ -1,45 +1,58 @@
 \chapter{Semisemplice, Unipotente, Nilpotente, Completamente riducibile}
 
-\begin{proposition}[Semisemplice uguale completamente riducibile]\label{PrSemisempliceEquivaleCompletamenteRiducibile}
-Per le rappresentazioni regolari di $G$ abbiamo che se essa \`e completamente riducibile allora \`e semisemplice, cio\`e le due condizioni sono equivalenti in questo caso.
-\end{proposition}
+Avendo ricondotto lo studio dei gruppi algebrici affini allo studio di particolari gruppi di matrici, in questo capitolo cerchiamo di trasportare strumenti di algebra lineare al contesto dei gruppi algebrici.
+
+
+\begin{remark}\label{ReRappresentazioneRegolareHaSottorappresentazioneSemplice}
+Se $V$ \`e una rappresentazione regolare non nulla allora $V$ contiene una sottorappresentazione semplice, infatti basta prendere $W\subseteq V$ di dimensione finita non banale e poi una sottorappresentazione di $W$ di dimensione minima.
+\end{remark}
+
+\begin{lemma}[]\label{LmSottorappresentazioneCompletamenteRiducibileECompletamenteRiducibile}
+Se $V$ \`e una rappresentazione completamente riducibile e $W\subseteq V$ \`e una sottorappresentazione allora anche $W$ e $V/W$ sono completamente riducibili.
+\end{lemma}
 \begin{proof}
-Se $V$ \`e una rappresentazione regolare non nulla allora $V$ contiene una sottorappresentazione semplice, infatti basta prendere $W\subseteq V$ di dimensione finita e poi la sottorappresentazione di $W$ di dimensione minima.
-
-Se $W\subseteq V$ allora $W$ e $V/W$ sono completamente riducibili, infatti per completa riducibilit\`a $V=W\oplus U$ per $U\cong V/W$, quindi basta mostrarlo per $W$. Sia $X\subseteq W$ sottorappresentazione. Poich\'e $V=X\oplus Y$ (di nuovo applico l'ipotesi su $V$) allora $W=X\oplus Y\cap W$.
-
-Mostriamo ora che $V$ \`e semisemplice. Sia
-\[\Fc=\cpa{\bigoplus_{i\in I}S_i\subseteq V}\]
-con $S_i$ tutti semplici e ordine su $\Fc$ dato da
-\[\bigoplus_{i\in I}S_i\preceq \bigoplus_{j\in J}T_j\coimplies I\subseteq J\text{ e }S_i=T_i\text{ per $i\in I$}.\]
-Ogni catena ammette maggiorante dato sommando sull'unione degli indici. Sia allora $W=\bigoplus S_i\subseteq V$ massimale e sciviamo $V=W\oplus U$. Se $W\neq (0)$ allora esiste una sottorappresentazione semplice $S\subseteq U$ e quindi $W'=W\oplus S$ sarebbe maggiore di $W$, assurdo.
+Per completa riducibilit\`a $V=W\oplus U$ con $U\cong V/W$, quindi basta mostrarlo per $W$. Sia $X\subseteq W$ una sottorappresentazione. Poich\'e, sempre per completa riducibilit\`a di $V$, $V=X\oplus Y$ si ha $W=X\oplus Y\cap W$.
 \end{proof}
 
+\begin{proposition}\label{PrSemisempliceEquivaleCompletamenteRiducibile}
+Una rappresentazione regolare di $G$ \`e completamente riducibile se e solo se \`e semisemplice.
+\end{proposition}
+\begin{proof}
+Sappiamo gi\`a che semisemplice implica completamente riducibile (\ref{PrSommaSempliciESommaDirettaSemplici}), basta dunque mostrare il contrario. Sia
+\[\Fc=\cpa{\bigoplus_{i\in I}S_i\subseteq V}\]
+con $S_i$ tutti semplici e consideriamo l'ordine su $\Fc$ dato da
+\[\bigoplus_{i\in I}S_i\preceq \bigoplus_{j\in J}T_j\coimplies I\subseteq J\text{ e }S_i=T_i\text{ per $i\in I$}.\]
+Ogni catena ammette maggiorante dato sommando sull'unione degli indici. Sia allora $W=\bigoplus S_i\subseteq V$ massimale e scriviamo $V=W\oplus U$. Se $U\neq (0)$ allora (\ref{ReRappresentazioneRegolareHaSottorappresentazioneSemplice}) esiste una sottorappresentazione semplice $S\subseteq U$ e quindi $W'=W\oplus S$ sarebbe maggiore di $W$, assurdo.
+\end{proof}
 
 Vorremmo capire per quali gruppi $G$ le rappresentazioni regolari sono semisemplici.
 
 \section{Elementi semisemplici, unipotenti e nilpotenti}
+Prima di studiare le rappresentazioni, cerchiamo di capire come un elemento di $G$ pu\`o agire su una rappresentazione.
+
 \begin{definition}[Elementi unipotenti, nilpotenti e semisemplici]
-Sia $V$ uno spazio vettoriale di dimensione finita e sia $g\in\End(V)$. Affermiamo che $g$ \`e
+Sia $V$ uno spazio vettoriale di dimensione finita e sia $\vp\in\End(V)$. Affermiamo che $\vp$ \`e
 \begin{itemize}
     \item \textbf{semisemplice} se \`e diagonalizzabile
-    \item \textbf{nilpotente} se $g^n=0$ per qualche $n\in\N$
-    \item \textbf{unipotente} se $(g-id_V)^n=0$ per qualche $n\in\N$
+    \item \textbf{nilpotente} se $\vp^n=0$ per qualche $n\in\N$
+    \item \textbf{unipotente} se $(\vp-id_V)^n=0$ per qualche $n\in\N$
 \end{itemize}
 \end{definition}
 
 \begin{remark}
-Se $g$ \`e invertibile allora $\Z$ agisce su $V$ come
-\[n\cdot v=g^nv,\]
-quindi la definizione di semisemplice si sposa bene con quella gi\`a data in quanto $g$ induce una decomposizione in autospazi $g$-invarianti.
+Se $\vp$ \`e invertibile allora $\Z$ agisce su $V$ come
+\[n\cdot v=\vp^nv,\]
+quindi la definizione di semisemplice si sposa bene con quella gi\`a data in quanto $\vp$ induce una decomposizione in autospazi $\vp$-invarianti.
 \end{remark}
 
+Diamo delle definizioni valide anche per rappresentazioni di dimensione infinita
+
 \begin{definition}[Endomorfismo localmente finito]
-Siano $V$ uno spazio vettoriale e $g\in \End(V)$. $g$ \`e \textbf{localmente finito} se per ogni $v\in V$ esiste $W$ di dimensione finita $g$-stabile con $v\in W$. In tal caso diciamo che
+Siano $V$ uno spazio vettoriale e $\vp\in \End(V)$. $\vp$ \`e \textbf{localmente finito} se per ogni $v\in V$ esiste $W$ di dimensione finita $\vp$-stabile con $v\in W$. In tal caso diciamo che
 \begin{itemize}
-    \item $g$ \`e \textbf{semisemplice} se $g\res W$ \`e semisemplice per ogni $W\subseteq V$ $g$-stabile di dimensione finita.
-    \item $g$ \`e \textbf{nilpotente} se $g\res W$ \`e nilpotente per ogni $W\subseteq V$ $g$-stabile di dimensione finita.
-    \item $g$ \`e \textbf{unipotente} se $g\res W$ \`e unipotente per ogni $W\subseteq V$ $g$-stabile di dimensione finita.
+    \item $\vp$ \`e \textbf{semisemplice} se $\vp\res W$ \`e semisemplice per ogni $W\subseteq V$ $\vp$-stabile di dimensione finita.
+    \item $\vp$ \`e \textbf{nilpotente} se $\vp\res W$ \`e nilpotente per ogni $W\subseteq V$ $\vp$-stabile di dimensione finita.
+    \item $\vp$ \`e \textbf{unipotente} se $\vp\res W$ \`e unipotente per ogni $W\subseteq V$ $\vp$-stabile di dimensione finita.
 \end{itemize}
 \end{definition}
 
@@ -53,7 +66,7 @@ Se $G$ \`e un gruppo algebrico e $g\in G$ allora $g$ \`e
 \end{definition}
 
 
-\begin{lemma}[Semisemplice/unipotente/nilpotente passano alle costruzioni lineari]\label{LmPassaggioSemisempliceUnipotenteNilpotenteAdOperazioniVettoriali}
+\begin{lemma}\label{LmPassaggioSemisempliceUnipotenteNilpotenteAdOperazioniVettoriali}
 Siano $g\in\End(V)$ e $h\in\End(W)$ con $V$ e $W$ localmente finite. Allora
 \begin{itemize}
     \item Se $g$ e $h$ semisemplici allora
@@ -61,27 +74,30 @@ Siano $g\in\End(V)$ e $h\in\End(W)$ con $V$ e $W$ localmente finite. Allora
     &g\oplus h:V\oplus W\to V\oplus W\text{ \`e semisemplice}\\
     &g\otimes h:V\otimes W\to V\otimes W\text{ \`e semisemplice}
     \end{align*}
-    \item Se $U\subseteq V$ \`e stabile per $g$ e $g$ semisemplice allora $g\res U$ e $\ol g:V/U\to V/U$ sono semisemplici.
+    \item Se $g$ \`e semisemplice e $U\subseteq V$ \`e $g$-stabile allora 
+    \[g\res U:U\to U\quad\text{ e }\quad \ol g:V/U\to V/U\] 
+    sono semisemplici.
     \item Se $g$ \`e semisemplice allora l'azione di $g$ su $SV$ \`e semisemplice
     \item Se $\dim V$ \`e finita e $g$ \`e semisemplice allora $V^\ast$ \`e semisemplice.
 \end{itemize}
 Valgono anche gli analoghi per unipotente e nilpotente.
 \end{lemma}
 \begin{proof}
-Tante verifiche noiose, riportiamo giusto quelle per $g\otimes h$:
+Tante verifiche noiose, riportiamo solo quelle per $g\otimes h$ per dare una idea:
 
 Se $V$ e $W$ hanno dimensione finita allora esistono basi di autovettori per $g$ e $h$
-\[gv_i=\la_iv_i,\quad hw_i=\mu_iv_i\]
-Allora
+\[gv_i=\la_iv_i,\quad hw_i=\mu_iv_i.\]
+Dunque
 \[(g\otimes h)(v_i\otimes w_j)=\la_i\mu_j v_i\otimes w_j,\]
-quindi $v_i\otimes w_j$ \`e ancora base di autovettori.
-Se invece $V$ e $W$ hanno dimensione infinita e $U\subseteq V\otimes W$ di dimensione finita allora gli elementi di base di $U$ appartengono a prodotti tensore di sottospazi di dimensione finita di $V$ e $W$, quindi ingrandendo in modo tale da tener conto di tutta la base ricaviamo $U\subseteq \wt V\otimes \wt W$ con $\wt V$ e $\wt W$ di dimensione finita, ora ci restringiamo  sottospazi stabili di $\wt V$ e $\wt W$ e con calma ci rimettiamo nelle ipotesi finite.
+e quindi $v_i\otimes w_j$ \`e ancora base di autovettori.
+Consideriamo ora $V$ e $W$ generali e sia $U\subseteq V\otimes W$ di dimensione finita. Scegliendo una base $\cpa{u_j}$ di $U$ si ha che $u_j=\sum_{i} a_{ij}v_{ij}\otimes w_{ij}$. Siano $\wt V=\Span(\orb_{\ps{g}}(v_{ij}))$ e $\wt W=\Span(\orb_{\ps{h}}(w_{ij}))$. Per costruzione $\wt V$ e $\wt W$ hanno dimensione finita, $U\subseteq \wt V\otimes \wt W$ e questo prodotto tensore \`e $g\otimes h$-stabile. Usando il caso di dimensione finita troviamo una base di autovettori per $\wt V\otimes \wt W$ e dato che $U$ \`e invariante troviamo una base di autovettori per $U$ scartando qualche elemento da quella di $\wt V\otimes \wt W$. 
 \end{proof}
 
-\begin{lemma}[Rappresentazioni finte si immergono in ${\K[G]^n}$]\label{LmIniezioneRappresentazioniFiniteInPotenzaAnelloCoordinateDiG}
+
+\begin{lemma}[Rappresentazioni finite si immergono in ${\K[G]^n}$]\label{LmIniezioneRappresentazioniFiniteInPotenzaAnelloCoordinateDiG}
 Sia $V$ una rappresentazione di dimensione finita di $G$, allora abbiamo una iniezione
 \[f:V\inj \K[G]^n\]
-$G$-equivariante
+$G$-equivariante.
 \end{lemma}
 \begin{proof}
 Sia $v_1,\cdots, v_n$ una base di $V$ e sia $\vp_1,\cdots, \vp_n$ la base duale. Definiamo
@@ -103,6 +119,12 @@ ma $\vp_i$ era una base del duale, quindi $v=0$.
 Se $gv=(\al_{i,j}(g))_{1\leq i,j\leq n} v$ allora $\vp_i\otimes v_j=\al_{i,j}$.
 \end{remark}
 
+
+\begin{remark}[Non parte del corso]
+Stiamo dicendo che possiamo trovare un fibrato vettoriale banale sopra $G$ che ammette un frame globale dato da sezioni che si comportano come una base di $V$. Questo sar\`a un $G$-fibrato e questo ci permette di ricostruire l'azione di $G$ su $V$ guardando come $G$ agisce su combinazioni lineari di questo frame.
+\end{remark}
+
+
 \begin{corollary}\label{CorControlloSemisempliceSuAnelloCoordinate}
 Se $g\in G$ allora
 \begin{itemize}
@@ -122,8 +144,7 @@ Facciamo il caso semisemplice
 
 
 
-\begin{lemma}[Criterio per semisemplice/unipotente in gruppi lineari]\label{LmCriterioSemisempliceUnipotentePerGruppiLineari}
-Se $G\subseteq GL(V)$ \`e un sottogruppo chiuso per $V$ di dimensione finita allora
+\begin{lemma}[Criterio per semisemplice/unipotente in gruppi lineari]\label{LmCriterioSemisempliceUnipotentePerGruppiLineari} Sia $V$ uno spazio vettoriale di dimensione finita e sia $G\subseteq GL(V)$ un sottogruppo chiuso. Allora
 \begin{itemize}
     \item $g\in G$ \`e semisemplice se e solo se l'azione di $g$ su $V$ \`e semisemplice.
     \item $g\in G$ \`e unipotente se e solo se l'azione di $g$ su $V$ \`e unipotente.
@@ -179,7 +200,7 @@ Mettendo tutto insieme, abbiamo mostrato che $g$ agisce in modo semisemplice su 
     Gli endomorfismi $S$ e $N$ si dicono \textbf{parte semisemplice} e \textbf{parte nilpotente} di $T$ e li denoteremo $T_s$ e $T_n$ rispettivamente. 
     \begin{enumerate}
         \item[2.] Esistono $f,g$ in $\K[x]$, con $f(0)=g(0)=0$, tali che $S=f(T)$ e $N=g(T)$.
-        \item[3.] Se $W$ è un sottospazio $T$-stabile di $V$, allora $W$ è $S$-stabile e $N$-stabile. Inoltre \[\left(\left.T\right|_{W}\right)_s=\left.S\right|_{W} \quad \text{ e } \quad \left(\left.T\right|_{W}\right)_n=\left.N\right|_{W}.\]
+        \item[3.] Se $W$ è un sottospazio $T$-stabile di $V$, allora $W$ è $S$-stabile e $N$-stabile. Inoltre \[\left(\left.T\right|_{W}\right)_s=\left.T_s\right|_{W} \quad \text{ e } \quad \left(\left.T\right|_{W}\right)_n=\left.T_n\right|_{W}.\]
         \item[4.] Se $V'$ è un $\K$-spazio vettoriale di dimensione finita, $T'$ è un endomorfismo di $V'$ e $L\colon V \to V'$ è un'applicazione lineare, allora \[L\circ T_s = T'_s\circ L \quad \text{ e } \quad L\circ T_n = T'_n\circ L.\]
     \end{enumerate}
 \end{proposition}
@@ -196,9 +217,9 @@ Dimostriamo i vari punti.
     f(t)\equiv 0 &\pmod{(t)}\\
     f(t)\equiv \la_i &\pmod{(t-\lambda_i)^{n_i}} \quad \forall i\in\cpa{1,\cdots, r}
     \end{cases}\]
-    Tale polinomio esiste per il teorema cinese del resto. Inoltre soddisfa $f(T)=S$. Infatti, sul singolo blocco di Jordan $J_i$ relativo all'autovalore $\lambda_i$ (di taglia $m_i\le n_i$), si ha che $f(T)=\lambda_i I$. Poiché $N=T-S$, posto $g(t)=t-f(t)$, si ha $N=g(T)$. 
-    \item Poiché $S=f(T)$ e $N=g(T)$, se $W$ è $T$-stabile, lo sono chiaramente anche $S$ e $N$. Siano ora $t=\left.T\right|_{W}$, $s=\left.S\right|_{W}$ e $n=\left.N\right|_{W}$. Allora $t=s+n$, $sn=ns$ e, per il lemma (\ref{LmPassaggioSemisempliceUnipotenteNilpotenteAdOperazioniVettoriali}), $s$ è semisemplice e $n$ è nilpotente. Quindi la tesi discende dall'unicità della decomposizione.
-    \item Se $L$ è iniettiva (o suriettiva), allora $V$ è un sottospazio (o un quoziente) di $V'$, e la tesi discende dal punto precedente (nel caso del quoziente è analogo considerando la stabilità degli elementi semisemplici e nilpotenti). Nel caso generale, consideriamo il diagramma:
+    Tale polinomio esiste per il teorema cinese del resto\footnote{se $\la_i=0$ per qualche $i$ la condizione $f(t)\equiv 0 \pmod{(t)}$ viene implicata da $f(t)\equiv 0 \pmod{(t)^{n_i}}$ e quindi le congruenze continuano ad avere moduli coprimi.}. Inoltre soddisfa $f(T)=S$. Infatti, sul singolo blocco di Jordan $J_i$ relativo all'autovalore $\lambda_i$ (di taglia $m_i\le n_i$), si ha che $f(T)=\lambda_i I$. Poiché $N=T-S$, posto $g(t)=t-f(t)$, si ha $N=g(T)$. 
+    \item Poiché $S=f(T)$ e $N=g(T)$, se $W$ è $T$-stabile allora \`e chiaramente anche $T_s$- e $T_n$-stabile. Siano ora $t=\left.T\right|_{W}$, $s=\left.T_s\right|_{W}$ e $n=\left.T_n\right|_{W}$. Allora $t=s+n$, $sn=ns$ e, per il lemma (\ref{LmPassaggioSemisempliceUnipotenteNilpotenteAdOperazioniVettoriali}), $s$ è semisemplice e $n$ è nilpotente. Quindi la tesi discende dall'unicità della decomposizione.
+    \item Consideriamo il diagramma:
     % https://q.uiver.app/#q=WzAsNixbMCwwLCJWIl0sWzIsMCwiVlxcb3BsdXMgViciXSxbNCwwLCJWJyJdLFswLDEsIlYiXSxbMiwxLCJWXFxvcGx1cyBWJyJdLFs0LDEsIlYnIl0sWzIsNSwiVCciXSxbMSw0LCJUJyc9VFxcb3BsdXMgVCciXSxbMCwzLCJUIl0sWzAsMSwiTF8xIl0sWzEsMiwiTF8yIl0sWzMsNF0sWzQsNV1d
 \[\begin{tikzcd}
 	V && {V\oplus V'} && {V'} \\
@@ -210,7 +231,7 @@ Dimostriamo i vari punti.
 	\arrow["{T'}", from=1-5, to=2-5]
 	\arrow[from=2-1, to=2-3]
 	\arrow[from=2-3, to=2-5]
-\end{tikzcd}\]    dove $L_1 \colon v \mapsto (v,L(v))$ e $L_2\colon (v,w)\mapsto w$. Per commutatività, si ha $L_1\circ T_s=T''_s\circ L_1$ e $L_2\circ T''_s=T'_s\circ L_2$. Deduciamo quindi che \[L\circ T_s =L_2\circ L_1 \circ T_s= L_2 \circ T''_s\circ L_1= T'_s\circ L_2 \circ L_1= T'_s\circ L.\]
+\end{tikzcd}\]    dove $L_1 \colon v \mapsto (v,L(v))$ e $L_2\colon (v,w)\mapsto w$. Per definizione abbiamo che $L_1\circ T_s=T''_s\circ L_1$ e $L_2\circ T''_s=T'_s\circ L_2$. Deduciamo quindi che \[L\circ T_s =L_2\circ L_1 \circ T_s= L_2 \circ T''_s\circ L_1= T'_s\circ L_2 \circ L_1= T'_s\circ L.\]
 \end{enumerate}
 \setlength{\leftmargini}{0.5cm}
     Per il caso nilpotente la dimostrazione è analoga.
@@ -220,9 +241,9 @@ Vale una decomposizione analoga nel caso moltiplicativo, sostituendo elementi ni
 
 \begin{proposition}\label{PrDecomposizioneSemisempliceUnipotente}
     Sia $V$ un $\K$-spazio vettoriale di dimensione finita e sia $T$ in $\GL(V)$. Allora \begin{enumerate}
-        \item Esistono e sono uniche $S$ semisemplice e $U$ unipotente tali che $T=SU=US$, date da $S=T_S$ e $U=T_U$
+        \item Esistono e sono uniche $S$ semisemplice e $U$ unipotente tali che $T=SU=US$, date da $S=T_s$ e $U=T_u$
         \item Esistono $f,g$ in $\K[x]$ tali che $S=f(T)$ e $U=g(T)$.
-        \item Se $W$ è un sottospazio $T$-stabile di $V$, allora $W$ è $S$-stabile e $U$-stabile. Inoltre \[\left(\left.T\right|_{W}\right)_s=\left.S\right|_{W} \quad \text{ e } \quad \left(\left.T\right|_{W}\right)_u=\left.U\right|_{W}.\]
+        \item Se $W$ è un sottospazio $T$-stabile di $V$, allora $W$ è $S$-stabile e $U$-stabile. Inoltre \[\left(\left.T\right|_{W}\right)_s=\left.T_s\right|_{W} \quad \text{ e } \quad \left(\left.T\right|_{W}\right)_u=\left.T_u\right|_{W}.\]
         \item Se $V'$ è un $\K$-spazio vettoriale di dimensione finita, $T'$ è un endomorfismo di $V'$ e $L\colon V \to V'$ è un'applicazione lineare, allora \[L\circ T_s = T'_s\circ L \quad \text{ e } \quad L\circ T_u = T'_u\circ L.\]
     \end{enumerate}
 \end{proposition}
@@ -235,11 +256,13 @@ Vogliamo ora estendere quanto fatto al caso localmente finito. Ricordiamo che un
     Sia $V$ un $\K$-spazio vettoriale e sia $T\colon V\to V$ lineare, invertibile e localmente finita. Allora esistono e sono unici $S$ semisemplice e $U$ unipotente tali che $T=SU=US$.
 \end{theorem}
 \begin{proof}
-    Mostriamo dapprima l'esistenza. Per ogni $v$ in $V$, sia $W$ un sottospazio di $V$ di dimensione finita contenente $v$ e $T$-stabile. Consideriamo la restrizione $\left.T\right|_W$ in $\GL(W)$. Consideriamo allora gli elementi $S_W=(\left.T\right|_W)_s$ e $U_W=(\left.T\right|_W)_u$ dati dalla Proposizione (\ref{PrDecomposizioneSemisempliceUnipotente}) e definiamo $S(v)=S_W(v)$. Osserviamo che $S(v)$ non dipende dalla scelta di $W$. Infatti, se $W$ è contenuto in un $W'$, allora $\left.S_{W'}\right|_{W}=S_W$. Procedendo in modo analogo per $U$, otteniamo l'esistenza. 
+Mostriamo dapprima l'esistenza. Per ogni $v$ in $V$, sia $W$ un sottospazio di $V$ di dimensione finita contenente $v$ e $T$-stabile. Consideriamo la restrizione $\left.T\right|_W$ in $\GL(W)$. Consideriamo allora gli elementi $S_W=(\left.T\right|_W)_s$ e $U_W=(\left.T\right|_W)_u$ dati dalla Proposizione (\ref{PrDecomposizioneSemisempliceUnipotente}) e definiamo $S(v)=S_W(v)$. Osserviamo che $S(v)$ non dipende dalla scelta di $W$. Infatti, se $W$ è contenuto in un $W'$, allora $\left.S_{W'}\right|_{W}=S_W$. Procedendo in modo analogo per $U$, otteniamo l'esistenza. 
 
-    Osserviamo che $S$ e $U$ costruite soddisfano le proprietà 3 e 4 dell'enunciato precedente. \begin{mdframed}[topline=false,rightline=false,bottomline=false]  Verifichiamo ad esempio la 4. Mostriamo che, con la notazione della Proposizione (\ref{PrDecomposizioneSemisempliceUnipotente}), si ha $LS=S'L$. Per ogni $v$ in $V$, consideriamo un sottospazio $W$ di dimensione finita, contenente $v$ e $T$-stabile. Sia $W'=L(W)$. Allora \[S'(W')=S'L(W)=LS(W)\subseteq L(W)=W'.\]
+Osserviamo che $S$ e $U$ costruite soddisfano le proprietà 3 e 4 dell'enunciato precedente. 
+\begin{mdframed}[topline=false,rightline=false,bottomline=false]  
+    Verifichiamo ad esempio la 4. Mostriamo che, con la notazione della Proposizione (\ref{PrDecomposizioneSemisempliceUnipotente}), si ha $LS=S'L$. Per ogni $v$ in $V$, consideriamo un sottospazio $W$ di dimensione finita, contenente $v$ e $T$-stabile. Sia $W'=L(W)$. Allora \[S'(W')=S'L(W)=LS(W)\subseteq L(W)=W'.\]
     È quindi sufficiente mostrare che \[\left.L\right|_{W}\circ \left.S\right|_{W} (v)=\left.S'\right|_{W'}\circ \left.L\right|_{W} (v),\] ma ciò segue dal caso di dimensione finita.
-    \end{mdframed}
+\end{mdframed}
 Mostriamo ora l'unicità. Assumiamo $T=su=us$ e mostriamo che $S=s$ e $U=u$. Osserviamo che $S,U$ commutano con $s,u$. Infatti, per il punto 4, sappiamo che $LS=SL$ e $LU=UL$. Allora dal diagramma % https://q.uiver.app/#q=WzAsNCxbMCwwLCJWIl0sWzIsMCwiViJdLFswLDEsIlYiXSxbMiwxLCJWIl0sWzEsMywiVCJdLFswLDIsIlQiXSxbMCwxLCJMPXMiXSxbMiwzLCJMPXMiLDJdXQ==
 \[\begin{tikzcd}
 	V && V \\
@@ -256,7 +279,7 @@ ricaviamo $Ss=sS$ e $Us=sU$. Analogamente troviamo $Uu=uU$ e $Su=uS$. Scriviamo 
 \end{theorem}
 \begin{proof}
     Assumiamo che $G$ sia un sottogruppo chiuso di $\GL(W)$. $G=V(I)$ con $I\subseteq \K[\GL(W)]$. Mostriamo l'esistenza di $s$ e $u$. Poiché $g$ è in $\GL(W)$, possiamo scrivere (\ref{PrDecomposizioneSemisempliceUnipotente}) $g=su=us$ con $u$ unipotente e $s$ semisemplice in $\GL(W)$ (cio\`e $s$ agisce in modo semisemplice su $\K[\GL(W)]$ e $u$ agisce in modo unipotente su $\K[\GL(W)]$). In particolare $g=su$ è la decomposizione di Jordan per l'azione di $g$ su $\K[\GL(W)]$.
-    Mostriamo che effettivamente $u$ e $s$ sono in $G$ verificando che annullano ogni elemento $f$ di $I$. Osserviamo che $I$ è stabile per l'azione di $g$ (e in generale per l'azione di $G$), infatti, per ogni $h$ in $G$ si ha $(gf)(h)=f(g^{-1}h)=0$. Poiché $s$ è la parte semisemplice di $g$, $s(I)$ è contenuto in $I$ e se $f$ è un elemento di $I$, si ha $sf$ è $0$ su $G$. D'altro canto, valutando sull'elemento neutro $e$ di $G$, troviamo \[0=(sf)(e)=f(s^{-1}),\] dunque $s^{-1}$ (e quindi $s$) è in $G$. L'unicità segue direttamente dal fatto che la decomposizione è unica in $\GL(W)$.
+    Mostriamo che effettivamente $u$ e $s$ sono in $G$ verificando ogni elemento $f$ di $I$ si annulla su essi. Osserviamo che $I$ è stabile per l'azione di $g$ (e in generale per l'azione di $G$), infatti, per ogni $h$ in $G$ si ha $(gf)(h)=f(g^{-1}h)=0$. Poiché $s$ è la parte semisemplice di $g$, $s(I)$ è contenuto in $I$ e se $f$ è un elemento di $I$, si ha $sf$ è $0$ su $G$. D'altro canto, valutando sull'elemento neutro $e$ di $G$, troviamo \[0=(sf)(e)=f(s^{-1}),\] dunque $s^{-1}$ (e quindi $s$) appartiene a $G$. L'unicità segue direttamente dal fatto che la decomposizione è unica in $\GL(W)$.
 \end{proof}
 \begin{notation}
     Denotiamo $g_s=s$ e $g_u=u$.
@@ -270,4 +293,334 @@ ricaviamo $Ss=sS$ e $Us=sU$. Analogamente troviamo $Uu=uU$ e $Su=uS$. Scriviamo 
     Sia $G$ un sottogruppo di $\GL(n,\C)$ definito da un'equazione a coefficienti in $\R$. Sia $G_\R=G\cap \GL(n,\R)$. Consideriamo un elemento $g$ in $G_\R$. Mostrare che $g_s$ e $g_u$ sono in $G_\R$.
 \end{exercise}
 
+
+\section{Gruppi unipotenti}
+\begin{definition}
+    Un gruppo $G$ si dice \textbf{unipotente} se ogni suo elemento è unipotente.
+\end{definition}
+
+\begin{lemma}\label{LmUnicaRappresentazioneIrriducibileBanaleImplicaUpperTriangularCon1SuDiagonale}
+Se $G$ \`e tale che l'unica rappresentazione irriducibile di $G$ \`e banale allora $G$ si immerge nel gruppo delle matrici triangolari superiori aventi $1$ sulla diagonale, cio\`e
+\[G\subseteq U(n)=\cpa{\mat{1 & \ast & \ast\\ &\ddots &\ast\\ &&1}}\]
+\end{lemma}
+\begin{proof}
+    Sia $V$ un $\K$-spazio vettoriale di dimensione finita per cui $G$ è un sottogruppo di $\GL(V)$. Sia $W$ una sottorappresentazione di $V$ irriducibile non nulla. Allora $W=\K v_1$ e $g v_1=v_1$ per ogni $g$ in $G$. Se $V_1=0$ abbiamo la tesi, altrimenti consideriamo il quoziente $V_1=V/\langle v_1\rangle$. Anche $V_1$ \`e una rappresentazione di $G$, quindi scegliendo una sottorappresentazione irriducibile non nulla troviamo $v_2$ in $V$ tale che per ogni $g$ in $G$ si ha $gv_2\equiv v_2 \pmod{\K v_1}$. Procedendo in questo modo, possiamo scegliere una base $v_1,\ldots,v_n$ di $V$, rispetto alla quale risulta chiaramente $G\subseteq U(n)$.
+\end{proof}
+
+\begin{theorem}\label{ThSottoalgebraAssociativaDiEndomorfismiDiSempliceETuttiGliEndomorfismi}
+Sia $\K$ algebricamente chiuso, $V$ spazio vettoriale di dimensione finita, $A\subseteq \End_\K(V)$ che sia una $\K$-algebra associativa. Se $V$ \`e un $A$-modulo semplice allora $A=\End_\K(V)$.
+\end{theorem}
+\begin{proof}
+Sia $v_1,\cdots, v_n$ una base di $V$. Se $v=(v_1,\cdots, v_n)\in V^n$ allora vogliamo mostrare che $\cpa{a(v)\mid a\in A}=V^n\equiv \End_\K(V)$.
+
+Poich\'e $V$ \`e semplice, $V^n$ \`e somma di rappresentazioni semplici, quindi per la proposizione (\ref{PrSommaSempliciESommaDirettaSemplici}) si ha che $V^n$ \`e semisemplice e quindi completamente riducibile. Possiamo allora scrivere $V^n=Av\oplus P$ per $P$ un $A$-sottomodulo. Sia $\pi_P:V^n\to V^n$ la proiezione su $P$ e notiamo che essa ammette una decomposizione a blocchi
+\[\pi_P=(\al_{ij})_{i,j}\quad\text{ per degli endomorfismi }\al_{ij}:V\to V\]
+dove il dominio di $\al_{ij}$ \`e la $j$-esima copia di $V$ in $V^n$ e il codominio \`e l'$i$-esima copia.
+
+Quindi $\al_{ij}\in \End_A(V)$ con $V$ spazio vettoriale su $\K$ algebricamente chiuso. Per il lemma di Schur (\ref{LmSchur}) questi endomorfismi sono le costanti.
+
+Ricordando che $V^n=Av\oplus P$, si ha necessariamente $\pi_P(v)=0$ per definizione di $\pi_P$, quindi per ogni $i$ abbiamo $\sum \al_{ij}v_j=0$. Poich\'e gli $v_j$ sono una base e gli endomorfismi $\al_{ij}$ sono costanti, per indipendenza lineare questo significa che per ogni $i$ e ogni $j$ si ha $\al_{ij}=0$. Segue dunque che $\pi_P=0$ e quindi $P=\imm \pi_P=\cpa{0}$, cio\`e $V^n=Av$.
+\end{proof}
+
+\begin{exercise}
+Trova un controesempio per $\K$ non algebricamente chiuso.
+\end{exercise}
+
+
+
+\begin{theorem}\label{ThUnipotenteSeESoloSeUnicaRappresentazioneIrriducibileEBanale}
+    Un gruppo $G$ è unipotente se e solo se l'unica rappresentazione irriducibile di $G$ è quella banale.
+\end{theorem}
+\begin{proof}
+Diamo le due implicazioni
+\setlength{\leftmargini}{0cm}
+\begin{itemize}
+\item[$\boxed{\impliedby}$] Se $G$ ha questa propriet\`a allora per il lemma (\ref{LmUnicaRappresentazioneIrriducibileBanaleImplicaUpperTriangularCon1SuDiagonale}) abbiamo
+\[G\subseteq U(n)=\cpa{\mat{1 & \ast & \ast\\ &\ddots &\ast\\ &&1}}\]
+e chiaramente un gruppo di questa forma \`e unipotente.
+\item[$\boxed{\implies}$] Sia $V$ una rappresentazione semplice di $G$ di dimensione $n$. Allora\footnote{tiriamo in gioco la traccia perch\'e svolger\`a il ruolo di un prodotto scalare definito positivo su $\End_\K(V)$, che mostriamo essere $\Span(G)$ grazie al teorema.} $\tr(g_V)=n$ per ogni $g\in G$ (perch\'e si immerge nelle triangolari superiori), quindi
+\[\forall g_V,h_V\in G,\qquad \tr((g_V-1)h_V)=\tr(g_Vh_V-h_V)=0.\]
+Se $A$ \`e il $\K$-spazio vettoriale generato da $G$, $A\subseteq \End_\K(V)$ ed \`e un'algebra associativa. Poich\'e $V$ \`e semplice per $A$ (in quanto semplice per $G$ e $A=\Span_\K(G)$), si ha per il teorema (\ref{ThSottoalgebraAssociativaDiEndomorfismiDiSempliceETuttiGliEndomorfismi}) che $A=\End_\K(V)$.
+
+Segue per linearit\`a della traccia che $\tr((g_V-1)a)=0$ per ogni $a\in \End_\K(V)=A$, da cui $(g_v-1)=0$, cio\`e $G$ agisce banalmente.
+\end{itemize}
+\setlength{\leftmargini}{0.5cm}
+\end{proof}
+
+\begin{corollary}
+    Se $G$ è unipotente, allora è contenuto nel gruppo $U_n$ delle matrici triangolari superiori aventi $1$ sulla diagonale principale.
+\end{corollary}
+
+\begin{corollary}\label{CorFissatoDaUnipotenteNonEBanale}
+    Se $V$ \`e una rappresentazione di $G$ non nulla allora $V^G\neq 0$.
+\end{corollary}
+
+\begin{corollary}
+    Se $G$ \`e unipotente allora $G$ \`e nilpotente come gruppo, cio\`e se definiamo iterativamente 
+    \begin{align*}
+    G^{(0)}\;\;\;\,&=G \\
+    G^{(k+1)}&=[G^{(k)},G] 
+    \end{align*} 
+    allora esiste $n$ tale che $G^{(n)}=\cpa{id_G}$.
+\end{corollary}
+\begin{proof}
+Basta immergere $G$ in $U(n)$ e notare che sottogruppi di triangolari superiori con 1 sulla diagonale hanno questa propriet\`a.
+\end{proof}
+
+\begin{example}
+Consideriamo il gruppo $(\C,+)$. Questo è un gruppo unipotente perché possiamo vederlo in $\GL(2)$ tramite la rappresentazione 
+\[x\mapsto \begin{pmatrix}
+1 & x \\ 0 & 1 
+\end{pmatrix}\]
+\end{example}
+
+\begin{example}
+Il gruppo $G=\znz p\cong \F_p$ \`e un gruppo unipotente se $\cha \K=p$, infatti si pu\`o scrivere come
+\[G=\cpa{\mat{1&\al\\0&1}\sep \al\in\F_p\subseteq\K}\]
+\end{example}
+\begin{remark}
+Se $G=U(n)$ con $\cha \K=p$ allora $g^{p^n}=id_G$.
+\end{remark}
+
+\subsection{Esponenziale e logaritmo}
+
+\begin{notation}
+Definiamo lo spazio vettoriale
+\[N(n)=\cpa{\mat{0&\ast&\ast\\&\ddots&\ast\\&&0}}.\]
+\end{notation}
+
+\begin{definition}[Esponenziale]
+Definiamo la mappa \textbf{esponenziale}
+\[\exp:\funcDef{N(n)}{U(n)}{M}{\sum_{i=0}^n\frac1{i!}M^i}.\]
+\end{definition}
+\begin{remark}
+La mappa esponenziale appena definita \`e algebrica. Inoltre rispetta le usuali propriet\`a:
+\begin{itemize}
+    \item $\exp((\la+\mu)M)=\exp(\la M)\exp(\mu M)$
+    \item Se $M_1M_2=M_2M_1$ allora $\exp(M_1+M_2)=\exp(M_1)\exp(M_2)$.
+\end{itemize}
+\end{remark}
+
+\begin{definition}[Logaritmo]
+Definiamo la mappa \textbf{logaritmo}
+\[\log:\funcDef{U(n)}{N(n)}{B}{\sum_{i=1}^n\frac{(-1)^{i+1}}{i}(M-I_n)^i}.\]
+\end{definition}
+
+\begin{remark}
+$\log$ e $\exp$ sono mappe algebriche e inverse. Sono anche in realt\`a la definizione usuale, solo che per matrici in $N(n)$ e $U(n)$ queste somme finite coincidono con la definizione in serie.
+\end{remark}
+
+\begin{notation}
+Se $G\subseteq U(n)$ definiamo $X=\log(G)$ e notiamo che $X$ \`e isomorfo a $G$ come variet\`a.
+\end{notation}
+
+\begin{proposition}\label{PrChiusuraDelGeneratoDaPotenzeDiElemento}
+Se $g\in G\bs\cpa{id_G}$ \`e unipotente e $\cha \K=0$ allora, ponendo
+\[\ol{\cpa{g^n\mid n\in\Z}}=H\subseteq G,\]
+si ha $H\cong \G_a=(\K,+)$.
+\end{proposition}
+\begin{proof}
+Poich\'e $g\neq id_G$, $\log g=x\neq 0$, inoltre $\log(g^n)=nx$. Notiamo dunque che da $nx\neq 0$ per ogni $n$ ricaviamo $g^n\neq id_G$ per ogni $n$. Se $Y=\K x$ allora
+\[\log(H)=\log(\ol{\cpa{g^n}})=\ol{\cpa{nx}}\subseteq Y\]
+Poich\'e $Y$ \`e una retta e $\cpa{nx}$ sono infiniti, $\ol{\cpa{nx}}= Y$ per come sono fatti i chiusi di Zariski di $\A^1$, quindi 
+\[\funcDef{\K}{H=\exp(Y)}{\la}{\exp(\la x)}\]
+\`e un isomorfismo di gruppi tra $\K$ e $H$.
+\end{proof}
+
+\begin{exercise}
+Se $\cha \K=0$ e $G$ unipotente abeliano allora $G\cong \K^n$.
+\end{exercise}
+
+\begin{fact}
+Se $\cha \K=p$ e $g^p=id$ per ogni $g\in G$ abeliano connesso allora $G$ \`e unipotente e $G\cong \K^n$.
+\end{fact}
+
+\begin{example}
+Se $\cha \K=p$ poniamo $\wt \al_i=\frac1p\binom pi$ per $i\in\cpa{0,\cdots, p-1}$ e definiamo $\al_i$ come l'immagine di $\wt \al_i$ in $\K$.
+
+Definiamo\footnote{moralmente $c(a,b)=\frac{(a+b)^p-a^p-b^p}p$, che non potremmo fare direttamente in $\K$ per l'identit\`a del binomio ingenuo}
+\[c:\funcDef{\K\times \K}{\K}{(a,b)}{\sum_{i=1}^{p-1} \al_i a^ib^{p-i}}\]
+e notiamo che
+\[c(a,b)c(a+b,c)=c(b,c)c(a,b+c)\implies c(a,0)=c(a,b)=0,\]
+quindi se $G=\K\times\K$ con prodotto
+\[(a,b)\cdot(a',b')=(a+a',b+b'+c(a,a'))\]
+allora $G$ \`e unipotente, abeliano e connesso ma non \`e isomorfo a $(\K^2,+)$ come gruppo a priori.
+Infatti $(1,0)^p=(0,c(1,1)+c(1,2)+\cdots+c(1,p-1))\neq (0,0)$ in generale.
+\end{example}
+
+\section{Gruppi completamente riducibili}
+\begin{definition}
+Un gruppo \`e \textbf{completamente riducibile} se ogni sua rappresentazione regolare \`e semisemplice.
+\end{definition}
+\begin{remark}
+Basta anche chiedere ``ogni rappresentazione regolare \emph{finita} \`e semisemplice".
+\end{remark}
+
+\begin{proposition}[Criterio per completa riduciblit\`a]
+$G$ \`e completamente riducibile se e solo se $\K[G]$ \`e semisemplice.
+\end{proposition}
+\begin{proof}
+$\K[G]$ \`e una rappresentazione regolare di $G$ quindi una implicazione \`e ovvia.
+Se $V$ ha dimensione $n$ e $\K[G]$ \`e semisemplice allora per l'immersione (\ref{LmIniezioneRappresentazioniFiniteInPotenzaAnelloCoordinateDiG}) $V\inj \K[G]^m$ si ha che $V$ \`e semisemplice (\ref{LmPassaggioSemisempliceUnipotenteNilpotenteAdOperazioniVettoriali}).
+\end{proof}
+
+
+\begin{lemma}
+    Se $G\subseteq \GL(V)$ allora $G$ \`e completamente riducibile se e solo se $V^{\otimes n}$ \`e semisemplice per ogni $n$
+\end{lemma}
+\begin{proof}
+Diamo le implicazioni
+\setlength{\leftmargini}{0cm}
+\begin{itemize}
+\item[$\boxed{\implies}$] Ovvio
+\item[$\boxed{\impliedby}$] La dimostrazione \`e del tutto analoga a quella esposta per il lemma (\ref{LmCriterioSemisempliceUnipotentePerGruppiLineari}). Dimostriamo che $\K[G]$ \`e semisemplice. Dato il morfismo
+$\K[\GL(V)]\onto \K[G]$
+basta mostrare che $\K[\GL(V)]$ \`e semisemplice. Scriviamo \[\K[\GL(V)]=\K[\End(V)][{\det}\ii].\]
+$\K[\End(V)]$ \`e un quoziente di somme di rappresentazioni della forma $(V^\ast)^{\otimes m}$ e quindi \`e quoziente di $(V^\ast\oplus\cdots, \oplus V^\ast)^{\otimes m}$ e dato che $V^\ast$ \`e semisemplice ho finito.
+\end{itemize}
+\setlength{\leftmargini}{0.5cm}
+\end{proof}
+
+\begin{corollary}
+    Se $\K=\C$ e $G\subseteq \GL(n,\C)$ \`e tale che se $g\in G$ allora $g^\dagger\in G$, allora\footnote{se vedo $g$ come matrice, $g^\dagger$ \`e la matrice trasposta coniugata di $g$.} $G$ \`e completamente riducibile.
+\end{corollary}
+\begin{proof}
+Sia $V=\C^n$ e dimostriamo che $V^{\otimes m}$ \`e semisemplice per ogni $m$, cio\`e che per ogni $U\subseteq V^{\otimes m}$ che sia $G$-stabile esiste $W$ $G$-stabile tale che $V^{\otimes m}=U\oplus W$.
+
+Consideriamo il caso $m=1$. Definiamo la forma hermitiana\footnote{Definiamo un prodotto scalare in modo da definire il supplementare come l'ortogonale a $U$ rispetto a questa forma. La $G$-stabilit\`a deriva dall'ipotesi sul coniugio complesso.}
+\[h((x_i)(y_i))=\sum_{i=1}^n \ol{x_i}y_i.\]
+Se $U\subseteq V$, poniamo $W=U^\perp$ rispetto a questa forma. Chiaramente $V=U\oplus U^\perp$, quindi vogliamo mostrare che $U$ $G$-stabile implica $U^\perp$ $G$-stabile.
+\[h(gw,u)=\ol w^\top \ol g^\top u=h(w,\overset{\in U}{\overbrace{\under{\in G}{\ol g^\top}u}})\pasgnlmath={w\in U^\perp}0.\]
+
+
+Per il caso generale l'idea \`e la stessa ma usiamo questa forma hermitiana
+\[h_m(v_1\otimes\cdots\otimes v_m,u_1\otimes \cdots\otimes u_m)=\prod_{i=1}^m h(v_i,u_i).\]
+Si conclude usando la tesi per $h$.
+\end{proof}
+
+\begin{example}
+Sia $G\in\cpa{\GL(n,\C), \SL(n), O(n)}$, allora $G$ \`e completamente riducibile. Per $\GL(n,\C)$ e $\SL(n,\C)$ questo \`e ovvio. Per $O(n)=\cpa{g^\top g=id}$ basta mostrare che se $g^\top g=id$ allora $\ol g \ol g^\top=id$, ma questo \`e chiaro.
+
+
+Anche $SO(n)$ e $S_p(2n)$ hanno questa propriet\`a, dove
+\[S_p(2n)=\cpa{g\mid gJg^\top=J},\qquad J=\mat{0 &I\\ -I &0}.\]
+\end{example}
+
+
+
+\begin{example}
+Sia $\cha \K=p=2$ e consideriamo $G=\SL(2,\K)$. Esso ammette una rappresentazione semplice $V=\K^2$. Sia $x,y$ una base di $V$ e consideriamo l'azione data da
+\[\mat{a&b\\c&d}x=ax+by,\qquad \mat{a&b\\c&d}y=cx+dy.\]
+Consideriamo ora $S^2V=\ps{x^2,xy,y^2}$. Per questioni di caratteristica 2, $gx^2=(gx)^2$. Notiamo allora che $W=\ps{x^2,y^2}$ \`e una sottorappresentazione di $S^2V$ che non ammette un complementare.
+\end{example}
+
+\begin{exercise}
+Se $\cha \K=p$ allora $\SL(n,\K)$ e $\GL(n,\K)$ non sono completamente riducibili.
+\end{exercise}
+
+
+
+
+\begin{proposition}\label{PrCompletamenteRiducibileNonHaSottogruppiNormaliUnipotenti}
+Se $G$ \`e completamente riducibile allora $G$ non ha sotto-gruppi unipotenti normali non banali.
+\end{proposition}
+\begin{proof}
+Sia $W$ tale che $G\inj \GL(W)$ (definizione di gruppo algebrico lineare).
+
+Sia $V$ una rappresentazione irriducibile di $G$ e sia $U\subseteq G$ un sottogruppo normale unipotente. Poich\'e $V\neq (0)$ e $U$ unipotente, $V^U\neq 0$ per il corollario (\ref{CorFissatoDaUnipotenteNonEBanale}). Poich\'e $U$ \`e normale, $V^U$ \`e stabile per $G$ e quindi $V^U=V$, cio\`e $U$ agisce banalmente su tutte le rappresentazioni irriducibili. Questo mostra che per la mappa $G\to \GL(W)$ si ha che $U$ finisce in $\cpa{id_W}$ perch\'e $G$ \`e completamente riducibile, ma questa mappa \`e iniettiva e quindi $U=\cpa{id_G}$.
+\end{proof}
+
+\subsection{Caratteri, Tori e Gruppi abeliani connessi Semisemplici}
+
+
+Uno degli esempi pi\`u importanti di gruppi completamente riducibili sono i tori algebrici:
+\begin{definition}
+Un gruppo $G$ \`e un \textbf{toro (algebrico)} se $G\cong (\G_m)^n$.
+\end{definition}
+
+\begin{remark}
+Ricordando che $\K[\G_m]=\K[t^{\pm1}]$ notiamo che
+\[\K[\G_m^n]=\K[t_1^{\pm1},\cdots,t_n^{\pm1}].\]
+Questo spazio ha una base data da $t^\al=t_1^{\al_1}\cdots t_n^{\al_n}$ per $\al\in \Z^n$.
+\end{remark}
+
+\begin{proposition}[Tori algebrici sono semisemplici]\label{PrToriAlgebriciSonoSemisemplici}
+Se $G$ toro algebrico allora $G$ \`e semisemplice.
+\end{proposition}
+\begin{proof}
+Se $g=(\la_1,\cdots, \la_n)$ e $h=(\mu_1,\cdots, \mu_n)$ sono elementi di $\G_m^n=(\K^\times)^n$ si ha che
+\begin{align*}
+(gt^\al)(h)=&t^\al(g\ii h)=t^\al(\la_1\ii \mu_1,\cdots, \la_n\ii\mu_n)=\\
+=&(\la_1\ii\mu_1)^{\al_1}\cdots (\la_n\ii\mu_n)^{\al_n}=\\
+=&\la^{-\al}\mu^\al=\\
+=&(\la^{-\al}t^\al)h.
+\end{align*}
+Segue che $gt^\al=\la^{-\al}t^\al$ e che quindi i $t^\al$ sono autovettori per ogni $g\in G$. Poich\'e
+\[\K[G]=\bigoplus_{\al\in\Z^n} \K t^\al\]
+e ogni $\K t^\al$ \`e semisemplice, segue (\ref{LmPassaggioSemisempliceUnipotenteNilpotenteAdOperazioniVettoriali}) che $\K[G]$ \`e semisemplice.
+
+Quindi le rappresentazioni semplici di $G$ sono di dimensione 1 e sono date da $\K_\al=\K t^{-\al}$ con $gz=t^\al(g)z$
+\end{proof}
+
+
+\begin{definition}[Caratteri di un gruppo]
+Dato un gruppo algebrico $G$ definiamo un \textbf{carattere} di $G$ come un omomorfismo di gruppi
+\[\al:G\to \GL(1)=\K^\times.\]
+L'insieme dei caratteri $X(G)$ forma un gruppo abeliano:
+\[(\al\beta)(g)=\al(g)\beta(g)=\beta(g)\al(g)=(\beta\al)(g).\]
+\end{definition}
+
+
+\begin{theorem}\label{ThAbelianoConnessoCompletamenteRiducibileImplicaToro}
+Sia $G$ un gruppo abeliano connesso completamente riducibile, allora $G$ \`e un toro algebrico.
+\end{theorem}
+\begin{proof}
+Notiamo che ogni elemento di $G$ \`e semisemplice: se $g\in G$ allora per la decomposizione di Jordan (\ref{PrDecomposizioneSemisempliceUnipotente}) si ha $g=su$ con $u$ unipotente in $G$. Poich\'e $G$ \`e abeliano, $\ps{u}$ \`e un suo sottogruppo normale, quindi per la proposizione sopra (\ref{PrCompletamenteRiducibileNonHaSottogruppiNormaliUnipotenti}) si ha che $\ps{u}=\cpa{1_G}$, cio\`e $u=1_G$. Dunque $g=s1_G=s$, cio\`e $g$ \`e semisemplice.
+
+Poich\'e $G$ \`e abeliano, gli elementi commutano. Dato che ogni elemento \`e semisemplice (cio\`e in ogni rappresentazione \`e diagonalizzabile), si ha che per ogni rappresentazione esiste una base di autovettori dove ogni elemento di $G$ \`e \emph{simultaneamente} diagonalizzabile. In particolare le rappresentazioni irriducibili hanno dimensione $1$.
+\smallskip
+
+Consideriamo allora una decomposizione di $\K[G]$ che rende ogni elemento di $G$ diagonalizzabile
+\[\K[G]=\bigoplus \K^{n_\al}_\al\]
+dove $\K_\al^{n_\al}$ sono le funzioni regolari $f$ tali che $gf=\al(g)f$. Notiamo che 
+\[\al(gh)f=(gh)f=g(hf)=g(\al(h)f)=\al(h)gf=\al(h)\al(g)f\]
+quindi $\al(gh)=\al(g)\al(h)$. Questo ci permette di identificare questa decomposizione con
+\[\K[G]=\bigoplus_{\al\in X(G)}V_\al,\qquad\text{dove }V_\al=\cpa{h\in \K[G]\mid gh=\al(g)h}.\]
+
+Per ogni carattere $\al\in X(G)$ definiamo $f_\al=\al\ii\in \Hom(G,\K^\times)\subseteq\Hom(G,\K)=\K[G]$. Sfruttando il fatto che $\al$ \`e un omomorfismo si ha $f_\al\in V_\al$, infatti
+\begin{align*}
+    (gf_\al)(x)=&f_\al(g\ii x)=\al\ii(g\ii x)=(\al(g\ii x))\ii=\\
+    =&(\al(g)\ii \al(x))\ii=(\al(x))\ii\al(g)=\\
+    =&\al(g) \al\ii(x)=\\
+    =&\al(g)f_\al(x).
+\end{align*}
+Se $h$ ha carattere $\al$, cio\`e $gh=\al(g)h$, allora per ogni $g\in G$
+\[\frac{h(1_G)}{f_\al(1_G)}=\frac{\al(g\ii)h(1_G)}{\al(g\ii)f_\al(1_G)}=\frac{g\ii h(1_G)}{g\ii f_\al(1_G)}=\frac{h(g1_G)}{f_\al(g1_G)}=\frac{h(g)}{f_\al(g)},\]
+cio\`e $h$ \`e un multiplo di $f_\al$ (in particolare $n_\al=1$ nella scrittura sopra).
+\smallskip
+
+Mostriamo che $X(G)\cong \Z^n$ per qualche $n$ mostrando che \`e un gruppo abeliano finitamente generato libero da torsione:
+\setlength{\leftmargini}{0cm}
+\begin{itemize}
+\item[$\boxed{\text{fin.gen.}}$] Sappiamo che $\K[G]$ \`e una $\K$-algebra finitamente generata quindi consideriamo dei generatori $f_{\al_1},\cdots, f_{\al_m}$. Come $\K$-spazio vettoriale, $\K[G]$ \`e generato da elementi della forma
+\[f_{\al_1}^{n_1}\cdots f_{\al_m}^{n_m},\]
+il quale ha carattere $\prod \al_i^{n_i}$. Questo mostra che i caratteri $\al_1,\cdots, \al_m$ sono dei generatori di $X(G)$.
+\item[$\boxed{\text{tor.free}}$] Per assurdo supponiamo esista $\al\neq 1$ tale che $\al^N=1$, cio\`e $\al(g)^N=1$ per ogni $g\in G$. Notiamo che
+\[G=\coprod_{\smat{\omega\in \K^\times\ t.c.\\ \omega^N=1}}\cpa{g\mid \al(g)=\omega},\]
+ma poich\'e $G$ \`e connesso, questa unione disgiunta di chiusi deve consistere di un solo termine, mostrando che $\al$ assume solo il valore $1$ contraddicendo le ipotesi.
+\end{itemize}
+\setlength{\leftmargini}{0.5cm}
+\medskip
+
+Abbiamo quindi mostrato che $X(G)\cong \Z^n$. Sia $\al_1,\cdots, \al_n$ una sua base. Se scriviamo $x_i=f_{\al_i}$ troviamo
+\[\K[G]=\bigoplus \ps{f_\al}_\K=\bigoplus \ps{x_1^{m_1}\cdots x_n^{m_n}}_\K\]
+e in questa decomposizione il prodotto \`e esattamente quello che ci aspetteremmo.
+Se scriviamo $\al=\al_1^{m_1}\cdots\al_n^{m_n}$ allora $f_\al=x_1^{m_1}\cdots x_n^{m_n}$, dunque abbiamo proprio mostrato che
+\[\K[G]=\K[x_1^{\pm1},\cdots, x_n^{\pm 1}]=\K[(\K^\times)^n].\]
+Essendo sia $G$ che $(\K^\times)^n$ affini questo mostra che sono isomorfi.
+\end{proof}
+
+\begin{remark}
+Il gruppo dei caratteri di un toro \`e dato da un reticolo $\Z^n$.
+\end{remark}
 
