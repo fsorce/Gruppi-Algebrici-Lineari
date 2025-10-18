@@ -242,7 +242,7 @@ Notiamo che $W$ \`e un chiuso, infatti \`e luogo di zeri di $f(x)-g(y)$ in $X\ti
 Concludiamo la sezione citando il seguente teorema che useremo ripetutamente
 
 \begin{theorem}[Chevalley]\label{ThChevalley}
-    Se $\varphi\colon X \to Y$ è una mappa regolare tra due varietà, allora $\varphi(X)$ contiene un aperto di $\overline{\varphi(X)}$.
+    Se $\varphi\colon X \to Y$ è un morfismo tra due varietà, allora $\varphi(X)$ contiene un aperto di $\overline{\varphi(X)}$.
 \end{theorem}
 
 \section{Connessione e Irriducibilit\`a}
@@ -533,3 +533,50 @@ Enunciamo altri teoremi utili sulle mappe lisce:
 \end{theorem}
 
 
+
+
+
+
+\section{Variet\`a separate e complete}
+
+Introdiciamo gli analoghi di Hausdorff e Compatto in geometria algebrica
+
+\begin{definition}[Variet\`a separata]
+$X$ \`e \textbf{separata} se la diagonale $X\to X\times X$ \`e un morfismo chiuso.
+\end{definition}
+\begin{center}
+	\textbf{Supporremo che sia tutto separato.}
+\end{center}
+
+\begin{definition}[Variet\`a completa]
+$X$ \`e \textbf{completa} se per ogni $Z$ variet\`a, $\pi:X\times Z\to Z$ \`e un morfismo chiuso.
+\end{definition}
+
+\begin{proposition}\label{PrRegolariSuCompleteIrriducibiliSonoCostanti}
+Se $X$ \`e irriducibile e completa allora $\Oc_X(X)\cong \K$.
+\end{proposition}
+\begin{proof}
+Sia $f:X\to \K$ regolare e consideriamo $\Gamma(f)\subseteq X\times \K\to \K$. Questa proiezione \`e chiusa quindi $\pi(\Gamma(f))=f(X)$ \`e un chiuso irriducibile (immagine di irriducibile) di $\K$. Ma i chiusi irriducibili di $\K$ non vuoti sono o tutto $\K$ o solo un punto.
+
+Consideriamo ora $W=\cpa{(x,y)\in X\times \K\mid yf(x)=1}$. Se $f(X)=\K$ allora l'immagine di $W$ tramite la proiezione $X\times \K\to \K$ \`e $\K^\times$, che non \`e chiuso in $\K$, assurdo.
+
+Quindi $f(X)$ \`e un solo punto, cio\`e $f$ \`e costante.
+\end{proof}
+\begin{corollary}
+Se $X$ \`e completa, affine e connessa allora $\K[X]=\K$ significa che $X$ \`e un solo punto $\cpa{(0)}$.
+
+In generale le affini complete sono un numero finito di punti.
+\end{corollary}
+
+\begin{theorem}[I proiettivi sono completi]\label{ThProiettiviSonoCompleti}
+Se $V$ \`e uno spazio vettoriale di dimensione finita, $\Pj(V)$ \`e completa.
+\end{theorem}
+
+
+\begin{remark}
+Se $X$ \`e completa e $Z\subseteq X$ chiuso allora $Z$ \`e completo\footnote{Questo corrisponde a ``chiuso in un compatto \`e compatto" in senso classico.}.
+\end{remark}
+
+\begin{remark}
+Se $\vp:X\to Y$ \`e surgettiva e $X$ \`e completa allora $Y$ \`e completa\footnote{Questo corrisponde a ``immagine di un compatto \`e compatta" in senso classico.}.
+\end{remark}
