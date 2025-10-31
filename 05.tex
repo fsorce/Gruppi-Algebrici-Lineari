@@ -1,320 +1,963 @@
-\section{Gruppi unipotenti}
-\begin{definition}
-    Un gruppo $G$ si dice \textbf{unipotente} se ogni suo elemento è unipotente.
-\end{definition}
+\chapter{Quozienti}
+\section{Realizzazione geometrica di quotienti e insiemi delle classi}
+In generale, l'esistenza di quozienti in geometria algebrica \`e un argomento molto complicato. Per evitare questo limite \textit{restringiamo l'attenzione allo studio di insiemi delle classi}. Se $G$ \`e un gruppo algebrico e $H$ \`e un sottogruppo allora possiamo pensare all'insieme delle classi come la variet\`a quoziente $G/H$, cio\`e il quoziente di $G$ tramite l'azione di $H$ indotta in modo ovvio. In questo caso il quoziente esiste grazie ad un lemma che esponiamo nella sezione seguente.
 
-\begin{lemma}\label{LmUnicaRappresentazioneIrriducibileBanaleImplicaUpperTriangularCon1SuDiagonale}
-Se $G$ \`e tale che l'unica rappresentazione irriducibile di $G$ \`e banale allora $G$ si immerge nel gruppo delle matrici triangolari superiori aventi $1$ sulla diagonale, cio\`e
-\[G\subseteq U(n)=\cpa{\mat{1 & \ast & \ast\\ &\ddots &\ast\\ &&1}}\]
+In questa sezione dunque pensiamo a $G$ come una variet\`a della quale cerchiamo un quoziente e ad $H$ come il gruppo algebrico che agisce su questa variet\`a.
+
+\subsection{Costruzione}
+Il seguente lemma sar\`a molto utile nella realizzazione geometrica dei quozienti.
+
+\begin{lemma}\label{LmSottogruppoEStabilizzatoreDiUnaRettaInQualcheRappresentazione}
+Sia $G$ un gruppo algebrico e $H$ sottogruppo di $G$, allora
+\begin{enumerate}
+    \item Esistono una rappresentazione di dimensione finita $V$ di $G$ e una retta $L\subseteq V$ tali che $H=\stab_G L=\cpa{g\in G\mid g(L)=L}$
+    \item Se $H$ \`e normale allora $V$ si pu\`o scegliere in modo che sia somma dei $V_\al$ per $\al\in X(H)$ e $V_\al=\cpa{v\in V\mid h\cdot v=\al(h)v}$.
+\end{enumerate}
 \end{lemma}
 \begin{proof}
-    Sia $V$ un $\K$-spazio vettoriale di dimensione finita per cui $G$ è un sottogruppo di $\GL(V)$. Sia $W$ una sottorappresentazione di $V$ non banale. Allora $W=\K v_1$ e $g v_1=v_1$ per ogni $g$ in $G$. Consideriamo il quoziente $V_1=V/\langle v_1\rangle$. Allora esiste $v_2$ in $V$ tale che per ogni $g$ in $G$ si ha $gv_2\equiv v_2 \pmod{V_1}$. Procedendo in questo modo, possiamo scegliere una base $v_1,\ldots,v_n$ di $V$, rispetto alla quale risulta chiaramente $G\subseteq U_n$.
+Mostriamo le due affermazioni
+\setlength{\leftmargini}{0cm}
+\begin{enumerate}
+\item Sia\footnote{L'idea di questo punto \`e mostrare che $H$ \`e lo stabilizzatore di $I_H$. Da questo intersecando con una rappresentazione di dimensione finita che contiene i generatori di $I_H$ si ha che $H$ \`e lo stabilizzatore di un particolare sottospazio vettoriale dentro un altro spazio, cio\`e stabilizza un punto in una Grassmanniana. A questo punto basta considerare l'immersione di Pl\"ucker e abbiamo che $H$ \`e lo stabilizzatore di una retta.} $I_H\subseteq \K[G]$ l'ideale che definisce $H$, allora
+\[H=\cpa{g\in G\mid g(I_H)=I_H}\]
+\setlength{\leftmargini}{0cm}
+\begin{itemize}
+\item[$\boxed{\subseteq}$] Se $g\in H$ e $f\in I_H$ allora $gf(k)=f(g\ii k)$, quindi se $k\in H$ allora $g\ii k\in H$ e quindi questa funzione vale $0$, cio\`e $gf\in I_H$. L'altra inclusione segue dallo stesso ragionamento fatto su $g\ii$.
+\item[$\boxed{\supseteq}$] Se $g\ii(I_H)\subseteq I_H$ allora per ogni $f\in I_H$
+\[f(g)=\under{\in I_H}{(g\ii f)}(e)=0\]
+cio\`e $g\in H$.
+\end{itemize}
+\setlength{\leftmargini}{0.5cm}
+Consideriamo ora dei generatori $f_1,\cdots, f_m$ per $I_H$ e sia $V_0\subseteq \K[G]$ una $G$-sotto-rappresentazione di dimensione finita che contiene ogni $f_i$. Consideriamo il sottospazio vettoriale $W_0=I_H\cap V_0$ e notiamo che
+\[H=\cpa{g\in G\mid g(W_0)= W_0}.\]
+\setlength{\leftmargini}{0cm}
+\begin{itemize}
+\item[$\boxed{\subseteq}$] Ovvio per quanto detto sopra.
+\item[$\boxed{\supseteq}$] Se $g(W_0)= W_0$ allora $g(I_H)=I_H$, infatti $g(I_H)\subseteq I_H$ ovvio per costruzione di $W_0$, l'altra inclusione segue dal fatto che $g(W_0)=W_0\coimplies g\ii(W_0)=W_0$.
+\end{itemize}
+\setlength{\leftmargini}{0.5cm}
+Sia $\dim W_0=m$. Poniamo
+\[V=\bw^m V_0,\quad L=\bw^m W_0\subseteq \bw^m V_0.\]
+Per concludere basta mostrare che
+\[H=\cpa{g\in G\mid g(L)=L}\]
+\setlength{\leftmargini}{0cm}
+\begin{itemize}
+\item[$\boxed{\subseteq}$] Se $g(W_0)=W_0$ allora chiaramente 
+\[g(L)=g\pa{\bw^mW_0}=\bw^m g(W_0)=\bw^m W_0=L.\] 
+\item[$\boxed{\supseteq}$] Notiamo che se $u_1,\cdots, u_m$ \`e una base di $U\subseteq V$ sottospazio vettoriale allora 
+\[U=\cpa{u\in V\mid u\wedge u_1\wedge\cdots\wedge u_m=0}.\]
+Fissiamo una base $w_1,\cdots, w_m$ di $W_0$ e osserviamo che $g w_1,\cdots, gw_m$ \`e una base di $g(W_0)$. Se $g(L)=L$ allora per definizione
+\[\ps{g w_1\wedge\cdots\wedge gw_m}=\ps{w_1\wedge\cdots\wedge w_m},\] 
+quindi per il criterio appena citato si ha che
+\begin{align*}
+    W_0=&\cpa{v\in V\mid v\wedge w_1\wedge\cdots\wedge w_m=0}=\\
+    =&\cpa{v\in V\mid u\wedge gw_1\wedge\cdots\wedge gw_m=0}=g(W_0).
+\end{align*}
+\end{itemize}
+\setlength{\leftmargini}{0.5cm}
+\item Sia $V'=\bigoplus_{\al\in X(H)} V_\al\subseteq V$ con $V$ di prima. Mostriamo che $V'$ \`e $G$-invariante:
+Se $v_\al\in V_\al$ per $\al\in X(H)$, $h\in H$ e $g\in G$ allora
+\[h\cdot(g v_\al)=(gg\ii h g)\cdot v_\al\overset{\smat{H\text{ normale}\\\Downarrow\\ g\ii h g\in H}}=g(\al(g\ii hg)v_\al)=\al(g\ii hg)gv_\al,\]
+cio\`e $gv_\al$ \`e un autovettore per l'azione di $h$ per un qualsiasi $g\in G$ e $h\in H$, ovvero $V'$ \`e $G$-invariante. 
+
+Per concludere \`e dunque sufficiente mostrare che $L\subseteq V'$, ma abbiamo gi\`a visto che 
+\[g(w_1\wedge\cdots \wedge w_m)=gw_1\wedge\cdots \wedge gw_m=\la(g) w_1\wedge\cdots\wedge w_m\] 
+per qualche $\la(g)$ per ogni $g\in H$, quindi $L\subseteq V_\la$.
+\end{enumerate}
+\setlength{\leftmargini}{0.5cm}
 \end{proof}
 
-\begin{theorem}\label{ThSottoalgebraAssociativaDiEndomorfismiDiSempliceETuttiGliEndomorfismi}
-Sia $\K$ algebricamente chiuso, $V$ spazio vettoriale di dimensione finita, $A\subseteq \End_\K(V)$ che sia una $\K$-algebra associativa. Se $V$ \`e un $A$-modulo semplice allora $A=\End_\K(V)$.
-\end{theorem}
+\begin{remark}
+Se $H$ è un sottogruppo di $G$ e $\pi\colon G \to X=G\cdot L$ \`e la mappa ovvia, allora $\pi$ è $G$-equivariante e induce una bigezione tra $G/H$ e $X$.
+\end{remark}
+
+Questa mappa risulta in realt\`a essere un valido quoziente categorico. Mostreremo nel resto della sezione i risultati coinvolti
+\begin{proposition}[]\label{PrInsiemeDelleClassiEVarietaQuasiProiettiva}
+Sia $G$ un gruppo algebrico e $H$ un sottogruppo, allora l'insieme delle classi $G/H$ pu\`o essere identificato con una variet\`a quasiproiettiva.
+\end{proposition}
 \begin{proof}
-Sia $v_1,\cdots, v_n$ una base di $V$. Se $v=(v_1,\cdots, v_n)\in V^n$ allora vogliamo mostrare che $Av=V^n$.
-
-Poich\'e $V$ \`e semplice, $V^n$ \`e somma di rappresentazioni semplici, quindi per la proposizione (\ref{PrSommaSempliciESommaDirettaSemplici}) si ha che $V^n$ \`e semisemplice e quindi completamente riducibile. Possiamo allora scrivere $V^n=Av\oplus P$ per $P$ un $A$-sottomodulo. Sia $\pi_P:V^n\to V^n$ la proiezione su $P$ e notiamo che essa ammette una decomposizione a blocchi
-\[\pi_P=(\al_{ij})_{i,j}\quad\text{ per degli endomorfismi }\al_{ij}:V\to V\]
-dove il dominio di $\al_{ij}$ \`e la $j$-esima copia di $V$ in $V^n$ e il codominio \`e l'$i$-esima copia.
-
-Quindi $\al_{ij}\in \End_A(V)$ con $V$ spazio vettoriale su $\K$ algebricamente chiuso. Per il lemma di Schur (\ref{LmSchur}) questi endomorfismi sono le costanti.
-
-Ricordando ricordando che $V^n=Av\oplus P$, si ha necessariamente $\pi_P(v)=0$ per definizione di $\pi_P$, quindi per ogni $i$ abbiamo $\sum \al_{ij}v_j=0$. Poich\'e gli $v_j$ sono una base e gli endomorfismi $\al_{ij}$ sono costanti, per indipendenza lineare questo significa che per ogni $i$ e ogni $j$ si ha $\al_{ij}=0$. Segue dunque che $\pi_P=0$ e quindi $P=\imm \pi_P=\cpa{0}$, cio\`e $V^n=Av$.
+Siano $H< G$ e $L,V$ come nel lemma. Dato che $G$ agisce su $V$ si ha che esso agisce anche su $\Pj(V)$. Interpretando $L\in \Pj(V)$ abbiamo che l'insieme delle classi coincide con l'orbita $X=G\cdot L=G/\stab_G(L)=G/H$. Definiamo la variet\`a proiettiva
+\[Y=\ol{G\cdot L}\subseteq \Pj(V).\]
+Concludiamo mostrando che $X$ \`e aperto in essa: data la mappa
+\[\funcDef{G}{Y}{g}{gL},\]
+per Chevalley (\ref{ThChevalley}) si ha che $X$ contiene un aperto $U$ di $Y$. Se $x\in U\subseteq X$ allora $gx\in gU\subseteq X$ quindi
+\[X=\bigcup_{g\in G}gU\text{ \`e aperto.}\]
 \end{proof}
 
+
+Nel caso in cui il sottogruppo \`e normale sappiamo che l'insieme delle classi \`e un gruppo. Quello che si scopre \`e che effettivamente in questo caso $G/H$ \`e un gruppo algebrico (anche se la costruzione che diamo sotto \`e diversa da quella sopra):
+\begin{proposition}\label{PrGruppoQuozienteEGruppoAlgebrico}
+Se $H$ \`e normale, $G/H$ \`e un gruppo algebrico affine.
+\end{proposition}
+\begin{proof}
+Costruiamo $L$ e $V=\bigoplus_{\al\in X(H)} V_\al$ come nel punto 2. del lemma (\ref{LmSottogruppoEStabilizzatoreDiUnaRettaInQualcheRappresentazione}). Sia
+\[W=\cpa{T:V\to V\mid \forall \al\in X(H),\ T(V_\al)\subseteq V_\al}\]
+e notiamo che $G$ agisce su $W$ come $gT=g\circ T\circ g\ii$. Per rendere valido quanto detto dobbiamo verificare che $g T g\ii(V_\al)\subseteq V_\al$, ma questo segue dal fatto che se $g\ii(V_\al)=V_\beta$ allora
+\[g T g\ii(V_\al)=gT(V_\beta)\subseteq gV_\beta=V_\al.\]
+Notiamo ora che
+\[\cpa{g\in G\mid g\res W=id_W}\overset{(\star)}=\cpa{g\in G\mid g\res{V_\al}=\la_\al id_{V_\al}\ \forall \al\in X(H)}\overset{(\star\star)}=H.\]
+\setlength{\leftmargini}{0cm}
+\begin{itemize}
+\item[$\boxed{\;(\star)\;}$] Notiamo che $g\res W=id_W$ significa che per ogni $T\in W$ abbiamo $gTg\ii=T$, cio\`e $gT=Tg$. L'uguaglianza segue scrivendo le matrici associate a $T$ e $g$ visti come elementi di $\GL(V)$:  Le matrici in $W$ sono le diagonali a blocchi per la decomposizione $\bigoplus_{\al\in X(H)}V_\al$ e una matrice commuta con tutte le diagonali a blocchi per una data decomposizione se e solo se \`e a blocchi per la stessa decomposizione e in ogni blocco \`e multiplo dell'identit\`a.
+\item[$\boxed{(\star\star)}$] Segue per doppia inclusione: Per definizione di carattere, gli elementi di $h$ sono tali che $h\res{V_\al}=\la_\al id_{V_\al}$. Se invece $g$ \`e tale che $g\res{V_\al}=\la_\al id_{V_\al}$ allora in particolare $g\res{V_\la}$ \`e un multiplo dell'identit\`a per il blocco $V_\la$ che contiene $L$, quindi $g\cdot L=L$ ovvero $g\in \stab_G(L)=H$.
+\end{itemize}
+\setlength{\leftmargini}{0.5cm}
+
+Abbiamo dunque costruito un omomorfismo di gruppi algebrici $\vp:G\to \GL(W)$ il cui nucleo \`e $H$. Poich\'e $\vp(G)$ \`e un sottogruppo chiuso di $\GL(W)$ per Chevalley (\ref{PrMorfismoTraGruppiAlgebriciAffiniHaImmagineChiusa}) si ha che $G/H\cong \vp(G)$ eredita la struttura di gruppo algebrico lineare da $\vp(G)$.
+\end{proof}
+
+Diamo due esempi dove il sottogruppo NON \`e normale:
 \begin{exercise}
-Trova un controesempio per $\K$ non algebricamente chiuso.
+Sia $G=\GL(2)$ e $H=B(2)=\cpa{\mat{\ast&\ast\\0&\ast}}$. Sia $V=\K^2$ e $L=\K e_1$, allora effettivamente $H=\stab_G(L)$ e $G\cdot L=\Pj(V)$ (ogni retta si ottiene da $L$ applicando una trasformazione lineare), quindi\footnote{Intuitivamente, questo risultato semplicemente afferma che l'insieme delle rette in $V$ corrisponde all'orbita di una retta fissata tramite l'azione di $\GL$.} $G/H\leftrightarrow \Pj(V)$.
 \end{exercise}
 
-\begin{theorem}\label{ThUnipotenteSeESoloSeUnicaRappresentazioneIrriducibileEBanale}
-    Un gruppo $G$ è unipotente se e solo se l'unica rappresentazione irriducibile di $G$ è quella banale.
+\begin{exercise}
+Sia $G=\GL(n,\C)$ e $H=O(n,\C)$. Sia $V=\Sym(n,\C)$ lo spazio delle matrici simmetriche. Se $A\in V$ e $g\in G$ agisce su $A$ tramite 
+\[g\cdot A=gA g^\top\]
+allora $H=\stab_G(I_n)$ (stabilizzatore della matrice identit\`a).
+\[X=G\cdot I_n=\cpa{gg^\top\mid g\in \GL(n)}=\cpa{A\in \GL(n)\mid A=A^\top}\subseteq\ol{G\cdot I_n}=Y\subseteq \Pj(V).\]
+%Siano $V'=V\oplus \K$ e $L=\ps{(I_n,1)}$, allora \[\stab_G(L)=H\text{ e }\Pj(V')=V\oplus \Pj(V).\]
+\end{exercise}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\subsection{Variet\`a omogenee}
+
+\begin{center}
+    \textit{Nel seguito supporremo $\cha(\K)=0$.}
+\end{center}
+
+
+\begin{definition}
+Una variet\`a \`e \textbf{omogenea} rispetto al gruppo $G$ se l'azione di $G$ su $X$ \`e transitiva.
+\end{definition}
+
+\begin{corollary}
+    Se $X$ è una varietà omogenea rispetto a $G$, allora $X$ è liscia.
+\end{corollary}
+\begin{proof}
+    Poiché $X$ ha un aperto $U$ di punti lisci, la tesi segue dal fatto che $X=\bigcup_{g\in G} gU$.
+\end{proof}
+
+
+\begin{corollary}\label{CorEquivarianteTraVarietaOmogeneeELiscia}
+    Se $X$ e $Y$ sono varietà omogenee per $G$ e $\varphi\colon X \to Y$ è $G$-equivariante, allora $\varphi$ è liscia.
+\end{corollary}
+\begin{proof}
+    Sicuramente $\varphi$ è surgettiva, perché $X$ e $Y$ sono varietà omogenee per $G$ e $\varphi$ è $G$-equivariante. Per il teorema (\ref{ThMorfismoDominanteTraLisceHaRestrizioneLisciaSuAperto}) esiste un aperto non vuoto $U$ di $Y$ tale che $\varphi\res{\varphi^{-1}(U)}\colon \varphi^{-1}(U) \to U$ è liscia. Allora si ha un diagramma commutativo % https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXHZhcnBoaV57LTF9KGdVKSJdLFsyLDAsImdVIl0sWzAsMiwiXFx2YXJwaGleey0xfShVKSJdLFsyLDIsIlUiXSxbMCwxLCJcXHZhcnBoaVxccmVze2dcXHZhcnBoaV57LTF9KFUpfSJdLFsyLDMsIlxcdmFycGhpXFxyZXN7XFx2YXJwaGleey0xfShVKX0iXSxbMiwwLCJcXHNpbSJdLFszLDEsIlxcc2ltIiwyXV0=
+\[\begin{tikzcd}
+	{\varphi^{-1}(gU)} && gU \\
+	\\
+	{\varphi^{-1}(U)} && U
+	\arrow["{\varphi\res{g\varphi^{-1}(U)}}", from=1-1, to=1-3]
+	\arrow["\sim", from=3-1, to=1-1]
+	\arrow["{\varphi\res{\varphi^{-1}(U)}}", from=3-1, to=3-3]
+	\arrow["\sim"', from=3-3, to=1-3]
+\end{tikzcd}\] 
+Poiché $Y=\bigcup gU$, $\varphi$ è liscia in ogni punto e quindi è liscia.
+
+%\[\varphi\res{g\varphi^{-1}(U)}\colon \varphi^{-1}(gU) \to gU\]
+\end{proof}
+
+
+
+
+\subsection{Quoziente categorico}
+
+Sfruttando quanto detto sulle variet\`a omogenee possiamo dimostrare il seguente lemma, il quale ci permette di mostrare l'universalit\`a del quoziente \[\pi:G\to X=G\cdot L.\]
+\begin{lemma}[]\label{LmMappaEquivariantePerUnSottogruppoEUniversalmenteAperta}
+Se $H$ è un sottogruppo di $G$ e $\pi\colon G \to X$ \`e la proiezione sull'insieme delle classi come in (\ref{PrInsiemeDelleClassiEVarietaQuasiProiettiva}) allora per ogni varietà $Z$, la mappa \[G\times Z \xrightarrow{(\pi,id)}X\times Z\] è aperta.
+\end{lemma}
+\begin{proof}
+Notiamo che $\pi$ \`e $G$-equivariante e che sia $G$ che $X$ sono variet\`a $G$-omogenee. Segue che $\pi$ \`e liscia. Segue dunque che per ogni varietà $Z$ la mappa $(\pi,id)\colon G\times Z \to X\times Z$ è liscia e quindi tale mappa è anche aperta (\ref{ThMappaLisciaEAperta}).
+\end{proof}
+
+
+
+\begin{proposition}\label{PrFascioDiUnQuozienteDatoDagliInvarianti}
+    Se $H$ è un sottogruppo di $G$ e $\pi\colon G \to X$ \`e la proiezione sull'insieme delle classi come in (\ref{PrInsiemeDelleClassiEVarietaQuasiProiettiva}), si ha che per ogni aperto $U$ di $X$ vale\footnote{Questo \`e in realt\`a un risultato generale sui fasci di struttura quando facciamo un quoziente di spazi localmente anulati.} 
+    \[\pi^\ast:\Oc_X(U)\xrightarrow{\sim}(\Oc_G(\pi^{-1}(U)))^H.\]
+\end{proposition}
+
+\begin{proof}
+Sia $U$ un aperto di $X$, poniamo $V=\pi\ii(U)$, e consideriamo la mappa
+\[\pi^\ast:\Oc_X(U)\to \Oc_G(V)^H.\]
+Osserviamo che tale mappa è iniettiva, infatti se $f(\pi(x))=0$ per ogni $x$ in $V=\pi\ii (U)$, si ha $f(y)=0$ per ogni $y$ in $U$ per surgettivit\`a di $\pi$, per cui $f=0$. L'immagine di $\pi^\ast$ \`e contenuta negli $H$-invarianti perch\'e
+\[(h\cdot (\pi^\ast(f)))(g)=f(\pi(h\ii g))\overset{X=G/H}=f(\pi(g))=\pi^\ast(f).\]
+Resta solo da mostrare che la mappa $\pi^\ast:\Oc_X(U)\to \Oc_G(V)^H$ è surgettiva.
+
+\medskip
+
+\noindent
+Come primo passo ci riduciamo al caso di $U$ irriducibile:
+\begin{mdframed}[topline=false,rightline=false,bottomline=false] 
+In $G$ le componenti connesse coincidono con le componenti irriducibili (\ref{ReInGruppoComponentiConnesseSonoIrriducibili}). Lo stesso vale per $X$, infatti se $G^0$ \`e la componente connessa di $1_G$ allora da $X=G/H$ troviamo che $X^0=G^0/H\cap G^0$ \`e aperto e $X$ \`e unione finita disgiunta dei traslati di $X^0$ ($G$ ha finite componenti irriducibili per Noetherianit\`a).
+\smallskip
+
+\noindent
+Se $U$ \`e un aperto di $X$ allora 
+\[X=X^0\sqcup g_1X^0\sqcup\cdots\sqcup g_nX^0\implies U=U\cap X^0\sqcup \cdots\sqcup U\cap g_n X^0.\]
+Poich\'e $X^0$ irriducibile i suoi aperti sono irriducibili. Se verifichiamo la tesi per ogni $U\cap g_iX^0$ allora data $f\in \Oc_G(\pi\ii(U))^H$ possiamo trovare una preimmagine considerando l'insieme delle preimmagini per le varie restrizioni $f\res{\pi\ii(U\cap g_i X^0)}\in \Oc_G(\pi\ii(U\cap g_i X^0))^H$, infatti una tale collezione da proprio un elemento di $\prod_{i=1}^n \Oc_X(U\cap g_i X^0)=\Oc_X(U)$.
+\end{mdframed}
+
+Sia $f:V\to \K$ regolare $H$-invariante e consideriamo il grafico $\Gamma(f)\subseteq V\times \K$. Sia $g$ la fattorizzazione (insiemistica per ora)
+% https://q.uiver.app/#q=WzAsMyxbMCwwLCJWIl0sWzIsMCwiVT1WL0giXSxbMCwyLCJcXEsiXSxbMCwyLCJmIiwyXSxbMCwxLCJcXHBpIl0sWzEsMiwiZyIsMCx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dXQ==
+\[\begin{tikzcd}
+	V && {U=V/H} \\
+	\\
+	\K
+	\arrow["\pi", from=1-1, to=1-3]
+	\arrow["f"', from=1-1, to=3-1]
+	\arrow["g", dashed, from=1-3, to=3-1]
+\end{tikzcd}\]
+Decomponiamo $V$ in irriducibili $V=V_1\cup\cdots\cup V_n$ e per irriducibilit\`a di $U$ deve essere il caso che $H$ agisce transitivamente su $\cpa{V_1,\cdots, V_n}$.
+
+Per il lemma (\ref{LmMappaEquivariantePerUnSottogruppoEUniversalmenteAperta}) sappiamo che $(\pi,id):G\times \K\to X\times\K$ \`e una mappa aperta, quindi la restrizione $\psi:V\times \K\to U\times \K$ resta aperta perch\'e $V\times \K$ \`e un aperto di $G\times \K$. Segue che\footnote{Se $(v,f(v))\in\Gamma(f)$ allora $\psi(v,f(v))=(\pi(v),f(v))=(\pi(v),g(\pi(v)))$.} $\psi(\Gamma(f))=\Gamma(g)$ \`e un chiuso di $U\times \K$. In realt\`a notando che $\Gamma(g)$ \`e $H$ invariante e che esso \`e immagine di $\Gamma(f)=\bigcup \Gamma(f)\cap V_i$ si ha che in realt\`a possiamo scrivere $\Gamma(g)$ solo come immagine di un singolo $\Gamma(f)\cap V_i$, in particolare \`e irriducible (altrimenti potremmo decomporre $V$ ulteriormente).
+
+Consideriamo ora il diagramma
+% https://q.uiver.app/#q=WzAsMyxbMCwwLCJcXEdhbW1hKGcpIl0sWzIsMCwiVVxcdGltZXMgXFxLIl0sWzIsMiwiVSJdLFswLDEsIiIsMCx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn19fV0sWzEsMiwicF9VIl0sWzAsMiwicSIsMl1d
+\[\begin{tikzcd}
+	{\Gamma(g)} && {U\times \K} \\
+	\\
+	&& U
+	\arrow[hook, from=1-1, to=1-3]
+	\arrow["q"', from=1-1, to=3-3]
+	\arrow["{p_U}", from=1-3, to=3-3]
+\end{tikzcd}\]
+dove $p_U$ \`e la proiezione su $U$ e $q$ \`e la restrizione a $\Gamma(g)$. Chiaramente $q$ \`e regolare in quanto composizione di regolari. $q$ \`e anche bigettiva perch\'e $(u,g(u))\mapsto u$ pu\`o essere facilmente invertita. Poich\'e $U$ \`e liscio e $\Gamma(g)$ irriducibile, per il teorema di Zariski (\ref{ThZariski}) si ha che $q$ \`e un isomorfismo, quindi la mappa $u\mapsto (u,g(u))$ un morfismo e in particolare $g$ stesso \`e un morfismo. Questo mostra che $\pi^\ast$ effettivamente \`e surgettiva perch\'e abbiamo trovato $g\in \Oc_X(U)$ tale che $\pi^\ast(g)=g\circ \pi=f$.
+\end{proof}
+
+
+Siamo pronti per mostrare la propriet\`a universale dei quozienti
+
+\begin{theorem}
+    Per ogni $G$-varietà $Y$ e per ogni $y_0$ in $Y$ tale che $H$ è contenuto in $\stab_G(y_0)$, vale la seguente proprietà: se $\varphi\colon G \to Y$ è la mappa definita da $\varphi(g)=gy_0$, allora esiste un'unica $\psi\colon X \to Y$  tale che $\psi\circ\pi=\varphi$.
+    % https://q.uiver.app/#q=WzAsMyxbMCwwLCJHIl0sWzAsMSwiWCJdLFsyLDAsIlkiXSxbMCwxLCJcXHBpIl0sWzAsMiwiXFx2YXJwaGkiXSxbMSwyLCJcXGV4aXN0cyAhXFxwc2kiLDIseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XV0=
+\[\begin{tikzcd}
+	G && Y \\
+	X
+	\arrow["\varphi", from=1-1, to=1-3]
+	\arrow["\pi", from=1-1, to=2-1]
+	\arrow["{\exists !\psi}"', dashed, from=2-1, to=1-3]
+\end{tikzcd}\]
+dove $X\cong G/H$ \`e la variet\`a quasiproiettiva di (\ref{PrInsiemeDelleClassiEVarietaQuasiProiettiva}).
 \end{theorem}
+
+\begin{proof}
+    Insiemisticamente, la mappa $\psi\colon gH \mapsto gy_0$ è definita. Inoltre $\psi$ è continua: se $U$ è un aperto di $Y$, allora \[\psi^{-1}(U)=\pi(\pi^{-1}(\psi^{-1}(U)))=\pi(\varphi^{-1}(U)),\] che è aperto per il lemma (\ref{LmMappaEquivariantePerUnSottogruppoEUniversalmenteAperta}). Dato un aperto $U$ di $Y$, verifichiamo che l'immagine della mappa 
+    \[\psi^\ast:\Oc_Y(U)\to\Hom_{(\mathrm{Set})}(\psi^{-1}(U),\K)\]
+    è contenuta nell'insieme delle funzioni regolari su $X$. Consideriamo una funzione $f\colon U\to \K$. Allora $\wt{f}:= f\circ \psi\circ\pi =f \circ \varphi$ è in $\Oc_G(\varphi^{-1}(U))$ in quanto $\varphi$ è un morfismo di varietà. Mostriamo che in realtà è in $\Oc_G(\varphi^{-1}(U))^H$. Sia $\lambda$ in $\Oc_G(\varphi^{-1}(U))$ e sia $h$ in $H$. Allora per ogni $x$ in $G$ si ha \[(h\widetilde{f})(x)=\widetilde{f}(xh)=f(\varphi(xh))=f(xhy_0)=f(x y_0)=f(\varphi(x))=\widetilde{f}(x).\]
+    Dato che $\Oc_G(\varphi^{-1}(U))^H=\Oc_X(\psi\ii(U))$ per la proposizione (\ref{PrFascioDiUnQuozienteDatoDagliInvarianti}) questo conclude.
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{Sottogruppi generati e ``algebre di Lie"}
+\begin{lemma}\label{LmSottogruppoGenerato}
+Sia $G$ un gruppo algebrico e siano $X_i$ delle variet\`a irriducibili. Siano $\vp_i:X_i\to G$ tali che $1_G\in \imm\vp_i$ per ogni $i$. Poniamo $Y_i=\vp_i(X_i)$.
+
+Sia $H=\ps{\cpa{Y_i}_i}$ il sottogruppo generato dalle immagini delle $\vp_i$. Allora
+
+\begin{enumerate}
+	\item $H$ \`e chiuso
+	\item esistono $i_1,\cdots, i_k$, $\e_1,\cdots, \e_k$ tali che
+	\[H=Y_{i_1}^{\e_1}\cdots Y_{i_k}^{\e_k},\qquad \e_j\in\cpa{1,-1}\]
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+Senza perdita di generalit\`a supponiamo $X_i=Y_i\subseteq G$ con $\vp_i$ date dall'inclusione\footnote{l'immagine di una varit\`a irriducibile \`e irriducible.}. Supponiamo inoltre che tra le $X_i$ compaiano anche le $X_i\ii$, in modo da poter semplificare la notazione evitiando gli esponenti $\e_j$.
+\noindent
+Definiamo iterativamente
+\[\begin{cases}
+    Z_0=\cpa{1_G}&\\
+    Z_{kn+i+1}=Z_{kn+i}\cdot X_{i+1} &\text{se }k\in \N,\ i\in \cpa{0,\cdots, n-1}
+\end{cases}\]
+e poniamo $W_i=\ol{Z_i}$ per ogni $i\in \N$.
+
+\noindent
+Notiamo che $Z_i$ \`e l'immagine di $X_1\times\cdots\times X_i\to G$, quindi $Z_i$ \`e irriducible per ogni $i$, dunque anche $W_i=\ol{Z_i}$ \`e irriducibile.
+Segue dunque che 
+\[W_1\subseteq W_2\subseteq\cdots\subseteq G\] 
+\`e una catena di chiusi irriducibili e, dato che $G$ ha dimensione finita, essa stabilizza, cio\`e esiste $N$ tale che $W_N=W_{N+i}$
+
+
+%, ovvero $W_N\cdot X_i\subseteq W_N$ per ogni $i$. Notiamo che segue anche che $X_i\cdot W_N\subseteq W_N$ per ogni $i$, infatti moltiplicando per $1_G$ nelle posizioni prima di $W_N$ nella scrittura di un elemento di $X_iW_N$ in modo appropriato possiamo vedere un elemento di $X_iW_N$ come un elemento di $Z_nW_N\subseteq W_{N+n}=W_N$.
+
+Un qualsiasi elemento di $H$ \`e contenuto in qualche $Z_i$ per costruzione, quindi in particolare $H\subseteq W_N$.
+%Allora $W_NZ_N\subseteq W_N$ cio\`e $W_N\cdot W_N\subseteq W_N$ perch\'e $W_n$ \`e chiuso. Quindi\footnote{$Z_N\ii W_N\subseteq W_N\implies Z_N\ii\subseteq W_N\implies \ol{Z_N\ii}\subseteq W_N$ e $\ol{Z_N\ii}=\ol{Z_N}\ii=W_N\ii$.} $W_N\ii\subseteq W_N$ e in particolare $Z_N\ii\subseteq W_N$, ma $Z_N\ii=X_N\ii\cdots X_1\ii=X_{i_1}\cdots X_{i_N}$, cio\`e mettendo tutto insieme $H\subseteq W_N$
+Mostriamo che $W_N=Z_N\cdot Z_N$: abbiamo una mappa
+\[\under{irrid.}{X_1\times\cdots\times X_{N}}\to Z_N\to W_N,\]
+quindi per Chevalley (\ref{ThChevalley}) $Z_N\supseteq U$ per $U$ aperto non vuoto di $W_N$ (e quindi denso per irriducibilit\`a), dunque\footnote{Per ogni $g\in W_N$ fissiamo $f:W_N\to W_N$ data da $f(a)=a\ii g$. Questa mappa \`e ben definita perch\'e $W_N\cdot W_N\subseteq W_N$ ed \`e evidentemente continua. Dato che $U$ \`e aperto, $f\ii(U)$ \`e aperto e quindi interseca $U$ in quanto $U$ \`e denso. Segue dunque che esiste $u\in U\cap f\ii(U)$, cio\`e $u\ii g=v\in U$, ovvero $g=u\cdot v\in U\cdot U$.} $U\cdot U=W_N$.
+
+Questo mostra che $W_N\subseteq H$ ma ci sono tutti gli elementi di $H$ quindi effettivamente $H=W_N$.
+\end{proof}
+
+
+\begin{remark}[Dimensione del quoziente]\label{ReDimensioneDelQuoziente}
+Sia $\vp:G\to G/H$ e ricordiamo che una mappa di questo tipo \`e liscia per omogeneit\`a. Allora per il teorema (\ref{ThFibrePerMappeLiscie}) abbiamo una successione esatta
+\[0\to T_{e}H\to T_{e}G\xrightarrow{d\vp_{e}}T_{e}(G/H)\to 0\]
+da cui $\dim (G/H)=\dim G=\dim H$.
+\end{remark}
+
+\begin{proposition}\label{PrContenimentoTraSottogruppiSiControllaSuiTangenti}
+Supponiamo $\cha\K=0$. Siano $H,K\subseteq G$ sottogruppi connessi, allora\footnote{Questo risultato \`e analogo alla corrispondenza tra sottogruppi di Lie connessi di un gruppo di Lie e sottoalgebre di Lie.}
+\[H\subseteq K\coimplies T_e H\subseteq T_eK\text{ in }T_eG.\]
+\end{proposition}
+\begin{proof}
+L'implicazione $\implies$ \`e ovvia quindi basta mostrare l'altra.
+
+Sia $X=H\cdot K\subseteq G$ e notiamo che \`e omogeneo rispetto all'azione di $H\times K$ data da $(h,k)\cdot g=hgk\ii$.
+Osserviamo che $X$ \`e aperto in $\ol X\subseteq G$ per Chevalley (\ref{ThChevalley}) (contiene un aperto della chiusura ed \`e omogeneo in quanto orbita di $e$).
+Si ha
+\[X\cong \frac{H\times K}{\stab_{H\times K}(e)}.\]
+Studiando lo stabilizzatore notiamo che
+\[\stab_{H\times K}(e)=\cpa{(h,k)\mid hk\ii=e}=\cpa{(h,k)\mid h=k}\cong H\cap K,\]
+dunque per il teorema (\ref{ThFibrePerMappeLiscie}) abbiamo $\dim X=\dim H+\dim K-\dim H\cap K$ e una successione esatta
+\[0\to T_e(H\cap K)\to T_e(H\times K)\to T_e X\to 0\]
+da cui segue $\dim T_e X=\dim T_eH+\dim T_eK-\dim T_e(H\cap K)$.
+\medskip
+
+Se $T_e X=T_eH+T_eK$ allora 
+\[\dim (T_e X)=\dim (T_eH+T_eK)\overset{T_e H\subseteq T_eK}=\dim T_eK,\]
+dunque 
+\[\dim X=\dim T_eX=\dim T_eK=\dim K\]
+e quindi $K\subseteq X\subseteq \ol X$ con $K$ e $\ol X$ irriducibili chiusi della stessa dimensione, dunque $K=X=\ol X$, e poich\'e $X=H\cdot K$ questo mostra 
+\[K=X=H\cdot K\implies H\subseteq K\]
+che \`e la tesi.
+
+Per concludere basta dunque dimostrare che $T_e X=T_eH+T_eK$.
+Consideriamo la composizione
+\[\begin{array}{ccccc}
+	H\times K &\xrightarrow{}& H\times K & \to &X \\
+	(h,k) & \mapsto & (h,k\ii) &  & \\
+	       &        & (h',k') &\mapsto & h'(k'{\ii}) 
+\end{array}\] 
+che \`e la mappa di moltiplicazione $\mu\res{H\times K}$. Dal teorema (\ref{ThFibrePerMappeLiscie}) ricaviamo una successione esatta
+\[0\to T_e(\stab_{H\times K}(e))\to \under{T_eH\times T_eK}{T_e(H\times K)}\to T_eX\to 0\]
+In particolare $d\pa{\mu\res{H\times K}}_{(e,e)}$ \`e surgettiva, quindi per concludere basta mostrare che 
+\[d\pa{\mu\res{H\times K}}_{(e,e)}(\al,\beta)=\al+\beta.\]
+Dato che $G\subseteq \GL(n)$ \`e sufficiente che la tesi valga per $\GL(n)$ e $d\mu_{(e,e)}$. Notiamo che $\Mat_{n\times n}=T_I\GL(n)$ dove l'identificazione \`e data da
+\[(a_{i,j})\longleftrightarrow \pa{\rbar{a_{i,j}\pp{x_{ij}}{}}_{I}}\]
+Traduciamo allora $d\mu_{(e,e)}$ in queste coordinate: se
+\[d\mu_{(e,e)}\funcDef{\Mat_{n\times n}\times \Mat_{n\times n}}{\Mat_{n\times n}}{((a_{i,j}),(b_{i,j}))}{(c_{i,j})}\]
+allora
+\begin{align*}
+	c_{i,j}=&\rbar{\pp{x_{i,j}}{}(x_{i,j}\circ \mu)}_I=\rbar{\pp{x_{i,j}}{}\pa{\sum_\ell y_{i,\ell}z_{\ell,j}}}_I=\\
+	=&\sum_\ell \rbar{\pp{x_{i,\ell}}{}(y_{i,\ell})z_{\ell,j}}_I + \sum_\ell y_{i,\ell}\rbar{\pp{x_{i,j}}{}(z_{\ell,j})}_I\overset{(\star)}=\\
+	=&\sum_\ell \rbar{\pp{y_{i,j}}{}(y_{i,\ell})}_I\delta_{\ell,j} + \sum_\ell \delta_{i,\ell}\rbar{\pp{z_{i,j}}{}(z_{\ell,j})}_I=\\
+	=&\rbar{\pp{y_{i,j}}{}(y_{i,j})}_I+\rbar{\pp{z_{i,j}}{}(z_{i,j})}_I=\\
+	=&a_{i,j}+b_{i,j}
+\end{align*}
+dove il passaggio $(\star)$ segue perch\'e stiamo interpretando quei differenziali come derivazioni.
+\end{proof}
+
+
+
+\section{Quando quozienti di gruppi sono completi}
+\subsection{Gruppi risolubili e commutatori}
+Ricordiamo la seguente definizione
+\begin{definition}[]
+Un gruppo $G$ \`e \textbf{risolubile} se la catena dei suoi sottogruppi derivati termina nel gruppo banale, cio\`e, se $G=G^{(0)}$ e $G^{(n+1)}=[G^{(n)},G^{(n)}]$ allora chiediamo che $G^{(n)}=\cpa{id_G}$ per $n\gg0$.
+\end{definition}
+
+\begin{lemma}[]\label{LmDerivatoEChiusoEConnesso}
+Sia $G$ un gruppo algebrico connesso. Allora $[G,G]$ \`e chiuso e connesso.
+\end{lemma}
+\begin{proof}
+Per ogni $i$ definiamo 
+\[\phi_i:\funcDef{G^i\times G^i}G{(x_1,\cdots, x_i),(y_1,\cdots, y_i)}{[x_1,y_1]\cdots[x_i,y_i]}.\]
+Per il lemma (\ref{LmSottogruppoGenerato}) segue che il sottogruppo di $G$ generato $\imm \phi_i$ (cio\`e $[G,G]$ per definizione) \`e chiuso. Notiamo per\`o che $\ol{\imm \phi_i}$ \`e una catena di chiusi irriducibili contenuta in $[G,G]$ che stabilizza, quindi in particolare $[G,G]=\ol{\imm \phi_n}$ per qualche $n$ e dunque $[G,G]$ \`e anche irriducibile.
+\end{proof}
+
+\subsection{Punto fisso di Borel}
+\begin{proposition}[Esiste orbita chiusa]\label{PrEsisteOrbitaChiusa}
+Se $G$ \`e un gruppo che agisce su una variet\`a $Y$ allora $G$ ha un'orbita chiusa in $Y$.
+\end{proposition}
+\begin{proof}
+Consideriamo un'orbita che ha dimensione minima $Z=G\cdot y$. Notiamo che $Gy$ \`e un aperto denso di $\ol Z$ per Chevalley (\ref{ThChevalley}) (contiene un aperto ed \`e omogeneo), quindi $\dim \ol Z\bs Z<\dim Z$, ma se questa differenza non fosse vuota allora $G$ agirebbe su essa e quindi esisterebbe un'orbita di dimensione pi\`u piccola.
+
+Dunque $\ol Z\bs Z=\emptyset$, cio\`e $\ol Z=Z$.
+\end{proof}
+
+Quindi orbite di dimensione minima sono chiuse. Sotto quali condizioni questa orbita \`e la pi\`u piccola possibile? Sotto quali condizioni abbiamo un punto fisso?
+
+\begin{lemma}[]\label{LmPuntiFissiSonoUnChiuso}
+Se $G$ \`e un gruppo algebrico che agisce su una variet\`a separata $X$ allora $X^G$ \`e chiuso in $X$.
+\end{lemma}
+\begin{proof}
+Per ogni $g\in G$ sia $X^g$ il sottoinsieme dei punti di $X$ fissati dall'azione di $G$. Dato che $X^G=\bigcap_{g\in G}X^g$ basta mostrare che $X^g$ \`e chiuso.
+
+$X^g$ \`e la preimmagine della diagonale $\Delta(X)$ tramite il morfismo $(1,g):X\to X\times X$, quindi per separatezza di $X$ \`e chiusa.
+\end{proof}
+
+\begin{theorem}[Punto fisso di Borel]\label{ThPuntoFissoBorel}
+Se $G$ \`e un gruppo risolubile connesso che agisce su una variet\`a completa allora esiste un punto fisso per l'azione.
+\end{theorem}
+\begin{proof}
+Se $\dim G=0$ allora $G=\cpa{id}$ per connessione, quindi ogni punto \`e fisso.
+
+
+Supponiamo $\dim G>0$. Sia $H=[G,G]$ il sottogruppo derivato. Questo \`e un sottogruppo algebrico connesso per il lemma (\ref{LmDerivatoEChiusoEConnesso}). Dato che $G$ \`e risolubile, $H\subsetneq G$, quindi per ipotesi induttiva $X^H\neq \emptyset$.
+
+Notiamo ora che su $X^H$ agisce $A=G/H$, quindi su $X^H$ abbiamo un'orbita chiusa (\ref{PrEsisteOrbitaChiusa}) $A\cdot x\subseteq X^H$. Dato che $X^H$ \`e chiuso in $X$ per il lemma (\ref{LmPuntiFissiSonoUnChiuso}), $A\cdot x$ \`e chiusa in $X$ e quindi \`e completa perch\'e chiuso in $X$ che \`e completa. 
+Dato che $x\in X^H$ si ha che $A\cdot x=G\cdot x$. Dato che $[G,G]=H\subseteq \stab_G x$, si ha che $\stab_G x$ \`e un sottogruppo normale di $G$, quindi $G\cdot x=G/\stab_G x$ \`e una variet\`a affine per (\ref{PrGruppoQuozienteEGruppoAlgebrico}). Notiamo che $A\cdot x$ \`e anche connessa perch\'e $A$ \`e connesso in quanto $G$ lo \`e.
+
+Dunque $A\cdot x$ \`e affine, completa e connessa, quindi \`e un punto, cio\`e $x$ \`e un punto fisso per $A$ in $X^H$, ma allora $x$ \`e un punto fisso per $G$.
+\end{proof}
+
+
+\begin{example}
+Consideriamo $\C^\ast\acts \Pj^n$ come segue:
+\[\la\cdot [x_0:\cdots:x_n]=[x_0:\la x_1:\cdots:\la^n x_n]\]
+Questa azione ha come punti fissi quelli della forma $[0:\cdots:0:1:0:\cdots:0]$.
+\end{example}
+
+
+
+Ricordiamo che $B_n$ è il sottogruppo di $\GL(n)$ costituito dalle matrici triangolari superiori.
+
+\begin{corollary}\label{CorCaratterizzazioneConnessiRisolubili}
+    Se $G$ è connesso, sono equivalenti 
+    \begin{enumerate}
+        \item $G$ è risolubile.
+        \item Le uniche rappresentazioni irriducibili di $G$ sono di dimensione $1$.
+        \item Esiste un intero positivo $n$ tale che $G$ è contenuto in $B_n$. 
+    \end{enumerate}    
+\end{corollary}
+\begin{proof}
+Mostriamo le tre implicazioni
+\setlength{\leftmargini}{0cm}
+\begin{itemize}
+\item[$\boxed{1.\implies2.}$] Sia $V$ una rappresentazione irriducibile di $G$. Allora $\Pj(V)^G$ è non vuoto per il teorema del punto fisso (\ref{ThPuntoFissoBorel}), cio\`e esiste una retta $\ell$ in $V$ tale che $G\cdot\ell=\ell$. Quindi $\ell=V$, da cui $\dim V=1$.
+\item[$\boxed{2.\implies3.}$] Assumiamo $G$ contenuto in $\GL(V)$ per qualche $V$. Sia $F_1$ una sottorappresentazione irriducibile di dimensione $1$. Notiamo che $G$ agisce su $V/F_1$ quindi, invocando nuovamente l'ipotesi, esiste una retta $F_2/F_1$ in $V/F_1$ tale che $G F_2/F_1 \subseteq F_2/F_1$. Procedendo induttivamente, troviamo una bandiera \[0\subseteq F_1\subseteq F_2 \subseteq \cdots \subseteq F_n =V\] tale che $G F_i=F_i$ e $\dim F_i=i$. Se $v_1,\cdots,v_n$ è una base compatibile con tale bandiera (cioè $v_i\in F_i$ per ogni indice $i$), allora abbiamo un'immersione $G \hookrightarrow B_n$ definita da $g\mapsto [g]_{\underline{v}}^{\underline{v}}$. 
+\item[$\boxed{3.\implies1.}$] Segue dal fatto che $B_n$ è risolubile.
+\end{itemize}
+\setlength{\leftmargini}{0.5cm}
+\end{proof}
+
+
+
+\subsection{Sottogruppi parabolici e di Borel}
+Abbiamo visto che i sottogruppi normali danno come quozienti gruppi algebrici (e quindi affini) e che in generale i quozienti di gruppi algebrici sono variet\`a quasi-proiettive. 
+
+\`E lecito chiedersi quando il quoziente \`e proiettivo.
+
+\begin{definition}
+Sia $G$ un gruppo algebrico e $P\subseteq G$ sottogruppo chiuso.
+\begin{enumerate}
+\item $P$ si dice \textbf{parabolico} se $G/P$ \`e completo
+\item $B\subseteq G$ si dice \textbf{sottogruppo di Borel} se \`e un sottogruppo risolubile connesso massimale.
+\end{enumerate}
+\end{definition}
+
+\begin{proposition}
+Se $P$ \`e un sottogruppo parabolico, $G/P$ \`e proiettiva.
+\end{proposition}
+\begin{proof}
+Ricordiamo che esistono una rappresentazione $V$ di $G$ e una retta $L\subseteq V$ tali che $\stab_G L=P$ per il lemma (\ref{LmSottogruppoEStabilizzatoreDiUnaRettaInQualcheRappresentazione}). Per questa rappresentazione $G/P=G\cdot L\subseteq \Pj(V)$.
+
+Mostriamo che l'immagine di $G/P$ in $\Pj(V)$ \`e chiusa. Se $\Gamma$ \`e il grafico di $G/P\inj \Pj(V)$ allora esso \`e un chiuso (per separatezza) di $G/P \times \Pj(V)$. Dato che $G/P$ \`e completa per definizione di sottogruppo parabolico, $G/P\times \Pj(V)\to \Pj(V)$ \`e una mappa chiusa, quindi l'immagine di $\Gamma$ in $\Pj(V)$ \`e chiusa, ma questa immagine \`e per definizione anche l'immagine di $G/P\to \Pj(V)$.
+% https://q.uiver.app/#q=WzAsNCxbMSwwLCJHL1BcXHRpbWVzXFxQaihWKSJdLFsyLDAsIlxcUGooVikiXSxbMCwwLCJcXEdhbW1hIl0sWzEsMSwiRy9QIl0sWzAsMV0sWzIsMCwiXFxzdWJzZXRlcSIsMyx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFswLDNdLFszLDFdLFszLDJdLFszLDIsIlxcc2ltIiwzLHsib2Zmc2V0IjoxLCJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJub25lIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19XV0=
+\[\begin{tikzcd}
+	\Gamma & {G/P\times\Pj(V)} & {\Pj(V)} \\
+	& {G/P}
+	\arrow["\subseteq"{marking, allow upside down}, draw=none, from=1-1, to=1-2]
+	\arrow[from=1-2, to=1-3]
+	\arrow[from=1-2, to=2-2]
+	\arrow[from=2-2, to=1-1]
+	\arrow["\sim"{marking, allow upside down}, shift right, draw=none, from=2-2, to=1-1]
+	\arrow[from=2-2, to=1-3]
+\end{tikzcd}\]
+\end{proof}
+
+
+\begin{example}
+Sia $G=\GL(n)$, $B\subseteq G$ le matrici triangolari superiori, diagonale inclusa.
+\[G/B=\cpa{0\subseteq F_1\subseteq \cdots\subseteq F_n=\K^n\mid \dim F_i=i}=:\Fl(\K^n)\]
+\end{example}
+
+\begin{lemma}\label{LmConnessoRisolubileSSENoSottogruppiParabolici}
+$G$ \`e un gruppo connesso e risolubile se e solo se $G$ non ha sottogruppi parabolici propri.
+\end{lemma}
 \begin{proof}
 Diamo le due implicazioni
 \setlength{\leftmargini}{0cm}
 \begin{itemize}
-\item[$\boxed{\impliedby}$] Se $G$ ha questa propriet\`a allora per il lemma (\ref{LmUnicaRappresentazioneIrriducibileBanaleImplicaUpperTriangularCon1SuDiagonale}) abbiamo
-\[G\subseteq U(n)=\cpa{\mat{1 & \ast & \ast\\ &\ddots &\ast\\ &&1}}\]
-e chiaramente un gruppo di questa forma \`e unipotente.
-\item[$\boxed{\implies}$] Sia $V$ una rappresentazione semplice di $G$ di dimensione $n$. Allora $\tr(g_V)=n$ per ogni $g\in G$ (perch\'e si immerge nelle triangolari superiori), quindi
-\[\forall g_V,h_V\in G,\qquad \tr((g_V-1)h_V)=\tr(g_Vh_V-h_V)=0.\]
-Se $A$ \`e il $\K$-spazio vettoriale generato da $G$, $A\subseteq \End_\K(V)$ ed \`e un'algebra associativa. Poich\'e $V$ \`e semplice per $A$ (in quanto semplice per $G$ e $A=\Span_\K(G)$), si ha per il teorema (\ref{ThSottoalgebraAssociativaDiEndomorfismiDiSempliceETuttiGliEndomorfismi}) si ha $A=\End_\K(V)$.
+\item[$\boxed{\implies}$] Sia $P\subseteq G$ parabolico. Per il teorema del punto fisso di Borel (\ref{ThPuntoFissoBorel}) si ha che $G/P$ ha un punto fisso per $G$, ma per omogeneit\`a questo significa che $G/P$ consiste di un solo punto, cio\`e $P=G$.
+\item[$\boxed{\impliedby}$] Osserviamo che $G^0$ \`e un sottogruppo parabolico, infatti $G/G^0$ \`e un inisieme finito di punti (uno per componente irriducibile di $G$). Per ipotesi dunque $G^0=G$ e quindi il gruppo \`e connesso.
 
-Segue per linearit\`a della traccia che $\tr((g_V-1)a)=0$ per ogni $a\in \End_\K(V)=A$, da cui $(g_v-1)=0$, cio\`e $G$ agisce banalmente.
+Per il corollario (\ref{CorCaratterizzazioneConnessiRisolubili}) possiamo concludere verificando che le rappresentazioni irriducibili hanno dimensione 1: se $V$ irriducibile, $G$ agisce su $\Pj(V)$ e ha un'orbita chiusa $G\cdot \ell\subseteq\Pj(V)$ per (\ref{PrEsisteOrbitaChiusa}). Sia $P=\stab_G(\ell)$, questo gruppo deve essere parabolico perch\'e il quoziente \`e $G\cdot \ell$ orbita chiusa in $\Pj(V)$, ma allora $P=G$, cio\`e $G\cdot\ell=\cpa{\ell}$ e quindi per irriducibilit\`a questo mostra $V=\ell$.
 \end{itemize}
 \setlength{\leftmargini}{0.5cm}
 \end{proof}
 
-\begin{corollary}
-    Se $G$ è unipotente, allora è contenuto nel gruppo $U_n$ delle matrici triangolari superiori aventi $1$ sulla diagonale principale.
-\end{corollary}
-
-\begin{remark}
-    Consideriamo il gruppo $(\C,+)$. Questo è un gruppo unipotente perché possiamo vederlo in $\GL(2)$ tramite la rappresentazione \[x\mapsto \begin{pmatrix}
-        1 & x \\ 0 & 1 
-    \end{pmatrix}\]
-    Abbiamo anche una rappresentazione data da \[ \C\to \GL(1), \quad x\mapsto \text{e}^{\alpha x}.\]
-    La differenza tra i due casi è che da una rappresentazione $V$ non possiamo costruire tutte le funzioni di $C^{\infty}(\C)$, ma solo quelle di $\C[G]$ (con $G=\C$).
-\end{remark}
 
 
-\begin{corollary}\label{CorFissatoDaUnipotenteNonEBanale}
-    Se $V$ \`e una rappresentazione di $G$ non nulla allora $V^G\neq 0$.
-\end{corollary}
+\begin{lemma}[Transitivit\`a dei sottogruppi parabolici]\label{LmSottogruppoParabolicoDiParabolicoEParabolico}
+    Siano $G$ un gruppo algebrico, $P\subseteq Q\subseteq G$ due sottogruppi tali che $Q$ è parabolico in $G$ e $P$ è parabolico in $Q$. Allora $P$ è parabolico in $G$.
+\end{lemma}
 
-\begin{corollary}
-    Se $G$ \`e unipotente allora $G$ \`e nilpotente come gruppo, cio\`e definiamo iterativamente $G^{(0)}=G$ e $G^{(k+1)}=[G^{(k)},G]$ allora esiste $n$ tale che $G^{(n)}=\cpa{id_G}$.
-\end{corollary}
 \begin{proof}
-Basta immergere $G$ in $U(n)$ e notare che sottogruppi di triangolari superiori con 1 sulla diagonale hanno questa propriet\`a.
+    Data una varietà arbitraria $Z$, mostriamo che la mappa $\pi_Z\colon G/P\times Z \to Z$ è chiusa. Sia $A$ un chiuso in $G/P\times Z$. Sia $A'$ l'immagine inversa di $A$ rispetto la proiezione $\pi_1\colon G\times Z \to G/P\times Z$. Allora $A'$ è chiuso e $A' \cdot P=A'$. Se mostriamo che $A'\cdot Q=A'$, abbiamo concluso, infatti, considerando la composizione \[\begin{array}{ccccc}
+         G\times Z &\xrightarrow{}& G/Q \times Z& \to &Z \\
+          A' & \to & A'' & \to & \pi_Z(A) 
+    \end{array}\] 
+    l'immagine di $A'$ tramite la prima mappa è un certo $A''$, che viene mandato in $\pi_Z(A)$. \\
+    Sia $A'''=A'\cdot Q$. Mostriamo che $A'''$ è chiuso (ciò permette di concludere per quanto appena detto). Consideriamo la mappa 
+	\[\vp:\funcDef{Q\times G\times Z}{G\times Z}{(q,g,x)}{(gq,x)}\] 
+    Allora $A^{IV}\coloneqq \varphi^{-1}(A')$ è chiuso ed è stabile per l'azione a destra di $P$ su $Q$, cioè se $(q,g,x)$ è in $A^{IV}$, allora $(gp,g,x)$ è in $A^{IV}$. Infatti se $(gq,x)$ è in $A'$, allora anche $(gqp,x)$ è in $A'$. Ragionando come prima, abbiamo 
+	\[\begin{array}{ccccc}
+         Q\times G\times Z &\xrightarrow{}& Q/P \times G \times Z& \to &G\times Z \\
+          A^{IV} & \to & B^V & \to & A^V \text{chiuso} 
+    \end{array}\] 
+    dove 
+	\[A^V=\left\{(g,x)\in G\times Z \colon \, \exists\,q\in Q, \ (gq,x)\in A'\right\}=A'\cdot Q.\] 
+	A questo punto $A' \cdot Q$ è chiuso e concludiamo come prima.
+\smallbreak
+
+\noindent Per seguire meglio i passaggi pu\`o essere utile questo diagramma. Le frecce ondulate indicano che il target \`e stato ottenuto come preimmagine tramite la mappa tra i due spazi.
+    % https://q.uiver.app/#q=WzAsMTUsWzIsMSwiRy9QXFx0aW1lcyBaIl0sWzMsMSwiWiJdLFsyLDMsIkdcXHRpbWVzIFoiXSxbMywzLCJHL1FcXHRpbWVzIFoiXSxbNCw3LCJRXFx0aW1lcyBHXFx0aW1lcyBaIl0sWzIsNiwiUS9QXFx0aW1lcyBHXFx0aW1lcyBaIl0sWzEsMCwiQSJdLFsxLDIsIkEnIl0sWzQsMCwiXFxwaV9aKEEpIl0sWzEsNCwiUVxcY2RvdCBBJyJdLFs0LDgsIkFee0lWfSJdLFsxLDcsIkJeViJdLFs0LDMsIkEnJyJdLFszLDcsIlBcXGNkb3Rfe1xcdGV4dHsxbW8gZmF0dG9yZX19IEFee0lWfSJdLFswLDhdLFsyLDBdLFswLDEsIlxccGlfWiJdLFszLDEsImNoaXVzYSIsMyx7Im9mZnNldCI6LTMsInN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFs1LDIsImNoaXVzYSIsMyx7Im9mZnNldCI6Mywic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoibm9uZSJ9LCJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzYsNywiIiwzLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoic3F1aWdnbHkifX19XSxbMiwzLCJcXHNtYXR7bWFudGllbmVcXFxcIGNoaXVzaVxcXFwgaW52YXJpYW50aX0iXSxbNiw4XSxbNiwwLCJcXHN1YnNldGVxIiwzLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoibm9uZSJ9LCJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzEsOCwiXFxzdXBzZXRlcSIsMyx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFszLDFdLFs5LDIsIlxcc3Vic2V0ZXEiLDMseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJub25lIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbMTAsNCwiXFxzdWJzZXRlcSIsMyx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFs1LDJdLFs5LDEyLCIiLDIseyJsYWJlbF9wb3NpdGlvbiI6NjAsImN1cnZlIjoxfV0sWzEzLDQsIlxcc3Vic2V0ZXEiLDMseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJub25lIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbMTMsMTFdLFsxMSw1LCJcXHN1YnNldGVxIiwzLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoibm9uZSJ9LCJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzMsMTIsIlxcc3Vwc2V0ZXEiLDMseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJub25lIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbMiw0LCJwcm9kb3R0byIsMyx7Im9mZnNldCI6LTMsInN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFs0LDJdLFs0LDUsIlxcc21hdHttYW50aWVuZVxcXFwgY2hpdXNpXFxcXCBpbnZhcmlhbnRpfSIsMix7ImxhYmVsX3Bvc2l0aW9uIjo3MH1dLFsxMSw5XSxbNywyLCJcXHN1YnNldGVxIiwzLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoibm9uZSJ9LCJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzEyLDhdLFs3LDksIlxcc3Vic2V0ZXEiLDMseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJub25lIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbMTAsMTMsIj0iLDMseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJub25lIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbNywxNCwiIiwzLHsiY3VydmUiOjMsInN0eWxlIjp7ImJvZHkiOnsibmFtZSI6InNxdWlnZ2x5In0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbMTQsMTAsIiIsMyx7ImN1cnZlIjoyLCJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJzcXVpZ2dseSJ9fX1dLFs3LDEyLCIiLDMseyJjdXJ2ZSI6LTF9XV0=
+\[\begin{tikzcd}
+	& A &&& {\pi_Z(A)} \\
+	&& {G/P\times Z} & Z \\
+	& {A'} \\
+	&& {G\times Z} & {G/Q\times Z} & {A''} \\
+	& {Q\cdot A'} \\
+	\\
+	&& {Q/P\times G\times Z} \\
+	& {B^V} && {P\cdot_{\text{1mo fattore}} A^{IV}} & {Q\times G\times Z} \\
+	{} &&&& {A^{IV}}
+	\arrow[from=1-2, to=1-5]
+	\arrow["\subseteq"{marking, allow upside down}, draw=none, from=1-2, to=2-3]
+	\arrow[squiggly, from=1-2, to=3-2]
+	\arrow["{\pi_Z}", from=2-3, to=2-4]
+	\arrow["\supseteq"{marking, allow upside down}, draw=none, from=2-4, to=1-5]
+	\arrow["\subseteq"{marking, allow upside down}, draw=none, from=3-2, to=4-3]
+	\arrow[curve={height=-6pt}, from=3-2, to=4-5]
+	\arrow["\subseteq"{marking, allow upside down}, draw=none, from=3-2, to=5-2]
+	\arrow[curve={height=18pt}, squiggly, no head, from=3-2, to=9-1]
+	\arrow[from=4-3, to=2-3]
+	\arrow["\begin{array}{c} \smat{mantiene\\ chiusi\\ invarianti} \end{array}", from=4-3, to=4-4]
+	\arrow["prodotto"{marking, allow upside down}, shift left=3, draw=none, from=4-3, to=8-5]
+	\arrow["chiusa"{marking, allow upside down}, shift left=3, draw=none, from=4-4, to=2-4]
+	\arrow[from=4-4, to=2-4]
+	\arrow["\supseteq"{marking, allow upside down}, draw=none, from=4-4, to=4-5]
+	\arrow[from=4-5, to=1-5]
+	\arrow["\subseteq"{marking, allow upside down}, draw=none, from=5-2, to=4-3]
+	\arrow[curve={height=6pt}, from=5-2, to=4-5]
+	\arrow["chiusa"{marking, allow upside down}, shift right=3, draw=none, from=7-3, to=4-3]
+	\arrow[from=7-3, to=4-3]
+	\arrow[from=8-2, to=5-2]
+	\arrow["\subseteq"{marking, allow upside down}, draw=none, from=8-2, to=7-3]
+	\arrow[from=8-4, to=8-2]
+	\arrow["\subseteq"{marking, allow upside down}, draw=none, from=8-4, to=8-5]
+	\arrow[from=8-5, to=4-3]
+	\arrow["\begin{array}{c} \smat{mantiene\\ chiusi\\ invarianti} \end{array}"'{pos=0.7}, from=8-5, to=7-3]
+	\arrow[curve={height=12pt}, squiggly, from=9-1, to=9-5]
+	\arrow["{=}"{marking, allow upside down}, draw=none, from=9-5, to=8-4]
+	\arrow["\subseteq"{marking, allow upside down}, draw=none, from=9-5, to=8-5]
+\end{tikzcd}\]
 \end{proof}
 
+Con tecniche simili, è possibile mostrare il seguente risultato.
 
-\begin{example}
-Il gruppo $G=\znz p=C_p$ con $\cha \K=p$ \`e un gruppo unipotente, perch\'e si pu\`o scrivere come
-\[G=\cpa{\mat{1&\al\\0&1}\mid \al\in\znz p}\]
-\end{example}
-\begin{remark}
-Se $G=U(n)$ con $\cha \K=p$ allora $g^{p^n}=id_G$.
-\end{remark}
+\begin{theorem}\label{ThNormalizzatoreDiBorelEDiParabolico}
+    Se $G$ è un gruppo algebrico connesso, $B$ un sottogruppo di Borel di $G$ e $P$ un sottogruppo parabolico di $G$, allora \begin{enumerate}
+        \item $N_G(B)=B$ e $N_G(P)=P$.
+        \item $P$ è connesso.
+    \end{enumerate}
+\end{theorem}
 
-\subsection{Esponenziale e logaritmo}
 
-\begin{notation}
-Definiamo lo spazio vettoriale
-\[N(n)=\cpa{\mat{0&\ast&\ast\\&\ddots&\ast\\&&0}}.\]
-\end{notation}
+\begin{theorem}\label{ThProprietaSottogruppiDiBorel}
+Sia $G$ un gruppo algebrico. 
+\begin{enumerate}
+    \item Se $B$ è un sottogruppo di Borel di $G$, allora $B$ è parabolico.
+    \item Se $B$ è un sottogruppo di Borel di $G$ e $P$ è un sottogruppo parabolico di $G$, allora esiste $g$ in $G$ tale che $gBg^{-1}$ è contenuto in $P$.
+    \item Tutti i sottogruppi di Borel sono coniugati.
+\end{enumerate}
+\end{theorem}
 
-\begin{definition}[Esponenziale]
-Definiamo la mappa \textbf{esponenziale}
-\[\exp:\funcDef{N(n)}{U(n)}{M}{\sum_{i=0}^n\frac1{i!}M^i}.\]
-\end{definition}
-\begin{remark}
-La mappa esponenziale appena definita \`e algebrica. Inoltre rispetta le usuali propriet\`a:
+\begin{proof}
+Mostriamo contemporaneamente il primo e il secondo punto. Per i punti 1. e 2. possiamo supporre $G$ connesso. Dato che $B$ \`e connesso, $B\subseteq G^0$ quindi $G/B=\coprod_i g_i G^0/B$ e $gBg\ii\subseteq G^0$. 
+\setlength{\leftmargini}{0cm}
 \begin{itemize}
-    \item $\exp((\la+\mu)M)=\exp(\la M)\exp(\mu M)$
-    \item Se $M_1M_2=M_2M_1$ allora $\exp(M_1+M_2)=\exp(M_1)\exp(M_2)$.
+\item[$\boxed{2.}$] Se $G$ è risolubile, allora per definizione di sottogruppo di Borel $G=B$ e la tesi vale perch\'e un gruppo connesso e risolubile non ha sottogruppi parabolici propri (\ref{LmConnessoRisolubileSSENoSottogruppiParabolici}). Se $G$ non è risolubile, allora per il lemma (\ref{LmConnessoRisolubileSSENoSottogruppiParabolici}) esiste un sottogruppo parabolico proprio $P$ di $G$. Possiamo quindi considerare l'azione di $B$ su $G/P$, la quale ha un punto fisso (\ref{ThPuntoFissoBorel}), cioè esiste un $g$ in $G$ tale che $gBg^{-1}P=P$, ovvero $gBg^{-1}\subseteq P$.
+\item[$\boxed{1.}$] Possiamo assumere $B\subseteq P \subsetneq G$ grazie al punto 2., per cui $B$ è un sottogruppo di Borel di $P$. A questo punto procediamo per induzione sulla dimensione di $G$. Poiché $\dim P <\dim G$, abbiamo che $B$ è un sottogruppo parabolico di $P$ per ipotesi induttiva, dunque per il lemma (\ref{LmSottogruppoParabolicoDiParabolicoEParabolico}) si ha che $B$ è parabolico in $G$.
+\item[$\boxed{3.}$] Siano $B,B'$ due sottogruppi di Borel di $G$. Allora esiste $g$ in $G$ tale che $gBg^{-1} \subseteq B'$ per il punto 2. Poiché $gBg^{-1}$ e $B'$ sono sottogruppi connessi, risolubili e massimali, concludiamo che $gBg^{-1} = B'$.
 \end{itemize}
-\end{remark}
-
-\begin{definition}[Logaritmo]
-Definiamo la mappa \textbf{logaritmo}
-\[\log:\funcDef{U(n)}{N(n)}{B}{\sum_{i=1}^n\frac{(-1)^{i+1}}{i}(M-I_n)^i}.\]
-\end{definition}
-
-\begin{remark}
-$\log$ e $\exp$ sono mappe algebriche e inverse. Sono anche in realt\`a la definizione usuale, solo che per matrici in $N(n)$ e $U(n)$ queste somme finite coincidono con la definizione in serie.
-\end{remark}
-
-\begin{notation}
-Se $G\subseteq U(n)$ definiamo $X=\log(G)$ e notiamo che $X$ \`e isomorfo a $G$ come variet\`a.
-\end{notation}
-
-\begin{proposition}\label{PrChiusuraDelGeneratoDaPotenzeDiElemento}
-Se $g\in G\bs\cpa{id_G}$ allora, ponendo
-\[\ol{\cpa{g^n\mid n\in\Z}}=H\subseteq G,\]
-si ha $H\cong \G_a=(\K,+)$.
-\end{proposition}
-\begin{proof}
-Poich\'e $g\neq id_G$, $\log g=x\neq 0$, inoltre $\log(g^n)=nx$. Notiamo dunque che da $nx\neq 0$ per ogni $n$ ricaviamo $g^n\neq 1_G$ per ogni $n$. Se $Y=\K x$ allora
-\[\log(H)=\log(\ol{\cpa{g^n}})=\ol{\cpa{nx}}\subseteq Y\]
-Poich\'e $Y$ \`e una retta e $\cpa{nx}$ sono infiniti, $\ol{nx}= Y$ per come sono fatti i chiusi di Zariski di $\A^1$, quindi 
-\[\funcDef{\K}{H=\exp(Y)}{\la}{\exp(\la x)}\]
-\`e un isomorfismo di gruppi tra $\K$ e $H$.
+\setlength{\leftmargini}{0.5cm}
 \end{proof}
 
-\begin{exercise}
-Se $\cha \K=0$ e $G$ unipotente abeliano allora $G\cong \K^n$.
-\end{exercise}
-
-\begin{fact}
-Se $\cha \K=p$ e $g^p=id$ per ogni $g\in G$ abeliano connesso allora $G$ \`e unipotente e $G\cong \K^n$.
-\end{fact}
-
-\begin{example}
-Se $\cha \K=p$ poniamo $\wt \al_i=\frac1p\binom pi$ per $i\in\cpa{0,\cdots, p-1}$ e definiamo $\al_i$ come l'immagine di $\wt \al_i$ in $\K$.
-
-Definiamo\footnote{moralmente $c(a,b)=\frac{(a+b)^p-a^p-b^p}p$, che non potremmo fare direttamente in $\K$ per l'identit\`a del binomio ingenuo}
-\[c:\funcDef{\K\times \K}{\K}{(a,b)}{\sum_{i=1}^{p-1} \al_i a^ib^{p-1}}\]
-e notiamo che
-\[c(a,b)c(a+b,c)=c(b,c)c(a,b+c)\implies c(a,0)=c(a,b)=0,\]
-quindi se $G=\K\times\K$ con prodotto
-\[(a,b)\cdot(a',b')=(a+a',b+b'+c(a,a'))\]
-allora $G$ \`e unipotente e $G\cong \K^2$ come gruppo.
-
-(QUESTO DOVREBBE ESSERE UN CONTROESEMPIO DI QUALCOSA???)
-\end{example}
-
-\section{Gruppi completamente riducibili}
-\begin{definition}
-Un gruppo \`e \textbf{completamente riducibile} se ogni sua rappresentazione regolare \`e semisemplice.
-\end{definition}
-\begin{remark}
-Basta anche chiedere ``ogni rappresentazione regolare \emph{finita} \`e semisemplice".
-\end{remark}
-
-\begin{remark}
-$G$ \`e completamente riducibile se e solo se $\K[G]$ \`e semisemplice.
-\end{remark}
+\begin{corollary}\label{CorPrabolicoRisolubileConnessoEBorel}
+Se $B\subseteq G$ \`e parabolico, connesso e risolubile allora \`e di Borel.
+\end{corollary}
 \begin{proof}
-$\K[G]$ \`e una rappresentazione regolare di $G$ quindi una implicazione \`e ovvia.
-Se $V$ ha dimensione $n$ e $\K[G]$ \`e semisemplice allora per l'immersione (\ref{LmIniezioneRappresentazioniFiniteInPotenzaAnelloCoordinateDiG}) $V\inj \K[G]^m$ si ha che $V$ \`e semisemplice (\ref{LmPassaggioSemisempliceUnipotenteNilpotenteAdOperazioniVettoriali}).
-\end{proof}
-
-\begin{definition}
-Un gruppo $G$ \`e un \textbf{toro (algebrico)} se $G\cong (\G_m)^n$.
-\end{definition}
-
-\begin{remark}
-Ricordando che $\K[\G_m]=\K[t^{\pm1}]$ notiamo che
-\[\K[\G_m^n]=\K[t_1^{\pm1},\cdots,t_n^{\pm1}].\]
-Questo spazio ha una base data da $t^\al=t_1^{\al_1}\cdots t_n^{\al_n}$ per $\al\in \Z^n$.
-\end{remark}
-
-\begin{proposition}[Tori algebrici sono semisemplici]\label{PrToriAlgebriciSonoSemisemplici}
-Se $G$ toro algebrico allora $G$ \`e semisemplice.
-\end{proposition}
-\begin{proof}
-Se $g=(\la_1,\cdots, \la_n)$ e $h=(\mu_1,\cdots, \mu_n)$ sono elementi di $\G_m^n=(\K^\times)^n$ si ha che
-\begin{align*}
-(gt^\al)(h)=&t^\al(g\ii h)=t^\al(\la_1\ii \mu_1,\cdots, \la_n\ii\mu_n)=\\
-=&(\la_1\ii\mu_1)^{\al_1}\cdots (\la_n\ii\mu_n)^{\al_n}=\\
-=&\la^{-\al}\mu^\al=\\
-=&(\la^{-\al}t^\al)h.
-\end{align*}
-Segue che $gt^\al=\la^{-\al}t^\al$ e che quindi i $t^\al$ sono autovettori per ogni $g\in G$. Poich\'e
-\[\K[G]=\bigoplus_{\al\in\Z^n} \K t^\al\]
-e ogni $\K t^\al$ \`e semisemplice, segue (\ref{LmPassaggioSemisempliceUnipotenteNilpotenteAdOperazioniVettoriali}) che $\K[G]$ \`e semisemplice.
-
-Quindi le rappresentazioni semplici di $G$ sono di dimensione 1 e sono date da $\K_\al=\K t^{-\al}$ con $gz=t^\al(g)z$
+Per il punto 2. del teorema (\ref{ThProprietaSottogruppiDiBorel}) si ha che $B$ contiene un sottogruppo di Borel, ma essendo connesso e risolubile deve essere gi\`a un sottogruppo di Borel per massimalit\`a.
 \end{proof}
 
 
-\begin{lemma}
-    Se $G\subseteq \GL(V)$ allora $G$ \`e completamente riducibile se e solo se $V^{\otimes n}$ \`e semisemplice per ogni $n$
+
+\begin{corollary}\label{CorSottogruppoCheContieneBorelEParabolico}
+Se $B\subseteq H\subseteq G$ sono sottogruppi e $B$ \`e di Borel allora $H$ \`e parabolico.
+\end{corollary}
+\begin{proof}
+Osserviamo che la mappa di proiezione $G/B\to G/H$ \`e surgettiva, $G/B$ \`e una variet\`a completa e $G/H$ \`e separata, quindi $G/H$ \`e completa, cio\`e $H$ \`e parabolico.
+\end{proof}
+
+
+Sia $\mathscr{B}$ la famiglia dei sottogruppi di Borel di un gruppo algebrico $G$. Allora $G$ agisce per coniugio (e transitivamente) su $\mathscr{B}$. Per il Teorema (\ref{ThNormalizzatoreDiBorelEDiParabolico}) abbiamo $\stab_G(B)=N_G(B)=B$, da cui deduciamo il seguente risultato.
+\begin{corollary}
+    Sia $B$ un sottogruppo di Borel di un gruppo algebrico $G$. Esiste una corrispondenza biunivoca tra la famiglia $\Bs$ e la variet\`a $G/B$, data da \[\begin{array}{ccc}
+        G/B &\longrightarrow& \mathscr{B} \\
+         gB & \longmapsto & gBg^{-1}.
+    \end{array}\]
+\end{corollary}
+
+
+
+
+
+\section{Esempi di sottogruppi di Borel e Parabolici}
+Citiamo il seguente teorema per la sua utilit\`a in alcuni degli esempi:
+
+\begin{theorem}[Witt]\label{ThWitt}
+Se $V$ spazio vettoriale, $b$ forma simmetrica non degenere, $W_1,W_2$ sottospazi di $V$ e $\vp:W_1\to W_2$ isomorfismo che preserva $b$, allora $\vp$ si estende a $V$ e continua a preservare $b$.
+\end{theorem}
+
+\subsection{Matrici invertibili}
+Fissiamo $G=\GL(n)$. 
+
+\begin{lemma}[]
+Il sottogruppo $B_n\subseteq \GL(n)$ delle matrici triangolari superiori \`e di Borel.
 \end{lemma}
 \begin{proof}
-Diamo le implicazioni
-\setlength{\leftmargini}{0cm}
-\begin{itemize}
-\item[$\boxed{\implies}$] Ovvio
-\item[$\boxed{\impliedby}$] La dimostrazione \`e del tutto analoga a quella esposta per il lemma (\ref{LmCriterioSemisempliceUnipotentePerGruppiLineari}). Dimostriamo che $\K[G]$ \`e semisemplice. Dato il morfismo
-$\K[\GL(V)]\onto \K[G]$
-basta mostrare che $\K[\GL(V)]$ \`e semisemplice. Scriviamo \[\K[\GL(V)]=\K[\End(V)][{\det}\ii].\]
-$\K[\End(V)]$ \`e un quoziente di somme di rappresentazioni della forma $(V^\ast)^{\otimes m}$ e quindi \`e quoziente di $(V^\ast\oplus\cdots, \oplus V^\ast)^{\otimes m}$ e dato che $V^\ast$ \`e semisemplice ho finito.
-\end{itemize}
-\setlength{\leftmargini}{0.5cm}
+Sappiamo che $B_n$ è connesso e risolubile. Mostriamo che è massimale. 
+
+Sia $H$ un sottogruppo risolubile connesso contenente $B_n$. Essendo risolubile e connesso, $H$ si triangolarizza rispetto a una bandiera $F_1\subset \cdots \subset F_n$ per la caratterizzazione (\ref{CorCaratterizzazioneConnessiRisolubili}). Poiché $H\cdot F_i=F_i$ per ogni $i=1,\cdots,n$, si ha anche $B_n\cdot F_i=F_i$ per ogni indice $i$. Poiché $B_n$ è lo stabilizzatore in $G$ di ogni bandiera $F_1\subset \cdots \subset F_n$, si ottiene $H=B_n$. 
 \end{proof}
 
-\begin{corollary}
-    Se $\K=\C$ e $G\subseteq \GL(n,\C)$ \`e tale che se $g\in G$ allora $\ol g\in G$, allora $G$ \`e completamente riducibile.
-\end{corollary}
+
+
+\begin{example}[Grassmanniane come quoziente di $GL(n)$]
+Fissiamo $1\leq h<n$ e sia $P$ il sottogruppo di $G$ dato dalle matrici triangolari superiori a blocchi con due blocchi, il primo dei due di taglia $h$. Segue che per questo gruppo $G/P\cong \Gr(h,\K^n)$. Considerando l'azione transitiva di $G$ segue che $P\cong \stab_G \langle e_1,\cdots,e_h\rangle$\footnote{o ogni altro sottospazio di dimensione $h$ fissato.}. Dato che $P$ contiene $B_n$, $P$ \`e parabolico per (\ref{CorSottogruppoCheContieneBorelEParabolico}), quindi $G/P\cong \Gr(h,\K^n)$ \`e proiettiva. 
+
+\medskip
+Descriviamo adesso una immersione esplicita in $\Pj(V)$ per qualche spazio vettoriale. Per farlo possiamo seguire il procedimento indicato dalla dimostrazione del punto 1. del lemma (\ref{LmSottogruppoEStabilizzatoreDiUnaRettaInQualcheRappresentazione}) e dalla proposizione (\ref{PrInsiemeDelleClassiEVarietaQuasiProiettiva}).
+
+Cerchiamo uno spazio vettoriale $V$ contenente una retta $L$ fissata da $P$. Consideriamo $V=\bigwedge^h(\K^n)$ e $L=\bigwedge^h W$, dove $W$ è il sottospazio generato da $e_1,\cdots,e_h$. Abbiamo già visto che, fissato $g$ in $G$, si ha $gL=L$ se e solo se $gW=W$. Quindi $\stab_G L = \stab_G W=P$. La mappa che immerge $G/P$ in $\Pj(V)$ secondo questa procedura \`e $[g]\mapsto gL$. Notiamo per\`o che
+\[gL =\left(g\bigwedge^hW\right)=\left(\bigwedge^h gW\right)\]
+quindi la mappa $\Gr(k,\K^n)\to \Pj(V)$ corrispondente \`e
+% https://q.uiver.app/#q=WzAsMyxbMCwwLCJcXEdyKGgsXFxLXm4pIl0sWzIsMSwiXFxQaihWKSJdLFswLDIsIkcvUCJdLFswLDIsImdXXFxsZWZ0cmlnaHRhcnJvdyBbZ10iLDIseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJhcnJvd2hlYWQifX19XSxbMCwxLCJVXFxtYXBzdG8gXFxid15oIFUiXSxbMiwxLCJbZ11cXG1hcHN0byBnTCIsMl1d
+\[\begin{tikzcd}
+	{\Gr(h,\K^n)} \\
+	&& {\Pj(V)} \\
+	{G/P}
+	\arrow["{U\mapsto \bw^h U}", from=1-1, to=2-3]
+	\arrow["{gW\leftrightarrow [g]}"', tail reversed, from=1-1, to=3-1]
+	\arrow["{[g]\mapsto gL}"', from=3-1, to=2-3]
+\end{tikzcd}\]
+Questa \`e la ben nota \textbf{immersione di Pl\"ucker}.
+Descriviamo la mappa in coordinate: considerando un sottospazio $U\in \Gr(h,\K^n)$ abbiamo
+\[U=\ps{v_1 , \cdots ,v_h} \mapsto v_1\wedge \cdots \wedge v_h =\sum_{i_1<\cdots<i_h} p_{i_1,\cdots,i_h}e_{i_1}\wedge\cdots\wedge e_{i_h}\]
+dove $p_{i_1,\cdots,i_h}$ è il determinante del minore di $M=(v_1 \lvert \cdots \lvert v_h)$ corrispondente alle righe $i_1,\cdots,i_h$.
+Quindi il punto di $\Pj(V)$ scritto nelle coordinate omogenee corrispondenti alla base $\cpa{e_{I}}=\cpa{e_{i_1}\wedge\cdots\wedge e_{i_h}}$ di $V$ \`e
+\[U=\langle v_1,\cdots,v_h\rangle \longmapsto [p_I(v_1,\cdots,v_h)]_{I}\]
+Se cambiamo base, $U=\langle w_1,\cdots,w_h\rangle$, allora esiste una matrice invertibile $A$ di taglia $h$ tale che $MA=N$, dove $N=(w_1\lvert\cdots\lvert w_h)$. Si ha dunque
+\begin{align*}
+    p_I(M)&=\det (M_{i_1,\cdots,i_h}) \\
+    p_I(N)&=\det(N_{i_1,\cdots,i_h})=\det (M_{i_1,\cdots,i_h}\cdot A)=p_I(M) \det(A).
+\end{align*}
+Quindi $(v)\mapsto [p_I(M)]$ e $(w)\mapsto [p_I(N)]=[p_I(M)\det (A)]=[p_I(M)]$ e la mappa \`e ben definita.
+\end{example}
+
+
+
+\begin{example}[Parabolici di $\GL(n)$]
+Sia $P\supseteq B$ con $P$ parabolico e $B$ di Borel, $P$ connesso. Notiamo che $T_e P\supseteq T_e B=\cpa{\text{triang.sup.}}$. Sia $A=(a_{i,j})\in T_e P$. Si ha che $B$ agisce per coniugio su $P$. In particolare se fissiamo $b\in B$ allora definiamo
+\[AD_b:\funcDef{P}{P}{p}{bpb\ii}\quad\leadsto\quad Ad_b:\funcDef{T_eP}{T_eP}{C}{bCb\ii}\]
+quindi $T_e P\subseteq T_e\GL(n)=\Mat_{n\times n}$ \`e stabile per $Ad_b$ per ogni $b\in B$. Se $b=diag(\la_1,\cdots,\la_n)$ allora
+\[Ad_b(A)=\pa{\la_i\la_j\ii a_{i,j}}\]
+dunque se $a_{i,j}\neq 0$ allora $E_{i,j}\in T_eP$ 
+\end{example}
+
+
+\subsection{Matrici ortogonali speciali}
+Consideriamo ora $G=\SO(n)$. Ricordiamo che per un campo algebricamente chiuso (di caratteristica diversa da 2) tutte le forme quadratiche inducono lo stesso prodotto scalare a meno di isometria, quindi in quanto segue cambiamo liberamente la forma in esame in base alla convenienza.
+
+\begin{remark}
+$\SO(1)=\cpa{1}$.
+\end{remark}
+
+\begin{remark}
+$\SO(2)\cong \G_m$.
+\end{remark}
 \begin{proof}
-Sia $V=\C^n$ e dimostriamo che $V^{\otimes m}$ \`e semisemplice per ogni $m$, cio\`e che per ogni $U\subseteq V^{\otimes m}$ che sia $G$-stabile esiste $W$ $G$-stabile tale che $V^{\otimes m}=U\oplus W$.
-
-Consideriamo il caso $m=1$. Definiamo la forma hermitiana
-\[h((x_i)(y_i))=\sum_{i=1}^n \ol{x_i}y_i.\]
-Se $U\subseteq V$, poniamo $W=U^\perp$ rispetto a questa forma. Chiaramente $V=U\oplus U^\perp$, quindi vogliamo mostrare che $U$ $G$-stabile implica $U^\perp$ $G$-stabile.
-\[h(gw,u)=\ol w^\top \ol g^\top u=h(w,\under{\in U}{\ol g^\top u})\pasgnlmath={w\in U^\perp}0.\]
-
-
-Per il caso generale l'idea \`e la stessa ma usiamo
-\[h_m(v_1\otimes\cdots\otimes v_m,u_1\otimes \cdots\otimes u_m)=\prod_{i=1}^m h(v_i,u_i).\]
-Si conclude usando la tesi per $h$.
+Scegliamo la forma quadratica $q(x,y)=xy$. Lo stabilizzatore di tale forma è dato da 
+\[\left\{A\in \SO(2)\sep A \begin{pmatrix}
+    0 & 1 \\ 1& 0
+\end{pmatrix}A^\top=\begin{pmatrix}
+    0 & 1 \\ 1& 0
+\end{pmatrix}\right\}.\] 
+Scriviamo 
+\[A=\begin{pmatrix}
+    a & b \\ c& d
+\end{pmatrix}.\] 
+Imponendo che $A$ sia nello stabilizzatore della forma $q$, si trova $b=c=0$. Poiché $\det(A)=1$, troviamo $d=a^{-1}$ e quindi $\SO(2)$ è isomorfo a $\K^\times$.
 \end{proof}
 
-\begin{example}
-Sia $G\in\cpa{\GL(n,\C), \SL(n), O(n)}$, allora $G$ \`e completamente riducibile. Per $\GL(n,\C)$ e $\SL(n,\C)$ questo \`e ovvio. Per $O(n)=\cpa{g^\top g=id}$ basta mostrare che se $g^\top g=id$ allora $\ol g^\top \ol g=id$, ma questo \`e chiaro.
 
-
-Anche $SO(n)$ e $S_p(2n)$ hanno questa propriet\`a, dove
-\[S_p(2n)=\cpa{g\mid gJg^\top=J},\qquad J=\mat{0 &I\\ -I &0}.\]
-\end{example}
-
-
-
-\begin{example}
-Sia $\cha \K=p=2$ e consideriamo $G=\SL(2,\K)$. Esso ammette una rappresentazione semplice $V=\K^2$. Sia $x,y$ una base di $V$ e consideriamo l'azione data da
-\[\mat{a&b\\c&d}x=ax+by,\qquad \mat{a&b\\c&d}y=cx+dy.\]
-Consideriamo ora $S^2V=\ps{X^2,xy,y^2}$. Per questioni di caratteristica 2, $gx^2=(gx)^2$. Notiamo allora che $W=\ps{x^2,y^2}$ \`e una sottorappresentazione di $S^2V$ che non ammette un complementare.
-\end{example}
-
-\begin{exercise}
-Se $\cha \K=p$ allora $\SL(n,\K)$ e $\GL(n,\K)$ non sono completamente riducibili.
-\end{exercise}
-
-
-
-
-\begin{proposition}\label{PrCompletamenteRiducibileNonHaSottogruppiNormaliUnipotenti}
-Se $G$ \`e completamente riducibile allora $G$ non ha sotto-gruppi unipotenti normali non banali.
+\begin{proposition}[]\label{PrSO(n)ConnessoECalcoloDimensione}
+$\SO(n)$ \`e connesso e ha dimensione $\binom{n}2$. 
 \end{proposition}
 \begin{proof}
-Sia $W$ tale che $G\inj \GL(W)$ (definizione di gruppo algebrico lineare).
-
-Sia $V$ una rappresentazione irriducibile di $G$ e sia $U\subseteq G$ un sottogruppo normale unipotente. Poich\'e $V\neq (0)$ e $U$ unipotente, $V^U\neq 0$ per il corollario (\ref{CorFissatoDaUnipotenteNonEBanale}). Poich\'e $U$ \`e normale $V^U$ \`e stabile per $G$ e quindi $V^U=V$, cio\`e $U$ agisce banalmente su tutte le rappresentazioni irriducibili. Questo mostra che per la mappa $G\to \GL(W)$ si ha che $U$ finisce in $\cpa{id_W}$ perch\'e $G$ \`e completamente riducibile, ma questa mappa \`e iniettiva e quindi $U=\cpa{1_G}$.
+Consideriamo la mappa 
+\[\vp:\funcDef{\Mat_{n\times n}}{\Mat_{n\times n}}{A}{A^\top A}.\] 
+Per costruzione $\operatorname{O}(n)=\varphi^{-1}(I)$. Abbiamo una mappa indotta tra gli spazi tangenti a $I$ 
+\[d\vp_I:\funcDef{T_I\Mat_{n\times n}}{T_I\Mat_{n\times n}}{B}{B+B^\top}\]
+e per il teorema (\ref{ThFibrePerMappeLiscie}) si ha $T_I\SO(n)=T_I\operatorname{O}(n)=\ker d\vp_I$. In particolare \[\dim\SO(n)=\binom{n}{2}.\]
+Mostriamo ora che $\SO(n)$ \`e connesso per induzione su $n\ge 1$. Per $n=1$ e $n=2$ sappiamo già che ciò è vero. Assumiamo $n>2$. Consideriamo la forma quadratica standard rappresentata dalla matrice identità, consideriamo $e_1$ in $\K^n$ e 
+\[Y\coloneqq \SO(n)\cdot e_1=\left\{ \begin{pmatrix}
+        x_1 \\ \vdots \\ x_n 
+    \end{pmatrix} \sep x_1^2+\cdots+x_n^2=1\right\}\] 
+Poiché il polinomio $x_1^2+\cdots+x_n^2-1$ è irriducibile, la varietà $Y$ è connessa. Inoltre si ha $Y\cong \SO(n)/\SO(n-1)$, che, in quanto connesso, ci permette di concludere.
 \end{proof}
 
+ 
 
 
-\begin{definition}[Caratteri di un gruppo]
-Dato un gruppo algebrico $G$ definiamo un \textbf{carattere} di $G$ come un omomorfismo di gruppi
-\[\al:G\to \GL(1)=\K^\times.\]
-L'insieme dei caratteri $X(G)$ forma un gruppo abeliano:
-\[(\al\beta)(g)=\al(g)\beta(g)=\beta(g)\al(g)=(\beta\al)(g).\]
+
+
+
+\begin{proposition}
+$\SO(3)\cong \SL(2)/\{\pm I\}.$
+\end{proposition}
+\begin{proof}
+Sappiamo che $\SL(2)$ agisce su $W\coloneqq \K^2$. Consideriamo la rappresentazione $W\otimes W=S^2 W \oplus \bigwedge^2 V$. 
+Consideriamo la forma bilineare e simmetrica 
+\[b(u\otimes u', v \otimes v')=\det(u,v)\det(u',v').\] 
+Tale forma è $\SL(2)$-invariante, infatti, se $g$ è in $\SL(2)$, allora $\det(g)=1$ e quindi
+\begin{align*}
+	b(gu\otimes gu', gv \otimes gv')=&\det(gu,gv)\det(gu',gv')=\\
+	=&\det(g)^2b(u\otimes u', v \otimes v')=\\
+	=&b(u\otimes u', v \otimes v').
+\end{align*}
+Fissiamo una base $e_{11}=e_1\otimes e_1$, $e_{12}=e_1\otimes e_2$, $e_{21}=e_2\otimes e_1$, $e_{22}=e_2\otimes e_2$. Allora \[[b]_{e_{ij}}=\begin{pmatrix}
+    0 & 0 & 0 & 1 \\
+    0 &0 & -1 & 0 \\
+    0 & -1 & 0&0 \\
+    1 &0&0&0
+\end{pmatrix}.\]
+In particolare $b$ è non degenere. Inoltre, anche la restrizione $\beta \coloneqq b\res{S^2W}$ è non degenere, in quanto $S^2W=\langle e_{11},e_{22},e_{12}+e_{21}\rangle$. Abbiamo quindi definito una mappa 
+\[\SL(2)\to \SO(\beta).\] 
+Imponendo $g e_{11}=e_{11}$ e $g e_{22}=e_{22}$, troviamo $g=\pm I$, quindi abbiamo un'immersione $\SL(2)/\{\pm I\}\hookrightarrow \SO(\beta)$. Mostriamo che è suriettiva. Notiamo che la seguente mappa \`e un isomorfismo
+\[\funcDef{\SL(2)\times\K^\times}{\SO(3)}{(A,\la)}{A \mat{\lambda & 0 \\ 0 & 1}}\]
+Quindi $\dim\SL(2)=3$. 
+Per la proposizione (\ref{PrSO(n)ConnessoECalcoloDimensione}) abbiamo che
+\[\dim\SO(3)=3=\dim\SL(2)\] 
+e che $\SO(3)$ \`e connesso, dunque il quoziente $\SL(2)/\{\pm I\}$ è $\SO(3)$.
+\end{proof}
+
+\begin{remark}
+Consideriamo il gruppo 
+\[B=\cpa{\mat{a&b\\0&a\ii}}\subseteq \SL(2)\]
+Sia $V=\K^2$ e $L=[e_1]\in\Pj(V)$. $\SL(2)$ agisce su $\Pj^1=\Pj(V)$ transitivamente e lo stabilizzatore di $L$ \`e $B$.
+
+Se poniamo
+\[W=S^n\K^2=S^nV\]
+allora, notando che $e_1^n\in W$, si ha che $\stab_G[e_1^n]=B$.
+Possiamo dunque descrivere il quoziente anche come
+\[\Pj(V)=\Pj^1\cong G/B=G[e_1^n]\subseteq \Pj(W)=\Pj(S^n V)\]
+dove l'immersione \`e data da $v\mapsto v^n$. Questa mappa \`e un morfismo equivariante e una immersione chiusa $\Pj(V)\inj \Pj(W)$.
+\end{remark}
+
+
+
+
+\begin{remark}
+Se $n=2$ allora
+\[\SO(3)/B_{\SO(3)}=\frac{\SL(2)/\pm id}{B_{\SL}/\pm id}=\frac{\SL(2)}{B_{\SL}}.\]
+Lo spazio $V=\K^2$ non \`e una rappresentazione di $\SO(3)$ perch\'e $-id$ non agisce banalmente, ma $S^2V$ \`e una rappresentazione di $\SO(3)$.
+\end{remark}
+
+
+
+\begin{example}
+Consideriamo la forma quadratica $x_1x_3=x_2^2$, lo spazio $V=\K^3$ e la retta $L=\K(1\ 0\ 0)^\top$. In $\Pj(V)$ si ha che $G\cdot L$ \`e la quadrica $Q:x_1x_3=x_2^2$ per il teorema di Witt (\ref{ThWitt}).
+Notiamo anche che $\stab(L)=B$, quindi abbiamo una mappa
+\[\funcDef{\Pj^1}{Q}{[a:b]}{[a^2:ab:b^2]}.\]
+\end{example}
+
+
+
+
+
+
+\subsection{Quoziente per sottogruppo di Borel}
+Sia $G=\SL(n)$ e ricordiamo che il sottogruppo delle matrici triangolari superiori $B$ \`e un sottogruppo di Borel.
+\[G/B\cong\cpa{F_1\subseteq\cdots\subseteq F_n\mid \dim F_i=i}\]
+
+\begin{definition}
+Definiamo le \textbf{variet\`a delle bandiere} (\textbf{flag variety}) come
+\[\GL(n)/B_{\GL(n)}=\SL(n)/B_{\SL(n)}=\Fl(\K^n)=\cpa{F_1\subseteq\cdots\subseteq F_n\mid \dim F_i=i}.\]
 \end{definition}
 
-\begin{theorem}\label{ThAbelianoConnessoCompletamenteRiducibileImplicaToro}
-Sia $G$ un gruppo abeliano connesso completamente riducibile, allora $G$ \`e un toro algebrico.
-\end{theorem}
+Vogliamo un risultato analogo per $\SO(n)$
+\begin{remark}
+Se consideriamo la forma quadratica standard $q=x_1^2+\cdots+x_n^2$ e interseco $\SO(n)=\cpa{A\mid A^\top A=I,\det A=1}$ con $B_{\SL(n)}$ troviamo
+\[T^\top T=I\quad e \quad T\text{ triangolare superiore}\implies T\text{ diagonale con entrate }\pm1,\]
+ovvero 
+\[B_{\SO(n)}=\cpa{\emat{T\text{ diagonale con entrate sulla diagonale 1}\\\text{ eccetto un numero pari di $-1$.}}}\]
+\end{remark}
+
+\bigskip
+
+\noindent Consideriamo ora la forma quadratica associata a
+\[J=\mat{
+0&\cdots&0&1\\
+\vdots&0&\iddots&0\\
+0 &\iddots& 0&\vdots\\
+1&0&\cdots&0
+}\]
+da cui $\SO(J)=\cpa{A\mid AJ A^\top=J,\ \det A=1}$. Osserviamo che $J=J\ii$.
+
+\begin{proposition}
+Il sottogruppo di $\SO(J)$ dato da
+\[B=\cpa{\mat{A&B\\0&D}\sep D=(A^{at})\ii,\ (BA^{at})^{at}=-(BA^{at}),\ A\text{ triang. sup.}},\]
+dove $M^{at}$ indica la trasposta di $M$ rispetto all'altra diagonale, \`e un sottogruppo di Borel.
+\end{proposition}
 \begin{proof}
-Notiamo che ogni elemento di $G$ \`e semisemplice: se $g\in G$ allora per la decomposizione di Jordan (\ref{PrDecomposizioneSemisempliceUnipotente}) si ha $g=su$ con $u$ unipotente in $G$. Poich\'e $G$ \`e abeliano, $\ps{u}$ \`e un suo sottogruppo normale, quindi per la proposizione sopra (\ref{PrCompletamenteRiducibileNonHaSottogruppiNormaliUnipotenti}) si ha che $\ps{u}=\cpa{1_G}$, cio\`e $u=1_G$. Dunque $g=s1_G=s$, cio\`e $g$ \`e semisemplice.
+Assumiamo $n=2m$, il caso dispari \`e simile.
 
-Poich\'e $G$ \`e abeliano, gli elementi commutano. Dato che ogni elemento \`e semisemplice (cio\`e in ogni rappresentazione \`e diagonalizzabile), si ha che per ogni rappresentazione esiste una base di autovettori dove ogni elemento di $G$ \`e \emph{simultaneamente} diagonalizzabile. In particolare le rappresentazioni irriducibili hanno dimensione $1$.
-\smallskip
+Notiamo che $Jg^\top J\ii=Jg^\top J=g^{at}$, cio\`e la trasposta di $g$ rispetto all'altra diagonale. Scrivendo $g$ triangolare superiore evidenziando blocchi di dimensione $m$ troviamo
+\[g=\mat{A&B\\0&D}.\]
+Poich\'e $g\in \SO(J)$ significa che $gg^{at}=id$ con determinante 1, $g$ triangolare superiore appartiene a $\SO(J)$ se
+\[\mat{I_m &0\\0&I_m}=\mat{A&B\\0&D}\mat{D^{at}&B^{at}\\0&A^{at}}=\mat{AD^{at}&AB^{at}+BA^{at}\\0&DA^{at}}\]
+ovvero se $D=(A^{at})\ii$ e $(BA^{at})^{at}=-(BA^{at})$. Il determinante di $g$ \`e automaticamente $1$ perch\'e\footnote{$\det M^{at}=\det(JM^\top J)=1\cdot \det M^\top\cdot 1=\det M$.} $\det D=(\det A)\ii$.
+Dunque l'intersezione tra $\SO(J)$ e le triangolari superiori \`e
+\[B=\cpa{\mat{A&B\\0&D}\sep D=(A^{at})\ii,\ (BA^{at})^{at}=-(BA^{at}),\ A\text{ triang. sup.}}.\]
+Notiamo che $B$ \`e connesso\footnote{connesso perch\'e immagine di $\cpa{\text{triang.sup.invertibili}}\times \cpa{\text{antisimmetriche per l'altra diagonale}}$} e risolubile\footnote{per quanto appena detto \`e un sottogruppo di $B_n$ e quindi invochiamo (\ref{CorCaratterizzazioneConnessiRisolubili})}. Se dimostriamo che $B$ \`e parabolico allora \`e un sottogruppo di Borel per (\ref{CorPrabolicoRisolubileConnessoEBorel}). 
 
-Consideriamo allora una decomposizione di $\K[G]$ che rende ogni elemento di $G$ diagonalizzabile
-\[\K[G]=\bigoplus \K^{n_\al}_\al\]
-dove $\K_\al^{n_\al}$ sono le funzioni regolari $f$ tali che $gf=\al(g)f$. Notiamo che 
-\[\al(gh)f=(gh)f=g(hf)=g(\al(h)f)=\al(h)gf=\al(h)\al(g)f\]
-quindi $\al(gh)=\al(g)\al(h)$. Questo ci permette di identificare questa decomposizione con
-\[\K[G]=\bigoplus_{\al\in X(G)}V_\al,\qquad\text{dove }V_\al=\cpa{h\in \K[G]\mid gh=\al(g)h}.\]
 
-Per ogni carattere $\al\in X(G)$ definiamo $f_\al=\al\ii\in \Hom(G,\K^\times)\subseteq\Hom(G,\K)=\K[G]$. Sfruttando il fatto che $\al$ \`e un omomorfismo si ha $f_\al\in V_\al$, infatti
-\begin{align*}
-    (gf_\al)(x)=&f_\al(g\ii x)=\al\ii(g\ii x)=(\al(g\ii x))\ii=\\
-    =&(\al(g)\ii \al(x))\ii=(\al(x))\ii\al(g)=\\
-    =&\al(g) \al\ii(x)=\\
-    =&\al(g)f_\al(x).
-\end{align*}
-Se $h$ ha carattere $\al$, cio\`e $gh=\al(g)h$, allora per ogni $g\in G$
-\[\frac{h(1_G)}{f_\al(1_G)}=\frac{\al(g\ii)h(1_G)}{\al(g\ii)f_\al(1_G)}=\frac{g\ii h(1_G)}{g\ii f_\al(1_G)}=\frac{h(g1_G)}{f_\al(g1_G)}=\frac{h(g)}{f_\al(g)},\]
-cio\`e $h$ \`e un multiplo di $f_\al$ (in particolare $n_\al=1$ nella scrittura sopra).
-\smallskip
 
-Mostriamo che $X(G)\cong \Z^n$ per qualche $n$ mostrando che \`e un gruppo abeliano finitamente generato libero da torsione:
-\setlength{\leftmargini}{0cm}
-\begin{itemize}
-\item[$\boxed{\text{fin.gen.}}$] Sappiamo che $\K[G]$ \`e una $\K$-algebra finitamente generata quindi consideriamo dei generatori $f_{\al_1},\cdots, f_{\al_m}$. Come $\K$-spazio vettoriale, $\K[G]$ \`e generato da elementi della forma
-\[f_{\al_1}^{n_1}\cdots f_{\al_m}^{n_m},\]
-il quale ha carattere $\prod \al_i^{n_i}$. Questo mostra che i caratteri $\al_1,\cdots, \al_m$ sono dei generatori di $X(G)$.
-\item[$\boxed{\text{tor.free}}$] EPer assurdo supponiamo $\al^N=1$ ma $\al\neq 1$, cio\`e $\al(g)^N=1$ per ogni $g\in G$. Notiamo che
-\[G=\coprod_{\omega\ t.c.\ \omega^N=1}\cpa{g\mid \al(g)=\omega},\]
-ma poich\'e $G$ \`e connesso, questa unione disgiunta deve consistere di un solo termine, mostrando che $\al$ assume solo il valore $1$ contraddicendo le ipotesi.
-\end{itemize}
-\setlength{\leftmargini}{0.5cm}
-Abbiamo quindi mostrato che $X(G)\cong \Z^n$. Sia $\al_1,\cdots, \al_n$ una sua base. Se scriviamo $x_i=f_{\al_i}$ troviamo
-\[\K[G]=\bigoplus \ps{f_\al}_\K=\bigoplus \ps{x_1^{m_1}\cdots x_n^{m_n}}_\K\]
-e in questa decomposizione il prodotto \`e esattamente quello che ci aspetteremmo.
-Se scriviamo $\al=\al_1^{m_1}\cdots\al_n^{m_n}$ allora $f_\al=x_1^{m_1}\cdots x_n^{m_n}$, dunque abbiamo proprio mostrato che
-\[\K[G]=\K[x_1^{\pm1},\cdots, x_n^{\pm 1}]=\K[(\K^\times)^n].\]
-Essendo sia $G$ che $(\K^\times)^n$ affini questo mostra che sono isomorfi.
+Sia $\Es$ la bandiera data dai vettori di base 
+\[E_1=\ps{e_1}\subseteq E_2=\ps{e_1,e_2}\subseteq\cdots\subseteq E_n=\ps{e_1,\cdots, e_{2m}}=\K^n.\] 
+Notiamo che $\stab_{\GL(n)}(\Es)=B_{\GL(n)}$ e che $\stab_{O(J)}(\Es)=B_{\GL(n)}\cap O(J)=B_{O(J)}=B_{\SO(J)}=B$, dove la penultima uguaglianza segue perch\'e tutte le matrici ortogonali triangolari superiori per la forma associata a $J$ hanno gi\`a determinante 1.
+Notiamo che 
+\[O(J)\cdot\Es\subseteq \cpa{0=F_0\subseteq\cdots\subseteq F_{2m}\mid \dim F_i=i,\ F_{m-i}^\perp=F_{m+i}\ \forall i\in\cpa{0,\cdots,m}}\subseteq \Fl.\]
+Per il teorema di Estensione di Witt (\ref{ThWitt}) si ha che $O(J)\cdot\Es$ \`e esattamente lo spazio delle bandiere di quella forma, che chiamiamo $\Fs$. Vogliamo dimostrare che $\Fs$ \`e chiuso, cos\`i per proiettivit\`a di $\Fl$ avremo mostrato che $O(J)/B=O(J)/\stab_{O(J)} \Es=O(J)\cdot \Es$ \`e proiettivo. Sia
+\[\Gs=\cpa{g\in \GL(n)\mid gB_{\GL}\in \Fs}\]
+Poich\'e $\Fl=\GL(n)/B_{\GL}$ basta\footnote{$\Fs=\Gs/B_{\GL}$ e $\Gs$ \`e $B_{\GL}$-invariante.} mostrare che $\Gs$ \`e chiuso. Sia $g=\pa{v_1\mid\cdots\mid v_{2m}}$ e notiamo che $g\in\Gs$ se e solo se $b(v_i,v_j)=0$ per $i,j\leq m$, $b(v_{m+\al},v_i)=0$ per $i\leq m-\al$ e $b(v_i,v_j)=0$ per $i+j\leq 2m$. Queste sono condizioni chiuse quindi $\Gs$ \`e chiuso.
+
+Concludiamo notando che
+\[O(J)=\frac{\SO(J)\sqcup g\SO(J)}{B}\]
+per una qualsiasi $g$ tale che $\det g=-1$, $g\in O(J)$, dunque
+\[\frac{O(J)}{B}=\frac{\SO(J)}{B}\sqcup g\frac{\SO(J)}{B}\]
+e quindi $\frac{\SO(J)}{B}$ \`e proiettivo come volevasi dimostrare.
 \end{proof}
 
 
 
+Vogliamo descrivere la componente data da $\SO(2m)/B$.
+\begin{theorem}
+Sia $V=\K^{2m}$ munito di una forma bilineare, simmetrica e non degenere $b(\cdot,\cdot)$. Siano $L,M$ 
+sottospazi isotropi (lagrangiani) di $V$ tali che $\dim L=\dim M$. Allora \[\exists\,g\in \SO(b)\colon \ gL=M\quad \iff \quad \dim(L\cap M)\equiv m \pmod{2}.\] 
+\end{theorem}
 
+%\[\SO(2m)\cdot \xi =\{F_1\subset \ldots\subset F_{2m} \colon F_i^\perp=F_{2m-i}, \ \dim(F_m\cap \langle e_1,\ldots,e_m\rangle )\equiv m \pmod{2}\}.\] 
+\begin{proof}
+Scegliamo una base $e_1,\cdots,e_m,e_{m+1},\cdots,e_{2m}$ di $V$ tale che $e_1,\cdots,e_m$ è base di $L$ e tale che $b$ è rappresentata in questa base dalla matrice 
+\[\begin{pmatrix}
+    0 & I_m \\ I_m & 0
+\end{pmatrix}.\] 
+Sia inoltre $L'=\langle e_1,\cdots,e_{m-1},e_{2m}\rangle$. Notiamo che $L'$ è isotropo. Mostriamo che se $g$ è un elemento di $\SO(2m)$, allora 
+\begin{align}
+    \label{cong1}\dim(gL\cap L)&\equiv m \pmod{2} \\
+    \label{cong2}\dim(gL\cap L')&\not\equiv m \pmod{2}
+\end{align}
+Iniziamo mostrando la \eqref{cong1}. Sia $P$ il sottogruppo di $\SO(b)$ costituito dalle matrici del tipo 
+\[\begin{pmatrix}
+    A & B \\ 0 & C
+\end{pmatrix}.\] 
+Notiamo che una matrice di questa forma è in $\SO(b)$ se e solo se $A^\top=C^{-1}$ e $B^\top C+C^\top B=0$, per cui
+\[\dim P= \dim \GL(m)+\binom{m}{2}=m^2+\binom{m}{2}.\] 
+Sia $U$ il sottogruppo di $\SO(b)$ costituito dalle matrici del tipo \[\begin{pmatrix}
+    I_m & 0 \\ X& I_m 
+\end{pmatrix}\]
+Osserviamo che una matrice di questo tipo appartiene a $\SO(b)$ se e solo se $X^\top=-X$, cioè se e solo $X$ è antisimmetrica, quindi $\dim U=\binom{m}{2}$. Ne consegue che $\dim P +\dim U= 2m^2-m$. Ricordiamo che $\dim \SO(2m)=\dim \operatorname{O}(2m)=2m^2-m$, infatti la mappa 
+\[\begin{array}{ccc}
+    \GL(2m)& \longrightarrow & \operatorname{Sym}(2m) \\
+     A&\longmapsto& AA^\top
+\end{array}\] 
+è surgettiva e ha nucleo $\operatorname{O}(2m)$, che quindi ha dimensione $4m^2-\binom{2m+1}{2}=2m^2-m$. Consideriamo la mappa $U\times P \to \SO(b)$ data da
+
+
+\[\begin{array}{cccccc}
+    U\times P & \xrightarrow{\sim} & U\times P &\longrightarrow & \SO(b) \\
+     (u,p^{-1}) &\longmapsto& (u,p)&\longmapsto& u I p \\
+     (u,p) &\longmapsto& (u,p^{-1})&\longmapsto& u I p^{-1}
+\end{array}\]
+Ora $UP$ è aperto in $\overline{UP}$ e poiché $U\cap P=\{I_{2m}\}$, si ha 
+\[\dim(UP)=\dim (U \times P)= \dim \SO(2m),\] 
+da cui $\overline{UP}=\SO(2m)$. Consideriamo gli aperti $V_1=UP$ e
+$V_2=PU$ in $\SO(2m)$. Mostriamo che $V_2V_1=\SO(2m)$. %e quindi che $g$ è in $V_2 V_1$. Infatti s
+Sia $g$ in $\SO(2m)$ e sia $v_2$ nell'intersezione $V_2\cap gV_2$ (che è non vuota in quanto $V_1$ e $V_2$ sono aperti in una varietà irriducibile). Allora $v_2=gv_2'$ per qualche $v_2'$ in $V_2$. Poiché $(v_2')^{-1}\in UP=V_1$, si ha $g=v_2(v_2')^{-1}\in V_2V_1$. Ne deduciamo che 
+\[\SO(2m)= P U\cdot U P=PUP\] 
+e quindi, posto $g=p_1 u p_2$, si ha 
+\[\dim(gL\cap L)=\dim(p_1 u p_2L \cap L)=\dim(u p_2 L \cap p_1^{-1}L)=\dim(uL \cap L).\] 
+Quindi ci siamo ridotti a considerare il caso di un elemento 
+\[u=\begin{pmatrix}
+    I_m & 0 \\ X & I_m
+\end{pmatrix}\in U.\]
+Osserviamo che, poiché $L=\operatorname{span}\{e_1,\cdots,e_m\}$, si ha 
+\[uL=\operatorname{span}\left\{\begin{pmatrix}
+    I_m & 0\\ X & I_m
+\end{pmatrix} e_i,\  i=1,\cdots,m \right\}, %\quad L=\operatorname{span}\left\{\begin{pmatrix}
+    %I_m & 0 \\ 0
+%\end{pmatrix}\right\}
+\] 
+quindi 
+\[uL\cap L=\operatorname{span}\left\{\begin{pmatrix}
+    v \\ Xv
+\end{pmatrix}, \  v\in \K^m \colon  Xv=0\right\} \cong \ker X,\] 
+da cui $\dim(uL\cap L)=\dim(\ker X)=m-\rnk(X) \equiv m \pmod{2}$ perché le matrici antisimmetriche hanno rango pari. 
+
+Mostriamo la \eqref{cong2}. Sia $g$ un elemento in $\operatorname{O}(2m)$. Sappiamo che se $g$ è in $\SO(2m)$, allora $\dim(gL\cap L)\equiv m \pmod{2}$; se invece $g$ non è in $\SO(2m)$, allora $\dim(gL\cap L)\not\equiv m \pmod{2}$. Sia $h$ in $\operatorname{O}(2m)\setminus \SO(2m)$ che scambia $e_m$ con $e_{2m}$ e lascia fissi gli altri $e_i$. Allora $L'=hL$  %Supponiamo $g\in \operatorname{O}(2m)\setminus \SO(2m)$. 
+ed esiste $\widetilde{g}$ in $\SO(2m)$ tale che $g=h\widetilde{g}$. Dunque \[\dim(gL\cap L)=\dim(h\widetilde{g}L\cap L)=\dim(\widetilde{g}L \cap L')\not\equiv m \pmod{2}\] e ciò conclude la dimostrazione. 
+\end{proof}
+
+\begin{example}[Caso $m=1$] Consideriamo $V=\K^2$ munito della forma bilineare la cui forma quadratica associata è data da $b(x,y)=xy$. Allora i sottospazi isotropi $\K e_1$ e $\K e_2$ si intersecano banalmente e quindi non vengono scambiati dagli elementi di $\SO(b)$.  In effetti 
+    \[\SO(b)=\left\{\begin{pmatrix}
+    a & 0 \\
+    0 & a^{-1}
+\end{pmatrix}, \ a\in \K^\times\right\}.\]
+\end{example}
+\begin{example}
+    [Caso $m=2$] Consideriamo $\K^4$ con la forma quadratica 
+	\[b(x_1,x_2,x_3,x_4)=x_1x_4-x_2x_3.\] 
+	Cerchiamo i sottospazi di dimensione $2$ contenuti nel radicale della forma: cerchiamo quindi rette in $\Pj(\K^4)$ contenute nella quadrica $x_1x_4=x_2x_3$. Questa quadrica corrisponde a $\Pj^1 \times \Pj^1$ tramite la mappa $([a:b],[c:d])\mapsto [ac:ad:bc:bd]$. Il gruppo $\SO(b)$ agisce su ciascun fattore $\Pj^1$, ma non scambia i due fattori tra loro. %Concretamente, la quadrica è composta da due famiglie di rette ...
+\end{example}
