@@ -1,840 +1,789 @@
-\chapter{Quozienti}
-\section{Costruzione dei quozienti}
-\begin{lemma}\label{LmSottogruppoEStabilizzatoreDiUnaRettaInQualcheRappresentazione}
-Sia $G$ un gruppo algebrico e $H$ sottogruppo di $G$, allora
-\begin{enumerate}
-    \item Esistono una rappresentazione di dimensione finita $V$ di $G$ e una retta $L\subseteq V$ tali che $H=\stab_G L=\cpa{g\in G\mid g(L)=L}$
-    \item Se $H$ \`e normale allora $V$ si pu\`o scegliere in modo che sia somma dei $V_\al$ per $\al\in X(H)$ e $V_\al=\cpa{v\in V\mid h\cdot v=\al(h)v}$.
-\end{enumerate}
-\end{lemma}
-\begin{proof}
-Mostriamo le due affermazioni
-\setlength{\leftmargini}{0cm}
-\begin{enumerate}
-\item Sia $I_H\subseteq \K[G]$ l'ideale che definisce $H$, allora
-\[H=\cpa{g\in G\mid g(I_H)=I_H}\]
-\setlength{\leftmargini}{0cm}
-\begin{itemize}
-\item[$\boxed{\subseteq}$] Se $g\in H$ e $f\in I_H$ allora $gf(k)=f(g\ii k)$, quindi se $k\in H$ allora $g\ii k\in H$ e quindi questa funzione vale $0$, cio\`e $gf\in I_H$. L'altra inclusione segue dallo stesso ragionamento fatto su $g\ii$.
-\item[$\boxed{\supseteq}$] Se $g\ii(I_H)\subseteq I_H$ allora per ogni $f\in I_H$
-\[f(g)=\under{\in I_H}{(g\ii f)}(e)=0\]
-cio\`e $g\in H$.
-\end{itemize}
-\setlength{\leftmargini}{0.5cm}
-Consideriamo ora dei generatori $f_1,\cdots, f_m$ per $I_H$ e sia $V_0\subseteq \K[G]$ una $G$-sotto-rappresentazione di dimensione finita che contiene ogni $f_i$. Consideriamo il sottospazio vettoriale $W_0=I_H\cap V_0$ e notiamo che
-\[H=\cpa{g\in G\mid g(W_0)= W_0}.\]
-\setlength{\leftmargini}{0cm}
-\begin{itemize}
-\item[$\boxed{\subseteq}$] Ovvio per quanto detto sopra.
-\item[$\boxed{\supseteq}$] Se $g(W_0)= W_0$ allora $g(I_H)=I_H$, infatti $g(I_H)\subseteq I_H$ ovvio per costruzione di $W_0$, l'altra inclusione segue dal fatto che $g(W_0)=W_0\coimplies g\ii(W_0)=W_0$.
-\end{itemize}
-\setlength{\leftmargini}{0.5cm}
-Sia $\dim W_0=m$. Poniamo
-\[V=\bw^m V_0,\quad L=\bw^m W_0\subseteq \bw^m V_0.\]
-Per concludere basta mostrare che
-\[H=\cpa{g\in G\mid g(L)=L}\]
-\setlength{\leftmargini}{0cm}
-\begin{itemize}
-\item[$\boxed{\subseteq}$] Se $g(W_0)=W_0$ allora chiaramente 
-\[g(L)=g\pa{\bw^mW_0}=\bw^m g(W_0)=\bw^m W_0=L.\] 
-\item[$\boxed{\supseteq}$] Notiamo che se $u_1,\cdots, u_m$ \`e una base di $U\subseteq V$ sottospazio vettoriale allora 
-\[U=\cpa{u\in V\mid u\wedge u_1\wedge\cdots\wedge u_m=0}.\]
-Fissiamo una base $w_1,\cdots, w_m$ di $W_0$ e osserviamo che $g w_1,\cdots, gw_m$ \`e una base di $g(W_0)$. Se $g(L)=L$ allora per definizione
-\[\ps{g w_1\wedge\cdots\wedge gw_m}=\ps{w_1\wedge\cdots\wedge w_m},\] 
-quindi per il criterio appena citato si ha che
-\begin{align*}
-    W_0=&\cpa{v\in V\mid v\wedge w_1\wedge\cdots\wedge w_m=0}=\\
-    =&\cpa{v\in V\mid u\wedge gw_1\wedge\cdots\wedge gw_m=0}=g(W_0).
-\end{align*}
-\end{itemize}
-\setlength{\leftmargini}{0.5cm}
-\item Sia $V'=\bigoplus_{\al\in X(H)} V_\al\subseteq V$ con $V$ di prima. Mostriamo che $V'$ \`e $G$-invariante:
-Se $v_\al\in V_\al$ per $\al\in X(H)$, $h\in H$ e $g\in G$ allora
-\[h\cdot(g v_\al)=(gg\ii h g)\cdot v_\al=g(\al(g\ii hg)v_\al)=\al(g\ii hg)gv_\al,\]
-cio\`e $gv_\al$ \`e un autovettore per l'azione di $h$ per un qualsiasi $g\in G$ e $h\in H$, ovvero $V'$ \`e $G$-invariante. 
-
-Per concludere \`e dunque sufficiente mostrare che $L\subseteq V'$, ma abbiamo gi\`a visto che 
-\[g(w_1\wedge\cdots \wedge w_m)=gw_1\wedge\cdots \wedge gw_m=\la(g) w_1\wedge\cdots\wedge w_m\] 
-per qualche $\la(g)$ per ogni $g\in H$, quindi $L\subseteq V_\la$.
-\end{enumerate}
-\setlength{\leftmargini}{0.5cm}
-\end{proof}
-
-Siano $H< G$ e $L,V$ come nel lemma. Allora $L\in \Pj(V)$ per definizione di spazio proiettivo. Definiamo la variet\`a proiettiva
-\[Y=\ol{G\cdot L}\subseteq \Pj(V)\]
-e scriviamo $X=G\cdot L$. Mostriamo che $X$ \`e aperto: data la mappa
-\[\funcDef{G}{Y}{g}{gL},\]
-per Chevalley (\ref{ThChevalley}) si ha che $X$ contiene un aperto $U$ di $Y$. Se $x\in U\subseteq X$ allora $gx\in gU\subseteq X$ quindi
-\[X=\bigcup_{g\in G}gU\text{ \`e aperto.}\]
-Insiemisticamente si ha $X=G\cdot L=G/\stab_G(L)=G/H$, quindi prendere la chiusura \`e in un qualche modo il minimo indispensabile per rendere $G/H$ una variet\`a.
-
-
-\begin{exercise}
-Sia $G=\GL(2)$ e $H=B(2)=\cpa{\mat{\ast&\ast\\0&\ast}}$. Sia $V=\K^2$ e $L=\K e_1$, allora effettivamente $H=\stab_G(L)$ e $G\cdot L=\Pj(V)$ (ogni retta si ottiene da $L$ applicando una trasformazione lineare), quindi $G/H\leftrightarrow \Pj(V)$.
-\end{exercise}
-
-\begin{exercise}
-Sia $G=\GL(n,\C)$ e $H=O(n,\C)$. Sia $V=\Sym(n,\C)$ lo spazio delle matrici simmetriche. Se $A\in V$ e $g\in G$ agisce su $A$ tramite 
-\[g\cdot A=gA g^\top\]
-allora $H=\stab_G(I_n)$ (stabilizzatore della matrice identit\`a).
-\[X=G\cdot I_n=\cpa{gg^\top\mid g\in \GL(n)}=\cpa{A\in \Sym(n)\mid \det(A)\neq 0}\subseteq\ol{G\cdot I_n}=Y\subseteq \Pj(V).\]
-%Siano $V'=V\oplus \K$ e $L=\ps{(I_n,1)}$, allora \[\stab_G(L)=H\text{ e }\Pj(V')=V\oplus \Pj(V).\]
-\end{exercise}
-
-\begin{proposition}
-Se $H$ \`e normale, $G/H$ \`e un gruppo algebrico affine.
-\end{proposition}
-\begin{proof}
-Costruiamo $L$ e $V=\bigoplus V_\al$ come nel punto 2. del lemma (\ref{LmSottogruppoEStabilizzatoreDiUnaRettaInQualcheRappresentazione}). Sia
-\[W=\cpa{T:V\to V\mid \forall \al\in X(H),\ T(V_\al)\subseteq V_\al}\]
-e notiamo che $G$ agisce su $W$ come $gT=g\circ T\circ g\ii$. Per rendere valido quanto detto dobbiamo verificare che $g T g\ii(V_\al)=V_\al$, ma questo segue dal fatto che se $g\ii(V_\al)=V_\beta$ allora
-\[g T g\ii(V_\al)=gT(V_\beta)\subseteq gV_\beta=V_\al.\]
-Notiamo ora che
-\[\cpa{g\in G\mid g\res W=id_W}=\cpa{g\in G\mid g\res{V_\al}=\la_\al id_{V_\al}\ \forall \al\in X(H)}=H,\]
-la seconda uguaglianza segue dalla definizione di carattere mentre la prima si ricava osservando le matrici associate agli elementi di $g$ visti come automorfismi di $V$: gli elementi di $W$ sono diagonali a blocchi e ci\`o che commuta\footnote{$g\res W=id_W$ significa che per ogni $T\in W$ $gTg\ii=T$, cio\`e $gT=Tg$.} con tutte le diagonali a blocchi sono le cose che sono multiplo di identit\`a su ogni blocco.
-
-Abbiamo dunque costruito un omomorfismo di gruppi algebrici $\vp:G\to \GL(W)$ il cui nucleo \`e $H$. Poich\'e $\vp(G)$ \`e un sottogruppo chiuso di $\GL(W)$ per Chevalley (\ref{PrMorfismoTraGruppiAlgebriciAffiniHaImmagineChiusa}) si ha che $G/H\cong \vp(G)$ eredita la struttura di gruppo algebrico lineare da $\vp(G)$.
-\end{proof}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-\begin{remark}
-    Se $H$ è un sottogruppo di $G$ e $\pi\colon G \to X=G\cdot L$, allora $\pi$ è $G$-equivariante e induce una bigezione tra $G/H$ e $X$.
-\end{remark}
-
-
-Nel seguito supporremo $\cha(\K)=0$.
-
-\begin{proposition} Se $H$ è un sottogruppo di $G$ e $\pi\colon G \to X$ una mappa $H$-equivariante, valgono le seguenti proprietà.
-    \begin{enumerate}
-        \item Per ogni varietà $Z$, la mappa \[G\times Z \xrightarrow{(\pi,id)}X\times Z\] è aperta.
-        \item Per ogni aperto $U$ di $X$, si ha un isomorfismo \[\pi^\ast:\Oc_X(U)\xrightarrow{\sim}(\Oc_G(\pi^{-1}(U)))^H.\]
-    \end{enumerate}
-\end{proposition}
-
-\begin{proof}
-Notiamo che $\pi\colon G \to X$ induce una bigezione insiemistica tra $G/H$ e $X$. Poiché per ogni varietà $Z$ la mappa $(\pi,id)\colon G\times Z \to X\times Z$ è liscia ($\pi$ è liscia), tale mappa è anche aperta (\ref{ThMappaLisciaEAperta}).
-
-Sia $U$ un aperto di $X$, poniamo $V=\pi\ii(U)$, e consideriamo la mappa
-\[\pi^\ast:\Oc_X(U)\to \Oc_G(V)^H.\]
-Osserviamo che tale mappa è iniettiva, infatti se $f(\pi(x))=0$ per ogni $x$ in $V=\pi\ii (U)$, si ha $f(y)=0$ per ogni $y$ in $U$, per cui $f=0$. 
-
-Mostriamo che la mappa $\pi^{-1}(U)\to U$ è surgettiva.
-Posso ridurmi al caso $U$ irriducibile:
-
-In $G$ le componenti connesse coincidono con le componenti irriducibili (\ref{ReInGruppoComponentiConnesseSonoIrriducibili}). Lo stesso vale per $X$, infatti se $G^0$ \`e la componente connessa di $1_G$ allora da $X=G/H$ troviamo che $X^0=G^0/H\cap G^0$ \`e aperto e $X$ \`e unione finita disgiunta dei traslati di $X^0$ ($G$ ha finite componenti irriducibili per Noetherianit\`a).
-
-Se $U$ \`e un aperto di $X$ allora 
-\[X=X^0\sqcup g_1X^0\sqcup\cdots\sqcup g_nX^0\implies U=U\cap X^0\sqcup \cdots\sqcup U\cap g_n X^0.\]
-Poich\'e $X^0$ irriducibile i suoi aperti sono irriducibili, quindi per localit\`a della verifica di surgettivit\`a sui pullback per aperti di $X^0$, ci siamo quindi ricondotti al caso $X$ e $U$ irriducibili.
-
-Sia $f:V\to \K$ regolare $H$-equivariante e consideriamo il grafico $\Gamma(f)\subseteq V\times \K$. Sia $g$ la fattorizzazione 
-% https://q.uiver.app/#q=WzAsMyxbMCwwLCJWIl0sWzIsMCwiVT1WL0giXSxbMCwyLCJcXEsiXSxbMCwyLCJmIiwyXSxbMCwxLCJcXHBpIl0sWzEsMiwiZyIsMCx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dXQ==
-\[\begin{tikzcd}
-	V && {U=V/H} \\
-	\\
-	\K
-	\arrow["\pi", from=1-1, to=1-3]
-	\arrow["f"', from=1-1, to=3-1]
-	\arrow["g", dashed, from=1-3, to=3-1]
-\end{tikzcd}\]
-Decomponiamo $V$ in irriducibili $V=V_1\sqcup\cdots\sqcup V_n$ e per irriducibilit\`a di $U$ deve essere il caso che $H$ agisce transitivamente su $\cpa{V_1,\cdots, V_n}$.
-
-Per il punto 1., $(\pi,id):G\times \K\to X\times\K$ \`e una mappa aperta, quindi la restrizione $\psi:V\times \K\to U\times \K$ resta aperta perch\'e $V\times \K$ \`e un aperto di $G\times \K$. Segue che\footnote{Se $(v,f(v))\in\Gamma(f)$ allora $\psi(v,f(v))=(\pi(v),f(v))=(\pi(v),g(\pi(v)))$.} $\psi(\Gamma(f))=\Gamma(g)$ \`e un chiuso di $U\times \K$. In realt\`a notando che $\Gamma(g)$ \`e $H$ invariante e che esso \`e immagine di $\Gamma(f)=\bigsqcup \Gamma(f)\cap V_i$ si ha che in realt\`a possiamo scrivere $\Gamma(g)$ solo come immagine di un singolo $\Gamma(f)\cap V_i$, in particolare \`e irriducible (altrimenti potremmo decomporre $V$ ulteriormente).
-
-Consideriamo ora il diagramma
-% https://q.uiver.app/#q=WzAsMyxbMCwwLCJcXEdhbW1hKGcpIl0sWzIsMCwiVVxcdGltZXMgXFxLIl0sWzIsMiwiVSJdLFswLDEsIiIsMCx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn19fV0sWzEsMiwicF9VIl0sWzAsMiwicSIsMl1d
-\[\begin{tikzcd}
-	{\Gamma(g)} && {U\times \K} \\
-	\\
-	&& U
-	\arrow[hook, from=1-1, to=1-3]
-	\arrow["q"', from=1-1, to=3-3]
-	\arrow["{p_U}", from=1-3, to=3-3]
-\end{tikzcd}\]
-dove $p_U$ \`e la proiezione su $U$ e $q$ \`e la restrizione a $\Gamma(g)$. Chiaramente $q$ \`e regolare in quanto composizione di regolari. $q$ \`e anche bigettiva perch\'e $(u,g(u))\mapsto u$ pu\`o essere facilmente invertita. Poich\'e $U$ \`e liscio e $\Gamma(g)$ irriducibile, per il teorema di Zariski (\ref{ThZariski}) si ha che $q$ \`e un isomorfismo, quindi la mappa $u\mapsto (u,g(u))$ un morfismo e in particolare $g$ stesso \`e un morfismo. Questo mostra che $\pi^\ast$ effettivamente \`e surgettiva perch\'e abbiamo trovato $g\in \Oc_X(U)$ tale che $\pi^\ast(g)=g\circ \pi=f$.
-\end{proof}
-
-
-\begin{theorem}
-    Per ogni $G$-varietà $Y$ e per ogni $y_0$ in $Y$ tale che $H$ è contenuto in $\stab_G(y_0)$, vale la seguente proprietà: se $\varphi\colon G \to Y$ è la mappa definita da $\varphi(g)=gy_0$, allora esiste un'unica $\psi\colon X \to Y$  tale che $\psi\circ\pi=\varphi$.
-    % https://q.uiver.app/#q=WzAsMyxbMCwwLCJHIl0sWzIsMCwiWCJdLFsxLDEsIlkiXSxbMCwxLCJcXHBpIl0sWzAsMiwiXFx2YXJwaGkiLDJdLFsxLDIsIlxcZXhpc3RzICFcXHBzaSIsMCx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dXQ==
-\[\begin{tikzcd}
-	G && X \\
-	& Y
-	\arrow["\pi", from=1-1, to=1-3]
-	\arrow["\varphi"', from=1-1, to=2-2]
-	\arrow["{\exists !\psi}", dashed, from=1-3, to=2-2]
-\end{tikzcd}\]
-\end{theorem}
-
-\begin{proof}
-    Insiemisticamente, la mappa $\psi\colon gH \mapsto gy_0$ è definita. Inoltre $\psi$ è continua: se $U$ è un aperto di $Y$, allora \[\psi^{-1}(U)=\pi(\pi^{-1}(\psi^{-1}(U)))=\pi(\varphi^{-1}(U)),\] che è aperto. Dato un aperto $U$ di $Y$, verifichiamo che l'immagine della mappa 
-    \[\psi^\ast:\Oc_Y(U)\to\Hom_{(\mathrm{Set})}(\psi^{-1}(U),\K)\]
-    è contenuta nell'insieme delle funzioni regolari su $X$. Consideriamo una funzione $f\colon U\to \K$. Allora $\wt{f}:= f\circ \psi\circ\pi =f \circ \varphi$ è in $\Oc_G(\varphi^{-1}(U))$ in quanto $\varphi$ è un morfismo di varietà. Mostriamo che in realtà è in $\Oc_G(\varphi^{-1}(U))^H$. Sia $\lambda$ in $\Oc_G(\varphi^{-1}(U))$ e sia $h$ in $H$. Allora per ogni $x$ in $G$ si ha \[(h\widetilde{f})(x)=\widetilde{f}(xh)=f(\varphi(xh))=f(xhy_0)=f(x y_0)=f(\varphi(x))=\widetilde{f}(x).\]
-    %\[(g\cdo \lambda)(x)=\lamb\]
-\end{proof}
+\chapter{Fibrati vettoriali}
 
 \begin{definition}
-Una variet\`a \`e \textbf{omogenea} rispetto al gruppo $G$ se l'azione di $G$ su $X$ \`e transitiva.
+    Un \textbf{fibrato vettoriale} di rango $m$ su una varietà $X$ è una mappa $p\colon E \to X$ che soddisfa le seguenti proprietà. Lo spazio 
+    \[E \times_X E \coloneqq \left\{(a,b)\in E \times E \mid p(a)=p(b)\right\}\] 
+    \`e munito di una mappa somma $+\colon E\times_X E \to E$ e di un prodotto per scalare $\cdot \colon \K\times_X E \to E$ tali che, detta $q\colon E \times_X E \to X$ la proiezione $q(a,b)\coloneqq p(a)=p(b)$, i seguenti diagrammi commutano 
+    % https://q.uiver.app/#q=WzAsNixbMCwwLCIgRVxcdGltZXNfWCBFIl0sWzIsMCwiRSJdLFsxLDEsIlgiXSxbNCwwLCIgXFxLXFx0aW1lc19YIEUiXSxbNiwwLCJFIl0sWzUsMSwiWCJdLFsxLDIsInAiXSxbMCwxLCIrIl0sWzAsMiwicSIsMl0sWzMsNCwiXFxjZG90Il0sWzMsNSwicCIsMl0sWzQsNSwicCJdXQ==
+\[\begin{tikzcd}
+	{ E\times_X E} && E && { \K\times_X E} && E \\
+	& X &&&& X
+	\arrow["{+}", from=1-1, to=1-3]
+	\arrow["q"', from=1-1, to=2-2]
+	\arrow["p", from=1-3, to=2-2]
+	\arrow["\cdot", from=1-5, to=1-7]
+	\arrow["p"', from=1-5, to=2-6]
+	\arrow["p", from=1-7, to=2-6]
+\end{tikzcd}\]
+
+Inoltre vale una condizione di trivializzazione locale, cio\`e per ogni $x$ in $X$ esiste un intorno $U$ di $x$ e una mappa lineare sulle fibre tale che 
+% https://q.uiver.app/#q=WzAsMyxbMCwwLCJwXnstMX0oVSkiXSxbMiwwLCJVXFx0aW1lcyBcXEtebSJdLFsxLDEsIlUiXSxbMCwxLCJcXHNpbSIsMl0sWzAsMiwicCIsMl0sWzEsMiwiXFxwaV9VIl0sWzAsMSwiXFx2YXJwaGkiXV0=
+\[\begin{tikzcd}
+	{p^{-1}(U)} && {U\times \K^m} \\
+	& U
+	\arrow["\sim"', from=1-1, to=1-3]
+	\arrow["\varphi", from=1-1, to=1-3]
+	\arrow["p"', from=1-1, to=2-2]
+	\arrow["{\pi_U}", from=1-3, to=2-2]
+\end{tikzcd}\]
 \end{definition}
 
-\begin{corollary}
-    Se $X$ è una varietà omogenea rispetto a $G$, allora $X$ è liscia.
-\end{corollary}
-\begin{proof}
-    Poiché $X$ ha un aperto $U$ di punti lisci, la tesi segue dal fatto che $X=\bigcup_{g\in G} gU$.
-\end{proof}
+\begin{example}
+    $X\times \K^m$ con la mappa di proiezione su $X$ \`e un fibrato vettoriale, detto \textbf{fibrato banale}. 
+\end{example}
 
+\begin{example}
+    Sia $X=\Pj^1=\Pj(\K^2)$ e consideriamo 
+    \[E=\{(\ell,v)\in \Pj^1\times \K^2 \colon v\in \ell \} \xrightarrow{p}\Pj^1\] 
+    dove la somma è data da $(\ell,v)+(\ell,w)=(\ell,v+w)$. Questo \`e detto il \textbf{fibrato tautologico}.
+\end{example}
 
-\begin{corollary}\label{CorEquivarianteTraVarietaOmogeneeELiscia}
-    Se $X$ e $Y$ sono varietà omogenee per $G$ e $\varphi\colon X \to Y$ è $G$-equivariante, allora $\varphi$ è liscia.
-\end{corollary}
-\begin{proof}
-    Sicuramente $\varphi$ è surgettiva, perché $X$ e $Y$ sono varietà omogenee per $G$ e $\varphi$ è $G$-equivariante. Per il teorema (\ref{ThMorfismoDominanteTraLisceHaRestrizioneLisciaSuAperto}) esiste un aperto non vuoto $U$ di $Y$ tale che $\varphi\res{\varphi^{-1}(U)}\colon \varphi^{-1}(U) \to U$ è liscia. Allora si ha un diagramma commutativo % https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXHZhcnBoaV57LTF9KGdVKSJdLFsyLDAsImdVIl0sWzAsMiwiXFx2YXJwaGleey0xfShVKSJdLFsyLDIsIlUiXSxbMCwxLCJcXHZhcnBoaVxccmVze2dcXHZhcnBoaV57LTF9KFUpfSJdLFsyLDMsIlxcdmFycGhpXFxyZXN7XFx2YXJwaGleey0xfShVKX0iXSxbMiwwLCJcXHNpbSJdLFszLDEsIlxcc2ltIiwyXV0=
+\begin{exercise} Consideriamo la coppia $(E,p)$ dell'esempio precedente. Mostrare che
+    \begin{enumerate}
+        \item È un fibrato vettoriale. 
+        \item Non è il fibrato banale\footnote{Una intuizione geometrica importante (seppur lontana da essere una dimostrazione) che giustifica la non banalit\`a \`e che il fibrato banale di rango 1 ``topologicamente" \`e un cilindro mentre il fibrato tautologico \`e un nastro di M\"obius.}.
+    \end{enumerate}
+\end{exercise}
+
+\section{Cocicli e banalizzazioni}
+\begin{remark}
+Se $p:E\to X$ \`e un fibrato vettoriale su $X$ di rango $m$ allora esiste un ricoprimento (finito) $\cpa{U_i}$ di $X$ tale che per ogni $i$
+% https://q.uiver.app/#q=WzAsMyxbMCwwLCJwXnstMX0oVV9pKSJdLFsyLDAsIlVfaVxcdGltZXMgXFxLXm0iXSxbMSwxLCJVX2kiXSxbMCwxLCJcXHNpbSIsMl0sWzAsMiwicCIsMl0sWzEsMiwiXFxwaV97VV9pfSJdLFswLDEsIlxcdmFycGhpX2kiXV0=
 \[\begin{tikzcd}
-	{\varphi^{-1}(gU)} && gU \\
-	\\
-	{\varphi^{-1}(U)} && U
-	\arrow["{\varphi\res{g\varphi^{-1}(U)}}", from=1-1, to=1-3]
-	\arrow["\sim", from=3-1, to=1-1]
-	\arrow["{\varphi\res{\varphi^{-1}(U)}}", from=3-1, to=3-3]
-	\arrow["\sim"', from=3-3, to=1-3]
-\end{tikzcd}\] 
-Poiché $Y=\bigcup gU$, $\varphi$ è liscia in ogni punto e quindi è liscia.
-
-%\[\varphi\res{g\varphi^{-1}(U)}\colon \varphi^{-1}(gU) \to gU\]
-\end{proof}
-
-
-
-
-
-
-
-
-
-\section{Sottogruppi generati e contenimenti}
-\begin{lemma}
-Sia $G$ un gruppo algebrico e siano $X_i$ delle variet\`a irriducibili. Siano $\vp_i:X_i\to G$ tali che $1_G\in \imm\vp_i$ per ogni $i$. Poniamo $Y_i=\vp_i(X_i)$.
-
-Sia $H=\ps{\cpa{Y_i}_i}$ il sottogruppo generato dalle immagini delle $\vp_i$. Allora
-
-\begin{enumerate}
-	\item $H$ \`e chiuso
-	\item esistono $i_1,\cdots, i_n$, $\e_1,\cdots, \e_n$ tali che
-	\[H=Y_{i_1}^{\e_1}\cdots Y_{i_n}^{\e_n},\qquad \e_j\in\cpa{1,-1}\]
-\end{enumerate}
-\end{lemma}
-\begin{proof}
-Supponiamo $X_i=Y_i\subseteq G$ e supponiamo che tra le $X_i$ compaiano anche le $X_i\ii$ (cos\`i evitiamo gli $\e$).
-
-Definiamo iterativamente
-\begin{align*}
-	Z_1&=X_1, &W_1&=\ol{Z_1},\\
-	Z_2&=X_1\cdot X_2, &W_2&=\ol{Z_2},\\ 
-	&\;\;\vdots &&\;\;\vdots\\	
-	Z_n&=X_1\cdots X_n, &W_n&=\ol{Z_n},\\
-	Z_{n+1}&=X_1\cdots X_nX_1, &W_{n+1}&=\ol{Z_{n+1}}\\
-	&\;\;\vdots &&\;\;\vdots
-\end{align*}
-Notiamo che $Z_i$ \`e l'immagine di $X_1\times\cdots\times X_i\to G$, quindi $Z_i$ \`e irriducible per ogni $i$, dunque anche $W_i=\ol{Z_i}$ \`e irriducibile.
-
-Notiamo ora che $W_1\subseteq W_2\subseteq\cdots\subseteq G$ \`e una catena di chiusi, ma dato che $G$ ha dimensione finita essa stabilizza, cio\`e esiste $N$ tale che $W_N=W_{N+1}$, ovvero $W_N\cdot X_i\subseteq W_N$ per ogni $i$.
-
-Allora $W_NZ_N\subseteq W_N$ cio\`e $W_N\cdot W_N\subseteq W_N$ perch\'e $W_n$ \`e chiuso. Quindi\footnote{$Z_N\ii W_N\subseteq W_N\implies Z_N\ii\subseteq W_N\implies \ol{Z_N\ii}\subseteq W_N$ e $\ol{Z_N\ii}=\ol{Z_N}\ii=W_N\ii$.} $W_N\ii\subseteq W_N$ e in particolare $Z_N\ii\subseteq W_N$, ma $Z_N\ii=X_N\ii\cdots X_1\ii=X_{i_1}\cdots X_{i_N}$, cio\`e mettendo tutto insieme $H\subseteq W_N$
-
-Mostriamo che $W_N=Z_N\cdot Z_N$: abbiamo una mappa
-\[\under{irrid.}{X_1\times\cdots\times X_N}\to Z_N\to W_N,\]
-quindi per Chevalley (\ref{ThChevalley}) $Z_N\supseteq U$ per $U$ aperto non vuoto di $W_N$, dunque $U\cdot U=W_N$ perch\'e $W_N$ \`e irriducibile.
-
-Questo mostra che $W_N\subseteq H$ ma ci sono tutti gli elementi di $H$ quindi effettivamente $H=W_N$.
-\end{proof}
-
-
-\begin{remark}[Dimensione del quoziente]\label{ReDimensioneDelQuoziente}
-Sia $\vp:G\to G/H$ e ricordiamo che una mappa di questo tipo \`e liscia per omogeneit\`a. Allora per il teorema (\ref{ThFibrePerMappeLiscie}) abbiamo una successione esatta
-\[0\to T_{e}H\to T_{e}G\xrightarrow{d\vp_{e}}T_{e}(G/H)\to 0\]
-e sappiamo che $\dim (G/H)=\dim G=\dim H$.
+	{p^{-1}(U_i)} && {U_i\times \K^m} \\
+	& {U_i}
+	\arrow["\sim"', from=1-1, to=1-3]
+	\arrow["{\varphi_i}", from=1-1, to=1-3]
+	\arrow["p"', from=1-1, to=2-2]
+	\arrow["{\pi_{U_i}}", from=1-3, to=2-2]
+\end{tikzcd}\]
 \end{remark}
 
-\begin{proposition}\label{PrContenimentoTraSottogruppiSiControllaSuiTangenti}
-Supponiamo $\cha\K=0$. Siano $H,K\subseteq G$ sottogruppi connessi, allora
-\[H\subseteq K\coimplies T_e H\subseteq T_eK\text{ in }T_eG.\]
+\begin{definition}[Cocicli]
+Dato un ricoprimento $\Uc=\cpa{U_i}$ di $X$ definiamo gli \textbf{1-cocicli} relativi al ricoprimento come
+\[Z^1(\Uc,\GL(m))=\cpa{\cpa{\al_{i,j}}\mid \al_{i,j}:U_{i,j}\to\GL(m),\ \al_{i,h}=\al_{j,h}\al_{i,j},\ \al_{i,i}(u)=I_m}.\]
+\end{definition}
+
+\begin{definition}[Cocatene]
+Dato un ricoprimento $\Uc=\cpa{U_i}$ di $X$ definiamo le \textbf{0-cocatene} relative al ricoprimento come
+\[C^0(\Uc,\GL(m))=\cpa{\cpa{\beta_{i}}\mid \beta_{i}:U_{i}\to\GL(m)}.\]
+\end{definition}
+
+\begin{proposition}
+Se $\Uc$ \`e un ricoprimento banalizzante per il fibrato $p:E\to X$ allora esso definisce dei cocili indotti dalle mappe di transizione.
 \end{proposition}
 \begin{proof}
-L'implicazione $\implies$ \`e ovvia quindi basta mostrare l'altra.
+Se $U_{i,j}=U_i\cap U_j$ allora abbiamo degli isomorfismi\footnote{da ora in poi eviteremo di scrivere ogni volta le restrizioni}
+\[\vp_{i,j}=\vp_j\res{U_{i,j}}\circ \vp_i\res{U_{i,j}}\ii:U_{i,j}\times\K^m\to U_{i,j}\times \K^m\]
+Sia $\vp_{i,j}(u,v)=(u,\al_{i,j}(u)(v))$. Questo definisce delle mappe regolari
+\[\al_{i,j}:U_{i,j}\to \GL(m).\]
+Notiamo inoltre che su $U_{i,j,h}\times \K^m$
+\[\vp_{j,h}\circ \vp_{i,j}=\vp_h\circ \vp_{j}\ii\circ \vp_j\circ \vp_i\ii=\vp_{i,h}.\]
+Vedendo queste identit\`a in termini delle $\al_{i,j}$ abbiamo mostrato
+\[\al_{i,h}(u)=\al_{j,h}(u)\al_{i,j}(u).\]
+Chiaramente $\vp_i\circ \vp_i\ii=id_{U_i\times\K^m}$ quindi $\al_{i,i}(u)=I_m$.
+\end{proof}
 
-Sia $X=H\cdot K\subseteq G$ e notiamo che \`e omogeneo rispetto all'azione di $H\times K$ data da $(h,k)\cdot g=hgk\ii$.
-Osserviamo che $X$ \`e aperto in $\ol X\subseteq G$ per Chevalley (\ref{ThChevalley}) (contiene un aperto della chiusura ed \`e omogeneo in quanto orbita di $e$).
-Si ha
-\[X\cong \frac{H\times K}{\stab_{H\times K}(e)}.\]
-Studiando lo stabilizzatore notiamo che
-\[\stab_{H\times K}(e)=\cpa{(h,k)\mid hk\ii=e}=\cpa{(h,k)\mid h=k}\cong H\cap K,\]
-dunque per il teorema (\ref{ThFibrePerMappeLiscie}) abbiamo $\dim X=\dim H+\dim K-\dim H\cap K$ e una successione esatta
-\[0\to T_e(H\cap K)\to T_e(H\times K)\to T_e X\to 0\]
-da cui segue $\dim T_e X=\dim T_eH+\dim T_eK-\dim T_e(H\cap K)$.
+\begin{remark}[Fuori programma]
+Se consideriamo delle mappe $\GL(m)\times U_i\to U_i$ per ogni $i$, le $\al_{i,j}$ danno i dati necessari per costruire il $\GL(m)$-torsore associato al fibrato.
+\end{remark}
+
+\begin{proposition}[]\label{PrCocicliDeterminanoFibrato}
+Sia $\Uc$ un ricoprimento di $X$. Una collezione di cocicli $\al\in Z^1(\Uc,\GL(m))$ determina un fibrato vettoriale su $X$.
+\end{proposition}
+\begin{proof}
+Definiamo lo spazio totale come il seguente coprodotto fibrato in $\Top$
+\[E_\al:=\frac{\coprod(U_i\times \K^m)}{(u,v)\sim (u,\al_{i,j}(u)(v))},\]
+in particolare se $\psi_i:U_i\times\K^m\to E_\al$ sono le mappe ovvie allora $V$ \`e aperto in $E_\al$ se e solo se $\psi_i\ii(V)$ \`e aperto in $U_i\times\K^m$ per ogni $i$.
+% https://q.uiver.app/#q=WzAsMyxbMCwwLCJcXGNvcHJvZF97aSxqfVVfe2lqfVxcdGltZXNcXEtebSJdLFsyLDAsIlxcY29wcm9kX2kgVV9pXFx0aW1lc1xcS15tIl0sWzMsMCwiRV9cXGFsIl0sWzAsMSwiXFxpb3RhX2pcXGNpcmMgXFx2cF97aSxqfSIsMix7Im9mZnNldCI6MX1dLFswLDEsIlxcaW90YV9pIiwwLHsib2Zmc2V0IjotMX1dLFsxLDIsIihcXHBzaV9pKSJdXQ==
+\[\begin{tikzcd}
+	{\coprod_{i,j}U_{ij}\times\K^m} && {\coprod_i U_i\times\K^m} & {E_\al}
+	\arrow["{\iota_j\circ \vp_{i,j}}"', shift right, from=1-1, to=1-3]
+	\arrow["{\iota_i}", shift left, from=1-1, to=1-3]
+	\arrow["{(\psi_i)}", from=1-3, to=1-4]
+\end{tikzcd}\]
+Se $V$ \`e aperto in $E_\al$ allora, poich\'e la regolarit\`a \`e una condizione locale, poniamo\footnote{nel linguaggio degli schemi, stiamo definendo il fascio di struttura di $E_\al$.}
+\[f\in \Oc_{E_\al}(V)\coimplies f\circ \psi_i\in \Oc_{U_i}(\psi_i\ii(V)) \quad\forall i.\]
+Affermiamo che $\psi_i$ \`e iniettiva, aperta e regolare per ogni $i$:
+\setlength{\leftmargini}{0cm}
+\begin{itemize}
+\item[$\boxed{\text{Iniettiva}}$] Supponiamo $\psi_i(u,v)=\psi_i(u',v')$, allora
+\[U_i\times \K^m\ni(u,v)\sim (u',v')\in U_i\times \K^m\overset{\al_{i,i}=id_{U_i}}\implies u=u',\ v=v'.\]
+\item[$\boxed{\text{Aperta}}$] Se $W\subseteq U_i\times\K^m$ aperto e $\wt W=\psi_i(W)\subseteq E_\al$ allora dobbiamo verificare che $\psi_j\ii(\wt W)$ \`e aperto per ogni $j$. Consideriamo la seguente catena di equivalenze:
+\begin{gather*}
+(u,v)\in \psi_j\ii(\wt W)\subseteq U_j\times\K^m\\
+\psi_j(u,v)\in \wt W=\psi_i(W)\\
+\exists (u',v')\in W\subseteq U_i\times\K^m\ t.c.\ \psi_j(u,v)=\psi_i(u',v')\text{ in }E_\al\\
+\exists (u',v')\in W\ t.c.\ U_j\times \K^m\ni(u,v)\sim (u',v')\in U_i\times \K^m\\
+(u,\al_{j,i}(u)(v))\in W
+\end{gather*}
+cio\`e $\psi_j\ii(\wt W)$ \`e la preimmagine di $W$ tramite la mappa $U_{i,j}\times \K^m\to U_i\times \K^m$, che \`e continua.
+\item[$\boxed{\text{Regolare}}$] $\psi_i$ \`e continua per definizione della topologia di $E_\al$. Essendo la regolarit\`a una condizione locale, per come abbiamo definito la topologia su $E_\al$ anche la condizione sui pullback \`e chiara.
+\end{itemize}
+\setlength{\leftmargini}{0.5cm}
+
+Abbiamo dunque mostrato che $\psi_i(U_i\times \K^m)\cong U_i\times\K^m$.
 \medskip
 
-Se $T_e X=T_eH+T_eK$ allora 
-\[\dim (T_e X)=\dim (T_eH+T_eK)\overset{T_e H\subseteq T_eK}=\dim T_eK,\]
-dunque 
-\[\dim X=\dim T_eX=\dim T_eK=\dim K\]
-e quindi $K\subseteq X\subseteq \ol X$ con $K$ e $\ol X$ irriducibili della stessa dimensione, dunque $K=X=\ol X$, e poich\'e $X=H\cdot K$ questo mostra 
-\[K=X=H\cdot K\implies H\subseteq K\]
-che \`e la tesi.
-
-Per concludere basta dunque dimostrare che $T_e X=T_eH+T_eK$.
-Consideriamo la composizione
-\[\begin{array}{ccccc}
-	H\times K &\xrightarrow{}& H\times K & \to &X \\
-	(h,k) & \mapsto & (h,k\ii) &  & \\
-	       &        & (h',k') &\mapsto & h'(k'{\ii}) 
-\end{array}\] 
-che \`e la mappa di moltiplicazione $\mu\res{H\times K}$. Dal teorema (\ref{ThFibrePerMappeLiscie}) ricaviamo una successione esatta
-\[0\to T_e(\stab_{H\times K}(e))\to \under{T_eH\times T_eK}{T_e(H\times K)}\to T_eX\to 0\]
-In particolare $d\pa{\mu\res{H\times K}}_{(e,e)}$ \`e surgettiva, quindi per concludere basta mostrare che 
-\[d\pa{\mu\res{H\times K}}_{(e,e)}(\al,\beta)=\al+\beta.\]
-Dato che $G\subseteq \GL(n)$ \`e sufficiente che la tesi valga per $\GL(n)$ e $d\mu_{(e,e)}$. Notiamo che $\Mat_{n\times n}=T_I\GL(n)$ dove l'identificazione \`e data da
-\[(a_{i,j})\longleftrightarrow \pa{\rbar{a_{i,j}\pp{x_{ij}}{}}_{I}}\]
-Traduciamo allora $d\mu_{(e,e)}$ in queste coordinate: se
-\[d\mu_{(e,e)}\funcDef{\Mat_{n\times n}\times \Mat_{n\times n}}{\Mat_{n\times n}}{((a_{i,j}),(b_{i,j}))}{(c_{i,j})}\]
-allora
-\begin{align*}
-	c_{i,j}=&\rbar{\pp{x_{i,j}}{}(x_{i,j}\circ \mu)}_I=\rbar{\pp{x_{i,j}}{}\pa{\sum_\ell y_{i,\ell}z_{\ell,j}}}_I=\\
-	=&\sum_\ell \rbar{\pp{x_{i,\ell}}{}(y_{i,\ell})z_{\ell,j}}_I + \sum_\ell y_{i,\ell}\rbar{\pp{x_{i,j}}{}(z_{\ell,j})}_I\overset{(\star)}=\\
-	=&\sum_\ell \rbar{\pp{y_{i,j}}{}(y_{i,\ell})}_I\delta_{\ell,j} + \sum_\ell \delta_{i,\ell}\rbar{\pp{z_{i,j}}{}(z_{\ell,j})}_I=\\
-	=&\rbar{\pp{y_{i,j}}{}(y_{i,j})}_I+\rbar{\pp{z_{i,j}}{}(z_{i,j})}_I=\\
-	=&a_{i,j}+b_{i,j}
-\end{align*}
-dove il passaggio $(\star)$ segue perch\'e stiamo interpretando quei differenziali come derivazioni.
+\noindent
+La struttura vettoriale sulle fibre di $E_\al$ \`e quella indotta dal coprodotto in modo ovvio.
 \end{proof}
 
 
-\section{Variet\`a complete}
-
-\begin{definition}[Variet\`a separata]
-$X$ \`e \textbf{separata} se la diagonale $X\to X\times X$ \`e un morfismo chiuso.
-\end{definition}
-\begin{center}
-	\textbf{Supporremo che sia tutto separato.}
-\end{center}
-
-\begin{definition}[Variet\`a completa]
-$X$ \`e \textbf{completa} se per ogni $Z$ variet\`a, $\pi:X\times Z\to Z$ \`e un morfismo chiuso.
-\end{definition}
-
-\begin{remark}\label{ReRegolariSuCompleteIrriducibiliSonoCostanti}
-Se $X$ \`e irriducibile e completa allora $\Oc_X(X)\cong \K$.
-\end{remark}
-\begin{proof}
-Sia $f:X\to \K$ regolare e consideriamo $\Gamma(f)\subseteq X\times \K\to \K$. Questa proiezione \`e chiusa quindi $\pi(\Gamma(f))=f(X)$ \`e un chiuso irriducibile (immagine di irriducibile) di $\K$. Ma i chiusi irriducibili di $\K$ non vuoti sono o tutto $\K$ o solo un punto.
-
-Consideriamo ora $W=\cpa{(x,y)\in X\times \K\mid yf(x)=1}$. Se $f(X)=\K$ allora l'immagine di $W$ tramite la proiezione $X\times \K\to \K$ \`e $\K^\times$, che non \`e chiuso in $\K$, assurdo.
-
-Quindi $f(X)$ \`e un solo punto, cio\`e $f$ \`e costante.
-\end{proof}
-\begin{corollary}
-Se $X$ \`e completa, affine e connessa allora $\K[X]=\K$ significa che $X$ \`e un solo punto $\cpa{(0)}$.
-
-In generale le affini complete sono un numero finito di punti.
-\end{corollary}
-
-\begin{theorem}[I proiettivi sono completi]\label{ThProiettiviSonoCompleti}
-Se $V$ \`e uno spazio vettoriale di dimensione finita, $\Pj(V)$ \`e completa.
-\end{theorem}
-
-\begin{center}
-	Moralmente ``completo=compatto" in senso classico, per esempio valgono:
-\end{center}
-
-\begin{remark}
-Se $X$ \`e completa e $Z\subseteq X$ chiuso allora $Z$ \`e completo.
-\end{remark}
-
-\begin{remark}
-Se $\vp:X\to Y$ \`e surgettiva e $X$ \`e completa allora $Y$ \`e completa
-\end{remark}
-
-\subsection{Punto fisso di Borel}
-\begin{proposition}[Esiste orbita chiusa]\label{PrEsisteOrbitaChiusa}
-Se $K$ \`e un gruppo che agisce su una variet\`a $Y$ allora $K$ ha un'orbita chiusa in $Y$.
-\end{proposition}
-\begin{proof}
-Consideriamo un'orbita che ha dimensione minima $Z=G\cdot y$. Notiamo che $Gy$ \`e un aperto denso di $\ol Z$ per Chevalley (\ref{ThChevalley}) (contiene un aperto ed \`e omogeneo), quindi $\dim \ol Z\bs Z<\dim Z$, ma se questa differenza \`e non vuota allora $G$ agisce su questa differenza e quindi esiste un'orbita di dimensione pi\`u piccola.
-
-Dunque $\ol Z\bs Z=\emptyset$, cio\`e $\ol Z=Z$.
-\end{proof}
-
-\begin{theorem}[Punto fisso di Borel]\label{ThPuntoFissoBorel}
-Se $G$ \`e un gruppo risolubile connesso che agisce su una variet\`a completa allora $G$ ha un punto fisso.
-\end{theorem}
-\begin{proof}
-Se $\dim G=0$ allora $G$ \`e un singolo punto e quindi \`e l'indetit\`a e agisce banalmente.
-
-
-Supponiamo $\dim G>0$. Sia $H=[G,G]$ il sottogruppo dei commutatori. Questo \`e un sottogruppo algebrico connesso. Dato che $G$ \`e risolubile, $H\subsetneq G$, quindi per ipotesi induttiva $X^H\neq \emptyset$.
-
-Notiamo ora che su $X^H$ agisce $A=G/H$, quindi su $X^H$ abbiamo un'orbita chiusa (\ref{PrEsisteOrbitaChiusa}) $A\cdot x\subseteq X^H\subseteq X$. Notiamo che $A\cdot x$ \`e completa perch\'e chiuso di $X$ completa, ma $A\cdot x=A/\stab_A x$, quindi \`e anche una variet\`a affine. $A\cdot x$ \`e anche connessa perch\'e $A$ \`e connesso in quanto $G$ lo \`e.
-
-$A\cdot x$ \`e affine, completa e connessa, quindi \`e un punto, cio\`e $x$ \`e un punto fisso per $A$ in $X^H$, ma allora $x$ \`e un punto fisso per $G$.
-\end{proof}
-
-
-\begin{example}
-Consideriamo $\C^\ast\acts \Pj^n$ come segue:
-\[\la\cdot [x_0:\cdots:x_n]=[x_0:\la x_1:\cdots:\la^n x_n]\]
-Questa azione ha come punti fissi quelli della forma $[0:\cdots:0:1:0:\cdots:0]$.
-\end{example}
-
-
-
-Ricordiamo che $B_n$ è il sottogruppo di $\GL(n)$ costituito dalle matrici triangolari superiori.
-
-\begin{corollary}\label{CorCaratterizzazioneConnessiRisolubili}
-    Se $G$ è connesso, sono tra loro equivalenti \begin{enumerate}
-        \item $G$ è risolubile.
-        \item Le uniche rappresentazioni irriducibili di $G$ sono di dimensione $1$.
-        \item Esiste un intero positivo $n$ tale che $G$ è contenuto in $B_n$. 
-    \end{enumerate}    
-\end{corollary}
-\begin{proof}
-    Supponiamo $G$ risolubile e mostriamo il punto $1$. Sia $V$ una rappresentazione irriducibile di $G$. Allora $\Pj(V)^G$ è non vuoto e dunque per il teorema del punto fisso (\ref{ThPuntoFissoBorel}) esiste una retta $\ell$ in $V$ tale che $G\cdot\ell=\ell$. Quindi $\ell=V$, da cui $\dim V=1$.
-
-    Mostriamo l'implicazione $2\Rightarrow 3$. Assumiamo $G$ contenuto in $\GL(V)$ per qualche $V$. Sia $F_1$ una sottorappresentazione irriducibile di dimensione $1$. Allora $G$ agisce su $V/F_1$. Allora esiste una retta $F_2/F_1$ in $V/F_1$ tale che $G F_2/F_1 \subseteq F_2/F_1$. Procedendo induttivamente, troviamo una bandiera \[0\subseteq F_1\subseteq F_2 \subseteq \ldots \subseteq F_n =V\] tale che $G F_i=F_i$ con $\dim F_i=i$. Se $v_1,\ldots,v_n$ è una base compatibile con tale bandiera (cioè $v_i\in F_i$ per ogni indice $i$), allora abbiamo un'immersione $G \hookrightarrow B_n$ definita da $g\mapsto [g]_{\underline{v}}^{\underline{v}}$. 
-
-    Infine, l'implicazione $3 \Rightarrow 1$ è immediata perché $B_n$ è risolubile.
-\end{proof}
-
-
-
-\subsection{Sottogruppi parabolici e di Borel}
-\begin{definition}
-Sia $G$ un gruppo algebrico e $P\subseteq G$ sottogruppo chiuso.
-\begin{enumerate}
-	\item $P$ si dice \textbf{parabolico} se $G/P$ \`e completo
-	\item $B\subseteq G$ si dice \textbf{sottogruppo di Borel} se \`e un sottogruppo risolubile connesso massimale.
-\end{enumerate}
-\end{definition}
-
-\begin{remark}
-Se $P$ \`e un sottogruppo parabolico, $G/P\subseteq \Pj(V)$ per qualche $V$.
-\end{remark}
-\begin{proof}
-Ricorda (\ref{LmSottogruppoEStabilizzatoreDiUnaRettaInQualcheRappresentazione}) che esistono una rappresentazione $V$ di $G$ e una retta $L\subseteq V$ tali che $\stab_G L=P$. Per questa rappresentazione $G/P=G\cdot L\subseteq \Pj(V)$.
-
-Notiamo che l'immagine di $G/P$ in $\Pj(V)$ \`e chiusa, infatti se $\Gamma$ \`e il grafico di $G/P\inj \Pj(V)$ allora esso \`e contenuto in $G/P \times \Pj(V)\to \Pj(V)$ e per definizione di sottogruppo parabolico $G/P$ \`e completa.
-
-Questo mostra che $G/P$ \`e una sottovariet\`a di $\Pj(V)$.
-\end{proof}
-
-\begin{example}
-Sia $G=\GL(n)$, $B\subseteq G$ le matrici triangolari superiori, diagonale inclusa.
-\[G/B=\cpa{0\subseteq F_1\subseteq \cdots\subseteq F_n=\K^n\mid \dim F_i=i}\]
-\end{example}
-
-\begin{lemma}\label{LmConnessoRisolubileSSENoSottogruppiParabolici}
-$G$ \`e un gruppo connesso e risolubile se e solo se $G$ non ha sottogruppi parabolici propri.
-\end{lemma}
-\begin{proof}
-Diamo le due implicazioni
-\setlength{\leftmargini}{0cm}
-\begin{itemize}
-\item[$\boxed{\implies}$] Sia $P\subseteq G$ parabolico. Per il teorema del punto fisso di Borel (\ref{ThPuntoFissoBorel}) si ha che $G/P$ ha un punto fisso per $G$, ma per omogeneit\`a questo significa che $G/P$ consiste di un solo punto, cio\`e $P=G$.
-\item[$\boxed{\impliedby}$] Sia $P=G^0$ e mostriamo che $G/G^0$ \`e completo, questo basta perch\'e in tal caso $G^0$ \`e parabolico e quindi per ipotesi $G^0=G$.
-
-Per il corollario (\ref{CorCaratterizzazioneConnessiRisolubili}) basta dimostrare che le rappresentazioni irriducibili hanno dimensione 1: se $V$ irriducibile, $G$ agisce su $\Pj(V)$ e ha un'orbita chiusa $G\cdot \ell\subseteq\Pj(V)$ per (\ref{PrEsisteOrbitaChiusa}). Sia $P=\stab_G(\ell)$, questo gruppo deve essere parabolico perch\'e il quoziente \`e $G\ell$ orbita chiusa ma allora $P=G$ e per irriducibilit\`a questo mostra $V=\ell$.
-\end{itemize}
-\setlength{\leftmargini}{0.5cm}
-\end{proof}
-
-
-\begin{theorem}\label{ThProprietaSottogruppiDiBorel}
-Sia $G$ un gruppo algebrico. 
-\begin{enumerate}
-    \item Se $B$ è un sottogruppo di Borel di $G$, allora $B$ è parabolico.
-    \item Se $B$ è un sottogruppo di Borel di $G$ e $P$ è un sottogruppo parabolico di $G$, allora esiste $g$ in $G$ tale che $gBg^{-1}$ è contenuto in $P$.
-    \item Tutti i sottogruppi di Borel sono coniugati.
-\end{enumerate}
-\end{theorem}
-
-\begin{proof}
-Mostriamo contemporaneamente il primo e il secondo punto. 
-
-Osserviamo che è sufficiente mostrare che $G^0/B$ è completo, infatti, se $G=\coprod_i g_i G^0$, allora $G/B=\coprod_i g_i G^0/B$. Possiamo quindi assumere che $G$ sia connesso. 
-
-Se $G$ è risolubile, allora per per definizione di sottogruppo di Borel $G=B$ e si conclude. Se $G$ non è risolubile, allora per il lemma (\ref{LmConnessoRisolubileSSENoSottogruppiParabolici}) esiste un sottogruppo parabolico proprio $P$ di $G$. Possiamo quindi considerare l'azione di $B$ su $G/P$, la quale ha un punto fisso (\ref{ThPuntoFissoBorel}), cioè esiste un $g$ in $G$ tale che $gBg^{-1}P=P$, ovvero $gBg^{-1}\subseteq P$. Ciò in particolare mostra il secondo punto. 
-
-Possiamo assumere $B\subseteq P \subsetneq G$, per cui $B$ è un sottogruppo di Borel di $P$. A questo punto procediamo per induzione sulla dimensione di $G$. Poiché $\dim P <\dim G$, abbiamo che $B$ è un sottogruppo parabolico di $P$ per ipotesi induttiva, quindi $P/B$ è completa e $G/P$ è completa. Avendo mostrato che $B$ \`e parabolico in $P$ e che $P$ \`e parabolico in $G$, per il lemma (\ref{LmSottogruppoParabolicoDiParabolicoEParabolico}) si ha che $B$ è parabolico in $G$.
-
-Infine, per il terzo punto, siano $B,B'$ due sottogruppi di Borel di $G$. Allora esiste $g$ in $G$ tale che $gBg^{-1} \subseteq B'$ per il punto 2. Poiché $gBg^{-1}$ e $B'$ sono sottogruppi connessi, risolubili e massimali, concludiamo che $gBg^{-1} = B'$.
-\end{proof}
-
-\begin{corollary}\label{CorPrabolicoRisolubileConnessoEBorel}
-Se $B\subseteq G$ \`e parabolico, connesso e risolubile allora \`e di Borel.
-\end{corollary}
-\begin{proof}
-Per il punto 2. del teorema (\ref{ThProprietaSottogruppiDiBorel}) si ha che $B$ contiene un sottogruppo di Borel, ma essendo connesso e risolubile deve essere gi\`a un sottogruppo di Borel per massimalit\`a.
-\end{proof}
-
-\begin{lemma}\label{LmSottogruppoParabolicoDiParabolicoEParabolico}
-    Siano $G$ un gruppo algebrico, $P\subseteq Q$ due sottogruppi tali che $Q$ è parabolico in $G$ e $P$ è parabolico in $Q$. Allora $P$ è parabolico in $G$.
-\end{lemma}
-
-\begin{proof}
-    Data una varietà arbitraria $Z$, mostriamo che la mappa $\pi_Z\colon G/P\times Z \to Z$ è chiusa. Sia $A$ un chiuso in $G/P\times Z$. Sia $A'$ l'immagine inversa di $A$ rispetto la proiezione $\pi_1\colon G\times Z \to G/P\times Z$. Allora $A'$ è chiuso e $A' \cdot P=A'$. Se mostriamo che $A'\cdot Q=A'$, abbiamo concluso, infatti, considerando la composizione \[\begin{array}{ccccc}
-         G\times Z &\xrightarrow{}& G/Q \times Z& \to &Z \\
-          A' & \to & A'' & \to & \pi_Z(A) 
-    \end{array}\] 
-    l'immagine di $A'$ tramite la prima mappa è un certo $A''$, che viene mandato in $\pi_Z(A)$. \\
-    Sia $A'''=A'\cdot Q$. Mostriamo che $A'''$ è chiuso (ciò permette di concludere per quanto appena detto). Consideriamo la mappa 
-	\[\vp:\funcDef{Q\times G\times X}{G}{(q,g,x)}{(gq,x)}\] 
-    Allora $A^{IV}\coloneqq \varphi^{-1}(A')$ è chiuso ed è stabile per l'azione a destra di $P$ su $Q$, cioè se $(q,g,x)$ è in $A^{IV}$, allora $(gp,g,x)$ è in $A^{IV}$. Infatti se $(gq,x)$ è in $A'$, allora anche $(gqp,x)$ è in $A'$. Ragionando come prima, abbiamo 
-	\[\begin{array}{ccccc}
-         Q\times G\times Z &\xrightarrow{}& Q/P \times G \times Z& \to &G\times Z \\
-          A^{IV} & \to & \text{imm chiusa} & \to & A^V \text{chiuso} 
-    \end{array}\] 
-    dove 
-	\[A^V=\left\{(g,x)\in G\times X \colon \, \exists\,q\in Q, \ (gq,x)\in A'\right\}=A'\cdot Q.\] 
-	A questo punto $A' \cdot Q$ è chiuso e concludiamo come prima.
-\end{proof}
-
-Con tecniche simili, è possibile mostrare il seguente risultato.
-
-\begin{theorem}\label{ThNormalizzatoreDiBorelEDiParabolico}
-    Se $G$ è un gruppo algebrico connesso, $B$ un sottogruppo di Borel di $G$ e $P$ un sottogruppo parabolico di $G$, allora \begin{enumerate}
-        \item $N_G(B)=B$ e $N_G(P)=P$.
-        \item $P$ è connesso.
-    \end{enumerate}
-\end{theorem}
-
-Sia $\mathscr{B}$ la famiglia dei sottogruppi di Borel di un gruppo algebrico $G$. Allora $G$ agisce per coniugio (e transitivamente) su $\mathscr{B}$. Per il Teorema (\ref{ThNormalizzatoreDiBorelEDiParabolico}) abbiamo $\stab_G(B)=N_G(B)=B$, da cui deduciamo il seguente risultato.
-\begin{corollary}
-    Sia $B$ un sottogruppo di Borel di un gruppo algebrico $G$. Esiste una corrispondenza biunivoca tra la famiglia $\Bs$ e il quoziente $G/B$, data da \[\begin{array}{ccc}
-        G/B &\longrightarrow& \mathscr{B} \\
-         gB & \longmapsto & gBg^{-1}.
-    \end{array}\]
-\end{corollary}
-
-
-
-
-
-\section{Esempi di sottogruppi di Borel e Parabolici}
-Citiamo il seguente teorema per la sua utilit\`a in alcuni degli esempi:
-
-\begin{theorem}[Witt]\label{ThWitt}
-Se $V$ spazio vettoriale, $b$ forma simmetrica non degenere, $W_1,W_2$ sottospazi di $V$ e $\vp:W_1\to W_2$ isomorfismo che preserva $b$, allora $\vp$ si estende a $V$ e continua a preservare $b$.
-\end{theorem}
-
-\subsection{Matrici invertibili}
-Fissiamo $G=\GL(n)$. 
-\begin{example}[Borel di $\GL(n)$ sono le matrici triangolari]
-Consideriamo il sottogruppo $B_n$ di $G$. Sappiamo che $B_n$ è connesso e risolubile. Mostriamo che è massimale (e quindi un sottogruppo di Borel). 
-
-Sia $H$ un sottogruppo risolubile connesso contenente $B_n$. Essendo risolubile e connesso, $H$ si triangolarizza rispetto a una bandiera $F_1\subset \ldots \subset F_n$. Poiché $H\cdot F_i=F_i$ per ogni $i=1,\ldots,n$, si ha anche $B\cdot F_i=F_i$ per ogni indice $i$. Poiché $B_n$ è lo stabilizzatore in $G$ della bandiera $F_1\subset \ldots \subset F_n$, si ottiene $H=B_n$. 
-\end{example}
-
-\begin{example}[Sottogruppi parabolici di $\GL(n)$]
-Abbiamo visto che se $P$ è un sottogruppo di $G$ contenente $B_n$, allora $P$ è un sottogruppo parabolico di $G$.  Se $P$ è il sottogruppo costituito dalle matrici triangolari superiori con blocchi sulla diagonale di tipo $h\times h$ e $k\times k$, sappiamo che $G/P$ è in corrispondenza biunivoca con $\operatorname{Gr}(h,\K^n)$, sulla quale $G$ agisce transitivamente e per cui $\stab_G \langle e_1,\ldots,e_h\rangle=P$. Quindi $\operatorname{Gr}(h,\K^n)$ è una varietà proiettiva. 
-Vogliamo descrivere una sua immersione esplicita in $\Pj(V)$ per qualche spazio vettoriale $V$. Per farlo, dobbiamo trovare uno spazio vettoriale $V$ contenente una retta $L$ fissata da $P$. Consideriamo $V=\bigwedge^h(\K^n)$ e $L=\bigwedge^h W$, dove $W$ è il sottospazio generato da $e_1,\ldots,e_h$. Abbiamo già visto che, fissato $g$ in $G$, si ha $gL=L$ se e solo se $gW=W$. Quindi $\stab_G L = \stab_G W=P$. Dunque % https://q.uiver.app/#q=WzAsMTEsWzEsMSwiXFxvcGVyYXRvcm5hbWV7R3J9KGgsS15uKSJdLFszLDEsIlxcUChWKSJdLFsxLDJdLFsxLDMsIkcvUCJdLFszLDMsIlxcUCh2KSJdLFsxLDRdLFswLDQsImciXSxbMCwxLCJnVyJdLFszLDQsImdMPVxcbGVmdChnXFxiaWd3ZWRnZV5oV1xccmlnaHQpPVxcbGVmdChcXGJpZ3dlZGdlXmggZ1dcXHJpZ2h0KSJdLFsxLDAsIlUiXSxbMywwLCJcXGJpZ3dlZGdlXmggVSJdLFswLDMsIiIsMSx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6ImFycm93aGVhZCJ9fX1dLFswLDFdLFs2LDcsIiIsMSx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Im1hcHMgdG8ifX19XSxbNiw4XSxbMyw0XSxbOSwxMF1d
+\begin{remark}\label{ReEquivalenzaCocicliPerStessoFibrato}
+Se $U_i$ \`e un aperto di $X$ che banalizza $p:E\to X$ notiamo che possono essere definiti diversi isomorfismi tra $p\ii(U_i)$ e $U_i\times \K^m$
+% https://q.uiver.app/#q=WzAsMyxbMCwwLCJwXnstMX0oVV9pKSJdLFsyLDAsIlVfaVxcdGltZXMgXFxLXm0iXSxbMSwxLCJVX2kiXSxbMCwxLCJcXHd0XFx2cF9pIiwyLHsiY3VydmUiOjF9XSxbMCwyLCJwIiwyXSxbMSwyLCJcXHBpX3tVX2l9Il0sWzAsMSwiXFx2YXJwaGlfaSIsMCx7ImN1cnZlIjotMX1dXQ==
 \[\begin{tikzcd}
-	& U && {\bigwedge^h U} \\
-	gW & {\operatorname{Gr}(h,\K^n)} && {\Pj(V)} \\
-	& {} \\
-	& {G/P} && {\Pj(v)} \\
-	g & {} && {gL=\left(g\bigwedge^hW\right)=\left(\bigwedge^h gW\right)}
-	\arrow[from=1-2, to=1-4]
-	\arrow[from=2-2, to=2-4]
-	\arrow[tail reversed, from=2-2, to=4-2]
-	\arrow[from=4-2, to=4-4]
-	\arrow[maps to, from=5-1, to=2-1]
-	\arrow[from=5-1, to=5-4]
+	{p^{-1}(U_i)} && {U_i\times \K^m} \\
+	& {U_i}
+	\arrow["{\wt\vp_i}"', curve={height=6pt}, from=1-1, to=1-3]
+	\arrow["{\varphi_i}", curve={height=-6pt}, from=1-1, to=1-3]
+	\arrow["p"', from=1-1, to=2-2]
+	\arrow["{\pi_{U_i}}", from=1-3, to=2-2]
 \end{tikzcd}\]
-
-Descriviamo questa mappa in coordinate. Presa \[U=\begin{pmatrix}
-    v_1 \lvert \ldots \lvert v_h
-\end{pmatrix} \longmapsto v_1\wedge \ldots \wedge v_h =\sum_{i_1<\ldots<i_h} p_{i_1,\ldots,i_h}e_{i_1}\wedge\ldots\wedge e_{i_h}\]
-
-dove $p_{i_1,\ldots,i_h}$ è il determinante del minore di $(v_1 \lvert \ldots \lvert v_h)$ identificato dalle righe $i_1,\ldots,i_h$  e 
-\[v_1\wedge \ldots \wedge v_h = \det(v_1 \lvert \ldots \lvert v_h) e_1\wedge \ldots \wedge e_h.\] 
-Quindi si ha 
-\[U=\langle v_1,\ldots,v_h\rangle \longrightarrow [p_I(v_1,\ldots,v_h)]_{I=\{i_1<\ldots<i_h\}}\]
-Se $U=\langle w_1,\ldots,w_h\rangle$, allora esiste una matrice invertibile $A$ di taglia $h$ tale che $MA=N$, dove $N=(w_1\lvert\ldots\lvert w_h)$. Si ha \begin{align*}
-    p_I(M)&=\det (M_{i_1,\ldots,i_h}) \\
-    p_I(N)&=\det(N_{i_1,\ldots,i_h})=\det (M_{i_1,\ldots,i_h}\cdot A)=p_I(M) \det(A).
-\end{align*}
-
-Infine $(v)\longrightarrow [p_I(M)]$ e $(w)\longrightarrow [p_I(N)]=[p_I(M)\det (A)]=[p_I(M)]$.
-\end{example}
-
-\begin{example}[Parabolici di $\GL(n)$]
-Sia $P\supseteq B$ con $P$ parabolico e $B$ di Borel, $P$ connesso.
-
-Guardiamo $T_e P$ e notiamo che $T_e P\supseteq T_e B=\cpa{\text{triang.sup.}}$. Sia $A=(a_{i,j})\in T_e P$. Si ha che $B$ agisce per coniugio su $P$. In particolare se fissiamo $b\in B$ allora definiamo
-\[AD_b:\funcDef{P}{P}{p}{bpb\ii}\quad\leadsto\quad Ad_b:\funcDef{T_eP}{E_eP}{C}{bCb\ii}\]
-quindi $T_e P\subseteq T_e\GL(n)=\Mat_{n\times n}$ \`e stabile per $Ad_b$ per ogni $b\in B$. Se $b=diag(\la_1,\cdots,\la_n)$ allora
-\[Ad_b(A)=\pa{\la_i\la_j\ii a_{i,j}}\]
-se $a_{i,j}\neq 0$ allora $E_{i,j}\in T_eP$ 
-\end{example}
+In particolare questi definiscono diverse mappe di transizione e diversi cocicli.
 
 
-\subsection{Matrici ortogonali speciali}
-
-Ora consideriamo $G=\SO(n)$. Cerchiamo di capire come \`e definito questo gruppo
-\setlength{\leftmargini}{0cm}
-\begin{itemize}
-\item[$\boxed{n=1}$] $G=\{1\}$.
-\item[$\boxed{n=2}$] Scegliamo la forma quadratica $q(x,y)=xy$. Lo stabilizzatore di tale forma è dato da 
-\[\left\{A\in \SO(2)\colon A \begin{pmatrix}
-    0 & 1 \\ 1& 0
-\end{pmatrix}A^\top=\begin{pmatrix}
-    0 & 1 \\ 1& 0
-\end{pmatrix}\right\}.\] 
-Scriviamo 
-\[A=\begin{pmatrix}
-    a & b \\ c& d
-\end{pmatrix}.\] 
-Imponendo che $A$ sia nello stabilizzatore della forma $q$, si trova $b=c=0$. Poiché $\det(A)=1$, troviamo $d=a^{-1}$ e quindi $\SO(2)$ è isomorfo a $\K^\times$.
-\item[$\boxed{n=3}$] Mostriamo che 
-\[\SO(3)\cong \SL(2)/\{\pm I\}.\]
-\end{itemize}
-\setlength{\leftmargini}{0.5cm}
-
-\begin{proposition}
-$\SO(3)\cong \SL(2)/\{\pm I\}.$
-\end{proposition}
-\begin{proof}
-Sappiamo che $\SL(2)$ agisce su $W\coloneqq \K^2$. Consideriamo la rappresentazione $W\otimes W=S^2 W \oplus \bigwedge^2 V$. 
-Consideriamo la forma bilineare e simmetrica 
-\[b(u\otimes u', v \otimes v')=\det(u,v)\det(u',v').\] 
-Tale forma è $\SL(2)$-invariante, infatti, se $g$ è in $\SL(2)$, allora $\det(g)=1$ e quindi
-\begin{align*}
-	b(gu\otimes gu', gv \otimes gv')=&\det(gu,gv)\det(gu',gv')=\\
-	=&\det(g)^2b(u\otimes u', v \otimes v')=\\
-	=&b(u\otimes u', v \otimes v').
-\end{align*}
-Fissiamo una base $e_{11}=e_1\otimes e_1$, $e_{12}=e_1\otimes e_2$, $e_{21}=e_2\otimes e_1$, $e_{22}=e_2\otimes e_2$. Allora \[[b]_{e_{ij}}=\begin{pmatrix}
-    0 & 0 & 0 & 1 \\
-    0 &0 & -1 & 0 \\
-    0 & -1 & 0&0 \\
-    1 &0&0&0
-\end{pmatrix}.\]
-
-In particolare $b$ è non degenere. Inoltre, anche la restrizione $\beta \coloneqq b\res{S^2W}$ è non degenere, in quanto $S^2W=\langle e_{11},e_{22},e_{12}+e_{21}\rangle$. Abbiamo quindi definito una mappa 
-\[\SL(2)\to \SO(\beta).\] 
-Imponendo $g e_{11}=e_{11}$ e $g e_{22}=e_{22}$, troviamo $g=\pm I$, quindi abbiamo un'immersione $\SL(2)/\{\pm I\}\hookrightarrow \SO(\beta)$. Mostriamo che è suriettiva. Osserviamo che $\GL(2)$ è isomorfo (come varietà) a $\SL(2)\times \K^\times$ tramite la mappa $(A,\lambda)\mapsto A \begin{pmatrix}
-    \lambda & 0 \\ 0 & 1
-\end{pmatrix}$. Quindi $\dim\SL(2)=3$. Calcoliamo la dimensione di $\SO(\beta)$ (e in generale di $\SO(n)$). Consideriamo la mappa 
-\[\vp:\funcDef{\Mat_{n\times n}}{\Mat_{n\times n}}{A}{A^\top A}.\] 
-Allora $\operatorname{O}(n)=\varphi^{-1}(I)$. Quindi abbiamo una mappa tra gli spazi tangenti a $I$ data da 
-\[T:\funcDef{T_I\Mat_{n\times n}}{T_I\Mat_{n\times n}}{B}{B+B^\top}\]
-Quindi $T_I\operatorname{O}(n)=\ker T$. Quindi $\dim\SO(n)=\binom{n}{2}$ e in particolare $\dim\SO(3)=3=\dim\SL(2)$.  Inoltre, il quoziente $\SL(2)/\{\pm I\}$ coincide con la componente connessa di $\SO(\beta)$, quindi è sufficiente mostrare che $\SO(\beta)$ (e più in generale $\SO(n)$) è connesso. 
-
-Procediamo per induzione su $n\ge 1$. Per $n=1$ e $n=2$ sappiamo già che ciò è vero. Assumiamo $n>2$. Consideriamo la forma quadratica standard rappresentata dalla matrice identità, consideriamo $e_1$ in $\K^n$ e 
-\[Y\coloneqq \SO(n)\cdot e_1=\left\{ \begin{pmatrix}
-        x_1 \\ \vdots \\ x_n 
-    \end{pmatrix} \colon x_1^2+\ldots+x_n^2=1\right\}\] 
-Poiché il polinomio $x_1^2+\ldots+x_n^2-1$ è irriducibile, la varietà $Y$ è connessa. Inoltre si ha $Y\cong \SO(n)/\SO(n-1)$, che, in quanto connesso, ci permette di concludere.
-\end{proof}
-
-
-
-Ricordiamo che $\SO(3)\cong \SL(2)/\{\pm I\}$.
-Sia 
-\[B=\cpa{\mat{a&b\\0&a\ii}}\subseteq \SL(2)\]
-Notiamo che $\SL(2)$ agisce su $\Pj^1$ transitivamente e che lo stabilizzatore di $[e_1]$ \`e $B$.
-
-
-Pi\`u precisamente, sia $V=\K^2$ e $L=[e_1]\in\Pj(V)$. Poniamo
-\[W=S^n\K^2=S^nV\]
-e, notando che $e_1^n\in W$, si ha $\stab_G[e_1^n]=B$.
-
-Possiamo descrivere il quoziente anche come
-\[\Pj(V)=\Pj^1\cong G/B=G[e_1^n]\subseteq \Pj(W)=\Pj(S^n V)\]
-dove l'immersione \`e data da $v\mapsto v^n$. Questa mappa \`e un morfismo equivariante e una immersione chiusa $\Pj(V)\inj \Pj(W)$.
-
-
-
-\begin{remark}
-Se $n=2$ allora
-\[\SO(3)/B_{\SO(3)}=\frac{\SL(2)/\pm id}{B_{\SL}/\pm id}=\frac{\SL(2)}{B_{\SL}}.\]
-Lo spazio $V=\K^2$ non \`e una rappresentazione di $\SO(3)$ perch\'e $-id$ non agisce banalmente, ma $S^2V$ \`e una rappresentazione di $\SO(3)$.
+Studiamo la ``differenza" tra le mappe di transizione:
+\[\chi_i:=\wt\vp_i\circ \vp_i\ii:U_i\times\K^m\to U_i\times\K^m\] 
+Come notazione scriviamo $\chi_i(u,v)=(u,\beta_i(u)(v))$.
+Notiamo che
+\[\wt\vp_{i,j}=\wt\vp_j\circ \wt\vp_i\ii=\wt\vp_j\circ\vp_j\ii\circ\vp_j\circ\vp_i\ii\circ\vp_i\circ \wt\vp_i\ii=\chi_j\circ\vp_{i,j}\circ\chi_i\ii,\]
+quindi in termini di cocicli $\wt \al_{i,j}=\beta_j\al_{i,j}\beta_i\ii$ o equivalentemente $\wt\al_{i,j}\beta_i=\beta_j\al_{i,j}$.
 \end{remark}
 
-
-
-\begin{example}
-Consideriamo la forma quadratica $x_1x_3=x_2^2$, lo spazio $V=\K^3$ e la retta $L=\K(1\ 0\ 0)^\top$. In $\Pj(V)$ si ha che $G\cdot L$ \`e la quadrica $Q:x_1x_3=x_2^2$ per il teorema di Witt (\ref{ThWitt}).
-
-Notiamo anche che $\stab(L)=B$, quindi abbiamo una mappa
-\[\funcDef{\Pj^1}{Q}{[a:b]}{[a^2:ab:b^2]}.\]
-\end{example}
-
-
-
-
-
-
-
-\subsection{Matrici del gruppo lineare speciale}
-
-Sia $G=\SL(n)$ e ricordiamo che il sottogruppo delle matrici triangolari superiori $B$ \`e un sottogruppo di Borel.
-\[G/B\cong\cpa{F_1\subseteq\cdots\subseteq F_n\mid \dim F_i=i}\]
-
-\begin{definition}
-Definiamo la \textbf{variet\`a delle bandiere} di taglia $n$ come
-\[\GL(n)/B_{\GL(n)}=\SL(n)/B_{\SL(n)}=\Fs\ell=\cpa{F_1\subseteq\cdots\subseteq F_n\mid \dim F_i=i}.\]
+Questo ci spinge a dare la seguente definizione:
+\begin{definition}[Coomologia]
+Definiamo due 1-cocicli $\al_{i,j}$ e $\wt\al_{i,j}$ \textbf{equivalenti} (o \textbf{co-omologhi}) se esiste una 0-cocatena $\beta_i:U_i\to \GL(m)$ tale che $\wt \al_{i,j}=\beta_j\al_{i,j}\beta_i\ii$. Definiamo il \textbf{primo insieme di coomologia} come
+\[H^1(\Uc,\GL(m))=\quot{Z^1(\Uc,\GL(m))}\sim.\]
 \end{definition}
 
-Vogliamo un risultato analogo per $\SO(n)$
+
+\begin{theorem}[]\label{ThCorrispondenzaFibratiECoomologia}
+Se $\Uc$ \`e un ricoprimento aperto di $X$ allora abbiamo una corrispondenza biunivoca
+\[\quot{\cpa{\text{Fibrati vett. che si banalizzano su $\Uc$}}}{\text{iso. di fibr.}}\longleftrightarrow H^1(\Uc,\GL(m)).\]
+\end{theorem}
+\begin{proof}
+Ad un fibrato associo una collezione di cocicli e quindi una classe in coomologia. Questa associazione \`e ben definita perch\'e cambiando cocicli associati alla stessa banalizzazione essi sono equivalenti per l'osservazione (\ref{ReEquivalenzaCocicliPerStessoFibrato}).
+
+Cambiare rappresentante nella classe di isomorfismo del fibrato non cambia la classe di coomologia perch\'e l'isomorfismo sugli aperti banalizzanti induce un automorfismo che corrisponde a cambiare cocicli.
+
+\bigskip
+\noindent Viceversa, dati dei coclicli sappiamo costruire un fibrato come in (\ref{PrCocicliDeterminanoFibrato}). Se $\al$ e $\wt \al$ sono cocicli equivalenti allora mostriamo che $E_\al\cong E_{\wt\al}$ come fibrati. Se $\beta_i$ sono tali che $\wt \al_{i,j}=\beta_i\al_{i,j}\beta_i\ii$ allora abbiamo una ovvia mappa tra i fibrati
+% https://q.uiver.app/#q=WzAsMixbMCwwLCJcXGRmcmFje1xcY29wcm9kKFVfaVxcdGltZXMgXFxLXm0pfXtcXHNpbV9cXGFsfSJdLFszLDAsIlxcZGZyYWN7XFxjb3Byb2QoVV9pXFx0aW1lcyBcXEtebSl9e1xcc2ltX3tcXHd0XFxhbH19Il0sWzAsMSwiXFxjb3Byb2QgaWRfe1VfaX1cXHRpbWVzIFxcYmV0YV9pKHUpKHYpIl1d
+\[\begin{tikzcd}
+	{\dfrac{\coprod(U_i\times \K^m)}{\sim_\al}} &&& {\dfrac{\coprod(U_i\times \K^m)}{\sim_{\wt\al}}}
+	\arrow["{\coprod id_{U_i}\times \beta_i(u)(v)}", from=1-1, to=1-4]
+\end{tikzcd}\]
+che si verifica essere un isomorfismo (Esercizio).
+\end{proof}
+
+\section{Operazioni sui fibrati}
+
+\begin{definition}[Morfismo di fibrati]
+Se $E\to X$ e $F\to X$ sono fibrati, un \textbf{morfismo di fibrati} $T:E\to F$ \`e un morfismo di variet\`a $E\to F$ che commuta con i cocicli. Pi\`u precisamente, definite $T_i$
+% https://q.uiver.app/#q=WzAsNCxbMCwwLCJFXFxyZXN7VV9pfSJdLFsxLDAsIkZcXHJlc3tVX2l9Il0sWzAsMSwiXFxLXm5cXHRpbWVzIFVfaSJdLFsxLDEsIlxcS15tXFx0aW1lcyBVX2kiXSxbMCwxLCJUXFxyZXN7RVxccmVze1VfaX19Il0sWzIsMywiVF9pIl0sWzAsMiwiXFxlX2kiLDJdLFsxLDMsIlxcdnBfaSJdXQ==
+\[\begin{tikzcd}
+	{E\res{U_i}} & {F\res{U_i}} \\
+	{\K^n\times U_i} & {\K^m\times U_i}
+	\arrow["{T\res{E\res{U_i}}}", from=1-1, to=1-2]
+	\arrow["{\e_i}"', from=1-1, to=2-1]
+	\arrow["{\vp_i}", from=1-2, to=2-2]
+	\arrow["{T_i}", from=2-1, to=2-2]
+\end{tikzcd}\]
+dove $\e_i$ e $\vp_i$ sono isomorfismi fissati, che inducono i cocicli $\e_{i,j}=\e_j\e_i\ii$ e $\vp_{i,j}=\vp_j\vp_i\ii$, chiediamo che commuti il diagramma 
+% https://q.uiver.app/#q=WzAsNixbMCwxLCJFXFxyZXN7VV97aSxqfX0iXSxbMSwxLCJGXFxyZXN7VV97aSxqfX0iXSxbMCwyLCJcXEteblxcdGltZXMgVV97aSxqfSJdLFsxLDIsIlxcS15tXFx0aW1lcyBVX3tpLGp9Il0sWzAsMCwiXFxLXm5cXHRpbWVzIFVfe2ksan0iXSxbMSwwLCJcXEtebVxcdGltZXMgVV97aSxqfSJdLFswLDEsIlQiXSxbMiwzLCJUX2kiXSxbMCwyLCJcXGVfaSIsMl0sWzEsMywiXFx2cF9pIl0sWzEsNSwiXFx2cF9qIiwyXSxbMCw0LCJcXGVfaiJdLFs0LDUsIlRfaiJdLFsyLDQsIlxcZV97aSxqfSIsMCx7ImN1cnZlIjotNX1dLFszLDUsIlxcdnBfe2ksan0iLDIseyJjdXJ2ZSI6NX1dXQ==
+\[\begin{tikzcd}
+	{\K^n\times U_{i,j}} & {\K^m\times U_{i,j}} \\
+	{E\res{U_{i,j}}} & {F\res{U_{i,j}}} \\
+	{\K^n\times U_{i,j}} & {\K^m\times U_{i,j}}
+	\arrow["{T_j}", from=1-1, to=1-2]
+	\arrow["{\e_j}", from=2-1, to=1-1]
+	\arrow["T", from=2-1, to=2-2]
+	\arrow["{\e_i}"', from=2-1, to=3-1]
+	\arrow["{\vp_j}"', from=2-2, to=1-2]
+	\arrow["{\vp_i}", from=2-2, to=3-2]
+	\arrow["{\e_{i,j}}", curve={height=-30pt}, from=3-1, to=1-1]
+	\arrow["{T_i}", from=3-1, to=3-2]
+	\arrow["{\vp_{i,j}}"', curve={height=30pt}, from=3-2, to=1-2]
+\end{tikzcd}\]
+cio\`e che valga la relazione 
+\[\vp_{i,j}\circ T_i=T_j\circ \e_{i,j}.\]
+\end{definition}
+
 \begin{remark}
-Se consideriamo la forma quadratica $q=x_1^2+\cdots+x_n^2$ e interseco $\SO(n)=\cpa{A\mid A^\top A=I,\det A=1}$ con $B_{\SL(n)}$ troviamo
-\[T^\top T=I\quad e \quad T\text{ triangolare superiore}\implies T\text{ diagonale con entrate }\pm1.\]
+Equivalentemente, un morfismo di fibrati da $E\to X$ a $F\to X$ \`e una morfismo $E\to F$ compatibile con le mappe verso $X$ che in ogni fibra induce una mappa lineare.
 \end{remark}
 
 
-Consideriamo la forma quadratica associata a
-\[J=\mat{
-0&\cdots&0&1\\
-\vdots&0&\iddots&0\\
-0 &\iddots& 0&\vdots\\
-1&0&\cdots&0
-}\]
-da cui $SO(n)=\cpa{A\mid AJ A^\top=J,\ \det A=1}$. 
+\begin{definition}[Somma diretta]
+Dati due fibrati $p_E:E\to X$ e $p_F:F\to X$ possiamo definire la loro \textbf{somma diretta} come
+\[E\oplus F=\cpa{(e,f)\in E\times F\mid p_E(e)=p_F(f)}\to X\]
+dove la proiezione \`e definita mandando $(e,f)$ in $x=p_E(e)=p_F(f)$.
+\end{definition}
+\begin{remark}
+$E\oplus F$ \`e il prodotto fibrato su $X$ dei due fibrati.
+% https://q.uiver.app/#q=WzAsNCxbMCwxLCJFIl0sWzEsMCwiRiJdLFsxLDEsIlgiXSxbMCwwLCJFXFxvcGx1cyBGIl0sWzAsMiwicF9FIiwyXSxbMSwyLCJwX0YiXSxbMywwXSxbMywxXSxbMywyLCIiLDAseyJzdHlsZSI6eyJuYW1lIjoiY29ybmVyIn19XV0=
+\[\begin{tikzcd}
+	{E\oplus F} & F \\
+	E & X
+	\arrow[from=1-1, to=1-2]
+	\arrow[from=1-1, to=2-1]
+	\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=2-2]
+	\arrow["{p_F}", from=1-2, to=2-2]
+	\arrow["{p_E}"', from=2-1, to=2-2]
+\end{tikzcd}\]
+\end{remark}
+
+\begin{remark}
+Se $\e_{i,j}$ \`e un cociclo per $E$ e $\vp_{i,j}$ per $F$ allora $\e_{i,j}+\vp_{i,j}$ \`e un cociclo di $E\oplus F$ (stiamo considerando un ricoprimento che banalizza sia $E$ che $F$).
+\end{remark}
+
+\begin{definition}[Prodotto tensore]
+Dati due fibrati $p_E:E\to X$ e $p_F\to X$ possiamo definire il loro \textbf{prodotto tensore} $E\otimes F$ come il fibrato associato al cociclo
+\[\e_{i,j}\otimes \vp_{i,j}:U_{i,j}\to \GL(\K^n\otimes \K^m)\]
+dove $n=\rnk E$ e $m=\rnk F$.
+\end{definition}
+
+\begin{definition}[Fibrato duale]
+Dato un fibrato $p:E\to X$ definiamo il \textbf{fibrato duale} come quello associato al cociclo $(\e_{i,j}\ii)^\top:U_{i,j}\to \GL(n)$.
+\end{definition}
+
+
 
 \begin{proposition}
-Il sottogruppo di questo $\SO(n)$ dato da
-\[B=B_{\SO}=\cpa{\mat{A&B\\0&D}\mid D=(A^{at})\ii,\ (BA^{at})^{at}=-(BA^{at}),\ A\text{ triang. sup.}},\]
-dove $M^{at}$ indica la trasposta di $M$ rispetto all'altra diagonale, \`e un sottogruppo di Borel.
+Abbiamo un morfismo 
+\[E^\ast\otimes E\to \K\times X\]
+dato mandando il cociclo $\wt\e_{i,j}:=(\e_{i,j}\ii)^\top\otimes \e_{i,j}$ a $h_{i,j}=1$.
 \end{proposition}
 \begin{proof}
-Assumiamo $n=2m$, il caso dispari \`e simile.
+Se ci restringiamo ad un ricorprimento $\cpa{U_i}$ che banalizza $E$ definiamo\footnote{stiamo pensando a $\la^\top v$ come la valutazione del funzionale $\la$ nel vettore $v$, cio\`e stiamo considerando $\la$ come un elemento di $(\K^n)^\ast$.}
+\[T_i:\funcDef{(\K^n\otimes \K^n)\times U_i}{\K\times U_i}{((\la\otimes v),u)}{(\la^\top v,u)}\]
+e notiamo che queste $T_i$ si incollano ad un mosrfismo di fibrati:
 
-Notiamo che $Jg^\top J=g^{at}$, cio\`e la trasposta di $g$ rispetto all'altra diagonale. Scrivendo $g$ triangolare superiore evidenziando blocchi di dimensione $m$ troviamo
-\[g=\mat{A&B\\0&D}.\]
-Poich\'e $g\in SO(n)$ significa che $gg^{at}=id$ con determinante 1, $g$ triangolare superiore appartiene a $\SO(n)$ se
-\[\mat{I_m &0\\0&I_m}=\mat{A&B\\0&D}\mat{D^{at}&B^{at}\\0&A^{at}}=\mat{AD^{at}&AB^{at}+BA^{at}\\0&DA^{at}}\]
-ovvero se $D=(A^{at})\ii$ e $(BA^{at})^{at}=-(BA^{at})$. Il determinante di $g$ \`e automaticamente $1$ perch\'e\footnote{$\det M^{at}=\det(JM^\top J)=1\cdot \det M^\top\cdot 1=\det M$.} $\det D=(\det A)\ii$.
-Dunque l'intersezione tra $\SO(n)$ e le triangolari superiori \`e
-\[B=B_{\SO}=\cpa{\mat{A&B\\0&D}\mid D=(A^{at})\ii,\ (BA^{at})^{at}=-(BA^{at}),\ A\text{ triang. sup.}}.\]
-Notiamo che $B_{\SO}$ \`e risolubile e connesso\footnote{connesso perch\'e immagine di $\cpa{\text{triang.sup.invertibili}}\times \cpa{\text{antisimmetriche per l'altra diagonale}}$}. Se dimostriamo che $B$ \`e parabolico allora \`e un sottogruppo di Borel per (\ref{CorPrabolicoRisolubileConnessoEBorel}). 
-
-
-
-Sia $\Es$ la bandiera data dai vettori di base 
-\[E_1=\ps{e_1}\subseteq E_2=\ps{e_1,e_2}\subseteq\cdots\subseteq E_n=\ps{e_1,\cdots, e_{2m}}=\K^n.\] 
-Notiamo che $\stab_{\GL(n)}(\Es)=B_{\GL(n)}$ e che $\stab_{O(n)}(\Es)=B_{\GL(n)}\cap O(n)=B_{O(n)}=B_{\SO(n)}$, dove l'ultima uguaglianza segue perch\'e tutte le matrici ortogonali triangolari superiori per la forma associata a $J$ hanno gi\`a determinante 1.
-Notiamo che 
-\[O(n)\Es\subseteq \cpa{0=F_0\subseteq\cdots\subseteq F_{2m}\mid \dim F_i=i,\ F_{m-i}^\perp=F_{m+i}\ \forall i\in\cpa{0,\cdots,m}}\subseteq \Fs\ell.\]
-Per il teorema di Estensione di Witt (\ref{ThWitt}) si ha che $O(n)\Es$ \`e esattamente lo spazio delle bandiere di quella forma, che chiamiamo $\Fs_O$ e notiamo che \`e un chiuso di $\Fs\ell$.
-
-Vogliamo dimostrare che $\Fs_{\SO}$ \`e chiuso. Sia
-\[\Gs_O=\cpa{g\in \GL(n)\mid gB_{\GL}\in \Fs_O}\]
-Poich\'e $\Fs\ell=\GL(n)/B_{\GL}$ basta mostrare che $\Gs_O$ \`e chiuso. Sia $g=\pa{v_1\mid\cdots\mid v_{2m}}$ e notiamo che $g\in\Gs_O$ se $b(v_i,v_j)=0$ per $i,j\leq m$, $b(v_{m+\al},v_i)=0$ per $i\leq m-\al$ e $b(v_i,v_j)=0$ se $i+j\leq 2m$. Queste sono condizioni chiuse quindi $\Gs_O$ \`e chiuso. Questo mostra che
-\[O(n)/B_{\SO(n)}\]
-\`e proiettivo.
+\noindent
+Data la definizione delle mappe di incollamento sui fibrati, verificare
+\[h_{i,j}\circ T_i\circ \wt\e_{i,j}\ii=T_j\]
+mostra anche che le $T_i$ si incollano come funzioni e questo incollamento sar\`a un morfismo di fibrati.
+La formula vale perch\'e $h_{i,j}=1$ e
+\begin{align*}
+	T_i(\wt\e_{i,j}\ii((\la\otimes v),u))=&T_i\pa{\pa{\e_{i,j}^\top\otimes \e_{i,j}\ii}((\la\otimes v),u )}=T_i((\e_{i,j}^\top\la\otimes\e_{i,j}\ii v),u)=\\
+	=&(\la^\top\e_{i,j}\e_{i,j}\ii v,u)=(\la^\top v,u)=\\
+	=&T_j((\la\otimes v),u).
+\end{align*}
 \end{proof}
+
+\section{Sezioni di un fibrato}
+\begin{definition}[Sezioni di un fibrato]
+Dato un fibrato vettoriale $p\colon E \to X$ e dato un aperto $U$ di $X$, definiamo le \textbf{sezioni} di $U$ come 
+\[\Gamma(U,E)\coloneqq \{\sigma\colon U \to E \mid p\circ \sigma = id_U\}.\]
+\end{definition}
 \begin{remark}
-Con le notazioni di sopra,
-\[O(n)=\frac{\SO(n)\sqcup g\SO(n)}{B_{\SO(n)}}\]
-per una qualsiasi $g$ tale che $\det g=-1$, $g\in O(n)$, dunque
-\[\frac{O(n)}{B_{\SO}}=\frac{\SO(n)}{B_{\SO}}\sqcup g\frac{\SO(n)}{B_{\SO}}\]
-e quindi $\frac{\SO(n)}{B_{\SO}}$ \`e proiettivo.
+    $\Gamma(U,E)$ eredita la somma dal fibrato:
+    \[(\sigma+\tau)(u)=\sigma(u)+\tau(u)\]
+    dove il membro di destra \`e l'immagine della coppia $(\sigma(u),\tau(u))\in E\times_X E$ tramite la mappa $+$.
+    Se $f$ è in $\Oc_X(U)$ e $\sigma\in\Gamma(U,E)$, allora è definito $f\cdot\sigma$ in modo analogo.
+    \medskip
+
+    \noindent Insieme questi fatti mostrano che $\Gamma(U,E)$ è un $\Oc_X(U)$-modulo.
+\end{remark}
+
+\begin{example}[Sezioni del fibrato banale]
+% https://q.uiver.app/#q=WzAsNCxbMCwwLCJYXFx0aW1lcyBcXEtebSJdLFswLDEsIlgiXSxbMSwwLCJVXFx0aW1lcyBcXEtebSJdLFsxLDEsIlUiXSxbMCwxXSxbMiwzLCJwIiwyXSxbMywyLCJcXHNpZ21hIiwyLHsiY3VydmUiOjN9XSxbMiwwLCJcXHN1cHNldGVxIiwxLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoibm9uZSJ9LCJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzMsMSwiXFxzdXBzZXRlcSIsMSx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dXQ==
+\[\begin{tikzcd}
+	{X\times \K^m} & {U\times \K^m} \\
+	X & U
+	\arrow[from=1-1, to=2-1]
+	\arrow["\supseteq"{description}, draw=none, from=1-2, to=1-1]
+	\arrow["p"', from=1-2, to=2-2]
+	\arrow["\sigma"', curve={height=18pt}, from=2-2, to=1-2]
+	\arrow["\supseteq"{description}, draw=none, from=2-2, to=2-1]
+\end{tikzcd}\]
+    Consideriamo $\sigma(u)=(u,\alpha_1(u),\ldots,\alpha_m(u))$, dove $\alpha_i\colon U \to \K$. Allora 
+    \[\Gamma(U,U\times \K^m)\cong \Oc_X(U)^m.\]
+\end{example}
+
+
+\begin{remark}[Fuori programma]
+L'associazione $U\mapsto \Gamma(U,E)$ definisce un funtore controvariante. Questo funtore \`e detto \textit{fascio delle sezioni di $E$}. Questo fascio \`e un $\Oc_X$-modulo localmente libero per quanto affermato nell'osservazione e l'esempio precedenti.
+\end{remark}
+
+Studiamo ora le sezioni di un fibrato qualsiasi.
+
+\begin{proposition}\label{PrSezioniDiFibrato}
+Siano $p:E\to X$ un fibrato vettoriale e $\Uc$ un ricoprimento banalizzante per questo.
+Dare $\sigma\in \Gamma(X,E)$ \`e equivalente a dare delle $\sigma_i:U_i\to \K^m$ per ogni aperto del ricoprimento che verificano
+\begin{center}
+	\begin{tabular}[width=\pagewidth]{ccr}
+		~\hspace{4.3cm}~&$\sigma_j=\al_{i,j}\sigma_i$ &\hspace{1cm}(\textbf{condizione di cociclo})
+	\end{tabular} 
+\end{center}
+dove $\al_{i,j}$ sono dei cocicli per il fibrato.
+\end{proposition}
+\begin{proof}
+Fissiamo $\vp_i:E\res{U_i}\to U_i\times \K^m$ e $\al_{i,j}$ come prima. Se $\sigma\in\Gamma(X,E)$ allora definiamo
+\[\wt \sigma_i=\sigma\res{U_i}:U_i\to E\res{U_i}\quad e\quad \sigma_i:=\pi_{\K^m}\circ\vp_i\circ\wt\sigma_i\]
+in modo tale che
+\[\vp_i\circ \wt\sigma_i:\funcDef{U_i}{U_i\times\K^m}{u}{(u,\sigma_i(u))}\]
+Su $U_{i,j}$ abbiamo
+\[\wt \sigma_j=\vp_{i,j}\circ \wt \sigma_i,\quad \sigma_j=\al_{i,j}\sigma_i\]
+quindi da $\sigma$ abbiamo trovato delle $\sigma_i:U_i\to \K^m$ che verificano $\sigma_j=\al_{i,j}\sigma_i$.
+
+Viceversa dati questi dati essi si possono incollare a $\sigma:X\to E$ perch\'e la condizione di cocliclo garantisce che le $\sigma_i$ coincidano sulle intersezioni degli aperti del ricoprimento.
+\end{proof}
+
+\section{Fibrati vettoriali su variet\`a affini}
+
+\begin{remark}
+Se $X$ \`e una variet\`a affine, $A=\K[X]$ e $E$ \`e un fibrato vettoriale di rango $m$ su $X$ allora $M=\Gamma(X,E)$ \`e un $A$-modulo.
+\end{remark}
+
+\begin{remark}
+Supponiamo che $E$ si banalizzi su aperti affini $X_i$ tali che\footnote{ricordiamo che aperti di questo tipo formano una base per la topologia di Zariski.} $\K[X_i]=A_{f_i}$. Siano $\al_{i,j}$ i cocicli e consideriamo la mappa
+\[J:\funcDef{\bigoplus_i (A_{f_i})^m}{\bigoplus_{i,j} (A_{f_if_j})^m}{(\sigma_i)}{(\sigma_j-\al_{i,j}\sigma_i)}\]
+Per quanto detto $\Gamma(X,E)=\ker J$.
+\end{remark}
+
+\begin{proposition}
+$\Gamma(X_f,E)=\Gamma(X,E)_f$
+\end{proposition}
+\begin{proof}
+Su $X_f=U\subseteq X$ abbiamo 
+% https://q.uiver.app/#q=WzAsMTIsWzAsMCwiMCJdLFsxLDAsIlxcR2FtbWEoWCxFKSJdLFsxLDEsIlxcR2FtbWEoVSxFKSJdLFswLDEsIjAiXSxbMiwwLCJcXGJpZ29wbHVzXFxLW1VfaV1ebSJdLFsyLDEsIlxcYmlnb3BsdXNcXEtbVV9pXFxjYXAgVV1ebSJdLFszLDAsIlxcYmlnb3BsdXNcXEtbVV97aSxqfV1ebSJdLFszLDEsIlxcYmlnb3BsdXNcXEtbVV97aSxqfVxcY2FwIFVdXm0iXSxbMiwyLCJcXGJpZ29wbHVzXFxLW1VfaV1ebV9mIl0sWzMsMiwiXFxiaWdvcGx1c1xcS1tVX3tpLGp9XV5tX2YiXSxbMSwyLCJcXEdhbW1hKFgsRSlfZiJdLFswLDIsIjAiXSxbMTEsMTBdLFsxMCw4XSxbOCw5XSxbMywyXSxbMiw1XSxbNSw3XSxbMCwxXSxbMSw0XSxbNCw2XSxbNCw1XSxbNiw3XSxbNSw4LCI9IiwzLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoibm9uZSJ9LCJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzcsOSwiPSIsMyx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFsxMCwyLCI9IiwzLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoibm9uZSJ9LCJoZWFkIjp7Im5hbWUiOiJub25lIn19fV1d
+\[\begin{tikzcd}
+	0 & {\Gamma(X,E)} & {\bigoplus\K[U_i]^m} & {\bigoplus\K[U_{i,j}]^m} \\
+	0 & {\Gamma(U,E)} & {\bigoplus\K[U_i\cap U]^m} & {\bigoplus\K[U_{i,j}\cap U]^m} \\
+	0 & {\Gamma(X,E)_f} & {\bigoplus\K[U_i]^m_f} & {\bigoplus\K[U_{i,j}]^m_f}
+	\arrow[from=1-1, to=1-2]
+	\arrow[from=1-2, to=1-3]
+	\arrow[from=1-3, to=1-4]
+	\arrow[from=1-3, to=2-3]
+	\arrow[from=1-4, to=2-4]
+	\arrow[from=2-1, to=2-2]
+	\arrow[from=2-2, to=2-3]
+	\arrow[from=2-3, to=2-4]
+	\arrow["{=}"{marking, allow upside down}, draw=none, from=2-3, to=3-3]
+	\arrow["{=}"{marking, allow upside down}, draw=none, from=2-4, to=3-4]
+	\arrow[from=3-1, to=3-2]
+	\arrow["{=}"{marking, allow upside down}, draw=none, from=3-2, to=2-2]
+	\arrow[from=3-2, to=3-3]
+	\arrow[from=3-3, to=3-4]
+\end{tikzcd}\]
+dove l'uguaglianza in basso a sinistra (quella voluta) segue dalle altre due uguaglianze e dal fatto che tutte le righe del diagramma sono esatte.
+\end{proof}
+\begin{corollary}\label{CorLocalizzazioneSezioniFibratoSuAffine}
+Se $E$ si banalizza su $X_f$ allora
+\[\Gamma(X,E)_f\cong \K[X_f]^m=(A_f)^m.\]
+\end{corollary}
+
+
+\subsection{Caratterizzazione con i moduli proiettivi}
+
+Ricordiamo il seguente 
+\begin{theorem}[]\label{ThSuLocaleNoetherianoUnFinitamenteGeneratoEPiattoImplicaLibero}
+$A$ locale e Noetheriano, $M$ finitamente generato, allora
+\begin{center}
+	$M$ \`e piatto $\coimplies$ $M$ \`e proiettivo $\coimplies$ $M$ \`e libero.
+\end{center}
+\end{theorem}
+
+\begin{lemma}[]\label{LmLocalizzazioneDiHom}
+Sia $A$ un anello, $X$ un $A$ modulo e $M$ un $A$-modulo finitamente presentato, allora per $\mf$ massimale di $A$ abbiamo un isomorfismo
+\[\funcDef{(\Hom_A(M,X))_\mf}{\Hom_{A_\mf}(M_\mf,X_\mf)}{\vp/s}{\frac ut\mapsto \frac{\vp(u)}{st}}\]
+\end{lemma}
+\begin{proof}
+Se $M$ \`e libero allora la tesi \`e vera in quanto
+\[(\Hom_A(M,X))_\mf\cong (X^n)_\mf=X_\mf^n\cong \Hom_{A_\mf}(A_\mf^n,X_\mf)=\Hom_{A_\mf}(M_\mf,X_\mf)\]
+e la mappa data \`e questo isomorfismo.
+
+Se ora $A^h\to A^k\to M\to 0$ \`e una presentazione finita di $M$ costruiamo il diagramma commutativo con righe esatte\footnote{le righe sono esatte per esattezza della localizzazione e esattezza a sinistra degli $\Hom$}
+% https://q.uiver.app/#q=WzAsOCxbMCwwLCIwIl0sWzEsMCwiXFxIb20oTSxYKV9cXG1mIl0sWzIsMCwiXFxIb20oQV5rLFgpX1xcbWYiXSxbMywwLCJcXEhvbShBXmgsWClfXFxtZiJdLFsxLDEsIlxcSG9tKE1fXFxtZixYX1xcbWYpIl0sWzIsMSwiXFxIb20oQV5rX1xcbWYsWF9cXG1mKSJdLFszLDEsIlxcSG9tKEFeaF9cXG1mLFhfXFxtZikiXSxbMCwxLCIwIl0sWzAsMV0sWzEsMl0sWzIsM10sWzcsNF0sWzQsNV0sWzUsNl0sWzMsNl0sWzIsNV0sWzEsNF1d
+\[\begin{tikzcd}
+	0 & {\Hom(M,X)_\mf} & {\Hom(A^k,X)_\mf} & {\Hom(A^h,X)_\mf} \\
+	0 & {\Hom(M_\mf,X_\mf)} & {\Hom(A^k_\mf,X_\mf)} & {\Hom(A^h_\mf,X_\mf)}
+	\arrow[from=1-1, to=1-2]
+	\arrow[from=1-2, to=1-3]
+	\arrow[from=1-2, to=2-2]
+	\arrow[from=1-3, to=1-4]
+	\arrow[from=1-3, to=2-3]
+	\arrow[from=1-4, to=2-4]
+	\arrow[from=2-1, to=2-2]
+	\arrow[from=2-2, to=2-3]
+	\arrow[from=2-3, to=2-4]
+\end{tikzcd}\]
+Poich\'e le due mappe a destra sono isomorfismi anche la prima lo \`e per diagram chasing.
+\end{proof}
+
+\begin{theorem}[]\label{ThCaratterizzazioneProiettivoNoetheriano}
+Sia $A$ Noetheriano e $M$ finitamente generato. Le seguenti sono equivalenti
+\begin{enumerate}
+	\item $M$ \`e proiettivo
+	\item $M$ \`e piatto
+	\item $M_\mf$ \`e libero per ogni $\mf$ massimale in $A$
+	\item $M$ \`e localmente libero, cio\`e esistono $f_1,\cdots, f_n\in A$ tali che $(f_1,\cdots, f_n)=A$ e $M_{f_i}$ \`e libero.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+Diamo le implicazioni
+\setlength{\leftmargini}{0cm}
+\begin{itemize}
+\item[$\boxed{1.\implies2.}$] ovvio. 
+\item[$\boxed{2.\implies3.}$] ovvio per il teorema (\ref{ThSuLocaleNoetherianoUnFinitamenteGeneratoEPiattoImplicaLibero}) dato che $A_\mf$ \`e locale e $M_\mf$ sarebbe piatto finitamente generato su locale noetheriano, quindi libero.
+\item[$\boxed{4.\implies3.}$] Se $\mf$ \`e massimale esiste $f_i$ che non appartiene a $\mf$. Allora $M_\mf=(M_{f_i})_\mf$ ma $M_{f_i}$ \`e libero.
+\item[$\boxed{3.\implies1.}$] Mostriamo che $\Hom_A(M,\bullet)$ \`e esatto. Consideriamo una successione esatta corta di moduli
+\[0\to X\to Y\to Z\to 0\]
+e mostriamo che
+\[0\to \Hom_A(M,X)\to \Hom_A(M,Y)\to \Hom_A(M,Z)\to 0\]
+\`e esatta. Per fare ci\`o basta mostrare che per ogni $\mf$ massimale \`e esatta
+\[0\to (\Hom_A(M,X))_\mf\to (\Hom_A(M,Y))_\mf\to (\Hom_A(M,Z))_\mf\to 0\]
+Per il lemma (\ref{LmLocalizzazioneDiHom}) la mappa
+\[\funcDef{(\Hom_A(M,X))_\mf}{\Hom_{A_\mf}(M_\mf,X_\mf)}{\vp/s}{\frac ut\mapsto \frac{\vp(u)}{st}}\]
+\`e un isomorfismo (poich\'e $A$ noetheriano si ha che $M$ \`e finitamente generato esattamente se \`e finitamente presentato). Otteniamo dunque un diagramma commutativo
+% https://q.uiver.app/#q=WzAsMTAsWzAsMCwiMCJdLFsxLDAsIlxcSG9tKE0sWClfXFxtZiJdLFsyLDAsIlxcSG9tKE0sWSlfXFxtZiJdLFszLDAsIlxcSG9tKE0sWilfXFxtZiJdLFsxLDEsIlxcSG9tKE1fXFxtZixYX1xcbWYpIl0sWzIsMSwiXFxIb20oTV9cXG1mLFlfXFxtZikiXSxbMywxLCJcXEhvbShNX1xcbWYsWl9cXG1mKSJdLFswLDEsIjAiXSxbNCwwLCIwIl0sWzQsMSwiMCJdLFswLDFdLFsxLDJdLFsyLDNdLFs3LDRdLFs0LDVdLFs1LDZdLFszLDZdLFsyLDVdLFsxLDRdLFs2LDldLFszLDhdXQ==
+\[\begin{tikzcd}
+	0 & {\Hom(M,X)_\mf} & {\Hom(M,Y)_\mf} & {\Hom(M,Z)_\mf} & 0 \\
+	0 & {\Hom(M_\mf,X_\mf)} & {\Hom(M_\mf,Y_\mf)} & {\Hom(M_\mf,Z_\mf)} & 0
+	\arrow[from=1-1, to=1-2]
+	\arrow[from=1-2, to=1-3]
+	\arrow[from=1-2, to=2-2]
+	\arrow[from=1-3, to=1-4]
+	\arrow[from=1-3, to=2-3]
+	\arrow[from=1-4, to=1-5]
+	\arrow[from=1-4, to=2-4]
+	\arrow[from=2-1, to=2-2]
+	\arrow[from=2-2, to=2-3]
+	\arrow[from=2-3, to=2-4]
+	\arrow[from=2-4, to=2-5]
+\end{tikzcd}\]
+con mappe verticali date da isomorfismi, dunque la riga sopra \`e esatta se e solo se la riga sotto lo \`e, ma la riga sotto \`e esatta perch\'e $M_\mf$ \`e libero (e quindi proiettivo).
+\item[$\boxed{3.\implies4.}$] Mostriamo che per ogni $\mf$ esiste $f\notin \mf$ tale che $M_f$ \`e libero come $A_f$ modulo. Questo \`e sufficiente perch\'e $X=\bigcup_{\mf\in\Spec_{max}(A)} X_f$ per queste $f$ e per compattezza estraiamo un sottoricoprimento finito. Le $f_i$ corrispondenti a questo ricoprimento per costruzione sono della forma cercata.
+
+Mostriamo il claim: Poich\'e $M_\mf$ \`e libero esso ha una base $m_1,\cdots,m_n$. Consideriamo la mappa
+\[0\to A_\mf^n\xrightarrow{\al}M_\mf\to 0\]
+che manda $v_i$ in $m_i$, dove $v_1,\cdots, v_n$ \`e la base canonica di $A_\mf^n$. Per definizione della localizzazione esiste $f\notin \mf$ tale che
+\[v_i=\frac{u_i}f,\ m_i=\frac{x_i}{f},\qquad \text{per degli }u_i\in A^n,\ x_i\in M.\]
+Segue dunque che abbiamo una successione esatta
+\[0\to K\to A_f^n\to M_f\to 0\]
+dato che l'unico elemento che appare al denominatore \`e $f$.
+
+Notiamo che $K$ \`e finitamente generato per Noetherianit\`a, per esempio da $w_1,\cdots, w_t$, e che $K_\mf=0$, dunque esiste $g\notin \mf$ tale che $gw_i=0$ per ogni $i$, cio\`e $K_g=0$. Se allora localizziamo la successione di prima troviamo una nuova successione esatta
+\[0\to K_g\to A_{fg}^n\to M_{fg}\to 0\]
+ma dato che $K_g=0$ abbiamo dimostrato che $M_{fg}$ \`e libero. Per costruzione $fg\notin \mf$ in quanto il complementare di $\mf$ \`e una parte moltiplicativa.
+\end{itemize}
+\setlength{\leftmargini}{0.5cm}
+\end{proof}
+
+\begin{corollary}
+Se $p:E\to X$ \`e un fibrato vettoriale e $M=\Gamma(X,E)$ allora $M$ \`e proiettivo.
+\end{corollary}
+\begin{proof}
+Ricordando (\ref{CorLocalizzazioneSezioniFibratoSuAffine}) che $\Gamma(X_f,E)=M_f$, se scegliamo un ricoprimento $\cpa{X_f}$ che banalizza $E\to X$ si ha che $M_f$ \`e libero, dunque abbiamo mostrato che $M$ \`e localmente libero, che implica proiettivo per il teorema (\ref{ThCaratterizzazioneProiettivoNoetheriano}) se $M$ \`e finitamente generato.
+
+Poich\'e ogni $M_{f_i}$ (dove $f_1,\cdots, f_n$ determinano il ricoprimento banalizzante) \`e finitamente generato (libero di rango pari al rango del fibrato), esistono $m_1,\cdots, m_T\in M$ tali che $m_1,\cdots, m_T$ generano $M_{f_i}$ per ogni $i$. Se $N=\ps{m_1,\cdots, m_T}\subseteq M$ si ha che $N_{f_i}=M_{f_i}$ per ogni $f_i$ per costruzione, dunque localizzando ulteriormente $N_\mf=M_\mf$ per ogni $\mf$ massimale e quindi $N=M$.
+\end{proof}
+
+\begin{definition}[Rango di un modulo proiettivo]
+Sia $P$ un modulo proiettivo. Affermiamo che $n$ \`e il \textbf{rango} di $P$ se per ogni $\mf$ massimale $P_\mf\cong A_\mf^n$.
+\end{definition}
+
+\begin{proposition}[]\label{PrModuloProiettivoDefinisceFibrato}
+Ad un $A$-modulo proiettivo $P$ di rango $n$ corrisponde un fibrato vettoriale di rango $n$ sulla variet\`a associata ad $A$.
+\end{proposition}
+\begin{proof}
+Poich\'e $P$ \`e proiettivo esistono $f_1,\cdots, f_N$ tali che $(f_1,\cdots, f_N)=A$ e $P_{f_i}\cong A_{f_i}^n$. Sia $\al_i:P_{f_i}\to A_{f_i}^n$ un fissato isomorfismo.
+Questi isomorfismi si restringono a isomorfismi $P_{f_if_j}\to A_{f_if_j}^n$, quindi possiamo definire 
+\[\al_{i,j}=\al_j\circ \al_i\ii\in \GL(A_{f_i f_j}^n).\] 
+Per definizione $\al_{ih}=\al_{jh}\al_{ij}$.
+Ricordiamo che
+\[A_{f_if_j}=\Oc(X_{f_if_j})=\Oc(X_{f_i}\cap X_{f_j})\]
+quindi effettivamente $\al_{i,j}:X_{f_if_j}\to \GL_n(\Oc(X_{f_if_j}))$. Avendo verificato la condizione di cociclo si ha che questo definisce un fibrato.
+\end{proof}
+
+Possiamo dare una descrizione pi\`u concreta di questo fibrato:
+
+\begin{remark}[Costruzione intrinseca del fibrato]
+~
+
+\noindent
+Sia $P$ un modulo proiettivo e consideriamo il duale
+\[P^\ast=\Hom_A(P,A)\]
+e poi l'algebra simmetrica
+\[\Sym_A P^\ast=\frac{A\oplus (P^\ast)\oplus (P^\ast\otimes_A P^\ast)\oplus\cdots}{(u\otimes v-v\otimes u)}.\]
+Chiaramente $\Sym_AP^\ast$ \`e un anello. Si pu\`o verificare che esso \`e finitamente generato e ridotto, quindi \`e l'anello di coordinate di una variet\`a affine $E$.
+
+Notiamo che se $P$ \`e libero allora $\Sym_AP^\ast$ \`e un anello di polinomi:
+chiamiamo $x_1,\cdots, x_n$ i generatori di $P^\ast$ duali alla base di $P$, allora \`e evidente che 
+\[\Sym_AP^\ast=A[x_1,\cdots, x_n]=A\otimes \K[x_1,\cdots, x_n]=\Oc(X\times \K^n).\]
+Quindi $E$ \`e coperto da intorni della forma $X\times\K^n$ e la mappa di proiezione \`e quella ovvia.
+\end{remark}
+
+\begin{remark}[Fuori programma]
+La definizione appena data \`e un caso particolare della costruzione ``$\Spec$ relativo".
+\end{remark}
+
+
+\begin{theorem}[]\label{ThCorrispondenzaFibratiVettorialiModuliProiettivi}
+C'\`e una corrispondenza biunivoca
+\[\quot{\cpa{\emat{\text{Moduli proiettivi su $A$}\\\text{di rango $n$}}}}{iso.}\longleftrightarrow \quot{\cpa{\emat{\text{Fibrati vettoriali su $X$}\\\text{di rango $n$}}}}{iso.}\]
+e la mappa dal fibrato $E$ ai moduli \`e $E\mapsto \Gamma(X,E)$.
+\end{theorem}
+
+
+
+\section{Fibrati vettoriali sulla retta proiettiva}
+\subsection{Fibrati lineari}
+\begin{notation}
+Scriviamo $\A^1\cong U_0=\Pj^1\bs\cpa\infty$ e $\A^1\cong U_\infty=\Pj^1\nz$, da cui
+\[\A^1\nz\cong U_{0,\infty}=\Pj^1\bs\cpa{0,\infty}.\]
+Scriviamo dunque $\K[U_0]=\K[z]$, $\K[U_\infty]=\K[w]$ e $\K[U_{0,\infty}]=\K[z,z\ii]$ con $w=z\ii$.
+\end{notation}
+
+\begin{remark}
+Rispetto a questo ricoprimento i coclicli sono
+\[Z^1(\Uc)=\cpa{\al_{0,\infty}:U_{0,\infty}\to\GL(1)}=\cpa{\funcDef{U_{0,\infty}}{\GL(1)}{z}{\la z^n}\mid n\in\Z,\ \la\in\K^\times}\]
+A priori sono mappe della forma $z\mapsto p(z)$ ma se comparissero pi\`u monomi allora ci sarebbero radici diverse da $0$, quindi esisterebbe $a\in U_{0,\infty}$ tale che $p(a)=0\notin \GL(1)$.
 \end{remark}
 
 
 
-
-
-Vogliamo descrivere la componente data da $\SO(2m)/B$.
-\begin{theorem}
-Sia $V=\K^{2m}$ munito di una forma bilineare, simmetrica e non degenere $b(\cdot,\cdot)$. Siano $L,M$ 
-sottospazi isotropi (lagrangiani) di $V$ tali che $\dim L=\dim M$. Allora \[\exists\,g\in \SO(V)\colon \ gL=M\quad \iff \quad \dim(L\cap M)\equiv m \pmod{2}.\] 
-\end{theorem}
-
-%\[\SO(2m)\cdot \xi =\{F_1\subset \ldots\subset F_{2m} \colon F_i^\perp=F_{2m-i}, \ \dim(F_m\cap \langle e_1,\ldots,e_m\rangle )\equiv m \pmod{2}\}.\] 
+\begin{remark}\label{RmCoclicliFibratiLineariSuRettaProiettiva}
+Si ha
+\[H^1(\Uc,\GL(1))=\cpa{z^n}_{n\in\Z}.\]
+\end{remark}
 \begin{proof}
-Scegliamo una base $e_1,\ldots,e_m,e_{m+1},\ldots,e_{2m}$ di $V$ tale che $e_1,\ldots,e_m$ è base di $L$ e tale che $b$ è rappresentata in questa base dalla matrice 
-\[\begin{pmatrix}
-    0 & I_m \\ I_m & 0
-\end{pmatrix}.\] 
-Sia inoltre $L'=\langle e_1,\ldots,e_{m-1},e_{2m}\rangle$. Notiamo che $L'$ è isotropo. Mostriamo che se $g$ è un elemento di $\SO(2m)$, allora 
-\begin{align}
-    \label{cong1}\dim(gL\cap L)&\equiv m \pmod{2} \\
-    \label{cong2}\dim(gL\cap L')&\not\equiv m \pmod{2}
-\end{align}
-Iniziamo mostrando la \eqref{cong1}. Sia $P$ il sottogruppo di $\SO(V)$ costituito dalle matrici del tipo 
-\[\begin{pmatrix}
-    A & B \\ 0 & C
-\end{pmatrix}.\] 
-Notiamo che una matrice di questa forma è in $\SO(V)$ se e solo se $A^\top=C^{-1}$ e $B^\top C+C^\top B=0$, per cui
-\[\dim P= \dim \GL(m)+\binom{m}{2}=m^2+\binom{m}{2}.\] 
-Sia $U$ il sottogruppo di $\SO(V)$ costituito dalle matrici del tipo \[\begin{pmatrix}
-    I_m & 0 \\ X& I_m 
-\end{pmatrix}\]
-Osserviamo che una matrice di questo tipo appartiene a $\SO(V)$ se e solo se $X^\top=-X$, cioè se e solo $X$ è antisimmetrica, quindi $\dim U=\binom{m}{2}$. Ne consegue che $\dim P +\dim U= 2m^2-m$. Ricordiamo che $\dim \SO(2m)=\dim \operatorname{O}(2m)=2m^2-m$, infatti la mappa 
-\[\begin{array}{ccc}
-    \GL(2m)& \longrightarrow & \operatorname{Sim}(2m) \\
-     A&\longmapsto& AA^\top
-\end{array}\] 
-è surgettiva e ha nucleo $\operatorname{O}(2m)$, che quindi ha dimensione $4m^2-\binom{2m+1}{2}=2m^2-m$. Consideriamo la mappa $U\times P \to \SO(V)$ data da
+Se $\al=\la z^n$ e $\wt \al=\mu z^m$ sono cocicli equivalenti allora esistono $\beta_0:U_0\to \GL(1)$ e $\beta_\infty:U_{\infty}\to\GL(1)$ tali che
+\[\mu z^m=\wt\al=\beta_\infty\al\beta_0\ii=\la\beta_\infty\beta_0\ii z^n\]
+Per definizione, $\beta_0\in \K[z]$ e non \`e mai nullo, quindi dato che $\K$ \`e algebricamente chiuso, $\beta_0\in \K^\times$. Similmente per $\beta_\infty$. Questo insieme all'equazione trovata implica che $n=m$.
 
-
-\[\begin{array}{cccccc}
-    U\times P & \xrightarrow{\sim} & U\times P &\longrightarrow & \SO(V) \\
-     (u,p^{-1}) &\longmapsto& (u,p)&\longmapsto& u I p \\
-     (u,p) &\longmapsto& (u,p^{-1})&\longmapsto& u I p^{-1}
-\end{array}\]
-Ora $UP$ è aperto in $\overline{UP}$ e poiché $U\cap P=\{I_{2m}\}$, si ha 
-\[\dim(UP)=\dim (U \times P)= \dim \SO(2m),\] 
-da cui $\overline{UP}=\SO(2m)$. Consideriamo gli aperti $V_1=UP$ e
-$V_2=PU$ in $\SO(2m)$. Mostriamo che $V_2V_1=\SO(2m)$. %e quindi che $g$ è in $V_2 V_1$. Infatti s
-Sia $g$ in $\SO(2m)$ e sia $v_2$ nell'intersezione $V_2\cap gV_2$ (che è non vuota in quanto $V_1$ e $V_2$ sono aperti in una varietà irriducibile). Allora $v_2=gv_2'$ per qualche $v_2'$ in $V_2$. Poiché $(v_2')^{-1}\in UP=V_1$, si ha $g=v_2(v_2')^{-1}\in V_2V_1$. Ne deduciamo che 
-\[\SO(2m)= P U\cdot U P=PUP\] 
-e quindi, posto $g=p_1 u p_2$, si ha 
-\[\dim(gL\cap L)=\dim(p_1 u p_2L \cap L)=\dim(u p_2 L \cap p_1^{-1}L)=\dim(uL \cap L).\] 
-Quindi ci siamo ridotti a considerare il caso di un elemento 
-\[u=\begin{pmatrix}
-    I_m & 0 \\ X & I_m
-\end{pmatrix}\in U.\]
-Osserviamo che, poiché $L=\operatorname{span}\{e_1,\ldots,e_m\}$, si ha 
-\[uL=\operatorname{span}\left\{\begin{pmatrix}
-    I_m & 0\\ X & I_m
-\end{pmatrix} e_i,\  i=1,\ldots,m \right\}, %\quad L=\operatorname{span}\left\{\begin{pmatrix}
-    %I_m & 0 \\ 0
-%\end{pmatrix}\right\}
-\] 
-quindi 
-\[uL\cap L=\operatorname{span}\left\{\begin{pmatrix}
-    v \\ Xv
-\end{pmatrix}, \  v\in \K^m \colon  Xv=0\right\} \cong \ker X,\] 
-da cui $\dim(uL\cap L)=\dim(\ker X)=m-\rnk(X) \equiv m \pmod{2}$ perché le matrici antisimmetriche hanno rango pari. 
-
-Mostriamo la \eqref{cong2}. Sia $g$ un elemento in $\operatorname{O}(2m)$. Sappiamo che se $g$ è in $\SO(2m)$, allora $\dim(gL\cap L)\equiv m \pmod{2}$; se invece $g$ non è in $\SO(2m)$, allora $\dim(gL\cap L)\not\equiv m \pmod{2}$. Sia $h$ in $\operatorname{O}(2m)\setminus \SO(2m)$ che scambia $e_m$ con $e_{2m}$ e lascia fissi gli altri $e_i$. Allora $L'=hL$  %Supponiamo $g\in \operatorname{O}(2m)\setminus \SO(2m)$. 
-ed esiste $\widetilde{g}$ in $\SO(2m)$ tale che $g=h\widetilde{g}$. Dunque \[\dim(gL\cap L)=\dim(h\widetilde{g}L\cap L)=\dim(\widetilde{g}L \cap L')\not\equiv m \pmod{2}\] e ciò conclude la dimostrazione. 
+Viceversa, se $n=m$ allora possiamo sempre trovare $\beta_0$ e $\beta_\infty$ (per esempio $\beta_0=\la$ e $\beta_\infty=\mu$), quindi abbiamo mostrato
+\[H^1(\Uc,\GL(1))=\cpa{z^n}_{n\in\Z}.\]
 \end{proof}
 
-\begin{example}[Caso $m=1$] Consideriamo $V=\K^2$ munito della forma bilineare la cui forma quadratica associata è data da $xy$. Allora i sottospazi isotropi $\K e_1$ e $\K e_2$ si intersecano banalmente e quindi non vengono scambiati dagli elementi di $\SO(V)$.  In effetti 
-    \[\SO(V)=\left\{\begin{pmatrix}
-    a & 0 \\
-    0 & a^{-1}
-\end{pmatrix}, \ a\in \K^\times\right\}.\]
-\end{example}
+\begin{notation}
+Indichiamo il fibrato lineare $E_{z^{-n}}\to \Pj^1_\K$ con $\Oc_{\Pj^1_\K}(n)$ (o solo $\Oc(n)$ se chiaro dal contesto).
+\end{notation}
+
+\begin{proposition}\label{PrSezioniGlobaliFibratiLineariSuP1}
+Le sezioni globali dei fibrati lineari su $\Pj^1$ sono
+\[\Gamma(\Pj^1,\Oc(n))=\begin{cases}
+	\K[z]_{n}=\cpa{p(z)\in \K[z]\mid \deg p\leq n} & n\geq 0\\
+	0 &n<0
+\end{cases}\]
+\end{proposition}
+\begin{proof}
+Consideriamo due sezioni $\sigma_0=f(z)$ e $\sigma_\infty=g(w)$ tali che $\sigma_\infty=\al_{0,\infty}\sigma_0$. Per quanto detto possiamo scegliere $\al_{0,\infty}=z^{-n}$, da cui sull'intersezione $U_{0,\infty}$ abbiamo 
+\[g(z\ii)=z^{-n}f(z).\]
+Scrivendo le espansioni troviamo
+\[g(z\ii)=a_0+a_1 z\ii+\cdots\qquad z^{-n}f(z)=b_0 z^{-n}+b_1 z^{1-n}+\cdots\]
+dunque:
+\setlength{\leftmargini}{0cm}
+\begin{itemize}
+\item[$\boxed{n<0}$] In questo caso imporre uguaglianza impone che ogni coefficiente sia nullo, cio\`e $\sigma_0=\sigma_\infty=0$ e quindi il $\sigma$ a cui corrispondono \`e $0$.
+\item[$\boxed{n\geq0}$] Imponendo l'uguaglianza troviamo
+\[f(z)=a_0z^n+\cdots+a_{n-1}z+a_n\]
+cio\`e un generico polinomio di grado $n$.
+\end{itemize}
+\setlength{\leftmargini}{0.5cm}
+\end{proof}
+
+\begin{remark}\label{ReRangoSezioniGlobaliFibratiLineariSuP1}
+Segue immediatamente che
+\[\dim\Gamma(\Pj^1,\Oc(n))=\begin{cases}
+	n+1&\text{se }n\geq 0\\
+	0 &\text{se }n<0
+\end{cases}.\]
+\end{remark}
+
+\subsection{Fibrati vettoriali}
+
+\begin{lemma}[Forma di Smith]\label{LmMatriciDiCocicliPerFibrativettorialiSuRettaProiettiva}
+Per ogni $C\in \GL_k(\K[t^{\pm1}])$ possiamo trovare $\al$ e $\beta$ matrici in $\GL_k(\K[t])$ tali che
+\[\beta C\al=\mat{t^{m_1} & &\\
+&\ddots&\\&&t^{m_k}}\]
+con $m_1\geq\cdots\geq m_k$. Se $c_{i,j}\in \K[t]$ per ogni $i,j$ vogliamo anche poter scegliere $m_\ell\geq 0$ per ogni $\ell$.
+\end{lemma}
+\begin{proof}
+Per $k=1$ la tesi \`e esattamente il contenuto dei conti nell'osservazione (\ref{RmCoclicliFibratiLineariSuRettaProiettiva}).
+
+Mostriamo ora il caso di $k>1$. A meno di moltiplicare per una potenza alta di $t$ supponiamo $c_{i,j}\in \K[t]$ per ogni $i$ e $j$, finito il conto in questo caso possiamo moltiplicare per $t\ii$ alla stessa potenza per tornare al problema originale senza disturbare la forma diagonale che vorremmo ottenere.
+
+
+Mostriamo che possiamo intanto trovare una $\al\in \GL_k(\K[t])$ tale che
+\[C\al=\mat{t^m &0 &\cdots&0\\
+\ast &\ast&\cdots&\ast}\]
+Osserviamo che se abbiamo $c_{1,1}$ e $c_{1,j}$ sulla prima riga possiamo moltiplicare a destra per una matrice in modo da ottenere $m(t)=\gcd(c_{1,1},c_{1,j})$ e $0$ al loro posto: se
+\[m=c_{1,1}a+c_{1,j}c,\quad 1=da-bc\]
+dove $a,c$ esistono per l'identit\`a di B\'ezout e $d,b$ esistono perch\'e $a$ e $c$ devono essere coprimi affinch\'e $m$ sia il massimo comune divisore, possiamo definire la matrice 
+\[M=\mat{a&b\\c&d}\mat{1 & -\frac{c_{1,1}b+c_{1,j}d}{m}\\ 0&1}\] 
+e ``inserirla" in una matrice identit\`a di taglia $k$ in modo da fare l'operazione richiesta, per esempio se $j=2$ allora
+\[C\mat{M & &&&\\
+&1&&\\
+&&\ddots&\\
+&&&1}=\mat{m &0 &\ast &\cdots&\ast\\
+\ast &\ast&\ast &\cdots&\ast\\
+\vdots &\vdots&\vdots &\ddots&\vdots\\
+\ast &\ast&\ast &\cdots&\ast}\]
+Reiterando questo procedimento prendendo la prima e seconda colonna, poi prima e terza, prima e quarta eccetera troviamo $\al$ tale che
+\[C\al=\mat{\gcd(\cpa{c_{1,j}\mid 1\leq j\leq k}) &0 &\cdots&0\\
+\ast &\ast&\cdots&\ast}\]
+ma questo massimo comune divisore deve essere della forma $t^\ell$ perch\'e deve dividere $\det C$ e questo deve essere un elemento invertibile di $\K[t^{\pm1}]$ (ogni eventuale coefficiente di $t^\ell$ pu\`o essere inglobato da $\al$). Notiamo che $\ell\geq 0$ perch\'e i singoli $c_{i,j}$ sono elementi di $\K[t]$.
+
+Per ipotesi induttiva esistono $\al'$ e $\beta'$ che riducono la sottomatrice sud-est, cio\`e
+\[\mat{1&0\\0&\beta'}C\al\mat{1&0\\0&\al'}=\mat{t^{\ell_1} & 0 & \cdots &0\\
+\ast & t^{\ell_2} & \cdots & 0\\
+\vdots &\vdots&\ddots &\vdots\\
+\ast & 0 &\cdots &t^{\ell_k}}\]
+con $\ell_i\geq 0$ per ogni $1\leq i\leq k$. In particolare $\det C=t^n$ con $n=\sum_{i=1}^k\ell_i$. Poich\'e dunque $\ell_1$ \`e limitato da $n$, esiste un $\ell_1$ massimo che possiamo ottenere a meno di moltiplicare a destra o sinistra per matrici in $\GL_k(\K[t])$.
+
+Affermiamo che per un tale $\ell_1$ massimale $\ell_1\geq \ell_2$, infatti se $\ell_1<\ell_2$, poich\'e
+\[\mat{t^{\ell_1}&0\\c_{2,1}&t^{\ell_2}}\text{ \`e equivalente a }\mat{t^{\ell_2} & c_{2,1}\\ 0 &t^{\ell_1}},\]
+se $c_{2,1}=0$ allora evidentemente $\ell_1$ non era massimale, se $c_{2,1}\neq 0$ allora riusciamo a sostituire questo pezzo $2\times 2$ con $\pa{\smat{t^{\ell_1+1}&0\\\ast&t^{m}}}$, negando ancora la massimalit\`a di $\ell_1$.
+
+
+Quindi $\ell_1\geq \ell_2$ (e analogamente $\ell_1\geq \ell_i$ per ogni $2\leq i\leq k$) quindi possiamo agire sulle colonne e sulle righe con elementi della forma $\pa{\smat{1&0\\f(t)&1}}$ per rindurre $c_{2,1}(t)$ as un polinomio che contemporaneamente dovrebbe avere grado minore di $\ell_2$ ma maggiore di $\ell_1$, che \`e assurdo e quindi $c_{1,2}=0$.
+\end{proof}
+
+\begin{remark}
+Abbiamo semplicemente affermato che, poich\'e $\K[t]$ \`e un PID, possiamo raccogliere potenze negative di $t$, trasformare in forma normale di Smith, e poi ri-moltiplicare per esse. Il fatto che gli elementi sulla diagonale sono della forma $t^m$ \`e solo conseguenza del fatto che devono essere elementi invertibili in $\K[t^{\pm 1}]$.
+\end{remark}
+
+\begin{theorem}[]\label{ThClassificazioneFibratiVettorialiSuP1}
+Su $\Pj^1$ gli unici fibrati vettoriali sono $E\cong \Oc(n_1)\oplus\cdots\oplus \Oc(n_k)$ per degli interi $n_i$.
+\end{theorem}
+\begin{proof}
+Scriviamo $\Pj^1=U_0\cup U_\infty$ e procediamo per induzione su $n$ il rango del fibrato.
+\setlength{\leftmargini}{0cm}
+\begin{itemize}
+\item[$\boxed{n=1}$] Notiamo che $E\res {U_0}$ e $E\res{U_\infty}$ sono banali perch\'e $U_0=\Pj^1\bs V(x_1)$, $U_\infty=\Pj^1\bs V(x_0)$, vale (\ref{ThCorrispondenzaFibratiVettorialiModuliProiettivi}) e i moduli proiettivi su un PID sono liberi.
+
+Sia $\Uc=\cpa{U_0,U_\infty}$ e consideriamo $H^1(\Uc,\GL(1))$, che per il teorema (\ref{ThCorrispondenzaFibratiECoomologia}) e quanto appena osservato determina tutti i fibrati di rango 1 che si banalizzano su $\Uc$ a meno di isomorfismo. Per quanto osservato nella sottosezione precedente questo conclude.
+\item[$\boxed{n>1}$] In modo del tutto analogo vogliamo considerare $H^1(\Uc,\GL(n))$. Ricordando che i cocicli per questo ricoprimento sono
+\[Z^1(\Uc,\GL(n))=\cpa{C:U_{0,\infty}\to \GL(k)}\]
+e che la relazione per cui quozientiamo per trovare la coomologia \'e
+\[C\sim D\coimplies \exists \al:U_\infty\to\GL(n),\ \beta:U_0\to\GL(n)\ t.c.\ D=\al C\beta\ii.\]
+Scriviamo 
+\begin{align*}
+	C(t)=&(c_{i,j}(t))\in \GL_n(\K[t^{\pm}])\\
+	\al(t)=& (a_{i,j}(t))\in \GL_n(\K[t])\\
+	\beta(t)=&(b_{i,j}(t))\in \GL_n(\K[t\ii])
+\end{align*}
+Per definizione di somma diretta di fibrati vista dal punto di vista dei cocicli il lemma (\ref{LmMatriciDiCocicliPerFibrativettorialiSuRettaProiettiva}) conclude.
+\end{itemize}
+\setlength{\leftmargini}{0.5cm}
+\end{proof}
+
+\begin{proposition}[]\label{PrUnicitaDecomposizioneFibratiVettorialiInLineariPerP1}
+Se $E$ \`e un fibrato vettoriale su $\Pj^1$ e (per il teorema (\ref{ThClassificazioneFibratiVettorialiSuP1})) esso \`e isomorfo a $\Oc(n_1)\oplus\cdots\oplus \Oc(n_k)$ per $n_1\geq\cdots\geq n_k$ allora gli $n_i$ sono univocamente determinati.
+\end{proposition}
+\begin{proof}
+Supponiamo di avere un'altra scrittura $E\cong \Oc(m_1)\oplus\cdots\oplus \Oc(m_k)$ con $m_1\geq\cdots\geq m_{k}$ (il numero di addendi \`e lo stesso perch\'e \`e pari al rango del fibrato). Senza perdita di generalit\`a supponiamo $m_1\geq n_1$ e tensorizziamo per $\Oc(-m_1)$ per ottenere
+\[\Oc(0)^a\oplus \under{E'}{\Oc(n_2')\oplus\cdots\oplus \Oc(n_k')}\overset\vp\cong \Oc(0)^b\oplus \under{F'}{\Oc(m_2')\oplus\cdots\oplus \Oc(m_k')}\]
+dove $n_i'$ e $m_i'$ sono gli opportuni interi che codificano le differenze $n_j-m_1$ e $m_j-m_1$ dopo aver raccolto le copie di $\Oc(0)$. Per costruzione tutti gli addendi diretti sono fibrati lineari con sezioni globali nulle (eccetto per le copie  di $\Oc(0)$), quindi
+\[\dim \Gamma(\Pj^1,\Oc(0)^a\oplus E')=a\cdot (0+1)+(k-a)\cdot 0=a,\quad \dim \Gamma(\Pj^1,\Oc(0)^b\oplus F')=b\]
+e cio\`e $a=b$.
+
+Scriviamo l'isomorfismo $\vp:\Oc(0)^a\oplus E'\to \Oc(0)^a\oplus F'$ in forma matriciale come
+\[\vp=\mat{\al &\beta\\
+\gamma&\delta}\]
+(cio\`e $\al:\Oc(0)^a\to \Oc(0)^a$, $\beta:E'\to \Oc(0)^a$ eccetera). Notiamo che dare un morfismo $\Oc(0)\to F'$ \`e la stessa cosa di dare una sezione di $F'$, quindi $\gamma=0$, dunque $\vp\res{\Oc(0)^a}=\al:\Oc(0)^a\to \Oc(0)^a$ \`e un isomorfismo e quindi abbiamo un isomorfismo
+\[E'=E/\Oc(0)^a\xrightarrow{\vp}E/\Oc(0)^a=F'\]
+e per induzione la scrittura di questi due pezzi \`e unica. Ri-tensorizzando per $\Oc(m_1)$ troviamo che la scrittura originale era unica.
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{Fibrati con azione di gruppo}
+
+\begin{definition}
+    Se $X$ è una $G$-varietà, un \textbf{$G$-fibrato} su $X$ è un fibrato vettoriale $p\colon E \to X$ su $X$ per cui esiste un'azione lineare di $G$ su $E$ tale che $p$ è $G$-equivariante.
+\end{definition}
+\begin{remark}
+In questo caso, $\Gamma(X,E)$ ha un'azione lineare di $G$, data da 
+\[(g\cdot \sigma)(x)=g(\sigma(g^{-1}x)).\] 
+\end{remark}
+
+Si potrebbe dimostrare che $G$ agisce in modo regolare su $\Gamma(X,E)$, e quindi che $\Gamma(X,E)$ è una rappresentazione di $G$. (Non lo faremo.) 
+
+\begin{definition}
+Un morfismo di fibrati è \textbf{equivariante} se commuta con l'azione di $G$.
+\end{definition}
+
+\begin{remark}
+Per ogni $x_0$ in $X$, un morfismo $\varphi$ definisce una mappa lineare $\varphi_{x_0}\colon (E_1)_{x_0}\to (E_2)_{x_0}$. 
+\end{remark}
+
+\begin{proposition}\label{PrClassificazioneFibratiSuGruppoQuoziente}
+Le classi di isomorfismo fibrati di vettoriali $G$-equivarianti di rango $m$ su $X=G/H$ sono in corrispondenza con le classi di isomorfismo delle rappresentazioni $m$-dimensionali di $H$.
+\end{proposition}
+\begin{proof}
+Costruiamo esplicitamente questa corrispondenza:
+\smallskip
+
+\noindent
+Dato un fibrato vettoriale $G$-equivariante $p\colon E\to G/H$ e posto $x_0=H=e_{G/H}$, possiamo considerare la fibra $E_{x_0}$ e chiaramente $H$ agisce su $E_{x_0}$. 
+\smallskip
+
+\noindent
+Data una rappresentazione $V$ di $H$, consideriamo $G\times V$ con l'azione di $H$ data da 
+\[h(g,v)=(gh^{-1},hv).\]
+Passando al quoziente in $H$ abbiamo
+% https://q.uiver.app/#q=WzAsNCxbMCwwLCJFPVxcZGZyYWN7R1xcdGltZXMgVn17SH0iXSxbMCwxLCJbZyx2XSJdLFsxLDAsIlg9e0d9L3tIfSJdLFsxLDEsIltnXSJdLFswLDJdLFsxLDMsIiIsMCx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Im1hcHMgdG8ifX19XSxbMSwwLCJcXGluIiwzLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoibm9uZSJ9LCJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzMsMiwiXFxpbiIsMyx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dXQ==
+\[\begin{tikzcd}
+	{E=\dfrac{G\times V}{H}} & {X={G}/{H}} \\
+	{[g,v]} & {[g]}
+	\arrow[from=1-1, to=1-2]
+	\arrow["\in"{marking, allow upside down}, draw=none, from=2-1, to=1-1]
+	\arrow[maps to, from=2-1, to=2-2]
+	\arrow["\in"{marking, allow upside down}, draw=none, from=2-2, to=1-2]
+\end{tikzcd}\]
+Notiamo che 
+\[[g,v]+[gh,u]=[g,v]+[g,hu]=[g,v+hu]\] 
+e che 
+\[\lambda[g,v]=[g,\lambda v],\]
+quindi le fibre hanno una struttura vettoriale.
+
+Per concludere andrebbe mostrato che $E$ è una varietà algebrica, che la mappa costruita è regolare e che abbiamo la trivializzazione locale.
+\end{proof}
+
+
+
 \begin{example}
-    [Caso $m=2$] Consideriamo $\K^4$ con la forma quadratica $x_1x_4-x_2x_3$. Cerchiamo i sottospazi di dimensione $2$ contenuti nel radicale della forma: cerchiamo quindi rette in $\Pj(\K^4)$ contenute nella quadrica $x_1x_4=x_2x_3$. Questa quadrica corrisponde a $\Pj^1 \times \Pj^1$ tramite la mappa $([a:b],[c:d])\mapsto [ac:ad:bc:bd]$. Il gruppo $\SO(4)$ agisce su ciascun fattore $\Pj^1$, ma non scambia i due fattori tra loro. %Concretamente, la quadrica è composta da due famiglie di rette ...
+Se vogliamo costruire fibrati $G$-equivarianti di rango $1$ su $\Fl(n)=\GL(n)/B_n$, sappiamo che questi corrispondono alle rappresentazioni $1$-dimensionali di $B_n$ 
+% https://q.uiver.app/#q=WzAsMyxbMCwwLCJCX24iXSxbMiwwLCJcXEteXFx0aW1lcyJdLFsxLDEsIlQ9Ql9uL1VfbiJdLFswLDJdLFsyLDFdLFswLDFdXQ==
+\[\begin{tikzcd}
+	{B_n} && {\K^\times} \\
+	& {T=B_n/U_n}
+	\arrow[from=1-1, to=1-3]
+	\arrow[from=1-1, to=2-2]
+	\arrow[from=2-2, to=1-3]
+\end{tikzcd}\]
+Quindi queste possono essere caratterizzate attraverso i caratteri del toro.
 \end{example}
