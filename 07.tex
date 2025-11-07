@@ -1,421 +1,431 @@
-\chapter{Fibrati vettoriali}
+\chapter{Teorema di Quillen-Suslin}
+
+
+Vogliamo mostrare il seguente risultato:
+\begin{theorem}[Quillen-Suslin]
+Se $R$ \`e un PID e $M$ \`e proiettivo finitamente generato su $R[t_1,\cdots, t_n]$, allora $M$ \`e libero.
+\end{theorem}
+
+\begin{remark}
+Geometricamente il teorema afferma che i fibrati vettoriali su\footnote{In questo capitolo non mi tratterr\`o nell'uso del linguaggio degli schemi.} $\A^n_R=\Spec R\times \A^n_\Z$ sono banali.
+\end{remark}
+
+
+
+%\begin{example}[Quillen-Suslin non vale per moduli qualsiasi]
+%Consideriamo 
+%\[M[t_1,\cdots,t_n]=R[t_1,\cdots,t_n]\otimes_R M.\]
+%Allora 
+%\[R\otimes_{R[t_1,\cdots,t_n]} M[t_1,\cdots,t_n]\cong \frac{M[t_1,\cdots,t_n]}{(t_1,\cdots,t_n)M[t_1,\cdots,t_n]}\cong M.\] 
+%Quindi se $M$ è proiettivo, allora $M[t_1,\ldots,t_n]$ è proiettivo; se $M[t_1,\ldots,t_n]$ è libero, allora $M$ è libero.
+%\end{example}
+
+
+\begin{remark}
+Ricordiamo che nel linguaggio degli schemi, un modulo su $A$ \`e un fascio quasicoerente su $\Spec A$, un modulo finitamente generato \`e un fascio coerente\footnote{se $A$ Noetheriano} e un modulo proiettivo \`e un fibrato vettoriale\footnote{questo fatto \`e esattamente il contenuto del teorema (\ref{ThCorrispondenzaFibratiVettorialiModuliProiettivi})}.
+\end{remark}
+
+
+
+\section{Retta proiettiva su un anello}
+\begin{definition}
+Definiamo lo \textbf{spazio proiettivo} di dimensione $n$ su $A$ come
+\[\Pj^n_A:=\Pj^n\times \Spec A.\]
+\end{definition}
+
+\begin{notation}
+In analogia con il caso $A=\K$ definiamo $\Oc_{\Pj^1_A}(n)$ come il fibrato su $\Pj^1_A$ ottenuto ponendo $M_0=A[t]$, $M_\infty=A[t\ii]$ e considerando come isomorfismo $(M_0)_t=A[t,t\ii]\to A[t,t\ii]=(M_\infty)_{t\ii}$ quello dato da $f\mapsto t^{-n} f$.
+
+Per abbreviare scriveremo anche $\Oc_A(n)$.
+\end{notation}
+\begin{definition}
+Dato un fibrato vettoriale $\Mf$ su $\Pj^1_A$ definiamo
+\[\ol\Mf:=\frac{\Mf}{\mf\Mf}\cong \Mf\otimes \frac A\mf\]
+cio\`e $\ol\Mf$ \`e il fibrato vettoriale su $\Pj^1_{A/\mf}$ ottenuto incollando i moduli proiettivi $M_0/\mf$ e $M_\infty/\mf$.
+\end{definition}
+\begin{remark}
+Dato che $\Pj^1_A=\Spec A\times \Pj^1$, il fibrato $\ol\Mf$ \`e quello ottenuto restringendo $\Mf$ a $\Pj^1\cong \cpa{\mf}\times\Pj^1\subseteq \Spec A\times \Pj^1$.
+\end{remark}
+
+\begin{remark}
+Per la classificazione dei fibrati vettoriali sulla retta proiettiva su un campo (\ref{ThClassificazioneFibratiVettorialiSuP1}) si ha
+\[\overline{\mathfrak{M}}=\bigoplus_{i=1}^N \Oc(n_i).\]
+\end{remark}
+
+\begin{notation}
+Se tensorizziamo $\mathfrak{M}$ per $\Oc_{A}(n)$ otteniamo un fibrato
+\[\mathfrak{M}(n):=\mathfrak{M}\otimes \Oc(n)\]
+dello stesso rango ma dove moltiplichiamo i coclicli. 
+\end{notation}
+
+\begin{remark}
+Sfruttando di nuovo (\ref{ThClassificazioneFibratiVettorialiSuP1}) si ha
+\[\overline{\mathfrak{M}(n)}\cong \bigoplus_{i=1}^N \Oc_{A/\mf}(n_i)\otimes \Oc_{A/\mf}(n)=\bigoplus_{i=1}^N \Oc_{A/\mf}(n+n_i),\]
+in particolare possiamo scegliere un opportuno $n$ tale che $n+n_i\geq 0$ per ogni $i$ e $n+n_{i_0}=0$ per qualche $i_0$.
+\end{remark} 
+
+
+
+\section{Teorema di incollamento di Quillen}
 
 \begin{definition}
-    Un \textbf{fibrato vettoriale} di rango $m$ su una varietà $X$ è una mappa $p\colon E \to X$ che soddisfa le seguenti proprietà. Lo spazio 
-    \[E \times_X E \coloneqq \left\{(a,b)\in E \times E \mid p(a)=p(b)\right\}\] 
-    munito di una mappa somma $+\colon E\times_X E \to E$ e di un prodotto per scalare $\cdot \colon \K\times_X E \to E$ tali che, detta $q\colon E \times_X E \to X$ la proiezione $q(a,b)\coloneqq p(a)=p(b)$, i seguenti diagrammi commutano 
-    % https://q.uiver.app/#q=WzAsNixbMCwwLCIgRVxcdGltZXNfWCBFIl0sWzIsMCwiRSJdLFsxLDEsIlgiXSxbNCwwLCIgXFxLXFx0aW1lc19YIEUiXSxbNiwwLCJFIl0sWzUsMSwiWCJdLFsxLDIsInAiXSxbMCwxLCIrIl0sWzAsMiwicSIsMl0sWzMsNCwiXFxjZG90Il0sWzMsNSwicCIsMl0sWzQsNSwicCJdXQ==
-\[\begin{tikzcd}
-	{ E\times_X E} && E && { \K\times_X E} && E \\
-	& X &&&& X
-	\arrow["{+}", from=1-1, to=1-3]
-	\arrow["q"', from=1-1, to=2-2]
-	\arrow["p", from=1-3, to=2-2]
-	\arrow["\cdot", from=1-5, to=1-7]
-	\arrow["p"', from=1-5, to=2-6]
-	\arrow["p", from=1-7, to=2-6]
-\end{tikzcd}\]
-
-Inoltre vale una condizione di trivializzazione locale, cio\`e per ogni $x$ in $X$ esiste un intorno $U$ di $x$ e una mappa lineare sulle fibre tale che 
-% https://q.uiver.app/#q=WzAsMyxbMCwwLCJwXnstMX0oVSkiXSxbMiwwLCJVXFx0aW1lcyBcXEtebSJdLFsxLDEsIlUiXSxbMCwxLCJcXHNpbSIsMl0sWzAsMiwicCIsMl0sWzEsMiwiXFxwaV9VIl0sWzAsMSwiXFx2YXJwaGkiXV0=
-\[\begin{tikzcd}
-	{p^{-1}(U)} && {U\times \K^m} \\
-	& U
-	\arrow["\sim"', from=1-1, to=1-3]
-	\arrow["\varphi", from=1-1, to=1-3]
-	\arrow["p"', from=1-1, to=2-2]
-	\arrow["{\pi_U}", from=1-3, to=2-2]
-\end{tikzcd}\]
+Sia $M$ un $A[t_1,\cdots,t_n]$-modulo. Diciamo che $M$ è \textbf{esteso} da $A$ se esiste un $A$-modulo $N$ tale che $M\cong N[t_1,\cdots,t_n]$.
 \end{definition}
-
-\begin{example}
-    $X\times \K^m$ con la mappa di proiezione su $X$ \`e un fibrato vettoriale, detto \textbf{fibrato banale}. 
-\end{example}
-
-\begin{example}
-    Sia $X=\Pj^1=\Pj(\K^2)$ e consideriamo 
-    \[E=\{(\ell,v)\in \Pj^1\times \K^2 \colon v\in \ell \} \xrightarrow{p}\Pj^1\] 
-    dove la somma è data da $(\ell,v)+(\ell,w)=(\ell,v+w)$. Questo \`e detto il \textbf{fibrato tautologico}.
-\end{example}
-
-\begin{exercise} Consideriamo la coppia $(E,p)$ dell'esempio precedente. Mostrare che
-    \begin{enumerate}
-        \item È un fibrato vettoriale. 
-        \item Non è il fibrato banale\footnote{Una intuizione geometrica importante (seppur lontana da essere una dimostrazione) che giustifica la non banalit\`a \`e che il fibrato banale di rango 1 ``topologicamente" \`e un cilindro mentre il fibrato tautologico \`e un nastro di M\"obius.}.
-    \end{enumerate}
-\end{exercise}
-
-\section{Cocicli e banalizzazioni}
-\begin{remark}
-Se $p:E\to X$ \`e un fibrato vettoriale su $X$ di rango $m$ allora esiste un ricoprimento (finito) $\cpa{U_i}$ di $X$ tale che per ogni $i$
-% https://q.uiver.app/#q=WzAsMyxbMCwwLCJwXnstMX0oVV9pKSJdLFsyLDAsIlVfaVxcdGltZXMgXFxLXm0iXSxbMSwxLCJVX2kiXSxbMCwxLCJcXHNpbSIsMl0sWzAsMiwicCIsMl0sWzEsMiwiXFxwaV97VV9pfSJdLFswLDEsIlxcdmFycGhpX2kiXV0=
-\[\begin{tikzcd}
-	{p^{-1}(U_i)} && {U_i\times \K^m} \\
-	& {U_i}
-	\arrow["\sim"', from=1-1, to=1-3]
-	\arrow["{\varphi_i}", from=1-1, to=1-3]
-	\arrow["p"', from=1-1, to=2-2]
-	\arrow["{\pi_{U_i}}", from=1-3, to=2-2]
-\end{tikzcd}\]
-\end{remark}
-
-\begin{definition}[Cocicli]
-Dato un ricoprimento $\Uc=\cpa{U_i}$ di $X$ definiamo gli \textbf{1-cocicli} relativi al ricoprimento come
-\[Z^1(\Uc,\GL(m))=\cpa{\cpa{\al_{i,j}}\mid \al_{i,j}:U_{i,j}\to\GL(m),\ \al_{i,h}=\al_{j,h}\al_{i,j},\ \al_{i,i}(u)=I_m}.\]
-\end{definition}
-\begin{proposition}
-Se $\Uc$ \`e un ricoprimento banalizzante per il fibrato $p:E\to X$ allora esso definisce dei cocili indotti dalle mappe di transizione.
-\end{proposition}
-\begin{proof}
-Se $U_{i,j}=U_i\cap U_j$ allora abbiamo degli isomorfismi\footnote{da ora in poi eviteremo di scrivere ogni volta le restrizioni}
-\[\vp_{i,j}=\vp_j\res{U_{i,j}}\circ \vp_i\res{U_{i,j}}\ii:U_{i,j}\times\K^m\to U_{i,j}\times \K^m\]
-Sia $\vp_{i,j}(u,v)=(u,\al_{i,j}(u)(v))$. Questo definisce delle mappe regolari
-\[\al_{i,j}:U_{i,j}\to \GL(m).\]
-Notiamo inoltre che su $U_{i,j,h}\times \K^m$
-\[\vp_{j,h}\circ \vp_{i,j}=\vp_h\circ \vp_{j}\ii\circ \vp_j\circ \vp_i\ii=\vp_{i,h}.\]
-Vedendo queste identit\`a in termini delle $\al_{i,j}$ abbiamo mostrato
-\[\al_{i,h}(u)=\al_{j,h}(u)\al_{i,j}(u).\]
-Chiaramente $\vp_i\circ \vp_i\ii=id_{U_i\times\K^m}$ quindi $\al_{i,i}(u)=I_m$.
-\end{proof}
-
-\begin{proposition}[]\label{PrCocicliDeterminanoFibrato}
-Sia $\Uc$ un ricoprimento di $X$. Una collezione di cocicli $\al\in Z^1(\Uc,\GL(m))$ determina un fibrato vettoriale su $X$.
-\end{proposition}
-\begin{proof}
-Definiamo lo spazio totale come il seguente coprodotto fibrato
-\[E_\al:=\frac{\coprod(U_i\times \K^m)}{(u,v)\sim (u,\al_{i,j}(u)(v))}.\]
-Siano $\psi_i:U_i\times\K^m\to E_\al$ le mappe ovvie verso il coprodotto.
-\smallskip
-
-Su $E_\al$ imponiamo la seguente topologia: $V$ \`e aperto in $E_\al$ se e solo se $\psi_i\ii(V)$ \`e aperto in $U_i\times\K^m$ per ogni $i$.
-
-\smallskip
-
-Se $V$ \`e aperto in $E_\al$ allora, poich\'e la regolarit\`a \`e una condizione locale, si ha
-\[f\in \Oc_{E_\al}(V)\coimplies f\circ \psi_i\in \Oc_{U_i}(\psi_i\ii(V)) \quad\forall i.\]
-Affermiamo che $\psi_i$ \`e iniettiva, aperta e regolare per ogni $i$:
-\setlength{\leftmargini}{0cm}
-\begin{itemize}
-\item[$\boxed{\text{Iniettiva}}$] Supponiamo $\psi_i(u,v)=\psi_i(u',v')$, allora
-\[U_i\times \K^m\ni(u,v)\sim (u',v')\in U_i\times \K^m\overset{\al_{i,i}=id_{U_i}}\implies u=u',\ v=v'.\]
-\item[$\boxed{\text{Aperta}}$] Se $W\subseteq U_i\times\K^m$ aperto e $\wt W=\psi_i(W)\subseteq E_\al$ allora dobbiamo verificare che $\psi_j\ii(\wt W)$ \`e aperto per ogni $j$. Consideriamo la seguente catena di equivalenze:
-\begin{gather*}
-(u,v)\in \psi_j\ii(\wt W)\subseteq U_j\times\K^m\\
-\psi_j(u,v)\in \wt W=\psi_i(W)\\
-\exists (u',v')\in W\subseteq U_i\times\K^m\ t.c.\ \psi_j(u,v)=\psi_i(u',v')\text{ in }E_\al\\
-\exists (u',v')\in W\ t.c.\ U_j\times \K^m\ni(u,v)\sim (u',v')\in U_i\times \K^m\\
-(u,\al_{j,i}(u)(v))\in W
-\end{gather*}
-cio\`e $\psi_j\ii(\wt W)$ \`e la preimmagine di $W$ tramite la mappa $U_{i,j}\times \K^m\to U_i\times \K^m$ che \`e continua.
-\item[$\boxed{\text{Regolare}}$] $\psi_i$ \`e continua per definizione della topologia di $E_\al$. Essendo la regolarit\`a una condizione locale, per come abbiamo definito la topologia su $E_\al$ anche la condizione sui pullback \`e chiara.
-\end{itemize}
-\setlength{\leftmargini}{0.5cm}
-
-Abbiamo dunque mostrato che $\psi_i(U_i\times \K^m)\cong U_i\times\K^m$.
-\medskip
-
-\noindent
-La struttura vettoriale sulle fibre di $E_\al$ \`e quella indotta dal coprodotto in modo ovvio.
-\end{proof}
-
 
 \begin{remark}
-Se $U_i$ \`e un aperto di $X$ che banalizza $p:E\to X$ notiamo che possono essere definiti diversi isomorfismi tra $p\ii(U_i)$ e $U_i\times \K^m$
-% https://q.uiver.app/#q=WzAsMyxbMCwwLCJwXnstMX0oVV9pKSJdLFsyLDAsIlVfaVxcdGltZXMgXFxLXm0iXSxbMSwxLCJVX2kiXSxbMCwxLCJcXHd0XFx2cF9pIiwyLHsiY3VydmUiOjF9XSxbMCwyLCJwIiwyXSxbMSwyLCJcXHBpX3tVX2l9Il0sWzAsMSwiXFx2YXJwaGlfaSIsMCx7ImN1cnZlIjotMX1dXQ==
-\[\begin{tikzcd}
-	{p^{-1}(U_i)} && {U_i\times \K^m} \\
-	& {U_i}
-	\arrow["{\wt\vp_i}"', curve={height=6pt}, from=1-1, to=1-3]
-	\arrow["{\varphi_i}", curve={height=-6pt}, from=1-1, to=1-3]
-	\arrow["p"', from=1-1, to=2-2]
-	\arrow["{\pi_{U_i}}", from=1-3, to=2-2]
-\end{tikzcd}\]
-In particolare questi definiscono diverse mappe di transizione e diversi cocicli.
-
-
-Studiamo la ``differenza" tra le mappe di transizione 
-\[\chi_i:=\wt\vp_i\circ \vp_i\ii:U_i\times\K^m\to U_i\times\K^m\] 
-Come notazione scriviamo $\chi_i(u,v)=(u,\beta_i(u)(v))$.
-Notiamo che
-\[\wt\vp_{i,j}=\wt\vp_j\circ \wt\vp_i\ii=\wt\vp_j\circ\vp_j\ii\circ\vp_j\circ\vp_i\ii\circ\vp_i\circ \wt\vp_i\ii=\chi_j\circ\vp_{i,j}\circ\chi_i\ii,\]
-quindi in termini di cocicli $\wt \al_{i,j}=\beta_j\al_{i,j}\beta_i\ii$ o equivalentemente $\wt\al_{i,j}\beta_i=\beta_j\al_{i,j}$.
-\end{remark}
-
-Questo ci spinge a dare la seguente definizione:
-\begin{definition}[Coomologia]
-Definiamo due cocicli $\al_{i,j}$ e $\wt\al_{i,j}$ \textit{equivalenti} se esiste $\beta_i:U_i\to \GL(m)$ tale che $\wt \al_{i,j}=\beta_j\al_{i,j}\beta_i\ii$. Definiamo il \textbf{primo insieme di coomologia} come
-\[H^1(\Uc,\GL(m))=\quot{Z^1(\Uc,\GL(m))}\sim.\]
-\end{definition}
-
-
-\begin{theorem}[]\label{ThCorrispondenzaFibratiECoomologia}
-Se $\Uc$ \`e un ricoprimento aperto di $X$ allora abbiamo una corrispondenza biunivoca
-\[\quot{\cpa{\text{Fibrati vett. che si banalizzano su $\Uc$}}}{\text{iso. di fibr.}}\longleftrightarrow H^1(\Uc,\GL(m)).\]
-\end{theorem}
-\begin{proof}
-Ad un fibrato associo una collezione di cocicli e quindi una classe in coomologia. Questa associazione \`e ben definita perch\'e cambiando cocicli associati alla stessa banalizzazione essi sono equivalenti.
-
-Cambiare la classe di isomorfismo del fibrato non cambia la classe di coomologia perch\'e l'isomorfismo sugli aperti banalizzanti induce un automorfismo che corrisponde a cambiare cocicli.
-
-\bigskip
-\noindent Viceversa, dati dei coclicli sappiamo costruire un fibrato come in (\ref{PrCocicliDeterminanoFibrato}). Se $\al$ e $\wt \al$ sono cocicli equivalenti allora mostriamo che $E_\al\cong E_{\wt\al}$ come fibrati. Se $\beta_i$ sono tali che $\wt \al_{i,j}=\beta_i\al_{i,j}\beta_i\ii$ allora abbiamo una ovvia mappa tra i fibrati
-% https://q.uiver.app/#q=WzAsMixbMCwwLCJcXGRmcmFje1xcY29wcm9kKFVfaVxcdGltZXMgXFxLXm0pfXtcXHNpbV9cXGFsfSJdLFszLDAsIlxcZGZyYWN7XFxjb3Byb2QoVV9pXFx0aW1lcyBcXEtebSl9e1xcc2ltX3tcXHd0XFxhbH19Il0sWzAsMSwiXFxjb3Byb2QgaWRfe1VfaX1cXHRpbWVzIFxcYmV0YV9pKHUpKHYpIl1d
-\[\begin{tikzcd}
-	{\dfrac{\coprod(U_i\times \K^m)}{\sim_\al}} &&& {\dfrac{\coprod(U_i\times \K^m)}{\sim_{\wt\al}}}
-	\arrow["{\coprod id_{U_i}\times \beta_i(u)(v)}", from=1-1, to=1-4]
-\end{tikzcd}\]
-che si verifica essere un isomorfismo (Esercizio).
-\end{proof}
-
-\section{Operazioni sui fibrati}
-
-\begin{definition}[Morfismo di fibrati]
-Se $E\to X$ e $F\to X$ sono fibrati, un \textbf{morfismo di fibrati} $T:E\to F$ \`e un morfismo di variet\`a $E\to X$ che commuta con i cocicli. Pi\`u precisamente, definite $T_i$
-% https://q.uiver.app/#q=WzAsNCxbMCwwLCJFXFxyZXN7VV9pfSJdLFsxLDAsIkZcXHJlc3tVX2l9Il0sWzAsMSwiXFxLXm5cXHRpbWVzIFVfaSJdLFsxLDEsIlxcS15tXFx0aW1lcyBVX2kiXSxbMCwxLCJUXFxyZXN7RVxccmVze1VfaX19Il0sWzIsMywiVF9pIl0sWzAsMiwiXFxlX2kiLDJdLFsxLDMsIlxcdnBfaSJdXQ==
-\[\begin{tikzcd}
-	{E\res{U_i}} & {F\res{U_i}} \\
-	{\K^n\times U_i} & {\K^m\times U_i}
-	\arrow["{T\res{E\res{U_i}}}", from=1-1, to=1-2]
-	\arrow["{\e_i}"', from=1-1, to=2-1]
-	\arrow["{\vp_i}", from=1-2, to=2-2]
-	\arrow["{T_i}", from=2-1, to=2-2]
-\end{tikzcd}\]
-dove $\e_i$ e $\vp_i$ sono isomorfismi fissati, che inducono i cocicli $\e_{i,j}=\e_j\e_i\ii$ e $\vp_{i,j}=\vp_j\vp_i\ii$, chiediamo che commuti il diagramma 
-% https://q.uiver.app/#q=WzAsNixbMCwxLCJFXFxyZXN7VV97aSxqfX0iXSxbMSwxLCJGXFxyZXN7VV97aSxqfX0iXSxbMCwyLCJcXEteblxcdGltZXMgVV97aSxqfSJdLFsxLDIsIlxcS15tXFx0aW1lcyBVX3tpLGp9Il0sWzAsMCwiXFxLXm5cXHRpbWVzIFVfe2ksan0iXSxbMSwwLCJcXEtebVxcdGltZXMgVV97aSxqfSJdLFswLDEsIlQiXSxbMiwzLCJUX2kiXSxbMCwyLCJcXGVfaSIsMl0sWzEsMywiXFx2cF9pIl0sWzEsNSwiXFx2cF9qIiwyXSxbMCw0LCJcXGVfaiJdLFs0LDUsIlRfaiJdLFsyLDQsIlxcZV97aSxqfSIsMCx7ImN1cnZlIjotNX1dLFszLDUsIlxcdnBfe2ksan0iLDIseyJjdXJ2ZSI6NX1dXQ==
-\[\begin{tikzcd}
-	{\K^n\times U_{i,j}} & {\K^m\times U_{i,j}} \\
-	{E\res{U_{i,j}}} & {F\res{U_{i,j}}} \\
-	{\K^n\times U_{i,j}} & {\K^m\times U_{i,j}}
-	\arrow["{T_j}", from=1-1, to=1-2]
-	\arrow["{\e_j}", from=2-1, to=1-1]
-	\arrow["T", from=2-1, to=2-2]
-	\arrow["{\e_i}"', from=2-1, to=3-1]
-	\arrow["{\vp_j}"', from=2-2, to=1-2]
-	\arrow["{\vp_i}", from=2-2, to=3-2]
-	\arrow["{\e_{i,j}}", curve={height=-30pt}, from=3-1, to=1-1]
-	\arrow["{T_i}", from=3-1, to=3-2]
-	\arrow["{\vp_{i,j}}"', curve={height=30pt}, from=3-2, to=1-2]
-\end{tikzcd}\]
-cio\`e che valga la relazione 
-\[\vp_{i,j}\circ T_i=T_j\circ \e_{i,j}.\]
-\end{definition}
-
-
-\begin{definition}[Somma diretta]
-Dati due fibrati $p_E:E\to X$ e $p_F\to X$ possiamo definire la loro \textbf{somma diretta} come
-\[E\oplus F=\cpa{(e,f)\in E\times F\mid p_E(e)=p_F(f)}\to X\]
-dove la proiezione \`e definita mandando $(e,f)$ in $x=p_E(e)=p_F(f)$.
-\end{definition}
-\begin{remark}
-$E\oplus F$ \`e il prodotto fibrato su $X$ dei due fibrati.
-% https://q.uiver.app/#q=WzAsNCxbMCwxLCJFIl0sWzEsMCwiRiJdLFsxLDEsIlgiXSxbMCwwLCJFXFxvcGx1cyBGIl0sWzAsMiwicF9FIiwyXSxbMSwyLCJwX0YiXSxbMywwXSxbMywxXSxbMywyLCIiLDAseyJzdHlsZSI6eyJuYW1lIjoiY29ybmVyIn19XV0=
-\[\begin{tikzcd}
-	{E\oplus F} & F \\
-	E & X
-	\arrow[from=1-1, to=1-2]
-	\arrow[from=1-1, to=2-1]
-	\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=2-2]
-	\arrow["{p_F}", from=1-2, to=2-2]
-	\arrow["{p_E}"', from=2-1, to=2-2]
-\end{tikzcd}\]
+A meno di isomorfismo, l'$A$-modulo $N$ della definizione precedente è univocamente determinato, infatti 
+\[N\cong M/(t_1,\cdots,t_n)M=R\otimes_{R[t_1,\cdots,t_n]}M.\]
 \end{remark}
 
 \begin{remark}
-Se $\e_{i,j}$ \`e un cociclo per $E$ e $\vp_{i,j}$ per $F$ allora $\e_{i,j}+\vp_{i,j}$ \`e un cociclo di $E\oplus F$ (stiamo considerando un ricoprimento che banalizza sia $E$ che $F$).
+Geometricamente un fascio quasicoerente su $\A^n_A$ \`e esteso da $\Spec A$ se esiste un fascio quasicoerente su $\Spec A$ del quale \`e pullback tramite il fibrato banale $\A^n_A\to \Spec A$, ovvero \`e della forma $\A^n\times \Nf\to \A^n\times \Spec A$.
 \end{remark}
 
-\begin{definition}[Prodotto tensore]
-Dati due fibrati $p_E:E\to X$ e $p_F\to X$ possiamo definire il loro \textbf{prodotto tensore} $E\otimes F$ come il fibrato associato al cociclo
-\[\e_{i,j}\otimes \vp_{i,j}:U_{i,j}\to \GL(\K^n\otimes \K^m)\]
-dove $n=\rnk E$ e $m=\rnk F$.
-\end{definition}
+Il teorema che vogliamo dimostrare in questa sezione \`e
 
-\begin{definition}[Fibrato duale]
-Dato un fibrato $p:E\to X$ definiamo il \textbf{fibrato duale} come quello associato al cociclo $(\e_{i,j}\ii)^\top:U_{i,j}\to \GL(n)$.
-\end{definition}
+\begin{theorem}[di incollamento di Quillen]
+Siano $R,A$ anelli noetheriani dove $A$ è una $R$-algebra. Sia $M$ un $A[t_1,\cdots,t_n]$-modulo finitamente generato. 
 
-
-
-\begin{remark}
-Abbiamo un morfismo 
-\[E^\ast\otimes E\to \K\times X\]
-dato mandando il cociclo $\wt\e_{i,j}:=(\e_{i,j}\ii)^\top\otimes \e_{i,j}$ a $h_{i,j}=1$.
-\end{remark}
-\begin{proof}
-Se ci restringiamo ad un ricorprimento $\cpa{U_i}$ che banalizza $E$ definiamo
-\[T_i:\funcDef{(\K^n\otimes \K^n)\times U_i}{\K\times U_i}{((\la\otimes v),u)}{(\la^\top v,u)}\]
-e notiamo che queste $T_i$ si incollano ad un mosrfismo di fibrati:
-
-\noindent
-Data la definizione delle mappe di incollamento sui fibrati, verificare
-\[h_{i,j}\circ T_i\circ \wt\e_{i,j}\ii=T_j\]
-mostra anche che le $T_i$ si incollano come funzioni e questo incollamento sar\`a un morfismo di fibrati.
-La formula vale perch\'e $h_{i,j}=1$ e
-\[T_i(\wt\e_{i,j}\ii((\la,v),u))=T_i((\e_{i,j}^\top\la,\e_{i,j}\ii v),u)=(\la^\top\e_{i,j}\e_{i,j}\ii v,u)=(\la^\top v,u)=T_j((\la\otimes v),u).\]
-\end{proof}
-
-\section{Sezioni di un fibrato}
-\begin{definition}[Sezioni di un fibrato]
-Dato un fibrato vettoriale $p\colon E \to X$ e dato un aperto $U$ di $X$, definiamo le \textbf{sezioni} di $U$ come 
-\[\Gamma(U,E)\coloneqq \{\sigma\colon U \to E \mid p\circ \sigma = id_U\}.\]
-\end{definition}
-\begin{remark}
-    $\Gamma(U,E)$ eredita la somma dal fibrato:
-    \[(\sigma+\tau)(u)=\sigma(u)+\tau(u)\]
-    dove il membro di destra \`e l'immagine della coppia $(\sigma(u),\tau(u))\in E\times_X E$ tramite la mappa $+$.
-    Se $f$ è in $\Oc_X(U)$ e $\sigma\in\Gamma(U,E)$, allora è definito $f\cdot\sigma$ in modo analogo.
-    \medskip
-
-    \noindent Insieme questi fatti mostrano che $\Gamma(U,E)$ è un $\Oc_X(U)$-modulo.
-\end{remark}
-
-\begin{example}[Sezioni del fibrato banale]
-    % https://q.uiver.app/#q=WzAsNixbMCwwLCJYXFx0aW1lcyBcXEtebSJdLFswLDIsIlgiXSxbMiwwLCJVXFx0aW1lcyBcXEtebSJdLFsyLDIsIlUiXSxbMSwyLCJcXHN1cHNldGVxIl0sWzEsMCwiXFxzdXBzZXRlcSJdLFswLDFdLFsyLDMsInAiLDJdLFszLDIsIiIsMCx7ImN1cnZlIjozfV1d
-\[\begin{tikzcd}
-	{X\times \K^m} & \supseteq & {U\times \K^m} \\
-	\\
-	X & \supseteq & U
-	\arrow[from=1-1, to=3-1]
-	\arrow["p"', from=1-3, to=3-3]
-	\arrow[curve={height=18pt}, from=3-3, to=1-3]
-\end{tikzcd}\]
-    Consideriamo $\sigma(u)=(u,\alpha_1(u),\ldots,\alpha_m(u))$, dove $\alpha_i\colon U \to \K$. Allora 
-    \[\Gamma(U,U\times \K^m)\cong \Oc_X(U)^m.\]
-\end{example}
-
-Studiamo ora le sezioni di un fibrato qualsiasi.
-
-\begin{proposition}\label{PrSezioniDiFibrato}
-Siano $p:E\to X$ un fibrato vettoriale e $\Uc$ un ricoprimento banalizzante per questo.
-Dare $\sigma\in \Gamma(X,E)$ \`e equivalente a dare delle $\sigma_i:U_i\to \K^m$ per ogni aperto del ricoprimento che verificano
-\begin{center}
-	\begin{tabular}[width=\pagewidth]{ccr}
-		~\hspace{4.3cm}~&$\sigma_j=\al_{i,j}\sigma_i$ &\hspace{1cm}(\textbf{condizione di cociclo})
-	\end{tabular} 
-\end{center}
-dove $\al_{i,j}$ sono dei cocicli per il fibrato.
-\end{proposition}
-\begin{proof}
-Fissiamo $\vp_i:E\res{U_i}\to U_i\times \K^m$ e $\al_{i,j}$ come prima. Se $\sigma\in\Gamma(X,E)$ allora
-\[\wt \sigma_i=\sigma\res{U_i}:U_i\to E\res{U_i},\quad \sigma_i:=\pi_{\K^m}\circ\vp_i\circ\wt\sigma_i\]
-\[\vp_i\circ \wt\sigma_i:\funcDef{U_i}{U_i\times\K^m}{u}{(u,\sigma_i(u))}\]
-Su $U_{i,j}$ abbiamo
-\[\wt \sigma_j=\vp_{i,j}\circ \wt \sigma_i,\quad \sigma_j=\al_{i,j}\sigma_i\]
-quindi da $\sigma$ abbiamo trovato delle $\sigma_i:U_i\to \K^m$ che verificano $\sigma_j=\al_{i,j}\sigma_i$.
-
-Viceversa dati questi dati essi si possono incollare a $\sigma:X\to E$ perch\'e la condizione di cocliclo garantisce che le $\sigma_i$ coincidano sulle intersezioni degli aperti del ricoprimento.
-\end{proof}
-
-\section{Fibrati vettoriali su variet\`a affini}
-
-\begin{remark}
-Se $X$ \`e una variet\`a affine, $A=\K[X]$ e $E$ \`e un fibrato vettoriale di rango $m$ su $X$ allora $M=\Gamma(X,E)$ \`e un $A$-modulo.
-\end{remark}
-
-\begin{remark}
-Supponiamo che $E$ si banalizzi su aperti affini $X_i$ tali che\footnote{ricordiamo che aperti di questo tipo formano una base per la topologia di Zariski.} $\K[X_i]=A_{f_i}$. Siano $\al_{i,j}$ i cocicli e consideriamo la mappa
-\[J:\funcDef{\bigoplus_i (A_{f_i})^m}{\bigoplus_{i,j} (A_{f_if_j})^m}{(\sigma_i)}{(\sigma_j-\al_{i,j}\sigma_i)}\]
-Per quanto detto $\Gamma(X,E)=\ker J$.
-\end{remark}
-
-\begin{proposition}
-$\Gamma(X_f,E)=\Gamma(X,E)_f$
-\end{proposition}
-\begin{proof}
-Su $X_f=U\subseteq X$ abbiamo 
-% https://q.uiver.app/#q=WzAsMTIsWzAsMCwiMCJdLFsxLDAsIlxcR2FtbWEoWCxFKSJdLFsxLDEsIlxcR2FtbWEoVSxFKSJdLFswLDEsIjAiXSxbMiwwLCJcXGJpZ29wbHVzXFxLW1VfaV1ebSJdLFsyLDEsIlxcYmlnb3BsdXNcXEtbVV9pXFxjYXAgVV1ebSJdLFszLDAsIlxcYmlnb3BsdXNcXEtbVV97aSxqfV1ebSJdLFszLDEsIlxcYmlnb3BsdXNcXEtbVV97aSxqfVxcY2FwIFVdXm0iXSxbMiwyLCJcXGJpZ29wbHVzXFxLW1VfaV1ebV9mIl0sWzMsMiwiXFxiaWdvcGx1c1xcS1tVX3tpLGp9XV5tX2YiXSxbMSwyLCJcXEdhbW1hKFgsRSlfZiJdLFswLDIsIjAiXSxbMTEsMTBdLFsxMCw4XSxbOCw5XSxbMywyXSxbMiw1XSxbNSw3XSxbMCwxXSxbMSw0XSxbNCw2XSxbNCw1XSxbNiw3XSxbNSw4LCI9IiwzLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoibm9uZSJ9LCJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzcsOSwiPSIsMyx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFsxMCwyLCI9IiwzLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoibm9uZSJ9LCJoZWFkIjp7Im5hbWUiOiJub25lIn19fV1d
-\[\begin{tikzcd}
-	0 & {\Gamma(X,E)} & {\bigoplus\K[U_i]^m} & {\bigoplus\K[U_{i,j}]^m} \\
-	0 & {\Gamma(U,E)} & {\bigoplus\K[U_i\cap U]^m} & {\bigoplus\K[U_{i,j}\cap U]^m} \\
-	0 & {\Gamma(X,E)_f} & {\bigoplus\K[U_i]^m_f} & {\bigoplus\K[U_{i,j}]^m_f}
-	\arrow[from=1-1, to=1-2]
-	\arrow[from=1-2, to=1-3]
-	\arrow[from=1-3, to=1-4]
-	\arrow[from=1-3, to=2-3]
-	\arrow[from=1-4, to=2-4]
-	\arrow[from=2-1, to=2-2]
-	\arrow[from=2-2, to=2-3]
-	\arrow[from=2-3, to=2-4]
-	\arrow["{=}"{marking, allow upside down}, draw=none, from=2-3, to=3-3]
-	\arrow["{=}"{marking, allow upside down}, draw=none, from=2-4, to=3-4]
-	\arrow[from=3-1, to=3-2]
-	\arrow["{=}"{marking, allow upside down}, draw=none, from=3-2, to=2-2]
-	\arrow[from=3-2, to=3-3]
-	\arrow[from=3-3, to=3-4]
-\end{tikzcd}\]
-\end{proof}
-\begin{corollary}\label{CorLocalizzazioneSezioniFibratoSuAffine}
-Se $E$ su $X_f$ \`e banale allora
-\[\Gamma(X,E)_f\cong \K[X_f]^m=(A_f)^m.\]
-\end{corollary}
-
-
-\subsection{Caratterizzazione con i moduli proiettivi}
-
-Ricordiamo il seguente 
-\begin{theorem}[]\label{ThSuLocaleNoetherianoUnFinitamenteGeneratoEPiattoImplicaLibero}
-$A$ locale e Noetheriano, $M$ finitamente generato, allora
-\begin{center}
-	$M$ \`e piatto $\coimplies$ $M$ \`e proiettivo $\coimplies$ $M$ \`e libero.
-\end{center}
+Allora $M$ è esteso da $A$ se e solo se, per ogni ideale massimale $\mf$ di $R$, $M_\mf$ è esteso da $A_\mf$.
 \end{theorem}
 
-\begin{lemma}[]\label{LmLocalizzazioneDiHom}
-Sia $A$ un anello, $X$ un $A$ modulo e $M$ un $A$-modulo finitamente presentato, allora per $\mf$ massimale di $A$ abbiamo un isomorfismo
-\[\funcDef{(\Hom_A(M,X))_\mf}{\Hom_{A_\mf}(M_\mf,X_\mf)}{\vp/s}{\frac ut\mapsto \frac{\vp(u)}{st}}\]
+
+
+
+\subsection{Lemmi geometrici}
+
+\begin{lemma}\label{LmComportamentoSuSpigaSiSollevaAIntorno}
+Sia $R$ un anello noetheriano e siano $M,N$ due $R$-moduli, con $M$ finitamente generato. 
+\begin{enumerate}
+\item Se $\varphi\colon M\to N$ è tale che $\varphi_\mf\colon M_\mf \to N_\mf$ è la mappa nulla, allora esiste $f$ in $R\setminus \mf$ tale che $\varphi_f=0$. 
+\item Se $\psi\colon M_\mf\to N_\mf$, allora esistono $f$ in $R\setminus \mf$ e $\varphi\colon M_f\to N_f$ tali che $\psi$ è la localizzazione di $\varphi$.
+\item Se $N$ è finitamente generato e $\psi\colon M_\mf\to N_\mf$ è un isomorfismo, allora esistono $f$ in $R\setminus \mf$ e un isomorfismo $\varphi\colon M_f\to N_f$.
+\end{enumerate}
 \end{lemma}
 \begin{proof}
-Se $M$ \`e libero allora la tesi \`e vera in quanto
-\[(\Hom_A(M,X))_\mf\cong (X^n)_\mf=X_\mf^n\cong \Hom_{A_\mf}(A_\mf^n,X_\mf)=\Hom_{A_\mf}(M_\mf,X_\mf)\]
-e la mappa data \`e questo isomorfismo.
-
-Se ora $A^h\to A^k\to M\to 0$ \`e una presentazione finita di $M$ costruiamo il diagramma commutativo con righe esatte\footnote{le righe sono esatte per esattezza della localizzazione e esattezza a sinistra degli $\Hom$}
-% https://q.uiver.app/#q=WzAsOCxbMCwwLCIwIl0sWzEsMCwiXFxIb20oTSxYKV9cXG1mIl0sWzIsMCwiXFxIb20oQV5rLFgpX1xcbWYiXSxbMywwLCJcXEhvbShBXmgsWClfXFxtZiJdLFsxLDEsIlxcSG9tKE1fXFxtZixYX1xcbWYpIl0sWzIsMSwiXFxIb20oQV5rX1xcbWYsWF9cXG1mKSJdLFszLDEsIlxcSG9tKEFeaF9cXG1mLFhfXFxtZikiXSxbMCwxLCIwIl0sWzAsMV0sWzEsMl0sWzIsM10sWzcsNF0sWzQsNV0sWzUsNl0sWzMsNl0sWzIsNV0sWzEsNF1d
+La dimostrazione è simile a quella di localmente libero implica proiettivo (\ref{ThCaratterizzazioneProiettivoNoetheriano}).
+\setlength{\leftmargini}{0cm}
+\begin{enumerate}
+\item Siano $x_1,\cdots,x_k$ dei generatori di $M$. Poiché $\varphi_\mf=0$, si ha $\varphi(x_1)=\cdots=\varphi(x_k)=0$ in $N_\mf$, quindi esiste $f\notin \mf$ tale che $f\varphi(x_1)=\cdots=f\varphi(x_k)=0$ in $N$. Allora $\varphi_f=0$. 
+\item Consideriamo il diagramma % https://q.uiver.app/#q=WzAsOCxbMCwwLCJBXmgiXSxbMSwwLCJBXmsiXSxbMiwwLCJNIl0sWzMsMCwiMCJdLFswLDEsIkFfXFxtZl5oIl0sWzEsMSwiQV5rX1xcbWYiXSxbMiwxLCJNX1xcbWYiXSxbMiwyLCJOX1xcbWYiXSxbNCw1XSxbNSw2XSxbNiw3XSxbMCwxXSxbMSwyXSxbMiwzXV0=
 \[\begin{tikzcd}
-	0 & {\Hom(M,X)_\mf} & {\Hom(A^k,X)_\mf} & {\Hom(A^h,X)_\mf} \\
-	0 & {\Hom(M_\mf,X_\mf)} & {\Hom(A^k_\mf,X_\mf)} & {\Hom(A^h_\mf,X_\mf)}
+	{A^h} & {A^k} & M & 0 \\
+	{A_\mf^h} & {A^k_\mf} & {M_\mf} \\
+	&& {N_\mf}
 	\arrow[from=1-1, to=1-2]
 	\arrow[from=1-2, to=1-3]
-	\arrow[from=1-2, to=2-2]
 	\arrow[from=1-3, to=1-4]
-	\arrow[from=1-3, to=2-3]
-	\arrow[from=1-4, to=2-4]
 	\arrow[from=2-1, to=2-2]
 	\arrow[from=2-2, to=2-3]
-	\arrow[from=2-3, to=2-4]
+	\arrow[from=2-3, to=3-3]
 \end{tikzcd}\]
-Poich\'e le due mappe a destra sono isomorfismi anche la prima lo \`e per diagram chasing.
-\end{proof}
-
-\begin{theorem}[]\label{ThCaratterizzazioneProiettivoNoetheriano}
-Sia $A$ Noetheriano e $M$ finitamente generato. Le seguenti sono equivalenti
-\begin{enumerate}
-	\item $M$ \`e proiettivo
-	\item $M$ \`e piatto
-	\item $M_\mf$ \`e libero per ogni $\mf$ massimale in $A$
-	\item $M$ \`e localmente libero, cio\`e esistono $f_1,\cdots, f_n\in A$ tali che $(f_1,\cdots, f_n)=A$ e $M_{f_i}$ \`e libero.
+e scriviamo $\psi(x_i)=y_i/f$ con $f\notin \mf$ e $y_i\in N$. In particolare gli $\psi(x_i)$ sono in $N_f$. Consideriamo il diagramma 
+% https://q.uiver.app/#q=WzAsNSxbMCwwLCJBX2ZeaCJdLFsxLDAsIkFea19mIl0sWzIsMCwiTV9mIl0sWzIsMSwiTl9mIl0sWzMsMCwiMCJdLFswLDEsIlxcYmV0YV9mIl0sWzEsMiwiXFxhbHBoYV9mIl0sWzIsM10sWzIsNF0sWzEsMywiXFxwaGkiXV0=
+\[\begin{tikzcd}
+	{A_f^h} & {A^k_f} & {M_f} & 0 \\
+	&& {N_f}
+	\arrow["{\beta_f}", from=1-1, to=1-2]
+	\arrow["{\alpha_f}", from=1-2, to=1-3]
+	\arrow["\phi", from=1-2, to=2-3]
+	\arrow[from=1-3, to=1-4]
+	\arrow[from=1-3, to=2-3]
+\end{tikzcd}\]
+dove $\phi(e_i)=y_i/f$. Segue per esattezza della prima riga che $\phi_\mf\circ \beta_\mf=0$ e quindi per il punto 1. esiste $g\notin \mf$ tale che \[(\phi_{g}\circ (\beta_{f})_g)\colon A_{fg}^h \to N_{fg}\] è la mappa nulla. A meno di sostituire $f$ con $fg$, possiamo assumere che $\phi\circ \beta_f=0$ e quindi otteniamo una mappa $\vp\colon M_f=A^k_f/\imm(\beta_f)\to N_f$ per il primo teorema di omomorfismo. Per costruzione $\vp_\mf=\psi$ come voluto.
+\item Per il punto 2. possiamo sollevare $\psi$ e $\psi\ii$ a $\vp:M_f\to N_f$ e $\wt \vp:N_f\to M_f$ (scegliendo un opportuno $f$). Notiamo che $(\vp\circ \wt \vp-id_{N_f})_\mf=\psi\circ \psi\ii-id_{N_\mf}=0$, quindi per il punto 1. $\vp\circ \wt \vp=id_{N_f}$ a meno di localizzare ulteriormente. Analogamente sistemiamo anche l'altra composizione.
 \end{enumerate}
-\end{theorem}
+\setlength{\leftmargini}{0.5cm}  
+\end{proof}
+\begin{remark}
+Geometricamente, il lemma afferma che il comportamento su una spiga di un fascio coerente determina il comportamento in un intorno.
+\end{remark}
+
+
+
+\begin{lemma}\label{LmFasciQuasicoerentiSonoIncollamentoDiRestrizioniSuRicoprimento}
+Siano $f,g$ in $R$ coprimi (cioè $(f,g)=R$) e sia $M$ un $R$-modulo. Allora $M$ \`e il prodotto fibrato di $M_f$ e $M_g$ su $M_{fg}$
+% https://q.uiver.app/#q=WzAsNCxbMSwwLCJNX2YiXSxbMSwxLCJNX3tmZ30iXSxbMCwxLCJNX2ciXSxbMCwwLCJNIl0sWzAsMSwiXFxhbHBoYSJdLFszLDAsImIiXSxbMiwxLCJcXGJldGEiLDJdLFszLDIsImEiLDJdLFszLDEsIiIsMSx7InN0eWxlIjp7Im5hbWUiOiJjb3JuZXIifX1dXQ==
+\[\begin{tikzcd}
+	M & {M_f} \\
+	{M_g} & {M_{fg}}
+	\arrow["b", from=1-1, to=1-2]
+	\arrow["a"', from=1-1, to=2-1]
+	\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=2-2]
+	\arrow["\alpha", from=1-2, to=2-2]
+	\arrow["\beta"', from=2-1, to=2-2]
+\end{tikzcd}\]
+cio\`e
+\[M\cong \{(x,y)\in M_f\times M_g \colon \alpha(x)=\beta(y) \}\] 
+tramite la mappa $m\mapsto (a(m),b(m))$. 
+\end{lemma}
 \begin{proof}
-Diamo le implicazioni
+Verifichiamo iniettivit\`a e suriettivit\`a:
 \setlength{\leftmargini}{0cm}
 \begin{itemize}
-\item[$\boxed{1.\implies2.}$] ovvio. 
-\item[$\boxed{2.\implies3.}$] ovvio per il teorema (\ref{ThSuLocaleNoetherianoUnFinitamenteGeneratoEPiattoImplicaLibero}) dato che $A_\mf$ \`e locale e $M_\mf$ sarebbe piatto finitamente generato su locale noetheriano, quindi libero.
-\item[$\boxed{4.\implies3.}$] Se $\mf$ \`e massimale esiste $f_i$ che non appartiene a $\mf$. Allora $M_\mf=(M_{f_i})_\mf$ ma $M_{f_i}$ \`e libero.
-\item[$\boxed{3.\implies1.}$] Mostriamo che $\Hom_A(M,\bullet)$ \`e esatto. Consideriamo una successione esatta corta di moduli
-\[0\to X\to Y\to Z\to 0\]
-e mostriamo che
-\[0\to \Hom_A(M,X)\to \Hom_A(M,Y)\to \Hom_A(M,Z)\to 0\]
-\`e esatta. Per fare ci\`o basta mostrare che per ogni $\mf$ massimale \`e esatta
-\[0\to (\Hom_A(M,X))_\mf\to (\Hom_A(M,Y))_\mf\to (\Hom_A(M,Z))_\mf\to 0\]
-Per il lemma (\ref{LmLocalizzazioneDiHom}) la mappa
-\[\funcDef{(\Hom_A(M,X))_\mf}{\Hom_{A_\mf}(M_\mf,X_\mf)}{\vp/s}{\frac ut\mapsto \frac{\vp(u)}{st}}\]
-\`e un isomorfismo (poich\'e $A$ noetheriano si ha che $M$ \`e finitamente generato esattamente se \`e finitamente presentato). Otteniamo dunque un diagramma commutativo
-% https://q.uiver.app/#q=WzAsMTAsWzAsMCwiMCJdLFsxLDAsIlxcSG9tKE0sWClfXFxtZiJdLFsyLDAsIlxcSG9tKE0sWSlfXFxtZiJdLFszLDAsIlxcSG9tKE0sWilfXFxtZiJdLFsxLDEsIlxcSG9tKE1fXFxtZixYX1xcbWYpIl0sWzIsMSwiXFxIb20oTV9cXG1mLFlfXFxtZikiXSxbMywxLCJcXEhvbShNX1xcbWYsWl9cXG1mKSJdLFswLDEsIjAiXSxbNCwwLCIwIl0sWzQsMSwiMCJdLFswLDFdLFsxLDJdLFsyLDNdLFs3LDRdLFs0LDVdLFs1LDZdLFszLDZdLFsyLDVdLFsxLDRdLFs2LDldLFszLDhdXQ==
+\item[$\boxed{\text{inj.}}$] Se esiste $h$ tale che $f^hm=0$ e $g^hm=0$, poiché esistono $u,v$ in $R$ tali che $uf^h+vg^h=1$, si ottiene $m=(uf^h+vg^h)m=0$.
+\item[$\boxed{\text{surj.}}$] Sia $(x,y)$ in $M_f\times M_g$ tale che $\alpha(x)=\beta(y)$. Scriviamo $x=z/f^s$ e $y=w/g^s$ con $z,w$ in $M$. Allora esiste $t\ge s$ tale che $(fg)^t (z/f^s-w/g^s)=0$, cioè in $M$ si ha l'uguaglianza $f^{t-s}g^t z= f^tg^{t-s}w$. Come prima, esistono $u,v$ tali che $uf^t+vg^t=1$. Sia $m=zu f^{t-s}+wvg^{t-s}$ e verifichiamo che $x=a(m)$ e $y=b(m)$:
+In $M_f$ 
+\[x=(uf^t+vg^t)x=zuf^{t-s}+\frac{zvg^{t}}{f^s}=zu f^{t-s}+wvg^{t-s}=m.\]  
+Analogamente si trova $y=m$ in $M_g$ come voluto.
+\end{itemize}
+\setlength{\leftmargini}{0.5cm}
+\end{proof}
+\begin{remark}
+Geometricamente, il lemma afferma che possiamo ricostruire un fascio quasicoerente a partire dalle sue restrizioni su un ricoprimento.
+\end{remark}
+
+\begin{lemma}\label{LmMorfismiDiFasciQuasicoerentiSiIncollanoSuRicoprimento}
+Siano $f,g$ in $R$ coprimi e siano $M,N$ due $R$-moduli. Supponiamo di avere un diagramma commutativo 
+% https://q.uiver.app/#q=WzAsNixbMSwwLCJOX2YiXSxbMSwxLCJOX3tmZ30iXSxbMCwxLCJNX3tmZ30iXSxbMCwwLCJNX2YiXSxbMCwyLCJNX2ciXSxbMSwyLCJOX2ciXSxbMywwLCJcXHZhcnBoaSJdLFs1LDFdLFs0LDJdLFs0LDUsIlxccHNpIiwyXSxbMywyXSxbMCwxXSxbMiwxXV0=
 \[\begin{tikzcd}
-	0 & {\Hom(M,X)_\mf} & {\Hom(M,Y)_\mf} & {\Hom(M,Z)_\mf} & 0 \\
-	0 & {\Hom(M_\mf,X_\mf)} & {\Hom(M_\mf,Y_\mf)} & {\Hom(M_\mf,Z_\mf)} & 0
+	{M_f} & {N_f} \\
+	{M_{fg}} & {N_{fg}} \\
+	{M_g} & {N_g}
+	\arrow["\varphi", from=1-1, to=1-2]
+	\arrow[from=1-1, to=2-1]
+	\arrow[from=1-2, to=2-2]
+	\arrow[from=2-1, to=2-2]
+	\arrow[from=3-1, to=2-1]
+	\arrow["\psi"', from=3-1, to=3-2]
+	\arrow[from=3-2, to=2-2]
+\end{tikzcd}\]
+Allora esiste una mappa $\chi\colon M\to N$ tale che $\chi_f=\varphi$ e $\chi_g=\psi$.
+\end{lemma}
+\begin{proof}
+Considerando il diagramma seguente, l'esistenza di $\chi$ segue dal lemma precedente. 
+% https://q.uiver.app/#q=WzAsOCxbMywxLCJOX2YiXSxbMywyLCJOX3tmZ30iXSxbMiwyLCJOX2ciXSxbMSwwLCJNX2YiXSxbMiwxLCJOIl0sWzEsMSwiTV97Zmd9Il0sWzAsMSwiTV9nIl0sWzAsMCwiTSJdLFszLDAsIlxcdmFycGhpIl0sWzAsMV0sWzIsMSwiXFxiZXRhIiwyXSxbNCwyXSxbNCwwXSxbNiw1XSxbMyw1XSxbNiwyXSxbNywzXSxbNyw2XSxbNSwxXSxbNyw0LCIiLDIseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkb3R0ZWQifX19XV0=
+\[\begin{tikzcd}
+	M & {M_f} \\
+	{M_g} & {M_{fg}} & N & {N_f} \\
+	&& {N_g} & {N_{fg}}
+	\arrow[from=1-1, to=1-2]
+	\arrow[from=1-1, to=2-1]
+	\arrow[dotted, from=1-1, to=2-3]
+	\arrow[from=1-2, to=2-2]
+	\arrow["\varphi", from=1-2, to=2-4]
+	\arrow[from=2-1, to=2-2]
+	\arrow[from=2-1, to=3-3]
+	\arrow[from=2-2, to=3-4]
+	\arrow[from=2-3, to=2-4]
+	\arrow[from=2-3, to=3-3]
+	\arrow[from=2-4, to=3-4]
+	\arrow["\beta"', from=3-3, to=3-4]
+\end{tikzcd}\]
+\end{proof}
+\begin{remark}
+Geometricamente, il lemma afferma che possiamo incollare morfismi di fasci quasicoerenti definiti su un ricoprimento che coincidono sulle intersezioni.
+\end{remark}
+
+\subsection{Lemmi su polinomi invertibili a coefficienti in algebra}
+
+\begin{notation}
+Sia $E$ una $B$-algebra (eventualmente non commutativa) con centro $B$. Definiamo
+\[E[t]^u=\cpa{f(t)\in E[t]\mid f(0)=1,\ \text{ invertibili}}.\]
+\end{notation}
+
+\begin{lemma}[]\label{LmTecnicoSuPolinomiACoeffInAlgebre}
+Sia $\theta(t)\in E_f[t]^u$. Per $k\gg 0$ si ha
+\[\theta((x+f^ky)t)\theta(xt)\ii\in E[x,y][t]^u\]
+\end{lemma}
+\begin{proof}
+Sostituendo $x+y=t$ in $\theta(t)$ e sottraendo il termine noto rispetto a $y$ troviamo che esiste $\vp\in E_f[x,y]$ tale che 
+\[\theta(x+y)-\theta(x)=y\vp(x,y).\]
+Espandiamo l'elemento nel testo del lemma usando la relazione appena ricavata:
+\begin{align*}
+	\theta((x+f^ky)t)\theta(xt)\ii=&\pa{\theta(xt+yf^kt)-\theta(xt)+\theta(xt)}\theta(xt)\ii=\\
+	=&yf^kt\under{\in E_f[x,y,t]}{\vp(xt,yf^kt)\theta(xt)\ii}+1.
+\end{align*}
+Per definizione di localizzazione, per $k\gg0$, esiste $\beta\in E[x,y,t]$ tale che\footnote{l'$f^k$ nel secondo argomento di $\vp$ non causa problemi, anzi per $k\gg 0$ contribuisce a cancellare le eventuali $f$ al denominatore dei coefficienti di $\vp$.}
+\[\beta(x,y,t)=f^k\vp(xt,yf^kt)\theta(xt)\ii,\]
+dunque
+\[\theta((x+f^ky)t)\theta(xt)\ii=1+yt\beta(x,y,t)\in E[x,y][t].\]
+Per un conto analogo ($h\gg0$)
+\[\theta(xt)\theta((x+f^hy)t)\ii=1+ty\gamma(x,y,t)\in E[x,y][t].\]
+Semplifichiamo la notazione ponendo
+\begin{align*}
+	\wt \gamma=&\theta(xt)\theta((x+f^hy)t)\ii=1+ty\gamma\\
+	\wt\beta=&\theta((x+f^ky)t)\theta(xt)\ii=1+ty\beta.
+\end{align*}
+Per definizione (con $k=h$) $\wt \beta\wt \gamma=1$ in $E_f[x,y,t]$. Per le formule in $E[x,y,t]$ appena trovate si ha 
+\[\wt \beta\wt \gamma=1+y(t\gamma+t\beta+t^2y\beta\gamma)\doteqdot1+y\delta\]
+quindi mettendo i due fatti assieme $f^i\delta=0$ per $i$ grande. A meno di sostituire $y$ con $f^iy$ (cio\`e semplicemente aumentare la potenza di $f$ che moltiplica $y$) otteniamo che $\wt \gamma\wt \beta=1$ in $E[x,y][t]$. Otteniamo l'identit\`a $\wt \beta\wt \gamma=1$ in $E[x,y][t]$ in modo analogo.
+
+Questo mostra che per $k\gg0$, $\wt\beta=\theta((x+f^ky)t)\theta(xt)\ii$ \`e invetibile. Valutando $\wt \beta$ in $t=0$ troviamo $\theta(0)\theta(0)\ii=1$ come voluto.
+\end{proof}
+
+\begin{lemma}\label{LmSpezzoLocalizzazioniDiPolinomiACoefficientiInAlgebre}
+Per ogni $f,g\in B$ con $(f,g)=B$
+	\[E_{fg}[t]^u\cong E_f[t]^u E_g[t]^u\]
+\end{lemma}
+\begin{proof}
+Se $k\gg0$ e $a=b+h^ky$ allora se\footnote{scriviamo $\wt E$ per indicare che l'algebra non \`e necessariamente quella del testo. Sotto infatti useremo $\wt E=E_f$ e $\wt E=E_g$.} $\theta\in \wt E_h[t]^u$ si ha per il lemma (\ref{LmTecnicoSuPolinomiACoeffInAlgebre})
+\[\theta(at)\theta(bt)\ii\in \wt E[t]^u.\]
+Se ora $\theta(t)\in E_{fg}[t]^u$ allora scriviamo (ricordiamo che $\theta(0)=id$)
+\[\theta(t)=\under{\in E_f[t]^u}{\theta(t)\theta(bt)\ii}\ \under{\in E_g[t]^u}{\theta(bt)\theta(0)\ii}\]
+dove, per quanto detto, i contenimenti valgono se $b=1\pmod{f^k}$ e $b=0\pmod{g^k}$ per $k\gg0$, ma dato che $(f,g)=B$ possiamo trovare un tale $b$ per il teorema cinese del resto.
+\end{proof}
+
+
+\subsection{Dimostrazione}
+\begin{theorem}[di incollamento di Quillen]\label{ThIncollamentoQuillen}
+Siano $R,A$ anelli noetheriani dove $A$ è una $R$-algebra. Sia $M$ un $A[t_1,\cdots,t_n]$-modulo finitamente generato. 
+
+Allora $M$ è esteso da $A$ se e solo se, per ogni ideale massimale $\mf$ di $R$, $M_\mf$ è esteso da $A_\mf$.
+\end{theorem}
+\begin{proof}
+Chiaramente se $M$ \`e esteso da $A$ allora per esattezza della localizzazione sappiamo anche che $M_\mf$ \`e esteso da $A_\mf$ per ogni $\mf$ massimale di $R$. Mostriamo l'altra implicazione. 
+Definiamo il seguente oggetto:
+\[Q(M)\coloneqq\{f\in R\mid M_f \text{ è esteso da } A_f\}\]
+e diamo un nome ai seguenti enunciati:
+\setlength{\leftmargini}{0cm}
+\begin{enumerate}
+\item[$(\alpha_n)$] $Q(M)$ è un ideale.
+\item[$(\beta_n)$] Se $M_\mf$ è esteso da $A_\mf$ per ogni $\mf$ massimale in $R$ allora $M$ è esteso da $A$.
+\end{enumerate}
+\setlength{\leftmargini}{0.5cm}
+dove l'indice $n$ \`e il numero di variabili come nell'enunciato. La tesi \`e che valga $(\beta_n)$ per ogni $n\geq 1$. Possiamo definire formalmente anche $(\beta_0)$ ma la tesi in quel caso \`e triviale perch\'e avremmo $N=M\otimes_{R}R=M$.
+
+\setlength{\leftmargini}{0cm}
+\begin{itemize}
+\item[$\boxed{(\al_n)\implies(\beta_n)}$] Siano \[N\coloneqq M/(t_1,\cdots,t_n)M \quad \text{ e } \quad N_\mf\coloneqq M_\mf/(t_1,\cdots,t_n)M_\mf.\] Per ogni $\mf$ esiste un isomorfismo $\varphi_\mf\colon M_\mf \xrightarrow{\sim} N_\mf[t_1,\cdots,t_n]$ di $A_\mf[t_1,\cdots,t_n]$-moduli ed esiste un $f_\mf\notin \mf$ tale che $\varphi_{f_\mf}\colon M_{f_\mf}\xrightarrow{\sim} N_{f_\mf}$ è un isomorfismo per il punto 3. del lemma (\ref{LmComportamentoSuSpigaSiSollevaAIntorno}). Quindi $f_\mf$ è in $Q(M)$ per ogni $\mf$ e quindi $Q(M)$ non è contenuto in alcun ideale massimale $\mf$. In particolare $Q(M)=R$, cioè $1\in Q(M)$, da cui concludiamo che $M$ è esteso da $A$. 
+\item[$\boxed{(\beta_1),(\beta_{n-1})\implies(\beta_n)}$] Sia $N=M/(t_1,\cdots,t_n)M$. Consideriamo $A'\coloneqq A[t_1,\cdots,t_{n-1}]$ e l'$A'$-modulo $M'\coloneqq M/t_n M$. 
+Localizzando $M'$ rispetto a $\mf$ si ottiene 
+\[M'_\mf=M_\mf/t_n M_\mf\cong \frac{N_\mf[t_1,\cdots,t_n]}{t_n N_\mf[t_1,\cdots,t_n]}\cong N_\mf[t_1,\cdots,t_{n-1}].\] 
+Quindi $M'_\mf$ è esteso da $A_\mf$ per ogni massimale di $R$, dunque per $(\beta_{n-1})$ $M'$ è esteso da $A$, cioè $M'\cong N[t_1,\cdots,t_{n-1}]$.
+
+Grazie a questo risultato abbiamo il seguente diagramma commutativo
+% https://q.uiver.app/#q=WzAsNCxbMCwwLCJNX1xcbWYiXSxbMiwwLCJNX1xcbWYnW3Rfbl0iXSxbMCwyLCJOX1xcbWZbdF8xLFxcY2RvdHMsdF9uXSJdLFsyLDIsIk5fXFxtZlt0XzEsXFxjZG90cyx0X3tuLTF9XVt0X25dIl0sWzAsMV0sWzIsMywiXFxzaW0iXSxbMCwyLCJcXHNpbSJdLFsxLDMsIlxcc2ltIl1d
+\[\begin{tikzcd}
+	{M_\mf} && {M_\mf'[t_n]} \\
+	\\
+	{N_\mf[t_1,\cdots,t_n]} && {N_\mf[t_1,\cdots,t_{n-1}][t_n]}
+	\arrow[from=1-1, to=1-3]
+	\arrow["\sim", from=1-1, to=3-1]
+	\arrow["\sim", from=1-3, to=3-3]
+	\arrow["\sim", from=3-1, to=3-3]
+\end{tikzcd}\]
+dove la prima freccia verticale \`e un isomorfismo per ipotesi, la seconda \`e un isomorfismo per quanto appena detto e l'orizzontale in fondo \`e l'identit\`a. Segue che $M\cong M'[t_n]$.
+
+Osserviamo che è possibile applicare $(\beta_1)$ ad $A'[t_n]$ e a $M$ in quanto $M_\mf/t_n M_\mf=M'_\mf$ e 
+\[M_\mf\cong N_\mf[t_1,\cdots, t_n]\cong N_\mf[t_1,\cdots,t_{n-1}][t_n]\cong M_\mf'[t_n]\]
+per quanto detto. Quindi $M$ \`e esteso da $A'$, cio\`e 
+\[M\cong M/t_n M[t_n]=M'[t_n]=N[t_1,\cdots,t_{n-1}][t_n]\]
+come voluto.
+\item[$\boxed{(\al_1)}$] Scriviamo $t=t_1$ per comodit\`a e poniamo $N=M/tM$. 
+
+Sia $f$ in $Q(M)$ e $g\in R$ qualsiasi. Per definizione $M_f\cong N_f[t]$ e per esattezza della localizzazione segue $M_{fg}\cong N_{fg}[t]$, cio\`e $fg\in Q(M)$. 
+
+
+Mostriamo ora che se $f,g$ sono in $Q(M)$ allora lo è anche $f+g$, cio\`e vogliamo mostrare che $M_{f+g}\cong N_{f+g}[t]$. 
+
+
+Osserviamo che $(f,g)R_{f+g}=R_{f+g}$, quindi a meno di sostiuire $R$ con $R_{f+g}$ ci siamo ricondotti a mostrare che se $(f,g)=R$ e\footnote{va bene perch\'e $Q(M)\subseteq Q(M_{f+g})$} $f,g\in Q(M)$ allora $M$ \`e esteso da $A$. Per il lemma (\ref{LmFasciQuasicoerentiSonoIncollamentoDiRestrizioniSuRicoprimento}) ci basta dunque mostrare che $N[t]$ \`e isomorfo a $M_f\oplus_{M_{fg}}M_g$. Grazie al lemma (\ref{LmMorfismiDiFasciQuasicoerentiSiIncollanoSuRicoprimento}), un modo per farlo \`e mostrare che esiste un diagramma commutativo della forma
+% https://q.uiver.app/#q=WzAsNixbMCwwLCJNX2YiXSxbMiwwLCJNX2ciXSxbMSwwLCJNX3tmZ30iXSxbMiwxLCJOX2dbdF0iXSxbMCwxLCJOX2ZbdF0iXSxbMSwxLCJOX3tmZ31bdF0iXSxbMCwyXSxbMSwyXSxbNCw1XSxbMyw1XSxbMCw0LCJcXHNpbSIsMl0sWzEsMywiXFxzaW0iXSxbMiw1LCJcXHNpbSJdXQ==
+\[\begin{tikzcd}
+	{M_f} & {M_{fg}} & {M_g} \\
+	{N_f[t]} & {N_{fg}[t]} & {N_g[t]}
+	\arrow[from=1-1, to=1-2]
+	\arrow["\sim"', from=1-1, to=2-1]
+	\arrow["\sim", from=1-2, to=2-2]
+	\arrow[from=1-3, to=1-2]
+	\arrow["\sim", from=1-3, to=2-3]
+	\arrow[from=2-1, to=2-2]
+	\arrow[from=2-3, to=2-2]
+\end{tikzcd}\]
+Poich\'e $f,g\in Q(M)$ esistono degli isomorfismi $\vp:M_f\to N_f[t]$ e $\psi:M_g\to N_g[t]$, che inducono isomorfismi $\vp_1,\psi_1:M_{fg}\to N_{fg}[t]$. Diagrammaticamente
+% https://q.uiver.app/#q=WzAsNyxbMCwwLCJNX2YiXSxbNCwwLCJNX2ciXSxbMCwxLCJOX2ZbdF0iXSxbNCwxLCJOX2dbdF0iXSxbMiwwLCJNX3tmZ30iXSxbMSwxLCJOX3tmZ31bdF0iXSxbMywxLCJOX3tmZ31bdF0iXSxbMCwyLCJcXHZhcnBoaSIsMl0sWzEsMywiXFxwc2kiXSxbMCw0XSxbMCwyLCJcXHNpbSJdLFsxLDMsIlxcc2ltIiwyXSxbMSw0XSxbNCw1LCJcXHZhcnBoaV8xIiwyXSxbNCw2LCJcXHZhcnBoaV8yIl0sWzUsNiwiXFx0aGV0YSIsMix7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dLFsyLDVdLFs2LDNdLFs0LDUsIlxcc2ltIl0sWzQsNiwiXFxzaW0iLDJdXQ==
+\[\begin{tikzcd}
+	{M_f} && {M_{fg}} && {M_g} \\
+	{N_f[t]} & {N_{fg}[t]} && {N_{fg}[t]} & {N_g[t]}
+	\arrow[from=1-1, to=1-3]
+	\arrow["\varphi"', from=1-1, to=2-1]
+	\arrow["\sim", from=1-1, to=2-1]
+	\arrow["{\varphi_1}"', from=1-3, to=2-2]
+	\arrow["\sim", from=1-3, to=2-2]
+	\arrow["{\varphi_2}", from=1-3, to=2-4]
+	\arrow["\sim"', from=1-3, to=2-4]
+	\arrow[from=1-5, to=1-3]
+	\arrow["\psi", from=1-5, to=2-5]
+	\arrow["\sim"', from=1-5, to=2-5]
+	\arrow[from=2-1, to=2-2]
+	\arrow["\theta"', dashed, from=2-2, to=2-4]
+	\arrow[from=2-4, to=2-5]
+\end{tikzcd}\]
+dove $\theta=\psi_1\circ\varphi_1^{-1}$. Se $\theta=id_{N_{fg}[t]}$ allora avremmo concluso per quanto detto, quindi il nostro obiettivo \`e sostituire $\vp$ e $\psi$ con opportune $\vp'$ e $\psi'$ tali che la mappa indotta su $N_{fg}[t]$ sia effettivamente l'identit\`a.
+
+Notiamo che 
+\begin{align*}
+	\theta\in& \End_{A_{fg}[t]}(N_{fg}[t])=\Hom_{A_{fg}}(N_{fg},N_{fg}[t])=\\
+	&=\Hom_{A_{fg}}(N_{fg},N_{fg})[t]\pasgnl\cong{(\ref{LmLocalizzazioneDiHom})}\pa{\Hom_A(N,N)}_{fg}[t].
+\end{align*}
+Se $E=\Hom_A(N,N)$ allora abbiamo mostrato che $\theta\in E_{fg}[t]^u$ infatti \`e un isomorfismo per costruzione e $\theta(0)=id_N$ in quanto $N$ \`e il prodotto fibrato di $N_f$ e $N_g$ su $N_{fg}$ per le mappe di localizzazione (\ref{LmFasciQuasicoerentiSonoIncollamentoDiRestrizioniSuRicoprimento}).
+
+Per il lemma (\ref{LmSpezzoLocalizzazioniDiPolinomiACoefficientiInAlgebre}) esistono dunque $\al\in E_f[t]^u$ e $\beta\in E_g[t]^u$ tali che $\theta=\beta\al$, le quali ci permettono di costruire il diagramma
+% https://q.uiver.app/#q=WzAsOSxbMywwLCJNX3tmZ30iXSxbMiwxLCJOX3tmZ31bdF0iXSxbNCwxLCJOX3tmZ31bdF0iXSxbMSwxLCJOX2ZbdF0iXSxbNSwxLCJOX2dbdF0iXSxbMSwwLCJNX2YiXSxbNSwwLCJNX2ciXSxbMCwxLCJOX2ZbdF0iXSxbNiwxLCJOX2dbdF0iXSxbNSwwXSxbNiwwXSxbMCwxXSxbMCwyXSxbNSwzLCJcXHZhcnBoaSJdLFs2LDQsIlxccHNpIiwyXSxbNCwyXSxbMywxXSxbMSwyLCJcXGJldGFcXGFscGhhIl0sWzMsNywiXFxhbHBoYSJdLFs0LDgsIlxcYmV0YV57LTF9IiwyXSxbNiw4LCJcXHBzaSciXSxbNSw3LCJcXHZhcnBoaSciLDJdXQ==
+\[\begin{tikzcd}
+	& {M_f} && {M_{fg}} && {M_g} \\
+	{N_f[t]} & {N_f[t]} & {N_{fg}[t]} && {N_{fg}[t]} & {N_g[t]} & {N_g[t]}
+	\arrow[from=1-2, to=1-4]
+	\arrow["{\varphi'}"', from=1-2, to=2-1]
+	\arrow["\varphi", from=1-2, to=2-2]
+	\arrow[from=1-4, to=2-3]
+	\arrow[from=1-4, to=2-5]
+	\arrow[from=1-6, to=1-4]
+	\arrow["\psi"', from=1-6, to=2-6]
+	\arrow["{\psi'}", from=1-6, to=2-7]
+	\arrow["\alpha", from=2-2, to=2-1]
+	\arrow[from=2-2, to=2-3]
+	\arrow["{\beta\alpha}", from=2-3, to=2-5]
+	\arrow[from=2-6, to=2-5]
+	\arrow["{\beta^{-1}}"', from=2-6, to=2-7]
+\end{tikzcd}\]
+Sostituendo $\vp$ con $\vp'=\al\circ \vp$ e $\psi$ con $\psi'=\beta\ii\circ \psi$ allora il $\theta$ che inducono \`e 
+\[\beta\ii\circ \psi_1\circ \vp_1\ii\circ \al\ii=\beta\ii\circ\theta\circ \al\ii=\beta\ii\circ\beta\circ\al\circ \al\ii=id_{N_{fg}[t]}\]
+come voluto.
+\end{itemize}
+\setlength{\leftmargini}{0.5cm}
+\end{proof}
+
+
+\section{Coomologia di \v Cech di fibrati su rette proiettive}
+Fissato un anello noetheriano $A$ poniamo $X=\Spec A$ e scriviamo $\Pj^1_A=X\times \Pj^1$.
+Fissiamo il ricoprimento standard $U_0=\Pj^1_A\bs \cpa{\infty}$ e $U_\infty=\Pj^1_A\nz$. Un fibrato vettoriale $\Mf$ su $\Pj^1_A$ \`e dato da due moduli proiettivi finitamente generati $M_0$ su $A[t]$ e $M_\infty$ su $A[t\ii]$ tali che $M_{0,\infty}:=(M_0)_{t}\cong (M_\infty)_{t\ii}$.
+
+\begin{notation}
+Poniamo $H^0(\Mf):=\Gamma(\Pj^1_A,\Mf)$.
+\end{notation}
+
+Consideriamo ora la mappa
+\[\funcDef{M_0\oplus M_\infty}{M_{0,\infty}}{(x,y)}{(x\res{U_{0,\infty}}-y\res{U_{0,\infty}})}\]
+cio\`e prendiamo la differenza delle immagini di $x$ e $y$ nella localizzazioni $(M_0)_{t}$ e $(M_\infty)_{t\ii}$, che identifichiamo applicando implicitamente un opportuno isomorfismo a (senza perdita di generalit\`a) $y/1$.
+
+\begin{definition}
+Definiamo il \textbf{primo gruppo di coomologia} (\textbf{di \v Cech}) del fibrato $\Mf$ come
+\[H^1(\Mf)=\coker(M_0\oplus M_\infty\to M_{0,\infty}).\] 
+\end{definition}
+
+\begin{remark}
+Per definizione abbiamo una successione esatta
+\[0\to H^0(\Mf)\to M_0\oplus M_\infty\to M_{0,\infty}\to H^1(\Mf)\to 0\]
+dove l'identit\`a $H^0(\Mf)=\ker(M_0\oplus M_\infty\to M_{0,\infty})$ corrisponde alla decomposizione di sezioni su un ricoprimento (\ref{PrSezioniDiFibrato}), infatti essere nel nucleo corrisponde esattamente al rispettare l'opportuna propriet\`a di cociclo.
+\end{remark}
+
+
+\begin{notation}
+Definiamo
+\[\overline{\mathfrak{M}_n}\coloneqq\mathfrak{M}\otimes \frac{\mf^n}{\mf^{n+1}}\]
+\end{notation}
+\begin{remark}\label{ReFibratoTensorizzatoConPotenzeDelMassimaleESommaDirettaDelFibratoTensorizzatoConIlCampo}
+Per un opportuno $\ell_n$ abbiamo $\ol{\Mf_n}\cong \ol\Mf^{\ell_n}$. In particolare $H^i(\ol{\Mf_n})=(H^i(\ol\Mf))^{\ell_n}$.
+\end{remark}
+
+\begin{remark}[Successione esatta lunga]\label{ReSuccessioneEsattaLunga}
+Consideriamo una successione esatta corta di fibrati vettoriali su $\Pj^1_A$
+\[0\to \Mf\to \Nf\to \Pf\to 0\]
+cio\`e abbiamo il seguente diagramma commutativo con righe esatte
+% https://q.uiver.app/#q=WzAsMTAsWzAsMCwiMCJdLFsxLDAsIk1fMFxcb3BsdXMgTV9cXGluZnR5Il0sWzEsMSwiTV97MFxcLCxcXGluZnR5fSJdLFsyLDEsIk5fezBcXCwsXFxpbmZ0eX0iXSxbMywxLCJQX3swXFwsLFxcaW5mdHl9Il0sWzQsMSwiMCJdLFsyLDAsIk5fMFxcb3BsdXMgTl9cXGluZnR5Il0sWzMsMCwiUF8wXFxvcGx1cyBQX1xcaW5mdHkiXSxbNCwwLCIwIl0sWzAsMSwiMCJdLFsxLDJdLFs2LDNdLFs3LDRdLFswLDFdLFsxLDZdLFs2LDddLFs3LDhdLFs5LDJdLFsyLDNdLFszLDRdLFs0LDVdXQ==
+\[\begin{tikzcd}
+	0 & {M_0\oplus M_\infty} & {N_0\oplus N_\infty} & {P_0\oplus P_\infty} & 0 \\
+	0 & {M_{0\,,\infty}} & {N_{0\,,\infty}} & {P_{0\,,\infty}} & 0
 	\arrow[from=1-1, to=1-2]
 	\arrow[from=1-2, to=1-3]
 	\arrow[from=1-2, to=2-2]
@@ -428,325 +438,364 @@ Per il lemma (\ref{LmLocalizzazioneDiHom}) la mappa
 	\arrow[from=2-3, to=2-4]
 	\arrow[from=2-4, to=2-5]
 \end{tikzcd}\]
-con mappe verticali date da isomorfismi, dunque la riga sopra \`e esatta se e solo se la riga sotto lo \`e, ma la riga sotto \`e esatta perch\'e $M_\mf$ \`e libero (e quindi proiettivo).
-\item[$\boxed{3.\implies4.}$] Mostriamo che per ogni $\mf$ esiste $f\notin \mf$ tale che $M_f$ \`e libero come $A_f$ modulo. Questo \`e sufficiente perch\'e $X=\bigcup_{\mf\in\Spec_{max}(A)} X_f$ per queste $f$ e per compattezza estraiamo un sottoricoprimento finito. Le $f_i$ corrispondenti a questo ricoprimento per costruzione sono della forma cercata.
+dove le mappe verticali sono come nella definizione di $H^1$. In particolare possiamo estendere il diagramma inserendo i nuclei e i conuclei
+% https://q.uiver.app/#q=WzAsMTgsWzAsMSwiMCJdLFsxLDEsIk1fMFxcb3BsdXMgTV9cXGluZnR5Il0sWzEsMiwiTV97MFxcLCxcXGluZnR5fSJdLFsyLDIsIk5fezBcXCwsXFxpbmZ0eX0iXSxbMywyLCJQX3swXFwsLFxcaW5mdHl9Il0sWzQsMiwiMCJdLFsyLDEsIk5fMFxcb3BsdXMgTl9cXGluZnR5Il0sWzMsMSwiUF8wXFxvcGx1cyBQX1xcaW5mdHkiXSxbNCwxLCIwIl0sWzAsMiwiMCJdLFsxLDAsIkheMChcXE1mKSJdLFsyLDAsIkheMChcXE5mKSJdLFszLDAsIkheMChcXFBmKSJdLFsxLDMsIkheMShcXE1mKSJdLFsyLDMsIkheMShcXE5mKSJdLFszLDMsIkheMShcXFBmKSJdLFs0LDMsIjAiXSxbMCwwLCIwIl0sWzEsMl0sWzYsM10sWzcsNF0sWzAsMV0sWzEsNl0sWzYsN10sWzcsOF0sWzksMl0sWzIsM10sWzMsNF0sWzQsNV0sWzEwLDFdLFsyLDEzXSxbMTEsNl0sWzMsMTRdLFsxMiw3XSxbMTUsMTZdLFs0LDE1XSxbMTcsMTBdLFsxMCwxMV0sWzExLDEyXSxbMTMsMTRdLFsxNCwxNV0sWzEyLDEzLCIiLDEseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XV0=
+\[\begin{tikzcd}
+	0 & {H^0(\Mf)} & {H^0(\Nf)} & {H^0(\Pf)} \\
+	0 & {M_0\oplus M_\infty} & {N_0\oplus N_\infty} & {P_0\oplus P_\infty} & 0 \\
+	0 & {M_{0\,,\infty}} & {N_{0\,,\infty}} & {P_{0\,,\infty}} & 0 \\
+	& {H^1(\Mf)} & {H^1(\Nf)} & {H^1(\Pf)} & 0
+	\arrow[draw=none, from=2-3, to=3-3, ""{coordinate, name=Z}]
+	\arrow[dashed, from=1-4, to=4-2, rounded corners, to path={
+		-- ([xshift=10ex]\tikztostart.east) 
+		|- ([xshift=-15ex]Z) [near end]\tikztonodes
+		-| ([xshift=-10ex]\tikztotarget.west)
+		-- (\tikztotarget.west)
+	}]
+	\arrow[from=1-1, to=1-2]
+	\arrow[from=1-2, to=1-3]
+	\arrow[from=1-2, to=2-2]
+	\arrow[from=1-3, to=1-4]
+	\arrow[from=1-3, to=2-3]
+	\arrow[from=1-4, to=2-4]
+	\arrow[from=2-1, to=2-2]
+	\arrow[from=2-2, to=2-3]
+	\arrow[from=2-2, to=3-2]
+	\arrow[from=2-3, to=2-4]
+	\arrow[from=2-3, to=3-3]
+	\arrow[from=2-4, to=2-5]
+	\arrow[from=2-4, to=3-4]
+	\arrow[from=3-1, to=3-2]
+	\arrow[from=3-2, to=3-3]
+	\arrow[from=3-2, to=4-2]
+	\arrow[from=3-3, to=3-4]
+	\arrow[from=3-3, to=4-3]
+	\arrow[from=3-4, to=3-5]
+	\arrow[from=3-4, to=4-4]
+	\arrow[from=4-2, to=4-3]
+	\arrow[from=4-3, to=4-4]
+	\arrow[from=4-4, to=4-5]
+\end{tikzcd}\]
+dove la freccia tratteggiata \`e quella del lemma del serpente. Questo restituisce una successione esatta lunga
+\[0\to H^0(\Mf)\to H^0(\Nf)\to H^0(\Pf)\to H^1(\Mf)\to H^1(\Nf)\to H^1(\Pf)\to 0\]
+\end{remark}
 
-Mostriamo il claim: Poich\'e $M_\mf$ \`e libero esso ha una base $m_1,\cdots,m_n$. Consideriamo la mappa
-\[0\to A_\mf^n\xrightarrow{\al}M_\mf\to 0\]
-che manda $v_i$ in $m_i$, dove $v_1,\cdots, v_n$ \`e la base canonica di $A_\mf^n$. Per definizione della localizzazione esiste $f\notin \mf$ tale che
-\[v_i=\frac{u_i}f,\ m_i=\frac{x_i}{f},\qquad \text{per degli }u_i\in A^n,\ x_i\in M.\]
-Segue dunque che abbiamo una successione esatta
-\[0\to K\to A_f^n\to M_f\to 0\]
-dato che l'unico elemento che appare al denominatore \`e $f$.
-
-Notiamo che $K$ \`e finitamente generato per Noetherianit\`a, per esempio da $w_1,\cdots, w_t$, e che $K_\mf=0$, dunque esiste $g\notin \mf$ tale che $gw_i=0$ per ogni $i$, cio\`e $K_g=0$. Se allora localizziamo la successione di prima troviamo una nuova successione esatta
-\[0\to K_g\to A_{fg}^n\to M_{fg}\to 0\]
-ma dato che $K_g=0$ abbiamo dimostrato che $M_{fg}$ \`e libero. Per costruzione $fg\notin \mf$ in quanto il complementare di $\mf$ \`e una parte moltiplicativa.
-\end{itemize}
-\setlength{\leftmargini}{0.5cm}
-\end{proof}
-
-\begin{corollary}
-Se $p:E\to X$ \`e un fibrato vettoriale e $M=\Gamma(X,E)$ allora $M$ \`e proiettivo.
-\end{corollary}
+\begin{exercise}\label{ExCoomologiaDiFibratiLineariSuP1A}
+Per $\Oc(n)$, si ha 
+\[H^0(\Oc(n))=
+\begin{cases}
+	0 & n\le -1 \\
+	A^{n+1} & n\ge0
+\end{cases} 
+\quad \text{ e } \quad H^1(\Oc(n))=\begin{cases}
+	0 & n\ge -1 \\
+	A^{-n-1} & n\le-2
+\end{cases}\]
+\end{exercise}
 \begin{proof}
-Ricordando (\ref{CorLocalizzazioneSezioniFibratoSuAffine}) che $\Gamma(X_f,E)=M_f$, se scegliamo un ricoprimento $\cpa{X_f}$ che banalizza $E\to X$ si ha che $M_f$ \`e libero, dunque abbiamo mostrato che $M$ \`e localmente libero, che implica proiettivo per il teorema (\ref{ThCaratterizzazioneProiettivoNoetheriano}) se $M$ \`e finitamente generato.
-
-Poich\'e ogni $M_{f_i}$ (dove $f_1,\cdots, f_n$ determinano il ricoprimento banalizzante) \`e finitamente generato (libero di rango pari al rango del fibrato), esistono $m_1,\cdots, m_T\in M$ tali che $m_1,\cdots, m_T$ generano $M_{f_i}$ per ogni $i$. Se $N=\ps{m_1,\cdots, m_T}\subseteq M$ si ha che $N_{f_i}=M_{f_i}$ per ogni $f_i$ per costruzione, dunque localizzando ulteriormente $N_\mf=M_\mf$ per ogni $\mf$ massimale e quindi $N=M$.
+Il caso di $H^0$ segue facendo lo stesso conto della proposizione (\ref{PrSezioniGlobaliFibratiLineariSuP1}) sostituendo $\K$ con $A$. I rispettivi $H^1$ si calcolano sfruttando l'esattezza di 
+\[0\to H^0(\Oc(n))\to A[t]\oplus A[t\ii]\to A[t,t\ii]\to H^1(\Oc(n))\to 0\]
 \end{proof}
 
-\begin{definition}[Rango di un modulo proiettivo]
-Sia $P$ un modulo proiettivo. Affermiamo $n$ \`e il \textbf{rango} di $P$ se per ogni $\mf$ massimale $P_\mf\cong A_\mf^n$.
-\end{definition}
-
-\begin{proposition}[]\label{PrModuloProiettivoDefinisceFibrato}
-A un $A$-modulo proiettivo $P$ di rango $n$ corrisponde un fibrato vettoriale di rango $n$ sulla variet\`a associata ad $A$.
-\end{proposition}
-\begin{proof}
-Poich\'e $P$ \`e proiettivo esistono $f_1,\cdots, f_N$ tali che $(f_1,\cdots, f_N)=A$ e $P_{f_i}\cong A_{f_i}^n$. Sia $\al_i:P_{f_i}\to A_{f_i}^n$ un fissato isomorfismo.
-Questi isomorfismi si restringono a isomorfismi $P_{f_if_j}\to A_{f_if_j}^n$, quindi possiamo definire 
-\[\al_{i,j}=\al_j\circ \al_i\ii\in \GL(A_{f_i f_j}^n).\] 
-Per definizione $\al_{ih}=\al_{jh}\al_{ij}$.
-Ricordiamo che
-\[A_{f_if_j}=\Oc(X_{f_if_j})=\Oc(X_{f_i}\cap X_{f_j})\]
-quindi effettivamente $\al_{i,j}:X_{f_if_j}\to \GL_n(\Oc(X_{f_if_j}))$. Avendo verificato la condizione di cociclo si ha che questo definisce un fibrato.
-\end{proof}
-
-Possiamo dare una descrizione pi\`u concreta di questo fibrato:
-
-\begin{remark}[Costruzione intrinseca del fibrato]
-~
-
-\noindent
-Sia $P$ un modulo proiettivo e consideriamo il duale
-\[P^\ast=\Hom_A(P,A)\]
-e poi l'algebra simmetrica
-\[\Sym_A P^\ast=\frac{A\oplus (P^\ast)\oplus (P^\ast\otimes_A P^\ast)\oplus\cdots}{(u\otimes v-v\otimes u)}.\]
-Chiaramente $\Sym_AP^\ast$ \`e un anello. Si pu\`o verificare che esso \`e finitamente generato e ridotto, quindi \`e l'anello di coordinate di una variet\`a affine $E$.
-
-Notiamo che se $P$ \`e libero allora $\Sym_AP^\ast$ \`e un anello di polinomi:
-chiamiamo $x_1,\cdots, x_n$ i generatori di $P^\ast$ duali alla base di $P$, allora \`e evidente che 
-\[\Sym_AP^\ast=A[x_1,\cdots, x_n]=A\otimes \K[x_1,\cdots, x_n]=\Oc(X\times \K^n).\]
-Quindi $E$ \`e coperto da intorni della forma $X\times\K^n$ e la mappa di proiezione \`e quella ovvia.
+\begin{remark}[Fuori programma]
+Il fatto che vale sempre 
+\[\rnk H^0(\Oc(n))-\rnk H^1(\Oc(n))=n+1\] 
+non \`e una coincidenza. Ci dice che $t+1$ \`e il polinomio di Hilbert di $\Oc_{\Pj^1}$.
 \end{remark}
 
 
-\begin{theorem}[]\label{ThCorrispondenzaFibratiVettorialiModuliProiettivi}
-C'\`e una corrispondenza biunivoca
-\[\quot{\cpa{\emat{\text{Moduli proiettivi su $A$}\\\text{di rango $n$}}}}{iso.}\longleftrightarrow \quot{\cpa{\emat{\text{Fibrati vettoriali su $X$}\\\text{di rango $n$}}}}{iso.}\]
-e la mappa dal fibrato $E$ ai moduli \`e $E\mapsto \Gamma(X,E)$.
+
+
+
+
+
+
+
+
+
+
+\section{Teoremi di Horrocks}
+
+\begin{notation}
+Scriviamo $R\!\ps t$ per indicare la localizzazione di $R[t]$ ai polinomi monici\footnote{formano una parte moltiplicativa perch\'e $1$ \`e monico, $0$ non \`e monico e il coefficiente di testa di un prodotto di polinomi \`e il prodotto dei coefficienti di testa, ma $1\cdot 1=1$.}
+\end{notation}
+
+Per dimostrare il teorema di Quillen-Suslin facciamo uso del seguente risultato:
+
+\begin{theorem}[Horrocks algebrico globale]\label{ThHorrocksAlgebricoGlobale}
+Sia $M$ un $A[t]$ modulo proiettivo finitamente generato. Se $M\!\ps t$ \`e libero allora $M$ \`e libero.
+\end{theorem}
+
+Esso si inserisce in un gruppo di quattro risultati che prendono tutti il nome da Horrocks. Gli altri tre sono
+
+\begin{theorem}[Horrocks algebrico locale]\label{ThHorrocksAlgebricoLocale}
+Sia $M$ un $A[t]$ modulo proiettivo finitamente generato con $A$ locale. Se $M\!\ps t$ \`e libero allora $M$ \`e libero.
 \end{theorem}
 
 
 
-\section{Fibrati vettoriali sulla retta proiettiva}
-\subsection{Fibrati lineari}
-\begin{notation}
-Scriviamo $\A^1\cong U_0=\Pj^1\bs\cpa\infty$ e $\A^1\cong U_\infty=\Pj^1\nz$, da cui
-\[\A^1\nz\cong U_{0,\infty}=\Pj^1\bs\cpa{0,\infty}.\]
-Scriviamo dunque $\K[U_0]=\K[z]$, $\K[U_\infty]=\K[w]$ e $\K[U_{0,\infty}]=\K[z,z\ii]$ con $w=z\ii$.
-\end{notation}
+\begin{theorem}[Horrocks geometrico globale]\label{ThHorrocksGeometricoGlobale}
+Se $E$ \`e un fibrato vettoriale su $\Pj^1_A$ allora $E\res{\A^1_A}$ \`e banale.
+\end{theorem}
+
+\begin{theorem}[Horrocks geometrico locale]\label{ThHorrocksGeometricoLocale}
+Se $E$ \`e un fibrato vettoriale su $\Pj^1_A$ con $A$ locale, allora $E\res{\A^1_A}$ \`e banale.
+\end{theorem}
+
+\noindent Vale il seguente diagramma di implicazioni
+% https://q.uiver.app/#q=WzAsNSxbMCwwLCJIR0wiXSxbMiwwLCJIR0ciXSxbMiwxLCJIQUciXSxbMCwxLCJIQUwiXSxbMywxLCJcXHRleHR7UXVpbGxlbiBTdXNsaW59Il0sWzIsNCwiIiwwLHsibGV2ZWwiOjIsImNvbG91ciI6WzM1NCwxMDAsNDRdfV0sWzEsMiwiIiwwLHsibGV2ZWwiOjIsImNvbG91ciI6WzM1NCwxMDAsNDRdfV0sWzAsMSwiXFxiZWdpbnttYXRyaXh9XFx0ZXh0e0luY29sbGFtZW50byBTdXNsaW59XFxcXFxcRG93bmFycm93XFxlbmR7bWF0cml4fSIsMCx7ImxldmVsIjoyLCJjb2xvdXIiOlszNTQsMTAwLDQ0XX1dLFswLDMsIiIsMix7ImxldmVsIjoyfV0sWzMsMiwiIiwyLHsibGV2ZWwiOjJ9XV0=
+\[\begin{tikzcd}
+	HGL && HGG \\
+	HAL && HAG & {\text{Quillen Suslin}}
+	\arrow["\begin{array}{c} \begin{matrix}\text{Incollamento Suslin}\\\Downarrow\end{matrix} \end{array}", draw={rgb,255:red,224;green,0;blue,22}, Rightarrow, from=1-1, to=1-3]
+	\arrow[Rightarrow, from=1-1, to=2-1]
+	\arrow[draw={rgb,255:red,224;green,0;blue,22}, Rightarrow, from=1-3, to=2-3]
+	\arrow[Rightarrow, from=2-1, to=2-3]
+	\arrow[draw={rgb,255:red,224;green,0;blue,22}, Rightarrow, from=2-3, to=2-4]
+\end{tikzcd}\]
+Per raggiungere il teorema di Quillen-Suslin mostriamo le implicazioni rosse e Horrocks geometrico locale.
+
+
+\subsection{Dimostrazione Horrocks geometrico locale}
 
 \begin{remark}
-Rispetto a questo ricoprimento i coclicli sono
-\[Z^1(\Uc)=\cpa{\al_{0,\infty}:U_{0,\infty}\to\GL(1)}=\cpa{\funcDef{U_{0,\infty}}{\GL(1)}{z}{\la z^n}\mid n\in\Z,\ \la\in\K^\times}\]
-A priori sono mappe della forma $z\mapsto p(z)$ ma se comparissero pi\`u monomi allora ci sarebbero radici diverse da $0$, quindi esisterebbe $a\in U_{0,\infty}$ tale che $p(a)=0\notin \GL(1)$.
+Se $\Mf$ \`e un fibrato vettoriale su $\Pj^1_A$ allora osserviamo che $\Mf\res{\A^1_A}=M_0$ \`e libero se e solo se 
+\[\Mf(n)\res{\A^1_A}=\Mf\res{\A^1_A}\otimes\Oc_{A}(n)\res{\A^1_A}=M_0\otimes_{A[t]}A[t]=M_0\] 
+\`e libero, indipendentemente da $n$.
 \end{remark}
 
+Grazie a questa osservazione, ai fini di dimostrare HGL, possiamo supporre\footnote{non occorre specificare quale massimale $\mf$ scegliamo perch\'e $A$ \`e un anello locale.}
+\[\overline{\mathfrak{M}}=\Oc(0)^k\oplus \bigoplus_{i=1}^\ell \Oc(n_i), \quad n_i>0.\]
 
-
-\begin{remark}\label{RmCoclicliFibratiLineariSuRettaProiettiva}
-Si ha
-\[H^1(\Uc,\GL(1))=\cpa{z^n}_{n\in\Z}.\]
-\end{remark}
-\begin{proof}
-Se $\al=\la z^n$ e $\wt \al=\mu z^m$ sono cocicli equivalenti allora esistono $\beta_0:U_0\to \GL(1)$ e $\beta_\infty:U_{\infty}\to\GL(1)$ tali che
-\[\mu z^m=\wt\al=\beta_\infty\al\beta_0\ii=\la\beta_\infty\beta_0\ii z^n\implies n=m\]
-Se $n=m$ allora possiamo sempre trovare $\beta_0$ e $\beta_\infty$, quindi abbiamo mostrato
-\[H^1(\Uc,\GL(1))=\cpa{z^n}_{n\in\Z}.\]
-\end{proof}
-
-\begin{notation}
-Indichiamo il fibrato lineare $E_{z^{-n}}\to \Pj^1_\K$ con $\Oc_{\Pj^1_\K}(n)$ (o solo $\Oc(n)$ se chiaro dal contesto).
-\end{notation}
-
-\begin{proposition}\label{PrSezioniGlobaliFibratiLineariSuP1}
-Le sezioni globali dei fibrati lineari su $\Pj^1$ sono
-\[\Gamma(\Pj^1,\Oc(n))=\begin{cases}
-	\K[z]_{n} & n\geq 0\\
-	0 &n<0
-\end{cases}\]
+\begin{proposition}[]\label{PrAnnullamentoCoomologiaFibratoTensorizzatoConPotenzeDelMassimaleModuloMassimale}
+Sotto queste ipotesi $H^1(\ol{\Mf_n})=0$ per ogni $n\geq 0$.
 \end{proposition}
 \begin{proof}
-Consideriamo due sezioni $\sigma_0=f(z)$ e $\sigma_\infty=g(w)$ tali che $\sigma_\infty=\al_{0,\infty}\sigma_0$. Per quanto detto possiamo scegliere $\al_{0,\infty}=z^{-n}$, da cui sull'intersezione $U_{0,\infty}$ abbiamo 
-\[g(z\ii)=z^{-n}f(z).\]
-Scrivendo le espansioni troviamo
-\[g(z\ii)=a_0+a_1 z\ii+\cdots\qquad z^{-n}f(z)=b_0 z^{-n}+b_1 z^{1-n}+\cdots\]
-dunque:
-\setlength{\leftmargini}{0cm}
-\begin{itemize}
-\item[$\boxed{n<0}$] In questo caso imporre uguaglianza impone che ogni coefficiente sia nullo, cio\`e $\sigma_0=\sigma_\infty=0$ e quindi il $\sigma$ a cui corrispondono \`e $0$.
-\item[$\boxed{n\geq0}$] Imponendo l'uguaglianza troviamo
-\[f(z)=a_0z^n+\cdots+a_{n-1}z+a_n\]
-cio\`e un generico polinomio di grado $n$.
-\end{itemize}
-\setlength{\leftmargini}{0.5cm}
+Per $n=0$ il risultato segue dell'esercizio (\ref{ExCoomologiaDiFibratiLineariSuP1A}), in quanto in questo caso $H^1(\ol\Mf)$ \`e somma di moduli banali ($H^1(\Oc(k))=0$ per ogni $k\geq 0$).
+Per $n\geq 1$ basta notare che 
+\[H^1(\ol{\Mf_n})\overset{(\ref{ReFibratoTensorizzatoConPotenzeDelMassimaleESommaDirettaDelFibratoTensorizzatoConIlCampo})}\cong H^1(\ol\Mf)^{\ell_0}=0\]
+per quanto appena detto.
 \end{proof}
 
-\begin{remark}\label{ReRangoSezioniGlobaliFibratiLineariSuP1}
-Segue immediatamente che
-\[\dim\Gamma(\Pj^1,\Oc(n))=\begin{cases}
-	n+1&\text{se }n\geq 0\\
-	0 &\text{se }n<0
-\end{cases}.\]
+\begin{proposition}
+$H^1(\mathfrak{M})=0$.
+\end{proposition}
+\begin{proof}
+Osserviamo che $H^1(\Mf)$ \`e un $A$-modulo finitamente generato, infatti considerando la successione esatta 
+\[M_0\oplus M_\infty\to M_{0\,\infty}\to H^1(\mathfrak{M})\to 0\]
+se $\cpa{v_i}$ sono generatori per $M_0$ e $\cpa{u_i}$ per $M_\infty$ allora le loro immagini generano il nucleo di $M_{0\,\infty}\to H^1(\mathfrak{M})$, quindi otteniamo una nuova successione esatta corta
+\[0\to\ps{v_i-u_j}\to M_{0,\infty}\to H^1(\Mf)\to 0\]
+e dato che $M_{0,\infty}$ \`e finitamente generato anche i termini laterali, e quindi in particolare anche $H^1(\Mf)$, sono finitamente generati.
+\medskip
+
+Considerando ora nuovamente la successione esatta
+\[M_0\oplus M_\infty\to M_{0\,\infty}\to H^1(\mathfrak{M})\to 0\] 
+e tensorizzandola per $A/\mf$, otteneniamo la successione esatta
+\[\frac{M_0}{\mf M_0}\oplus \frac{M_\infty}{\mf M_\infty}\to \frac{M_{0,\infty}}{\mf M_{0,\infty}}\to \frac{H^1(\Mf)}{\mf H^1(\Mf)}\to 0\]
+ma per definizione di $\ol \Mf$ si ha
+\[\frac{M_0}{\mf M_0}\oplus \frac{M_\infty}{\mf M_\infty}\to \frac{M_{0,\infty}}{\mf M_{0,\infty}}\to H^1(\ol\Mf)\to0\]
+quindi $\frac{H^1(\Mf)}{\mf H^1(\Mf)}\cong H^1(\ol\Mf)=0$, dunque $H^1(\Mf)=\mf H^1(\Mf)$ e quindi per Nakayama otteniamo $H^1(\Mf)=0$ in quanto modulo finitamente generato.
+\end{proof}
+
+\begin{proposition}[]\label{PrH1FibratoConInfinitesimiNulloEMappaTraSezioniGlobaliDiFibratoConInfinitesimiESurgettiva}
+\begin{enumerate}
+    \item $H^1(\mathfrak{M}\otimes  A/\mf^n)=0$ per ogni $n\geq 0$.
+    \item La mappa $H^0(\mathfrak{M}\otimes  A/\mf^n)\to H^0(\mathfrak{M}\otimes  A/\mf^{n-1})$ è suriettiva.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+Dimostriamo entrabe le proposizioni simultaneamente per induzione su $n$.
+
+Consideriamo la successione esatta 
+\[0\to {\mf^{n-1}}/{\mf^{n}}\to A/\mf^n \to A/\mf^{n-1}\to 0\] 
+e tensorizziamola con $\mathfrak{M}$, ottenendo 
+\[0\to \mathfrak{M}\otimes {\mf^{n-1}}/{\mf^{n}}\to \mathfrak{M}\otimes  A/\mf^n \to\mathfrak{M}\otimes  A/\mf^{n-1}\to 0,\] 
+da cui troviamo la successione esatta lunga (\ref{ReSuccessioneEsattaLunga})
+% https://q.uiver.app/#q=WzAsOSxbMCwwLCIwIl0sWzEsMCwiSF4wXFxwYXtcXG9se1xcTWZfe24tMX19fSJdLFsyLDAsIkheMFxccGF7XFxtYXRoZnJha3tNfVxcb3RpbWVzICBcXGZyYWMgQXtcXG1mXm59fSJdLFszLDAsIkheMFxccGF7XFxtYXRoZnJha3tNfVxcb3RpbWVzICBcXGZyYWMgQXtcXG1mXntuLTF9fX0iXSxbMywxLCJIXjFcXHBhe1xcb2x7XFxNZl97bi0xfX19Il0sWzIsMSwiSF4xXFxwYXtcXG1hdGhmcmFre019XFxvdGltZXMgIFxcZnJhYyBBe1xcbWZebn19Il0sWzEsMSwiSF4xXFxwYXtcXG1hdGhmcmFre019XFxvdGltZXMgIFxcZnJhYyBBe1xcbWZee24tMX19fSJdLFszLDIsIjAiXSxbMSwyLCIwIl0sWzAsMV0sWzEsMl0sWzIsM10sWzMsNF0sWzQsNV0sWzUsNl0sWzQsNywiPSIsMyx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFs4LDYsIj0iLDMseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJub25lIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19XV0=
+\[\begin{tikzcd}
+	0 & {H^0\pa{\ol{\Mf_{n-1}}}} & {H^0\pa{\mathfrak{M}\otimes  \frac A{\mf^n}}} & {H^0\pa{\mathfrak{M}\otimes  \frac A{\mf^{n-1}}}} \\
+	& {H^1\pa{\mathfrak{M}\otimes  \frac A{\mf^{n-1}}}} & {H^1\pa{\mathfrak{M}\otimes  \frac A{\mf^n}}} & {H^1\pa{\ol{\Mf_{n-1}}}} \\
+	& 0 && 0
+	\arrow[from=1-1, to=1-2]
+	\arrow[from=1-2, to=1-3]
+	\arrow[from=1-3, to=1-4]
+	\arrow[from=1-4, to=2-4]
+	\arrow[from=2-3, to=2-2]
+	\arrow[from=2-4, to=2-3]
+	\arrow["{=}"{marking, allow upside down}, draw=none, from=2-4, to=3-4]
+	\arrow["{=}"{marking, allow upside down}, draw=none, from=3-2, to=2-2]
+\end{tikzcd}\]
+dove $H^1\pa{\ol{\Mf_{n-1}}}=0$ per la proposizione (\ref{PrAnnullamentoCoomologiaFibratoTensorizzatoConPotenzeDelMassimaleModuloMassimale}) e $H^1\pa{\mathfrak{M}\otimes  \frac A{\mf^{n-1}}}=0$ per ipotesi induttiva\footnote{$H^1\pa{\mathfrak{M}\otimes  \frac A{\mf^0}}=H^1(\Mf)=0$ per la proposizione precedente quindi abbiamo un passo base.}.
+
+La suriettivit\`a della mappa nella richiesta segue dall'esattezza e dal fatto che $H^1\pa{\ol{\Mf_{n-1}}}=0$.
+\end{proof}
+
+
+Citiamo il seguente 
+\begin{theorem}[]
+Si ha il seguente isomorfismo \[\varprojlim_{n\in \N} H^0(\mathfrak{M})/\mf^nH^0(\mathfrak{M}) \cong \varprojlim_{n\in\N} H^0(\mathfrak{M}\otimes  A/\mf^n),\] dove il sistema proiettivo è dato dalle proiezioni 
+\[H^0(\mathfrak{M})/\mf^nH^0(\mathfrak{M})\to H^0(\mathfrak{M})/\mf^{n-1}H^0(\mathfrak{M}).\]
+\end{theorem}
+
+per dimostrare che 
+\begin{proposition}[]\label{PrEstensioneSezioniPerHorrocks}
+La mappa
+\[H^0(\mathfrak{M})\to H^0(\overline{\mathfrak{M}})=H^0(\mathfrak{M}\otimes A/\mf)\] 
+definita da 
+\[s\mapsto \overline{s}\in \Oc(0)^h\oplus \bigoplus \Oc(n_i)\]
+è suriettiva.
+\end{proposition}
+\begin{proof}
+Basta osservare il diagramma
+% https://q.uiver.app/#q=WzAsMyxbMiwwLCJcXHZhcnByb2psaW0gSF4wKFxcbWF0aGZyYWt7TX1cXG90aW1lcyBBL1xcbWZebikiXSxbMiwyLCJIXjAoXFxtYXRoZnJha3tNfVxcb3RpbWVzIEEvXFxtZikiXSxbMCwwLCJcXHZhcnByb2psaW0gSF4wKFxcbWF0aGZyYWt7TX0pL1xcbWZebkheMChcXG1hdGhmcmFre019KSJdLFswLDEsIiIsMCx7InN0eWxlIjp7ImhlYWQiOnsibmFtZSI6ImVwaSJ9fX1dLFsyLDFdLFsyLDAsIlxcc2ltIl1d
+\[\begin{tikzcd}
+	{\varprojlim H^0(\mathfrak{M})/\mf^nH^0(\mathfrak{M})} && {\varprojlim H^0(\mathfrak{M}\otimes A/\mf^n)} \\
+	\\
+	&& {H^0(\mathfrak{M}\otimes A/\mf)}
+	\arrow["\sim", from=1-1, to=1-3]
+	\arrow[from=1-1, to=3-3]
+	\arrow[two heads, from=1-3, to=3-3]
+\end{tikzcd}\]
+dove la mappa verticale \`e suriettiva perch\'e \`e la mappa nel punto 2. di (\ref{PrH1FibratoConInfinitesimiNulloEMappaTraSezioniGlobaliDiFibratoConInfinitesimiESurgettiva}).
+\end{proof}
+
+\begin{remark}
+Geometricamente, questa proposizione afferma che possiamo estendere una sezione globale del fibrato a $\cpa{\mf}\times \Pj^1$ ad una sezione globale di tutto il fibrato.
 \end{remark}
 
-\subsection{Fibrati vettoriali}
 
-\begin{lemma}[]\label{LmMatriciDiCocicliPerFibrativettorialiSuRettaProiettiva}
-Per ogni $C\in \GL_n(\K[t^{\pm1}])$ possiamo trovare $\al$ e $\beta$ matrici in $\GL_n(\K[t])$ tali che
-\[\beta C\al=\mat{t^{m_1} & &\\
-&\ddots&\\&&t^{m_k}}\]
-con $m_1\geq\cdots\geq m_k$. Se $c_{i,j}\in \K[t]$ per ogni $i,j$ vogliamo anche poter scegliere $m_\ell\geq 0$ per ogni $\ell$.
+\begin{lemma}[]\label{LmEstensioneDiSezioneNonNullaEMaiNullaPerHorrocks}
+Se $\ol s\in H^0(\ol \Mf)$ \`e non nulla e $s\mapsto \ol s$ per la mappa della proposizione (\ref{PrEstensioneSezioniPerHorrocks}), allora $s$ non \`e mai nulla.
 \end{lemma}
 \begin{proof}
-Per $k=1$ la tesi \`e esattamente il contenuto dei conti nell'osservazione (\ref{RmCoclicliFibratiLineariSuRettaProiettiva}).
+``Non si annulla mai" significa che la classe $\ol s_x\in \Mf_x:=\Mf\otimes_{\Oc_{\Pj^1_A}}k(x)$ non \`e mai nulla per ogni punto $x\in \Pj^1_A$. Supponiamo per assurdo che $\ol s_p=0$. Segue che $\ol s_x=0$ per $x$ un qualsiasi punto chiuso che specializza $p$. Dato che la mappa $\Pj^1_A\to \Spec A$ \`e chiusa in quanto $\Pj^1$ \`e una variet\`a completa, la proiezione di $x$ in $\Spec A$ deve essere un punto chiuso, quindi $\mf$ dato che $A$ \`e locale.
 
-Mostriamo ora il caso di $k>1$. A meno di moltiplicare per una potenza alta di $t$ supponiamo $c_{i,j}\in \K[t]$ per ogni $i$ e $j$, finito il conto in questo caso possiamo moltiplicare per $t\ii$ alla stessa potenza e questo non influisce sulla forma diagonale che vorremmo ottenere.
-
-
-Mostriamo che possiamo intanto trovare una $\al\in \GL_k(\K[t])$ tale che
-\[C\al=\mat{t^m &0 &\cdots&0\\
-\ast &\ast&\cdots&\ast}\]
-Osserviamo che se abbiamo $c_{1,1}$ e $c_{1,j}$ sulla prima riga possiamo moltiplicare a destra per una matrice in modo da ottenere $m=\gcd(c_{1,1},c_{1,j})$ e $0$ al loro posto: se
-\[m=c_{1,1}a+c_{1,j}c,\quad 1=da-bc\]
-dove $a,c$ esistono per l'identit\`a di B\'ezout e $d,b$ esistono perch\'e $a$ e $c$ devono essere coprimi affinch\'e $m$ sia il massimo comune divisore, possiamo definire la matrice 
-\[M=\mat{a&b\\c&d}\mat{1 & -\frac{c_{1,1}b+c_{1,j}d}{m}\\ 0&1}\] 
-e ``inserirla" in una matrice identit\`a di taglia $k$ in modo da fare l'operazione richiesta, per esempio se $j=2$ allora
-\[C\mat{M & &&&\\
-&1&&\\
-&&\ddots&\\
-&&&1}=\mat{m &0 &\ast &\cdots&\ast\\
-\ast &\ast&\ast &\cdots&\ast\\
-\vdots &\vdots&\vdots &\ddots&\vdots\\
-\ast &\ast&\ast &\cdots&\ast}\]
-Reiterando questo procedimento prendendo la prima e seconda colonna, poi prima e terza, prima e quarta eccetera troviamo $\al$ tale che
-\[C\al=\mat{\gcd(\cpa{c_{1,j}\mid 1\leq j\leq k}) &0 &\cdots&0\\
-\ast &\ast&\cdots&\ast}\]
-ma questo massimo comune divisore deve essere della forma $t^\ell$ perch\'e deve dividere $\det C$ e questo deve essere un elemento invertibile di $\K[t^{\pm1}]$ (ogni eventuale coefficiente di $t^\ell$ pu\`o essere inglobato da $\al$). Notiamo che $\ell\geq 0$ perch\'e i singoli $c_{i,j}$ sono elementi di $\K[t]$.
-
-Per ipotesi induttiva esistono $\al'$ e $\beta'$ che riducono la sottomatrice sud-est, cio\`e
-\[\mat{1&0\\0&\beta'}C\al\mat{1&0\\0&\al'}=\mat{t^{\ell_1} & 0 & \cdots &0\\
-\ast & t^{\ell_2} & \cdots & 0\\
-\vdots &\vdots&\ddots &\vdots\\
-\ast & 0 &\cdots &t^{\ell_k}}\]
-con $\ell_i\geq 0$ per ogni $1\leq i\leq k$. In particolare $\det C=t^n$ con $n=\sum_{i=1}^k\ell_i$. Poich\'e dunque $\ell_1$ \`e limitato da $n$, esiste un $\ell_1$ massimo che possiamo ottenere a meno di moltiplicare a destra o sinistra per matrici in $\GL_k(\K[t])$.
-
-Affermiamo che per un tale $\ell_1$ massimale $\ell_1\geq \ell_2$, infatti se $\ell_1<\ell_2$, poich\'e
-\[\mat{t^{\ell_1}&0\\c_{2,1}&t^{\ell_2}}\text{ \`e equivalente a }\mat{t^{\ell_2} & c_{2,1}\\ 0 &t^{\ell_1}},\]
-se $c_{2,1}=0$ allora evidentemente $\ell_1$ non era massimale, se $c_{2,1}\neq 0$ allora riusciamo a sostituire questo pezzo $2\times 2$ con $\pa{\smat{t^{\ell_1+1}&0\\\ast&t^{m}}}$, negando ancora la massimalit\`a di $\ell_1$.
-
-
-Quindi $\ell_1\geq \ell_2$ (e analogamente $\ell_1\geq \ell_i$ per ogni $2\leq i\leq k$) quindi possiamo agire sulle colonne e sulle righe con elementi della forma $\pa{\smat{1&0\\f(t)&1}}$ per rindurre $c_{2,1}(t)$ as un polinomio che contemporaneamente dovrebbe avere grado minore di $\ell_2$ ma maggiore di $\ell_1$, che \`e assurdo e quindi $c_{1,2}=0$.
+Segue dunque che $x\in \cpa{\mf}\times \Pj^1$, e quindi $\ol s_x=\ol s$, che per ipotesi \`e non nulla, portandoci all'assurdo cercato.
 \end{proof}
 
-\begin{theorem}[]\label{ThClassificazioneFibratiVettorialiSuP1}
-Su $\Pj^1$ gli unici fibrati vettoriali sono $E\cong \Oc(n_1)\oplus\cdots\oplus \Oc(n_k)$ per degli interi $n_i$.
-\end{theorem}
+
+Ricordiamo questo cruciale lemma di algebra commutativa
+\begin{lemma}
+    Sia $(B,\mf)$ un anello locale e sia $L$ un $B$-modulo libero finitamente generato. Se $\overline{x_1},\ldots,\overline{x_n}$ è una $(B/\mf)$-base di $L/\mf L$, allora $x_1,\ldots,x_n$ è una $B$-base di $L$.
+\end{lemma}
 \begin{proof}
-Scriviamo $\Pj^1=U_0\cup U_\infty$ e procediamo per induzione su $n$ il rango del fibrato.
+    Consideriamo la mappa suriettiva $B^n\to L$ data da $e_i\mapsto x_i$. Per proiettività abbiamo una decomposizione $B^n=L\oplus L'$, da cui  $B^n/\mf B^n \cong L/\mf L'$. Ciò implica che $L'/\mf L'=0$ e per Nakayama $L'=0$.
+\end{proof}
+
+
+\begin{corollary}\label{CorQuozientePerSezioneMaiNullaAncoraFibrato}
+    Siano $B$ è un anello noetheriano, $M$ un $B$-modulo proiettivo e $s$ un elemento di $M$. Se $0\ne\overline{s}_\mf$ in $M/\mf M$ per ogni ideale massimale $  \mf$ di $B$, allora $M/sM$ è proiettivo.
+\end{corollary}
+\begin{proof}
+    Ricordiamo (\ref{ThCaratterizzazioneProiettivoNoetheriano}) che $M/sM$ \`e proiettivo se e solo se $(M/sM)_\mf$ (e quindi $M_\mf/sM_\mf$) è libero per ogni $\mf$ massimale in $B$. Dato che $\ol s_\mf\neq 0$ in $M/\mf M=M\otimes B/\mf$, possiamo completarlo ad una base di $M\otimes B/\mf$, che per il lemma precedente si estende ad una base di $M_\mf$ il cui primo elemento è $s_\mf$. In particolare \[M_\mf/sM_\mf \cong \bigoplus_{i=2}^N B_\mf e_i\] 
+	in quanto $M_\mf=B_\mf s \oplus \bigoplus_{i=2}^N B_\mf e_i$.
+\end{proof}
+
+
+
+\begin{proof}[Dimostrazione (Horrocks geometrico locale \ref{ThHorrocksGeometricoLocale})]
+Procediamo per induzione sul rango di $\Mf$. Se $\rnk \Mf=0$ non c'\`e nulla da dimostrare e la tesi vale.
+
+Sia $\ol s\in H^0(\ol \Mf)$ non nulla e sia $s$ una sua preimmagine in $s$ come per la proposizione (\ref{PrEstensioneSezioniPerHorrocks}). Poich\'e $s$ non \`e mai nulla per il lemma (\ref{LmEstensioneDiSezioneNonNullaEMaiNullaPerHorrocks}), il quoziente $\Nf:=\Mf/(s)$ \`e un fibrato vettoriale (per il corollario (\ref{CorQuozientePerSezioneMaiNullaAncoraFibrato}) applicato a $B=A[t]$ e $B=A[t\ii]$) di rango inferiore a $\Mf$. Consideriamo la successione esatta di fibrati
+\[\Oc_{\Pj_A^1}(0)\xrightarrow{s}\mathfrak{M} \to \mathfrak{N}\to 0\] 
+Per ipotesi induttiva $\mathfrak{N}\res{\A^1_A}$ \`e banale. Se $M_0$ \`e il modulo proiettivo che corrisponde a $\mathfrak{M}\res{\A^1_A}$ e $N$ quello che corrisponde a $\Nf\res{\A^1_A}$ allora la successione esatta sopra si restringe alla successione esatta corta 
+\[0\to A[t]\to M_0 \to N\cong A[t]^{h-1}\to 0.\] 
+Essendo $N$ libero, e quindi proiettivo, la successione spezza, ovvero $M_0\cong A[t]^h$.
+\end{proof}
+
+
+
+
+\subsection{Implicazioni verso Horrocks algebrico globale}
+
+\begin{proposition}[]\label{PrHGLimplicaHGG}
+Horrocks geometrico locale implica Horrocks geometrico globale.
+\end{proposition}
+\begin{proof}
+Siano $U_0=(\Pj^1\bs\cpa{\infty})_A=\Spec A[t]$ e $U_\infty=(\Pj^1\bs\cpa0)_A=\Spec A[t\ii]$.
+
+Dare un fibrato vettoriale $\Mf$ \`e come dare (\ref{LmFasciQuasicoerentiSonoIncollamentoDiRestrizioniSuRicoprimento}) moduli proiettivi finitamente generati $M_0$ su $A[t]$ e $M_\infty$ e $A[t\ii]$ tali che
+\[(M_0)_t\cong (M_\infty)_{t\ii}.\]
+Per avere la tesi vogliamo che $\Mf$ sia banale quando ristretto a $U_0$, cio\`e che $M_0$ sia esteso da $A$.
+
+Per il teorema di incollamento di Quillen (\ref{ThIncollamentoQuillen}) basta mostrare che $(M_0)_\mf$ \`e esteso da $A_\mf$ per ogni $\mf$ massimale in $A$. Osserviamo che localizzare\footnote{tensorizzare con $A_\mf[t]$} $\Mf$ a $\mf$ restituisce comunque un fibrato (stavolta su $\Pj^1_{A_\mf}$), definito dai moduli $(M_0)_\mf$ e $(M_\infty)_\infty$ (definiscono un fibrato perch\'e per esattezza della localizzazione $(M_0)_{\mf,t}\cong (M_\infty)_{\mf,t\ii}$). Per il teorema di Horrocks geometrico locale (\ref{ThHorrocksGeometricoLocale}) si ha che $(M_0)_\mf$ \`e esteso da $A_\mf$ come voluto.
+\end{proof}
+
+\begin{proposition}[]\label{PrHGGimplicaHAG} Horrocks geometrico globale implica Horrocks algebrico globale.
+\end{proposition}
+\begin{proof}
+Per ipotesi $M\!\ps t$ \`e libero, quindi esiste $f\in A[t]$ monico tale che $M_f$ \`e libero (il minimo comune denominatore di una base di $M\!\ps t$).
+
+Vogliamo costruire un fibrato vettoriale su $\Pj^1_A$ tale che la sua restrizione a $\A^1_A=(\Pj^1\bs\cpa\infty)_A$ sia uguale a $M$, cos\`i facendo, per Horrocks geometrico globale (\ref{ThHorrocksGeometricoGlobale}), avremo mostrato che $M$ corrisponde al fibrato banale su $A[t]$.
+
+Sia $X=\Spec A$. Essendo un modulo proiettivo finitamente generato su $A[t]$, $M$ corrisponde ad un fibrato vettoriale su 
+\[X\times \A^1\supseteq U=(X\times \A^1)\bs V(f)\]
+e che $M_f$ corrisponde alla restrizione di questo fibrato a $U$, che quindi \`e il fibrato banale su $U$ dato che $M_f$ \`e libero.
+Definiamo i seguenti aperti di $X\times \Pj^1$
+\begin{align*}
+	V=&(X\times (\Pj^1\nz))\bs V(f)\\
+	W=&X\times(\Pj^1\bs\cpa{\infty})=X\times \A^1
+\end{align*}
+e notiamo che $U$ \`e la loro intersezione, cio\`e abbiamo un diagramma cartesiano
+% https://q.uiver.app/#q=WzAsNCxbMCwxLCJXIl0sWzEsMCwiViJdLFsxLDEsIlhcXHRpbWVzIFxcUGpeMSJdLFswLDAsIlUiXSxbMCwyLCIiLDMseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6ImJvdHRvbSJ9fX1dLFsxLDIsIiIsMyx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoiYm90dG9tIn19fV0sWzMsMCwiIiwzLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJib3R0b20ifX19XSxbMywyLCJcXHNxdWFyZSIsMSx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFszLDEsIiIsMyx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoiYm90dG9tIn19fV1d
+\[\begin{tikzcd}
+	U & V \\
+	W & {X\times \Pj^1}
+	\arrow[hook', from=1-1, to=1-2]
+	\arrow[hook', from=1-1, to=2-1]
+	\arrow["\square"{description}, draw=none, from=1-1, to=2-2]
+	\arrow[hook', from=1-2, to=2-2]
+	\arrow[hook', from=2-1, to=2-2]
+\end{tikzcd}\]
+Se su $W$ consideriamo il fibrato $M$ e su $V$ consideriamo il fibrato banale dello stesso rango allora notiamo che questi si incollano in quanto su $W\cap V=U$ entrambi i fibrati si restringono al fibrato banale su $U$. Poich\'e $W$ e $V$ formano un ricoprimento di $X\times \Pj^1$ ($f$ non si annulla all'infinito perch\'e \`e monico) abbiamo definito un fibrato vettoriale $\Mf$ su tutto $\Pj^1_A$ tale che $M=M_0$.
+
+Per il teorema di Horrocks geometrico globale (\ref{ThHorrocksGeometricoGlobale}) questo mostra che $M=M_0$ \`e esteso da $A$, quindi per mostrare che $M_0$ \`e libero basta mostrare che $N=M_0/tM_0$ \`e un $A$-modulo libero. Poich\'e $M_0$ deriva da un fibrato su $X\times \Pj^1$, che si scrive come incollamento di $M_0$ e $M_\infty$, vale la seguente catena di isomorfismi
+\[N=\frac{M_0}{tM_0}\cong \frac{M_0}{(t-1)M_0}\overset{s:=t\ii}\cong \frac{M_\infty}{(1-s)M_\infty}\cong \frac{M_\infty}{s M_\infty}.\]
+Se $f$ come prima \`e monico di grado $n$ e $g(s)$ \`e tale che $g(t\ii)t^n=f(t)$, si pu\`o verificare che
+\[V=X\times(\Pj^1\nz)\bs V(f)=X\times(\Pj^1\bs\cpa\infty)\bs V(g).\]
+Per costruzione $g(0)=1\neq0$ quindi $\frac{M_\infty}{s M_\infty}=\pa{\frac{M_\infty}{s M_\infty}}_g$, ma su $V$ sappiamo che $\Mf$ \`e banale, cio\`e $(M_\infty)_g$ \`e un $A[s]$-modulo libero. Dunque
+\[\frac{M_\infty}{s M_\infty}\cong \frac{(M_\infty)_g}{s (M_\infty)_g}=(M_{\infty})_g\otimes_{A[s]}A\cong A[s]^{\oplus r}\otimes_{A[s]}A\cong A^{r}\]
+\`e un $A$-modulo libero e quindi $N$ \`e libero seguendo la catena di isomorfismi.
+\end{proof}
+
+
+\subsection{Dimostrazione di Quillen-Suslin}
+\begin{lemma}[]\label{PIDImplicaLocalizzazioneAMoniciPID}
+Se $R$ \`e un PID allora $R\!\ps t$ \`e un PID.
+\end{lemma}
+\begin{proof}
+Sia $\qf$ un ideale primo in $R[t]$ e sia $\pf=\qf\cap R\pasgnl={$R$ PID}(p)$. Consideriamo due casi:
 \setlength{\leftmargini}{0cm}
 \begin{itemize}
-\item[$\boxed{n=1}$] Notiamo che $E\res {U_0}$ e $E\res{U_\infty}$ sono banali perch\'e $U_0=\Pj^1\bs V(x_1)$, $U_\infty=\Pj^1\bs V(x_0)$ e vale (\ref{ThCaratterizzazioneProiettivoNoetheriano}).
+\item[$\boxed{p\neq 0}$] Dato che $\pf=R\cap \qf$, l'estensione $\pf[t]$ di $\pf$ a $R[t]$ è contenuta in $\qf$. Abbiamo dunque un omomorfismo iniettivo
+\[\frac\qf{\pf[t]}\inj \frac{R[t]}{\pf[t]}=\quot R{(p)}[t]\]
+dove $R/(p)$ \`e un campo per ipotesi.
+Dato che $(R/(p))[t]$ \`e un PID e $\qf/(\pf[t])$ si identifica con un suo ideale, segue che 
+\[\qf=\pf[t]=(p)\text{ oppure }\qf=(p,f(t))\] 
+per qualche $f(t)$ monico. In entrambi i casi nella localizzazione $R\!\ps t$ si ha che $\qf=(p)$. 
+\item[$\boxed{p=0}$] Sia $S=R\setminus \{0\}$. Allora $\qf$ è contenuto\footnote{questo ideale \`e un primo ben definito di $S\ii R[t]$ perch\'e $S\cap \qf=\emptyset$ per ipotesi.} in 
+\[S^{-1}\qf=(f(t))\subset S^{-1}R[t]=\Frac(R)[t],\] 
+con $f(t)=\sum_i a_it^i$ in $\qf$. Sia $d\coloneqq\gcd(a_i)$ e sia $g=f/d$. Poich\'e $g\in R[t]$, per primalit\`a di $\qf$ necessariamente $g\in \qf$.\\ 
+Mostriamo che $\qf=(g(t))$: se $h$ è un elemento di $\qf$ allora $h=f\ell_1\overset{\ell\doteqdot d\ell_1}=g\ell$ per qualche $\ell_1$ in $\Frac(R)[t]$. Poich\'e $g\in R[t]$ e $g\ell=h\in R[t]$, per il lemma di Gauss $\ell$ è in $R[t]$ e quindi $h\in (g)$ come ideale in $R[t]$. 
+\end{itemize}
+\setlength{\leftmargini}{0.5cm}
 
-Sia $\Uc=\cpa{U_0,U_\infty}$ e consideriamo $H^1(\Uc,\GL(1))$, che per il teorema (\ref{ThCorrispondenzaFibratiECoomologia}) e quanto appena osservato determina tutti i fibrati di rango 1 che si banalizzano su $\Uc$ a meno di isomorfismo. Per quanto osservato nella sottosezione precedente questo conclude.
-\item[$\boxed{n>1}$] In modo del tutto analogo vogliamo considerare $H^1(\Uc,\GL(n))$. Ricordando che i cocicli per questo ricoprimento sono
-\[Z^1(\Uc,\GL(n))=\cpa{C:U_{0,\infty}\to \GL(k)}\]
-e che la relazione per cui quozientiamo per trovare la coomologia \'e
-\[C\sim D\coimplies \exists \al:U_\infty\to\GL(n),\ \beta:U_0\to\GL(n)\ t.c.\ D=\al C\beta\ii.\]
-Scriviamo 
-\begin{align*}
-	C(t)=&(c_{i,j}(t))\in \GL_n(\K[t^{\pm}])\\
-	\al(t)=& (a_{i,j}(t))\in \GL_n(\K[t])\\
-	\beta(t)=&(b_{i,j}(t))\in \GL_n(\K[t\ii])
-\end{align*}
-Per definizione di somma diretta di fibrati vista dal punto di vista dei cocicli il lemma (\ref{LmMatriciDiCocicliPerFibrativettorialiSuRettaProiettiva}) conclude.
+In conclusione, localizzando rispetto ai polinomi monici ogni ideale di $R[t]$ diventa principale.
+\end{proof}
+
+\begin{theorem}[Quillen-Suslin]\label{ThQuillenSuslin}
+Se $R$ \`e un PID e $M$ \`e proiettivo finitamente generato su $R[t_1,\cdots, t_n]$, allora $M$ \`e libero.
+\end{theorem}
+\begin{proof}
+Procediamo per induzione su $n$. 
+\setlength{\leftmargini}{0cm}
+\begin{itemize}
+\item[$\boxed{n=0}$] Se $M$ \`e un modulo proiettivo finitamente generato su $R$ PID allora \`e anche libero per noti risulati di algebra commutativa.
+\item[$\boxed{n>0}$] Se $M$ \`e un $R[t_1,\cdots,t_n]$ modulo proiettivo finitamente generato allora $M\!\ps{t_1}$ \`e un $R\!\ps{t_1}[t_2,\cdots, t_n]$-modulo proiettivo finitamente generato. Dato che $R\!\ps{t_1}$ \`e un PID (\ref{PIDImplicaLocalizzazioneAMoniciPID}), per ipotesi induttiva questo mostra che $M\!\ps{t_1}$ \`e libero. Ora considero $A=R[t_2,\cdots, t_n]$ e noto che $M$ \`e un $A[t_1]$ modulo proiettivo finitamente generato per ipotesi, inoltre abbiamo mostrato che $M\!\ps{t_1}$ \`e libero, quindi per il teorema di Horrocks algebrico globale (\ref{ThHorrocksAlgebricoGlobale}) si ha che $M$ \`e libero.
 \end{itemize}
 \setlength{\leftmargini}{0.5cm}
 \end{proof}
 
-\begin{proposition}[]\label{PrUnicitaDecomposizioneFibratiVettorialiInLineariPerP1}
-Se $E$ \`e un fibrato vettoriale su $\Pj^1$ e (per il teorema (\ref{ThClassificazioneFibratiVettorialiSuP1})) esso \`e isomorfo a $\Oc(n_1)\oplus\cdots\oplus \Oc(n_k)$ per $n_1\geq\cdots\geq n_k$ allora gli $n_i$ sono univocamente determinati.
-\end{proposition}
-\begin{proof}
-Supponiamo di avere un'altra scrittura $E\cong \Oc(m_1)\oplus\cdots\oplus \Oc(m_k)$ con $m_1\geq\cdots\geq m_{k}$ (il numero di addendi \`e lo stesso perch\'e \`e pari al rango del fibrato). Senza perdita di generalit\`a supponiamo $m_1\geq n_1$ e tensorizziamo per $\Oc(-m_1)$ per ottenere
-\[\Oc(0)^a\oplus \under{E'}{\Oc(n_2')\oplus\cdots\oplus \Oc(n_k')}\overset\vp\cong \Oc(0)^b\oplus \under{F'}{\Oc(m_2')\oplus\cdots\oplus \Oc(m_k')}\]
-dove $n_i'$ e $m_i'$ sono gli opportuni interi che codificano le differenze $n_j-m_1$ e $m_j-m_1$ dopo aver raccolto le copie di $\Oc(0)$. Per costruzione tutti gli addendi diretti sono fibrati lineari con sezioni globali nulle (eccetto per le copie  di $\Oc(0)$), quindi
-\[\dim \Gamma(\Pj^1,\Oc(0)^a\oplus E')=a\cdot (0+1)+(k-a)\cdot 0=a,\quad \dim \Gamma(\Pj^1,\Oc(0)^b\oplus F')=b\]
-e cio\`e $a=b$.
-
-Scriviamo l'isomorfismo $\vp:\Oc(0)^a\oplus E'\to \Oc(0)^a\oplus F'$ in forma matriciale come
-\[\vp=\mat{\al &\beta\\
-\gamma&\delta}\]
-(cio\`e $\al:\Oc(0)^a\to \Oc(0)^a$, $\beta:E'\to \Oc(0)^a$ eccetera). Notiamo che dare un morfismo $\Oc(0)\to F'$ \`e la stessa cosa di dare una sezione di $F'$, quindi $\gamma=0$, dunque $\vp\res{\Oc(0)^a}=\al:\Oc(0)^a\to \Oc(0)^a$ \`e un isomorfismo e quindi abbiamo un isomorfismo
-\[E'=E/\Oc(0)^a\xrightarrow{\vp}E/\Oc(0)^a=F'\]
-e per induzione la scrittura di questi due pezzi \`e unica. Ritensorizzando per $\Oc(m_1)$ troviamo che la scrittura originale era unica.
-\end{proof}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-\section{Fibrati con azione di gruppo}
-
-\begin{definition}
-    Se $X$ è una $G$-varietà, un \textbf{$G$-fibrato} su $X$ è un fibrato vettoriale $p\colon E \to X$ su $X$ per cui esiste un'azione lineare di $G$ su $E$ tale che $p$ è $G$-equivariante.
-\end{definition}
 \begin{remark}
-In questo caso, $\Gamma(X,E)$ ha un'azione lineare di $G$, data da 
-\[(g\cdot \sigma)(x)=g(\sigma(g^{-1}x)).\] 
+Effettivamente nell'implicazione $HAG\implies$Quillen-Suslin usiamo solo anelli di polinomi quindi come avevamo anticipato non serve davvero la teoria degli schemi per formalizzare questa dimostrazione.
 \end{remark}
-
-Si potrebbe dimostrare che $G$ agisce in modo regolare su $\Gamma(X,E)$, e quindi che $\Gamma(X,E)$ è una rappresentazione algebrica di $G$. (Non lo faremo.) 
-
-\begin{definition}
-    Dati due fibrati vettoriali $p_1\colon E_1 \to X$ e $p_2\colon E_2 \to X$ su $X$, un \textbf{morfismo di fibrati} è una mappa $\varphi\colon E_1 \to E_2$ che preserva la somma e il prodotto per scalare e tale che $p_2\circ\varphi=p_1$. Diciamo che $\varphi$ è \textbf{equivariante} se commuta con $G$.
-\end{definition}
-
-\begin{remark}
-Per ogni $x_0$ in $X$, un morfismo $\varphi$ definisce una mappa lineare $\varphi_{x_0}\colon (E_1)_{x_0}\to (E_2)_{x_0}$. 
-\end{remark}
-
-\begin{proposition}\label{PrClassificazioneFibratiSuGruppoQuoziente}
-Le classi di isomorfismo fibrati vettoriali $G$-equivarianti di rango $m$ su $X=G/H$ sono in corrispondenza con le classi di isomorfismo delle rappresentazioni $m$-dimensionali di $H$.
-\end{proposition}
-\begin{proof}
-Costruiamo esplicitamente questa corrispondenza:
-\smallskip
-
-\noindent
-Dato un fibrato vettoriale $G$-equivariante $p\colon E\to G/H$ e posto $x_0=H=e_{G/H}$, possiamo considerare la fibra $E_{x_0}$ e chiaramente $H$ agisce su $E_{x_0}$. 
-\smallskip
-
-\noindent
-Data una rappresentazione $V$ di $H$, consideriamo $G\times V$ con l'azione di $H$ data da 
-\[h(g,v)=(gh^{-1},hv).\]
-Passando al quoziente in $H$ abbiamo
-% https://q.uiver.app/#q=WzAsNCxbMCwwLCJFPVxcZGZyYWN7R1xcdGltZXMgVn17SH0iXSxbMCwxLCJbZyx2XSJdLFsxLDAsIlg9e0d9L3tIfSJdLFsxLDEsIltnXSJdLFswLDJdLFsxLDMsIiIsMCx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Im1hcHMgdG8ifX19XSxbMSwwLCJcXGluIiwzLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoibm9uZSJ9LCJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzMsMiwiXFxpbiIsMyx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dXQ==
-\[\begin{tikzcd}
-	{E=\dfrac{G\times V}{H}} & {X={G}/{H}} \\
-	{[g,v]} & {[g]}
-	\arrow[from=1-1, to=1-2]
-	\arrow["\in"{marking, allow upside down}, draw=none, from=2-1, to=1-1]
-	\arrow[maps to, from=2-1, to=2-2]
-	\arrow["\in"{marking, allow upside down}, draw=none, from=2-2, to=1-2]
-\end{tikzcd}\]
-Notiamo che 
-\[[g,v]+[gh,u]=[g,v]+[g,hu]=[g,v+hu]\] 
-e che 
-\[\lambda[g,v]=[g,\lambda v],\]
-quindi le fibre hanno una struttura vettoriale.
-
-Per concludere andrebbe mostrato che $E$ è una varietà algebrica, che la mappa costruita è regolare e che abbiamo la trivializzazione locale.
-\end{proof}
-
-
-
-\begin{example}
-Se vogliamo costruire fibrati $G$-equivarianti lineari (cioè di rango $1$) su $\GL(n)/B_n$, sappiamo che questi corrispondono alle rappresentazioni $1$-dimensionali di $B_n$ 
-% https://q.uiver.app/#q=WzAsMyxbMCwwLCJCX24iXSxbMiwwLCJcXEteXFx0aW1lcyJdLFsxLDEsIlQ9Ql9uL1VfbiJdLFswLDJdLFsyLDFdLFswLDFdXQ==
-\[\begin{tikzcd}
-	{B_n} && {\K^\times} \\
-	& {T=B_n/U_n}
-	\arrow[from=1-1, to=1-3]
-	\arrow[from=1-1, to=2-2]
-	\arrow[from=2-2, to=1-3]
-\end{tikzcd}\]
-Quindi queste possono essere caratterizzate attraverso i caratteri del toro.
-\end{example}
