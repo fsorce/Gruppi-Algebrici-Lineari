@@ -156,6 +156,8 @@ In un gruppo algebrico affine le componenti connesse sono irriducibili.
     La precedente è una decomposizione in componenti connesse e irriducibili.
 \end{remark}
 
+Possiamo adesso dimostrare un importante risultato sugli omomorfismi di gruppi algebrici
+
 \begin{proposition}\label{PrMorfismoTraGruppiAlgebriciAffiniHaImmagineChiusa}
     Se $\varphi\colon G \to H$ è un morfismo di gruppi algebrici affini, allora $\varphi(G)$ è un chiuso di $H$.
 \end{proposition}
@@ -166,7 +168,7 @@ In un gruppo algebrico affine le componenti connesse sono irriducibili.
     Il sottogruppo $X=\overline{\varphi(G)}$ di $H$ è irriducibile per continuit\`a di $\vp$, quindi basta mostrare che $X=\vp(G)$.
     
     
-    Per il Teorema di Chevalley (\ref{ThChevalley}) esiste un aperto $U$ di $X$ contenuto in $\varphi(G)$. Poiché $X$ e $\varphi(G)$ sono sottogruppi di $H$, si ha \[U\cdot U \subseteq \varphi(G)\subseteq X.\]
+    Per il teorema (\ref{ThDominantiAperteSuAperto}) esiste un aperto $U$ di $X$ contenuto in $\varphi(G)$. Poiché $X$ e $\varphi(G)$ sono sottogruppi di $H$, si ha \[U\cdot U \subseteq \varphi(G)\subseteq X.\]
     Se $x$ è un elemento di $X$, poiché $i(U)=U^{-1}$ è un aperto di $X$, anche $xU^{-1}$ è un aperto di $X$. Per irriducibilità di $X$, si ha $U\cap xU^{-1} \ne \emptyset$, quindi esistono $u,v$ in $U$ tali che 
     \[u=xv\ii\coimplies x=uv,\] da cui $X\subseteq U\cdot U \subseteq \varphi(G)\subseteq X$ e abbiamo l'uguaglianza cercata.
 \end{proof}
@@ -276,7 +278,7 @@ Questo mostra che i generatori $f_j$ di $\K[G]$ appartengono all'immagine di $\p
 Se $G$ e $H$ gruppi algebrici affini con $\vp:G\to H$ morfismo di gruppi algebrici allora $\vp(G)$ \`e un chiuso di $H$.
 \end{proposition}
 \begin{proof}
-Sia $T=\vp(G)\subseteq H$. Vogliamo mostrare che $T=\ol T\subseteq H$. Per Chevalley (\ref{ThChevalley}), $T\supseteq U$ per $U$ aperto di $\ol T$. Notiamo che $\ol T$ \`e un sottogruppo di $H$. Dunque per ogni $t\in \ol T$, $tU\subseteq \ol T$.
+Sia $T=\vp(G)\subseteq H$. Vogliamo mostrare che $T=\ol T\subseteq H$. Per il teorema (\ref{ThDominantiAperteSuAperto}), $T\supseteq U$ per $U$ aperto di $\ol T$. Notiamo che $\ol T$ \`e un sottogruppo di $H$. Dunque per ogni $t\in \ol T$, $tU\subseteq \ol T$.
 
 Poich\'e la moltiplicazione per $t$ \`e un omeomorfismo, $U$ e $tU$ sono aperti di $\ol T$, quindi per irriducibilit\`a $U\cap tU\neq \emptyset$, dunque esistono $g,h\in U$ tali che $g=th$, cio\`e $t=gh\ii\in T$ e dato che $t$ era un generico elemento di $T$ abbiamo finito.
 \end{proof}

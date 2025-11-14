@@ -80,7 +80,7 @@ Siano $H< G$ e $L,V$ come nel lemma. Dato che $G$ agisce su $V$ si ha che esso a
 \[Y=\ol{G\cdot L}\subseteq \Pj(V).\]
 Concludiamo mostrando che $X$ \`e aperto in essa: data la mappa
 \[\funcDef{G}{Y}{g}{gL},\]
-per Chevalley (\ref{ThChevalley}) si ha che $X$ contiene un aperto $U$ di $Y$. Se $x\in U\subseteq X$ allora $gx\in gU\subseteq X$ quindi
+per il teorema (\ref{ThDominantiAperteSuAperto}) si ha che $X$ contiene un aperto $U$ di $Y$. Se $x\in U\subseteq X$ allora $gx\in gU\subseteq X$ quindi
 \[X=\bigcup_{g\in G}gU\text{ \`e aperto.}\]
 \end{proof}
 
@@ -103,7 +103,7 @@ Notiamo ora che
 \end{itemize}
 \setlength{\leftmargini}{0.5cm}
 
-Abbiamo dunque costruito un omomorfismo di gruppi algebrici $\vp:G\to \GL(W)$ il cui nucleo \`e $H$. Poich\'e $\vp(G)$ \`e un sottogruppo chiuso di $\GL(W)$ per Chevalley (\ref{PrMorfismoTraGruppiAlgebriciAffiniHaImmagineChiusa}) si ha che $G/H\cong \vp(G)$ eredita la struttura di gruppo algebrico lineare da $\vp(G)$.
+Abbiamo dunque costruito un omomorfismo di gruppi algebrici $\vp:G\to \GL(W)$ il cui nucleo \`e $H$. Poich\'e $\vp(G)$ \`e un sottogruppo chiuso di $\GL(W)$ per il teorema (\ref{PrMorfismoTraGruppiAlgebriciAffiniHaImmagineChiusa}) si ha che $G/H\cong \vp(G)$ eredita la struttura di gruppo algebrico lineare da $\vp(G)$.
 \end{proof}
 
 Diamo due esempi dove il sottogruppo NON \`e normale:
@@ -311,7 +311,7 @@ Un qualsiasi elemento di $H$ \`e contenuto in qualche $Z_i$ per costruzione, qui
 %Allora $W_NZ_N\subseteq W_N$ cio\`e $W_N\cdot W_N\subseteq W_N$ perch\'e $W_n$ \`e chiuso. Quindi\footnote{$Z_N\ii W_N\subseteq W_N\implies Z_N\ii\subseteq W_N\implies \ol{Z_N\ii}\subseteq W_N$ e $\ol{Z_N\ii}=\ol{Z_N}\ii=W_N\ii$.} $W_N\ii\subseteq W_N$ e in particolare $Z_N\ii\subseteq W_N$, ma $Z_N\ii=X_N\ii\cdots X_1\ii=X_{i_1}\cdots X_{i_N}$, cio\`e mettendo tutto insieme $H\subseteq W_N$
 Mostriamo che $W_N=Z_N\cdot Z_N$: abbiamo una mappa
 \[\under{irrid.}{X_1\times\cdots\times X_{N}}\to Z_N\to W_N,\]
-quindi per Chevalley (\ref{ThChevalley}) $Z_N\supseteq U$ per $U$ aperto non vuoto di $W_N$ (e quindi denso per irriducibilit\`a), dunque\footnote{Per ogni $g\in W_N$ fissiamo $f:W_N\to W_N$ data da $f(a)=a\ii g$. Questa mappa \`e ben definita perch\'e $W_N\cdot W_N\subseteq W_N$ ed \`e evidentemente continua. Dato che $U$ \`e aperto, $f\ii(U)$ \`e aperto e quindi interseca $U$ in quanto $U$ \`e denso. Segue dunque che esiste $u\in U\cap f\ii(U)$, cio\`e $u\ii g=v\in U$, ovvero $g=u\cdot v\in U\cdot U$.} $U\cdot U=W_N$.
+quindi per il teorema (\ref{ThDominantiAperteSuAperto}) $Z_N\supseteq U$ per $U$ aperto non vuoto di $W_N$ (e quindi denso per irriducibilit\`a), dunque\footnote{Per ogni $g\in W_N$ fissiamo $f:W_N\to W_N$ data da $f(a)=a\ii g$. Questa mappa \`e ben definita perch\'e $W_N\cdot W_N\subseteq W_N$ ed \`e evidentemente continua. Dato che $U$ \`e aperto, $f\ii(U)$ \`e aperto e quindi interseca $U$ in quanto $U$ \`e denso. Segue dunque che esiste $u\in U\cap f\ii(U)$, cio\`e $u\ii g=v\in U$, ovvero $g=u\cdot v\in U\cdot U$.} $U\cdot U=W_N$.
 
 Questo mostra che $W_N\subseteq H$ ma ci sono tutti gli elementi di $H$ quindi effettivamente $H=W_N$.
 \end{proof}
@@ -331,7 +331,7 @@ Supponiamo $\cha\K=0$. Siano $H,K\subseteq G$ sottogruppi connessi, allora\footn
 L'implicazione $\implies$ \`e ovvia quindi basta mostrare l'altra.
 
 Sia $X=H\cdot K\subseteq G$ e notiamo che \`e omogeneo rispetto all'azione di $H\times K$ data da $(h,k)\cdot g=hgk\ii$.
-Osserviamo che $X$ \`e aperto in $\ol X\subseteq G$ per Chevalley (\ref{ThChevalley}) (contiene un aperto della chiusura ed \`e omogeneo in quanto orbita di $e$).
+Osserviamo che $X$ \`e aperto in $\ol X\subseteq G$ per il teorema (\ref{ThDominantiAperteSuAperto}) (contiene un aperto della chiusura ed \`e omogeneo in quanto orbita di $e$).
 Si ha
 \[X\cong \frac{H\times K}{\stab_{H\times K}(e)}.\]
 Studiando lo stabilizzatore notiamo che
@@ -398,7 +398,7 @@ Per il lemma (\ref{LmSottogruppoGenerato}) segue che il sottogruppo di $G$ gener
 Se $G$ \`e un gruppo che agisce su una variet\`a $Y$ allora $G$ ha un'orbita chiusa in $Y$.
 \end{proposition}
 \begin{proof}
-Consideriamo un'orbita che ha dimensione minima $Z=G\cdot y$. Notiamo che $Gy$ \`e un aperto denso di $\ol Z$ per Chevalley (\ref{ThChevalley}) (contiene un aperto ed \`e omogeneo), quindi $\dim \ol Z\bs Z<\dim Z$, ma se questa differenza non fosse vuota allora $G$ agirebbe su essa e quindi esisterebbe un'orbita di dimensione pi\`u piccola.
+Consideriamo un'orbita che ha dimensione minima $Z=G\cdot y$. Notiamo che $Gy$ \`e un aperto denso di $\ol Z$ (contiene un aperto per il teorema (\ref{ThDominantiAperteSuAperto}) ed \`e omogeneo), quindi $\dim \ol Z\bs Z<\dim Z$, ma se questa differenza non fosse vuota allora $G$ agirebbe su essa e quindi esisterebbe un'orbita di dimensione pi\`u piccola.
 
 Dunque $\ol Z\bs Z=\emptyset$, cio\`e $\ol Z=Z$.
 \end{proof}
