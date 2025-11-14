@@ -242,7 +242,7 @@ Notiamo che $W$ \`e un chiuso, infatti \`e luogo di zeri di $f(x)-g(y)$ in $X\ti
 Concludiamo la sezione citando il seguente teorema che useremo ripetutamente
 
 \begin{theorem}[Dominanti sono aperte su un aperto]\label{ThDominantiAperteSuAperto}
-    Se $\varphi\colon X \to Y$ è un morfismo tra varietà quasi-proiettive, allora $\varphi(X)$ contiene un aperto di $Y$ (e quindi di $\overline{\varphi(X)}$).
+    Se $\varphi\colon X \to Y$ è un morfismo tra varietà quasi-proiettive, allora $\varphi(X)$ contiene un aperto di $\overline{\varphi(X)}$.
 \end{theorem}
 
 
@@ -344,6 +344,13 @@ Scrivendo $X=X_1\cup\ldots\cup X_n$ con $X_i$ aperti affini e data una successio
 \begin{example}
     $I=(zx,zy)$. $p_1=(z)$ è il piano, $p_2=(x,y)$ è la retta, $X=V(p_1)\cup V(p_2)$.
 \end{example}
+
+
+\begin{theorem}[principale di Zariski]\label{ThZariski}
+Supponiamo $\cha(\K)=0$. Se $X$ \`e irriducibile e $Y$ \`e liscia, ogni morfismo $\varphi\colon X\to Y$ bigettivo è un isomorfismo.    
+\end{theorem}
+
+In caratteristica $p$ il teorema va enunciato in modo diverso: $\K=\overline{\F_p}$, $\varphi\colon \K \to \K$ definito da $x\mapsto x^p$.
 
 
 \section{Dimensione di una varietà algebrica}
@@ -502,11 +509,7 @@ Se $X$ è una varietà irriducibile di dimensione $d$ contenuta in $\K^n$, consi
 
 
 
-\begin{theorem}[Zariski]\label{ThZariski}
-Supponiamo $\cha(\K)=0$. Se $X$ \`e irriducibile e $Y$ \`e liscia, ogni morfismo $\varphi\colon X\to Y$ bigettivo è un isomorfismo.    
-\end{theorem}
 
-In caratteristica $p$ il teorema va enunciato in modo diverso: $\K=\overline{\F_p}$, $\varphi\colon \K \to \K$ definito da $x\mapsto x^p$.
 
 
 \begin{definition}
