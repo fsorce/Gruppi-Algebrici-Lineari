@@ -1,0 +1,176 @@
+\documentclass[a4paper]{report}
+\input{style/packagesNtheorems.tex}
+\input{style/fancystyle.tex}
+\input{style/macros.tex}
+
+
+
+\title{{\huge \bf Gruppi algebrici lineari} 
+\vspace{0.7cm}
+
+\Large Esercizi per l'esame.}
+
+\author{\Large Francesco Sorce}
+\date{3 dicembre}
+
+\begin{document}
+\maketitle
+
+
+\section*{Notazione}
+\begin{notation}
+Chiamiamo $M$ il punto chiuso di $\Spec \C[[t]]$ e $O$ il punto generico. Con $val$ intendo la valutazione su $\C((t))$ indotta dal fatto che $\C[[t]]$ \`e un DVR.
+\end{notation}
+
+\section*{Esercizio 2}
+Per ogni $n$ sia $$g_n(t)=\mat{t^{-n}&0\\0&t^n}.$$Mostrare che $\SL(2,\C((t)))=\bigcup_{n\in \N}\SL(2,\C[[t]])\ g_n(t)\ \SL(2,\C[[t]])$.
+\begin{solution}
+%Come fatto preliminare osserviamo che se $u(t)\in \C[[t]]^\times$ allora $u(t)=v(t)^2$ per qualche $v(t)\in \C[[t]]$. Se $u(t)=c+t \wt a(t)=c(1-ta(t))$ allora un valido $v(t)$ si ottiene considerando 
+%\[v(t)=\sqrt{c}\pa{\sum_{i\geq 0}\binom{1/2}i (t a(t))^i}\]
+%dove $\sqrt c$ \`e una qualsiasi radice quadrata di $c$ in $\C$ e $\binom{1/2}i=\frac1{i!}\prod_{j=0}^i \pa{\frac12-j}$.
+%Questo in particolare mostra che se una matrice in $\GL(2,\C[[t]])$ ha determinante in $\C[[t]]^\times$ allora possiamo scriverla come il prodotto tra una matrice in $\SL(2,\C[[t]])$ e uno scalare $\C[[t]]^\times$.
+%\medskip
+Sia $b(t)\in \SL(2,\C((t)))$ e sia $-n$ il minimo tra le valutazioni dei coefficienti. Scrivendo $b(t)=t^{-n}t^nb(t)$ notiamo che $t^nb(t)\in \GL(2,\C[[t]])$ e che $\det(t^nb(t))=t^{2n}$.
+
+Scriviamo $t^nb(t)=\pa{\smat{b_{11}(t) & b_{12}(t)\\b_{21}(t) & b_{22}(t)}}$. Sia $t^m$ il massimo comune divisore di $b_{11}(t)$ e $b_{12}(t)$ e scriviamo $t^m=\al(t)b_{11}(t)+\gamma(t) b_{12}(t)$. Notiamo che $\al(t)$ e $\gamma(t)$ hanno massimo comune divisore $1$ perch\'e altrimenti l'equazione sopra non avrebbe senso. Questo significa che $1=\al(t)\delta(t)-\beta(t)\gamma(t)$ ha soluzione. Consideriamo 
+\[M(t)=\mat{\al(t) & \beta(t)\\ \gamma(t) &\delta(t)}\mat{1 & -t^{-m}(b_{11}(t)\beta(t)+b_{12}(t)\delta(t))\\0&1}=\mat{\al(t)& -t^{-m}b_{12}(t) \\\gamma(t) & t^{-m}b_{11}(t)}\]
+e notiamo che
+\[t^nb(t)M(t)=\mat{t^m & 0 \\ b_{21}'(t) & b_{22}'(t)}.\]
+Osserviamo che $M(t)\in \SL(2,\C[[t]])$.
+
+Se ora consideriamo la trasposta otteniamo
+\[M(t)^\top t^nb(t)^\top=\mat{t^m & b_{21}'(t) \\ 0 & b_{22}'(t)}.\]
+Con un procedimento identico a prima possiamo definire $M'(t)\in \SL(2,\C[[t]])$ tale che
+\[M(t)^\top t^nb(t)^\top M'(t)=\mat{t^{m'} & 0 \\ b_{21}''(t) & b_{22}''(t)}\]
+con $t^{m'}$ il massimo comune divisore di $t^m$ e $b_{21}'(t)$. 
+
+Iterando questo processo notiamo che la successione degli esponenti della prima entrata nella matrice \`e decrescente e contenuta in $\N$, dunque stabilizza. Supponiamo dunque di aver trovato $N(t),N'(t)\in \SL(2,\C[[t]])$ tali che\footnote{ho ridefinito la notazione per semplicit\`a.}
+\[N(t)t^nb(t)N'(t)=\mat{t^m & 0 \\ u(t)t^m & b_{22}(t)}.\] 
+Moltiplicando a sinistra per $\wt M(t)=\pa{\smat{1 & 0\\ -u(t)&1}}\in \SL(2,\C[[t]])$ troviamo
+\[\wt M(t)N(t)t^nb(t)N'(t)=\mat{t^m & 0 \\ 0 & b_{22}(t)}\]
+e dato che il determinante \`e rimasto $t^{2n}$ per tutto il processo si ha che $b_{22}(t)=t^{2n-m}$. 
+
+Se $m>2n-m\coimplies m>n$, moltiplichiamo a sinistra per $\pa{\smat{0 & 1\\ -1 &0}}$ e a destra per $\pa{\smat{0 & -1\\1&0}}$ in modo da scambiare tra di loro le entrate diagonali moltiplicando per elementi di $\SL(2,\C[[t]])$. Abbiamo dunque mostrato che esistono $A(t),B(t)\in \SL(2,\C[[t]])$ tali che
+\[A(t)t^n b(t)B(t)=\mat{t^m & 0\\ 0& t^{2n-m}}\]
+con $m\leq n$. Adesso moltiplichiamo per $t^{-n}$ trovando
+\[A(t)b(t)B(t)=\mat{t^{-(n-m)} & 0 \\ 0 & t^{n-m}}=g_{n-m}(t),\]
+quindi la tesi segue moltiplicando a sinistra per $A(t)\ii$ e a destra per $B(t)\ii$.
+\end{solution}
+
+
+
+\section*{Esercizio 3}
+Consideriamo una azione $\SL(2,\C)\acts V$. Sia $x\in V$. Sia $\orb x$ l'orbita di $x$ per questa azione. Mostare che $\orb x$ \`e chiusa se e solo se per ogni omomorfismo $b:\G_m\to \SL(2)$ tale che il limite $\lim_{t\to 0}b(t)x=y$ esiste si ha che $y\in \orb x$.
+
+\begin{solution}
+Sia $b:\G_m\to \SL(2)$ un omomorfismo tale che la mappa indotta $\G_m\to V$ ammette una estensione $f:\A^1\to V$, cio\`e tale che il limite $\lim_{t\to 0}b(t)x=f(0)$ esiste. Per continuit\`a $f\ii(\ol{\orb x})$ \`e un chiuso di $\A^1$ e contiene $\G_m$, quindi $f\ii(\ol{\orb x})=\A^1$ e in particolare il limite $f(0)$ appartiene a $\ol{\orb x}$.
+
+Se $\orb x$ \`e chiusa questo mostra la prima implicazione. Resta dunque da mostrare l'altra implicazione. Seguiamo i passi suggeriti:
+\setlength{\leftmargini}{0cm}
+\begin{enumerate}[I]
+\item Sia $y\in \ol{\orb x}\bs \orb x$ e sia $b:\Spec \C((t))\to \SL(2)$ tale che $\lim_{t\to0}b(t)x=y$, cio\`e tale che esista un morfismo $f:\Spec \C[[t]]\to V$ con $f(O)=b(t)x$ e $f(M)=y$.
+\item Usando l'\textbf{Esercizio 2} scriviamo $b(t)=c(t)g_n(t)d(t)$.
+
+Osserviamo che $f$ induce un morfismo\footnote{$V_{\C[[t]]}=V\times_{\Spec \C}\Spec \C[[t]]$ \`e il cambiamento di base.} $\Spec\C[[t]]\to V_{\C[[t]]}$ per propriet\`a universale del prodotto fibrato (il secondo morfismo \`e l'identit\`a di $\Spec \C[[t]]$). Seguendo il diagramma otteniamo un nuovo morfismo $g:\Spec\C[[t]]\to V$ che se ristretto a $O=\Spec \C((t))$ restituisce $c(t)\ii c(t)g_n(t)d(t)x=g_n(t)d(t)x$.
+% https://q.uiver.app/#q=WzAsNSxbMCwxLCJWX3tcXENbW3RdXX0iXSxbMCwwLCJWX3tcXENbW3RdXX0iXSxbMSwwLCJWIl0sWzEsMSwiViJdLFsxLDIsIlxcU3BlY1xcQ1tbdF1dIl0sWzAsMSwiYyh0KVxcaWlcXGNkb3QiXSxbMSwyXSxbMCwzXSxbNCwwLCIiLDIseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkb3R0ZWQifX19XSxbNCwzLCJmIiwyXSxbNCwyLCJnIiwyLHsiY3VydmUiOjQsInN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dXQ==
+\[\begin{tikzcd}
+	{V_{\C[[t]]}} & V \\
+	{V_{\C[[t]]}} & V \\
+	& {\Spec\C[[t]]}
+	\arrow[from=1-1, to=1-2]
+	\arrow["{c(t)\ii\cdot}", from=2-1, to=1-1]
+	\arrow[from=2-1, to=2-2]
+	\arrow["g"', curve={height=24pt}, dashed, from=3-2, to=1-2]
+	\arrow[dotted, from=3-2, to=2-1]
+	\arrow["f"', from=3-2, to=2-2]
+\end{tikzcd}\]
+Questo mostra che il limite $\lim_{t\to 0}g_n(t)d(t)x=g(M)$ esiste. Questo in particolare significa che tutte le entrate del vettore $g_n(t)d(t)x$ appartengono $\C[[t]]$ e quindi possiamo valutare queste entrate in $t=0$. Dato che valutare le entrate di $c(t)g_n(t)d(t)x$ in $t=0$ restituisce le entrate di $y$ segue che\footnote{$\ol{\orb x}$ e $\orb x$ sono $G$-invarianti perch\'e l'azione \`e regolare e quindi compatibile con la topologia di Zariski.} 
+\[g(M)=(g_n(t)d(t)x)(0)=c(0)\ii y\in \orb y\subseteq \ol{\orb x}\bs \orb x.\] 
+Dunque a meno di sostituire $y$ con $c(0)\ii y$ possiamo supporre $c(t)=1$.
+\item Osserviamo che $d(t)=d(t)d(0)\ii d(0)$ e che $(d(t)d(0)\ii)(0)=1$. Se sostituiamo $x$ con $d(0)x$ e $d(t)$ con $d(t)d(0)\ii$ allora $\ol{\orb x}$ e $\orb x$ non cambiano e $\lim_{t\to 0} g_n(t)d(t)x=y$ mantiene la stessa forma ma adesso $d(0)=1$.
+\item Supponiamo che $d(0)=1$ e che $\displaystyle \lim_{t\to 0}g_n(t)d(t)x=y$. Dividiamo la dimostrazione in tre punti: mostriamo che $\displaystyle\lim_{t\to 0}g_n(t)x=z$ esiste, che l'esistenza del limite $\lim_{t\to 0}g_n(t)x$ su $\Spec \C((t))$ implica l'esistenza dello stesso limite su $\G_m$ e che $z\in \ol{\orb y}$.
+\setlength{\leftmargini}{0cm}
+\begin{enumerate}[(a)]
+\item Osserviamo che $\G_m$ agisce su $V$ se poniamo $t\cdot v=g_n(t)v$. Per quanto visto sulle azioni dei tori questo significa che $V$ si decompone come segue:
+\[V=\bigoplus_{r\in \Z}V_r,\qquad V_r=\cpa{v\in V\mid g_n(\la)v=\la^rv}.\]
+Per il resto del punto (a) fissiamo una base $\cpa{e_1,\cdots, e_{\dim_\C V}}$ di $V$ che rispetta questa decomposizione. Osserviamo che, componendo con $\Spec \C((t))\to \G_m$, si ha che se $v(t)\in V(\C((t)))$ e $v(t)=\sum v(t)_ie_i$ \`e la scrittura nella base sopra allora 
+\[g_n(t)v(t)=\sum t^{r_i}v(r)_i e_i\]
+dove $r_i\in \Z$ \`e tale che $e_i\in V_{r_i}$.
+
+
+Dato che $d(0)x=x$, scriviamo $d(t)x=x+\e(t)$ dove $\e(t)\in V(\C[[t]])$ \`e tale che la valutazione in $t=0$ restituisce $0$. Con una idea simile scriviamo 
+\[y+\delta(t)=g_n(t)(x+\e(t))=\sum \pa{t^{r_i}x_i+t^{r_i}\e(t)_i}e_i\]
+Valutando in $t=0$ sappiamo che il membro di sinistra \`e ben definito, dunque per ogni $i$ deve essere il caso che $t^{r_i}x_i+t^{r_i}\e(t)_i\in \C[[t]]$. Sapendo anche che $\e(0)=0$ osserviamo che $\e(t)_i$ ha termine costante nullo. Se $x_i\neq 0$ osserviamo che $r_i\geq 0$, perch\'e se cos\`i non fosse allora ci sarebbe un addendo con valutazione negativa che non pu\`o essere cancellato (perch\'e $val(t^{r_i}\e(t)_i)\geq r_i+1$) e quindi $t^{r_i}x_i+t^{r_i}\e(t)_i$ non sarebbe un elemento di $\C[[t]]$.
+
+Osserviamo che questo significa che $t^{r_i}x_i\in \C[[t]]$ e quindi 
+\[g_n(t)x=\sum t^{r_i}x_ie_i\in V(\C[[t]]),\] cio\`e il limite $\lim_{t\to 0}g_n(t)x=z$ esiste (e in particolare $z=\sum_{r_i=0}x_ie_i$).
+
+\item Consideriamo l'omomorfismo $\G_m\to \SL(2)$ che sui $\C$ punti associa $g_n(\la)$ a $\la$. Questo induce un morfismo $\G_m\to V$ dato da $t\mapsto g_n(t)x$. Consideriamo il diagramma
+% https://q.uiver.app/#q=WzAsNCxbMiwxLCJcXFNwZWMgXFxDW3Ree1xccG0xfV0iXSxbMCwwLCJWIl0sWzIsMiwiXFxTcGVjIFxcQygodCkpIl0sWzEsMiwiXFxTcGVjXFxDW1t0XV0iXSxbMiwwXSxbMCwxLCIiLDAseyJjdXJ2ZSI6Mn1dLFsyLDNdLFszLDEsIiIsMCx7ImN1cnZlIjotMiwic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoic3F1aWdnbHkifX19XSxbMiwxLCIiLDEseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XV0=
+\[\begin{tikzcd}
+	V \\
+	&& {\Spec \C[t^{\pm1}]} \\
+	& {\Spec\C[[t]]} & {\Spec \C((t))}
+	\arrow[curve={height=12pt}, from=2-3, to=1-1]
+	\arrow[curve={height=-12pt}, squiggly, from=3-2, to=1-1]
+	\arrow[dashed, from=3-3, to=1-1]
+	\arrow[from=3-3, to=2-3]
+	\arrow[from=3-3, to=3-2]
+\end{tikzcd}\]
+dove il morfismo tratteggiato \`e quello indotto per restrizione, che \`e per\`o anche il morfismo $\Spec\C((y))\to V$ definito da $g_n(t)x$, quindi questo si estende a $\Spec \C[[t]]\to V$ (morfismo ondulato, il valore in $M$ \`e lo $z$ del passo precedente).
+
+Passando al diagramma di $\C$-algebre associato (e inserendo $\C[t]$)
+% https://q.uiver.app/#q=WzAsNSxbMiwxLCJcXENbdF57XFxwbTF9XSJdLFswLDAsIlNWXlxcYXN0Il0sWzIsMiwiXFxDKCh0KSkiXSxbMSwxLCJcXENbdF0iXSxbMSwyLCJcXENbW3RdXSJdLFswLDJdLFsxLDAsIiIsMCx7ImN1cnZlIjotMn1dLFs0LDJdLFszLDBdLFsxLDQsIiIsMix7ImN1cnZlIjoyfV0sWzMsNF0sWzEsMywiIiwxLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV1d
+\[\begin{tikzcd}
+	{SV^\ast} \\
+	& {\C[t]} & {\C[t^{\pm1}]} \\
+	& {\C[[t]]} & {\C((t))}
+	\arrow[dashed, from=1-1, to=2-2]
+	\arrow[curve={height=-12pt}, from=1-1, to=2-3]
+	\arrow[curve={height=12pt}, from=1-1, to=3-2]
+	\arrow[from=2-2, to=2-3]
+	\arrow[from=2-2, to=3-2]
+	\arrow[from=2-3, to=3-3]
+	\arrow[from=3-2, to=3-3]
+\end{tikzcd}\]
+notiamo che l'immagine di un polinomio $p\in SV^\ast$ in $\C((t))$ deve appartenere all'intersezione di $\C[[t]]$ e $\C[t^{\pm 1}]$, cio\`e a $\C[t]$. Questo mostra che effettivamente il morfismo $\G_m\to V$ si estende a $\A^1\to V$ (con valore $z$ in $0\in \A^1$) e quindi abbiamo trovato un omomorfismo $g_n:\G_m\to \SL(2)$ tale che $\lim_{t\to 0}g_n(t)x=z$ esiste. 
+
+\item Dato che $V$ \`e uno spazio affine, $\ol{\orb y}=V(I)$ per qualche ideale di $SV^\ast$. Essendo l'azione di $\SL(2,\C)$ su $V$ una rappresentazione regolare, $SV^\ast$ \`e una rappresentazione regolare di $\SL(2,\C)$. $I$ \`e un sottospazio $\SL(2,\C)$-invariante di questo anello di polinomi dunque \`e esso stesso una rappresentazione regolare. Sia $H$ una sottorappresentazione di $I$ di dimensione finita che contiene dei generatori di $I$ come ideale. Consideriamo lo spazio vettoriale $W=\Spec S H=H^\ast$. Abbiamo una mappa canonica $\vp:V\to W$ data da $v\mapsto (h\mapsto h(v))$. Per definizione una base di $H$ \`e in particolare un insieme di generatori per $I$, quindi $\vp(v)=0$ se e solo se $h_i(v)=0$ per $\cpa{h_i}$ base di $H$ se e solo se $v\in V(H)=V(I)=\ol{\orb y}$. In particolare la fibra di $0$ rispetto a $\vp$ \`e esattamente $\ol{\orb y}$, quindi il nostro obiettivo \`e mostrare che $\vp(z)=0$.
+
+Abbiamo visto che $V\to W$ \`e $\SL(2,\C)$-equivariante se e solo se $SH\to S V^\ast$ lo \`e, ma lo \`e perch\'e questa mappa \`e una inclusione di sottoalgebre. Per lo stesso motivo \`e anche $\SL(2,\C((t)))$-equivariante (se tensorizziamo tutto con $\C((t))$).
+
+Consideriamo il diagramma
+% https://q.uiver.app/#q=WzAsNCxbMiwwLCJWIl0sWzMsMCwiVyJdLFswLDAsIlxcU3BlYyBcXEMoKHQpKSJdLFswLDEsIlxcU3BlYyBcXENbW3RdXSJdLFswLDEsIlxcdnAiLDJdLFsyLDNdLFsyLDAsImdfbih0KWQodCl4Il0sWzMsMF0sWzIsMSwiZ19uKHQpZCh0KVxcdnAoeCkiLDAseyJjdXJ2ZSI6LTR9XV0=
+\[\begin{tikzcd}
+	{\Spec \C((t))} && V & W \\
+	{\Spec \C[[t]]}
+	\arrow["{g_n(t)d(t)x}", from=1-1, to=1-3]
+	\arrow["{g_n(t)d(t)\vp(x)}", curve={height=-24pt}, from=1-1, to=1-4]
+	\arrow[from=1-1, to=2-1]
+	\arrow["\vp"', from=1-3, to=1-4]
+	\arrow[from=2-1, to=1-3]
+\end{tikzcd}\]
+dove per la freccia in alto stiamo usando la $\SL(2,\C((t)))$-invarianza per dire $\vp(g_n(t)d(t)x)=g_n(t)d(t)\vp(x)$. Dunque 
+\[0=\vp(y)=\lim_{t\to 0}g_n(t)d(t)\vp(x).\]
+Scegliendo una base di $W$ che diagonalizza $g_n(t)$ come nel passo (a), questa equazione significa che se $(d(t)\vp(x))_i\neq 0$ allora $r_i>0$. Notando che $d(t)\vp(x)=\vp(x)+\wt \e(t)$ dove le coordinate di $\wt\e(t)$ hanno valutazione strettamente positiva questo mostra che se $(\vp(x))_i\neq 0$ allora $r_i>0$. Questo mostra che $\lim_{t\to0}g_n(t)\vp(x)=0$, ma
+\[g_n(t)\vp(x)=\vp(g_n(t)x)\implies 0=\lim_{t\to0}g_n(t)\vp(x)=\vp\pa{\lim_{t\to 0}g_n(t)x}=\vp(z),\]
+che \`e quello che volevamo mostrare.
+\end{enumerate}
+\setlength{\leftmargini}{0.5cm}
+
+
+
+\item[$\boxed{\text{Conclusione}}$] 
+
+
+
+Per concludere mostriamo che $z\notin \orb x$.
+
+Sappiamo che $\orb x$ \`e aperto in $\ol{\orb x}$ quindi $\ol{\orb x}\bs \orb x$ \`e chiuso. Dato che $y\in \ol{\orb x}\bs \orb x$ si ha che $\orb y\subseteq \ol{\orb x}\bs \orb x$ ($\ol{\orb x}$ \`e $G$-invariante e $\orb y\cap \orb x\neq \emptyset$ implicherebbe $y\in \orb x$). Passando alla chiusura questo mostra che $z\in \ol{\orb y}\subseteq \ol{\orb x}\bs \orb x$ e quindi in particolare $z\notin \orb x$.
+\end{enumerate}
+\setlength{\leftmargini}{0.5cm}
+
+\end{solution}
+
+
+\end{document}
