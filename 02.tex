@@ -199,6 +199,42 @@ Notiamo che $\vp$ \`e morfismo se e solo se $\psi$ lo \`e. Se $\psi(X)\subseteq 
 Viceversa se un morfismo di algebre sollevo e bla bla bla trovo morfismo di variet\`a.
 \end{proof}
 
+\begin{proposition}\label{RmPuntiEMassimaliSonoLaStessaCosa}
+Siano $X$ e $Y$ variet\`a affini immerse ($X\subseteq \K^n$, $Y\subseteq \K^m$). Abbiamo appena visto che un morfismo $\vp:X\to Y$ corrisponde ad una mappa di algebre
+\[\psi:\funcDef{\K[Y]}{\K[X]}{f}{f\circ \vp}\]
+Si ha che
+\[\vp(\al)=\beta\coimplies \psi\ii(\mf_\al)=\mf_\beta\]
+dove $\mf_\al$ e $\mf_\beta$ sono i massimali che corrispondono ai rispettivi punti.
+\end{proposition}
+\begin{proof}
+Basta notare che le seguenti sono equivalenze
+\begin{gather*}
+    f\in\psi\ii(\mf_\al)\\
+    f\circ \vp\in \mf_\al\\
+    (f\circ \vp)(\al)=0\\
+    f(\vp(\al))=0\\
+    f\in \mf_{\vp(\al)}=\mf_\beta
+\end{gather*}
+\end{proof}
+
+\begin{proposition}\label{PrImmagineChiusaSeTraAlgebraSurgettiva}
+Siano $X$ e $Y$ affini e sia $\vp:X\to Y$ un morfismo. Se $\psi:\K[Y]\to \K[X]$ \`e surgettiva allora $\vp(X)$ \`e chiuso.
+\end{proposition}
+\begin{proof}
+Sia $I=\ker\psi$ e mostriamo che $\vp(X)=V(I)$:
+\setlength{\leftmargini}{0cm}
+\begin{itemize}
+\item[$\boxed{\subseteq}$] Se $x\in X$ e $f\in I$ allora $f(\vp(x))=\psi(f)(x)=0$, quindi $\vp(x)\in V(I)$.
+\item[$\boxed{\supseteq}$] Sia $\beta\in V(I)$, allora $I\subseteq \mf_\beta$. Notiamo che $\psi:\K[Y]/I\to \K[X]$ \`e un isomorfismo e sotto questo isomorfismo
+\[\psi(\mf_\beta)=\mf_\beta/I,\]
+dunque
+\[\K\cong \frac{\K[Y]}{\mf_\beta}\overset\psi\cong\frac{\K[X]}{\psi(\mf_\beta)}.\]
+Abbiamo quindi mostrato che $\psi(\mf_\beta)$ \`e un massimale, dunque per il Nullstellensatz esiste $\al\in X$ tale che $\psi(\mf_\beta)=\mf_\al$. Concludiamo notando che
+\[\psi(\mf_\beta)=\mf_\al\implies \psi\ii(\mf_\al)=\mf_\beta\coimplies \vp(\al)=\beta.\]
+\end{itemize}
+\setlength{\leftmargini}{0.5cm}
+\end{proof}
+
 
 \begin{definition}[Prodotto]
 Siano $X,Y$ variet\`a affini immerse in $\K^\ell_x$ e $\K^m_y$ rispettivamente, allora $X\times Y\subseteq \K^{\ell+m}_{(x,y)}$ \`e una variet\`a, data da
@@ -237,6 +273,7 @@ Se $X,Y,Z$ variet\`a affini e morfismi $f:X\to Z$ e $g:Y\to Z$, definiamo $W=\cp
 \begin{remark}
 Notiamo che $W$ \`e un chiuso, infatti \`e luogo di zeri di $f(x)-g(y)$ in $X\times Y$. Osserviamo per\`o che queste equazioni non sono ridotte a priori\footnote{ed \`e naturale che sia cos\`i. Intersezioni sono in particolare prodotti fibrati e quando intersechiamo due variet\`a \`e naturale trovare delle molteplicit\`a, per esempio $V(x)\cap V(y-x^2)$ in $\A^2$ \`e il punto $(0,0)$ ma con molteplicit\`a 2.}.
 \end{remark}
+
 
 
 Concludiamo la sezione citando il seguente teorema che useremo ripetutamente

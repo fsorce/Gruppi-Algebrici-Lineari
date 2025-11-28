@@ -34,6 +34,87 @@ Il gruppo
 quindi questo gruppo \`e isomorfo a $(\K,+)$, dando una realizzazione di questo come gruppo algebrico lineare.
 \end{example}
 
+
+\begin{remark}
+La propriet\`a associativa si pu\`o esprimere tramite il diagramma
+% https://q.uiver.app/#q=WzAsNCxbMCwwLCJHXFx0aW1lcyBHXFx0aW1lcyBHIl0sWzEsMCwiR1xcdGltZXMgRyJdLFsxLDEsIkciXSxbMCwxLCJHXFx0aW1lcyBHIl0sWzMsMiwiXFxtdSJdLFsxLDIsIlxcbXUiXSxbMCwxLCJpZF9HXFx0aW1lc1xcbXUiXSxbMCwzLCJcXG11XFx0aW1lcyBpZF9HIiwyXV0=
+\[\begin{tikzcd}
+	{G\times G\times G} & {G\times G} \\
+	{G\times G} & G
+	\arrow["{id_G\times\mu}", from=1-1, to=1-2]
+	\arrow["{\mu\times id_G}"', from=1-1, to=2-1]
+	\arrow["\mu", from=1-2, to=2-2]
+	\arrow["\mu", from=2-1, to=2-2]
+\end{tikzcd}\]
+Quindi abbiamo una propriet\`a analoga sulla comoltiplicazione $\mu^\ast$ considerando il diagramma indotto.
+\end{remark}
+
+\begin{proposition}\label{PrMorfismoTraGruppiAlgebriciAffiniHaImmagineChiusa}
+Se $G$ e $H$ sono gruppi algebrici affini con $\vp:G\to H$ omomorfismo di gruppi algebrici allora $\vp(G)$ \`e un chiuso di $H$, e quindi a sua volta un gruppo algebrico affine.
+\end{proposition}
+\begin{proof}
+Sia $T=\vp(G)\subseteq H$. Vogliamo mostrare che $T=\ol T\subseteq H$.  Notiamo che $\ol T$ \`e un sottogruppo di $H$:
+\setlength{\leftmargini}{0cm}
+\begin{itemize}
+\item[$\boxed{i(\ol T)=\ol T}$] Osserviamo che $i(T)\subseteq T$ in quanto sottogruppo. Per continuit\`a di $i$ abbiamo dunque che $i\ii(\ol T)\supseteq \ol T$, e quindi $i(\ol T)\subseteq \ol T$ come voluto.
+\item[$\boxed{\mu(\ol T\times \ol T)=\ol T}$] Per ogni $t\in T$ sappiamo che $\mu(t,T)\subseteq T$, dunque $t\ii\cdot \ol T=\mu(t,\cdot)\ii(\ol T)\supseteq \ol T$, ovvero $t\ol T\subseteq \ol T$ per ogni $t\in T$. Se ora prendiamo $t'\in \ol T$ questo contenimento mostra in particolare che $t't\in \ol T$ per ogni $t\in T$, cio\`e $\mu(t',T)\subseteq \ol T$, da cui $(t')\ii\cdot \ol T\supseteq \ol T$ e quindi $t'\ol T\subseteq \ol T$ per ogni $t'\in \ol T$, cio\`e $\mu(\ol T\times \ol T)\subseteq \ol T$.
+\end{itemize}
+\setlength{\leftmargini}{0.5cm}
+
+Per il teorema (\ref{ThDominantiAperteSuAperto}), $T\supseteq U$ per $U$ aperto di $\ol T$. Dunque per ogni $t\in \ol T$, $tU\subseteq \ol T$.
+Poich\'e la moltiplicazione per $t$ \`e un omeomorfismo, $U$ e $tU$ sono aperti di $\ol T$, quindi per irriducibilit\`a $U\cap tU\neq \emptyset$, dunque esistono $g,h\in U$ tali che $g=th$, cio\`e $t=gh\ii\in T$ e dato che $t$ era un generico elemento di $T$ abbiamo finito.
+\end{proof}
+
+\subsection{Componente connessa dell'identit\`a}
+\begin{proposition}
+    Sia $G$ un gruppo algebrico affine e sia $G^0$ la componente connessa di $e_G$. Allora $G^0$ è un sottogruppo normale chiuso.
+\end{proposition}
+\begin{proof}
+    Sicuramente $G^0$ è chiuso in quanto componente connessa. La variet\`a $G^0\times G^0$ è connessa\footnote{topologia di Zariski \`e meno fine della topologia prodotto.} e la mappa \[ m^0=\left.m\right|_{G^0\times G^0}\colon G^0\times G^0 \longrightarrow G\] ha immagine connessa in $G$ per continuit\`a. Poiché $e_G$ è nell'immagine di $m^0$, si ha $\imm(m^0)\subseteq G^0$, cio\`e $G^0$ \`e un sottogruppo. 
+    \medskip
+    
+    \noindent
+    Mostriamo ora la normalit\`a: dato $g$ in $G$, si ha \[gG^0g^{-1}\subseteq G^0,\]
+    infatti la mappa
+    \[AD_g:\funcDef{G^0}{G}{x}{gxg\ii}\]
+    \`e continua e fissa $e_G$, quindi $\imm(AD_g)\subset G^0$.
+\end{proof}
+
+\begin{exercise}
+    Il sottogruppo $G^0$ è irriducibile.
+\end{exercise}
+
+\begin{remark}\label{ReInGruppoComponentiConnesseSonoIrriducibili}
+In un gruppo algebrico affine le componenti connesse sono irriducibili.
+\end{remark}
+
+
+\begin{remark}\label{RmDecomposizioneG0}
+    Se $G$ è un gruppo algebrico, allora esistono $g_1,\ldots,g_k$ in $G$ tali che \[G=G^0 \cup G^0 g_1 \cup \ldots\cup G^0g_k.\]
+    La precedente è una decomposizione in componenti connesse e irriducibili.
+\end{remark}
+
+%Possiamo adesso dimostrare un importante risultato sugli omomorfismi di gruppi algebrici
+
+%\begin{proposition}\label{PrMorfismoTraGruppiAlgebriciAffiniHaImmagineChiusa}
+%    Se $\varphi\colon G \to H$ è un morfismo di gruppi algebrici affini, allora $\varphi(G)$ è un chiuso di $H$.
+%\end{proposition}
+%\begin{proof}
+%    Sfruttando la decomposizione dell'osservazione (\ref{RmDecomposizioneG0}), abbiamo
+%    \[\varphi(G)=\varphi(G^0) \cup \varphi(G^0 g_1) \cup \ldots\cup \varphi(G^0g_k),\]
+%    quindi basta mostrare che $\varphi(G^0)$ è chiuso. In particolare, possiamo ricondurci al caso $G=G^0$. \\
+%    Il sottogruppo $X=\overline{\varphi(G)}$ di $H$ è irriducibile per continuit\`a di $\vp$, quindi basta mostrare che $X=\vp(G)$.
+    
+    
+%    Per il teorema (\ref{ThDominantiAperteSuAperto}) esiste un aperto $U$ di $X$ contenuto in $\varphi(G)$. Poiché $X$ e $\varphi(G)$ sono sottogruppi di $H$, si ha \[U\cdot U \subseteq \varphi(G)\subseteq X.\]
+%    Se $x$ è un elemento di $X$, poiché $i(U)=U^{-1}$ è un aperto di $X$, anche $xU^{-1}$ è un aperto di $X$. Per irriducibilità di $X$, si ha $U\cap xU^{-1} \ne \emptyset$, quindi esistono $u,v$ in $U$ tali che 
+%    \[u=xv\ii\coimplies x=uv,\] da cui $X\subseteq U\cdot U \subseteq \varphi(G)\subseteq X$ e abbiamo l'uguaglianza cercata.
+%\end{proof}
+
+
+
+\section{Rappresentazioni regolari}
+
 Avendo a disposizione gruppi cerchiamo di capire le loro azioni e rappresentazioni.
 
 \begin{definition}[Azione regolare di gruppo algebrico]
@@ -67,26 +148,12 @@ Se $\sigma$ \`e una azione $G\times X\to X$ allora
 
 
 \begin{remark}
-La propriet\`a associativa si pu\`o esprimere tramite il diagramma
-% https://q.uiver.app/#q=WzAsNCxbMCwwLCJHXFx0aW1lcyBHXFx0aW1lcyBHIl0sWzEsMCwiR1xcdGltZXMgRyJdLFsxLDEsIkciXSxbMCwxLCJHXFx0aW1lcyBHIl0sWzMsMiwiXFxtdSJdLFsxLDIsIlxcbXUiXSxbMCwxLCJpZF9HXFx0aW1lc1xcbXUiXSxbMCwzLCJcXG11XFx0aW1lcyBpZF9HIiwyXV0=
-\[\begin{tikzcd}
-	{G\times G\times G} & {G\times G} \\
-	{G\times G} & G
-	\arrow["{id_G\times\mu}", from=1-1, to=1-2]
-	\arrow["{\mu\times id_G}"', from=1-1, to=2-1]
-	\arrow["\mu", from=1-2, to=2-2]
-	\arrow["\mu", from=2-1, to=2-2]
-\end{tikzcd}\]
-Quindi abbiamo una propriet\`a analoga sulla comoltiplicazione $\mu^\ast$ considerando il diagramma indotto.
-\end{remark}
-
-\begin{remark}
 Se $X=V$ \`e una rappresentazione regolare finito dimensionale e $\sigma:G\times V\to V$ abbiamo un omomorfismo di algebre
 \[\sigma^\ast:\K[V]\to \K[G]\otimes\K[V]\]
 Ricordiamo per\`o che $\K[V]=SV^\ast$, quindi possiamo considerare equivalentemente la restrizione $\sigma^\ast$ a $V^\ast\subseteq SV^\ast$.
 \end{remark}
 
-\begin{lemma}
+\begin{lemma}\label{LmRepresentationActsLinearly}
 $\sigma^\ast(V^\ast)\subseteq \K[G]\otimes V^\ast$.
 \end{lemma}
 \begin{proof}
@@ -98,9 +165,12 @@ Sia $e_1,\cdots, e_n$ una base di $V$ e $\vp_1,\cdots, \vp_n$ la base duale. Se 
 \end{align*}
 dove $x_{kj}\in \K[G]$ \`e la funzione che per ogni $g$ restituisce $g_{kj}$ (che \`e regolare perch\'e la rappresentazione lo \`e).
 \end{proof}
+\begin{remark}
+Il lemma semplicemente afferma che per ogni $g\in G$, se $h\in V^\ast$ allora $v\mapsto h(gv)$ \`e ancora un funzionale su $V$.
+\end{remark}
 
 
-\begin{lemma}
+\begin{lemma}\label{LmAnelloCoordinateERappresentazioneRegolare}
 Sia $G$ che agisce su $X$ in modo regolare con entrambi affini. Allora
 \begin{itemize}
     \item $\K[X]$ \`e una rappresentazione di $G$ con azione data da
@@ -113,113 +183,25 @@ Sia $G$ che agisce su $X$ in modo regolare con entrambi affini. Allora
 Il primo punto \`e ovvio e l'ultimo \`e il caso particolare $X=G$ e $G\acts G$ per traslazione. Mostriamo dunque che $G\acts \K[X]$ \`e regolare.
 \setlength{\leftmargini}{0cm}
 \begin{itemize}
-\item[$\boxed{\dim \ps{Gf}<\infty}$] Sia $f\in \K[X]$. Notiamo che $\sigma(f)=\sum_{i=1}^k \al_i\otimes \beta_i$ con somma finita e che per definizione
-\[f(gx)=\sum_i \al_i(g)\beta_i(x),\]
+\item[$\boxed{\dim \ps{Gf}<\infty}$] Sia $f\in \K[X]$. Ponendo $\sigma^\ast(f)=\sum_{i=1}^k \al_i\otimes \beta_i$ con somma finita, si ha
+\[f(gx)=f\circ\sigma(g,x)=\sigma^\ast(f)(g,x)=\sum_i \al_i(g)\beta_i(x),\]
 quindi
 \[(gf)(x)=f(g\ii x)=\sum \al_i(g\ii)\beta_i(x)\coimplies gf=\sum_{i=1}^k \al_i(g\ii)\beta_i\in \ps{\beta_1,\cdots,\beta_k}\]
 Questo mostra che $\dim\ps{Gf}$ \`e finita.
-\item[$\boxed{\text{reg. su fin.dim.}}$] Vogliamo dimostrare che su $W\subseteq \K[X]$ di dimensione finita l'azione di $G$ \`e regolare, cio\`e che $\sigma^\ast\res{\K[W]}$ \`e un omomorfismo di $\K$-algebre con codominio $k[G]\otimes k[W]$. Concretamente, per ogni $\vp\in W^\ast$ (generatori di $SW^\ast=\K[W]$) mostriamo che $\psi=\sigma^\ast\vp$ data da $\psi(g,f)=\vp(gf)$ \`e regolare su $G\times W$.
+\item[$\boxed{\text{reg. su fin.dim.}}$] Vogliamo dimostrare che su $W\subseteq \K[X]$ di dimensione finita l'azione di $G$ \`e regolare, cio\`e che $\sigma^\ast\res{\K[W]}$ \`e un omomorfismo di $\K$-algebre con codominio $\K[G]\otimes \K[W]=\K[G\times W]$. Notiamo che basta verificare che $\sigma^\ast\vp$ \`e regolare per una classe di $\vp$ che generano $\K[W]$, per esempio $\vp\in W^\ast$. Vogliamo dunque mostrare che $\psi=\sigma^\ast\vp$ data da $\psi(g,f)=\vp(gf)$ \`e regolare su $G\times W$ per ogni $\vp\in W^\ast$.
 
-Sia $f_1,\cdots, f_k$ una base di $W$ e $f_1^\ast,\cdots,f_k^\ast$ la relativa base duale di $W^\ast$. Poich\'e sono una base $\sigma^\ast(f_i)=\sum_j\al_{ij}\otimes f_j$. Ponendo $\vp(f_i)=\la_i$ si ha
-\[\psi(g,f)=\vp(\sum \mu_i gf_i)=\vp\pa{\sum f_i^\ast(f)\al_{ij}(g\ii)f_j}=\sum_{j}\pa{\sum_i\al_{ij}(i(g))f_i^\ast(f)}\la_j,\]
-che \`e regolare su $G\times W$ in quanto $i:G\to G$ \`e l'inversa (morfismo) e $f_i^\ast:W^\ast\subseteq \K[W]$.
+Sia $f_1,\cdots, f_k$ una base di $W$ e $f_1^\ast,\cdots,f_k^\ast$ la relativa base duale di $W^\ast$. Poich\'e sono una base e $W$ \`e $G$-stabile, $\sigma^\ast(f_i)=\sum_j\al_{ij}\otimes f_j$. Ponendo $\vp(f_i)=\la_i$ si ha
+\begin{align*}
+\psi(g,f)=&\vp\pa{g\cdot\sum_{i=1}^k f_i^\ast(f)f_i}=\vp\pa{\sum_{i=1}^k \sum_{j=1}^k f_i^\ast(f)\al_{ij}(g\ii)f_j}=\\
+=&\sum_{j}\pa{\sum_i\al_{ij}(i(g))f_i^\ast(f)}\la_j,
+\end{align*}
+che \`e regolare su $G\times W$ in quanto $i:G\to G$ \`e l'inversa (morfismo) e $f_i^\ast\in W^\ast\subseteq \K[W]$.
 \end{itemize}
 \setlength{\leftmargini}{0.5cm}
 \end{proof}
-
-\subsection{Componente connessa dell'identit\`a}
-\begin{proposition}
-    Sia $G$ un gruppo algebrico affine e sia $G^0$ la componente connessa di $e_G$. Allora $G^0$ è un sottogruppo normale chiuso.
-\end{proposition}
-\begin{proof}
-    Sicuramente $G^0$ è chiuso in quanto componente connessa. La variet\`a $G^0\times G^0$ è connessa\footnote{topologia di Zariski \`e meno fine della topologia prodotto.} e la mappa \[ m^0=\left.m\right|_{G^0\times G^0}\colon G^0\times G^0 \longrightarrow G\] ha immagine connessa in $G$ per continuit\`a. Poiché $e_G$ è nell'immagine di $m^0$, si ha $\imm(m^0)\subseteq G^0$, cio\`e $G^0$ \`e un sottogruppo. 
-    \medskip
-    
-    \noindent
-    Mostriamo ora la normalit\`a: dato $g$ in $G$, si ha \[gG^0g^{-1}\subseteq G^0,\]
-    infatti la mappa
-    \[AD_g:\funcDef{G^0}{G}{x}{gxg\ii}\]
-    \`e continua e fissa $e_G$, quindi $\imm(AD_g)\subset G^0$.
-\end{proof}
-
-\begin{exercise}
-    Il sottogruppo $G^0$ è irriducibile.
-\end{exercise}
-
-\begin{remark}\label{ReInGruppoComponentiConnesseSonoIrriducibili}
-In un gruppo algebrico affine le componenti connesse sono irriducibili.
-\end{remark}
-
-
-\begin{remark}\label{RmDecomposizioneG0}
-    Se $G$ è un gruppo algebrico, allora esistono $g_1,\ldots,g_k$ in $G$ tali che \[G=G^0 \cup G^0 g_1 \cup \ldots\cup G^0g_k.\]
-    La precedente è una decomposizione in componenti connesse e irriducibili.
-\end{remark}
-
-Possiamo adesso dimostrare un importante risultato sugli omomorfismi di gruppi algebrici
-
-\begin{proposition}\label{PrMorfismoTraGruppiAlgebriciAffiniHaImmagineChiusa}
-    Se $\varphi\colon G \to H$ è un morfismo di gruppi algebrici affini, allora $\varphi(G)$ è un chiuso di $H$.
-\end{proposition}
-\begin{proof}
-    Sfruttando la decomposizione dell'osservazione (\ref{RmDecomposizioneG0}), abbiamo
-    \[\varphi(G)=\varphi(G^0) \cup \varphi(G^0 g_1) \cup \ldots\cup \varphi(G^0g_k),\]
-    quindi basta mostrare che $\varphi(G^0)$ è chiuso. In particolare, possiamo ricondurci al caso $G=G^0$. \\
-    Il sottogruppo $X=\overline{\varphi(G)}$ di $H$ è irriducibile per continuit\`a di $\vp$, quindi basta mostrare che $X=\vp(G)$.
-    
-    
-    Per il teorema (\ref{ThDominantiAperteSuAperto}) esiste un aperto $U$ di $X$ contenuto in $\varphi(G)$. Poiché $X$ e $\varphi(G)$ sono sottogruppi di $H$, si ha \[U\cdot U \subseteq \varphi(G)\subseteq X.\]
-    Se $x$ è un elemento di $X$, poiché $i(U)=U^{-1}$ è un aperto di $X$, anche $xU^{-1}$ è un aperto di $X$. Per irriducibilità di $X$, si ha $U\cap xU^{-1} \ne \emptyset$, quindi esistono $u,v$ in $U$ tali che 
-    \[u=xv\ii\coimplies x=uv,\] da cui $X\subseteq U\cdot U \subseteq \varphi(G)\subseteq X$ e abbiamo l'uguaglianza cercata.
-\end{proof}
-
 
 
 \section{Gruppi algebrici affini sono lineari}
-\begin{remark}[Punti e ideali massimali sono la stessa cosa]\label{RmPuntiEMassimaliSonoLaStessaCosa}
-Nella situazione
-% https://q.uiver.app/#q=WzAsNCxbMCwwLCJYIl0sWzAsMSwiXFxLXm4iXSxbMSwxLCJcXEtebSJdLFsxLDAsIlkiXSxbMCwzLCJcXHZwIl0sWzAsMSwiXFxzdWJzZXRlcSIsMyx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFszLDIsIlxcc3Vic2V0ZXEiLDMseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJub25lIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19XV0=
-\[\begin{tikzcd}
-	X & Y \\
-	{\K^n} & {\K^m}
-	\arrow["\vp", from=1-1, to=1-2]
-	\arrow["\subseteq"{marking, allow upside down}, draw=none, from=1-1, to=2-1]
-	\arrow["\subseteq"{marking, allow upside down}, draw=none, from=1-2, to=2-2]
-\end{tikzcd}\]
-abbiamo una corrispondente mappa di algebre
-\[\psi:\funcDef{\K[Y]}{\K[X]}{f}{f\circ \vp}\]
-Notiamo che
-\[\vp(\al)=\beta\coimplies \psi\ii(\mf_\al)=\mf_\beta\]
-dove $\mf_\al$ e $\mf_\beta$ sono i massimali che corrispondono ai rispettivi punti.
-\end{remark}
-\begin{proof}
-Basta notare che le seguenti sono equivalenze
-\begin{gather*}
-    f\in\psi\ii(\mf_\al)\\
-    f\circ \vp\in \mf_\al\\
-    (f\circ \vp)(\al)=0\\
-    f(\vp(\al))=0\\
-    f\in \mf_{\vp(\al)}=\mf_\beta
-\end{gather*}
-\end{proof}
-
-\begin{proposition}\label{PrImmagineChiusaSeTraAlgebraSurgettiva}
-Siano $X$ e $Y$ affini e sia $\vp:X\to Y$ un morfismo. Se $\psi:\K[Y]\to \K[X]$ \`e surgettiva allora $\vp(X)$ \`e chiuso.
-\end{proposition}
-\begin{proof}
-Sia $I=\ker\psi$ e mostriamo che $\vp(X)=V(I)$:
-\setlength{\leftmargini}{0cm}
-\begin{itemize}
-\item[$\boxed{\subseteq}$] Se $x\in X$ e $f\in I$ allora $f(\vp(x))=\psi(f)(x)=0$, quindi $\vp(x)\in V(I)$.
-\item[$\boxed{\supseteq}$] Sia $\beta\in V(I)$, allora $I\subseteq \mf_\beta$. Notiamo che $\psi:\K[Y]/I\to \K[X]$ \`e un isomorfismo e sotto questo isomorfismo
-\[\psi(\mf_\beta)=\mf_\beta/I,\]
-dunque
-\[\K\cong \frac{\K[Y]}{\mf_\beta}\overset\psi\cong\frac{\K[X]}{\psi(\mf_\beta)}.\]
-Abbiamo quindi mostrato che $\psi(\mf_\beta)$ \`e un massimale, dunque per il Nullstellensatz esiste $\al\in X$ tale che $\psi(\mf_\beta)=\mf_\al$. Concludiamo notando che
-\[\psi(\mf_\beta)=\mf_\al\implies \psi\ii(\mf_\al)=\mf_\beta\coimplies \vp(\al)=\beta.\]
-\end{itemize}
-\setlength{\leftmargini}{0.5cm}
-\end{proof}
 
 \begin{proposition}\label{PrMappaTraAffiniGequivarianteSSeMappaTraAlgebreGEquivariante}
 Se $X,Y$ affini, $\vp:X\to Y$ e $\psi:\K[Y]\to \K[X]$ mappe corrispondenti, se $G$ agisce su $X$ e $Y$ allora si ha che $\vp$ \`e $G$-equivariante se e solo se $\psi$ \`e $G$-equivariante.
@@ -244,8 +226,10 @@ Diamo le due implicazioni:
 \begin{theorem}
 Se $X$ \`e affine e $G$ agisce su $X$ allora esiste una rappresentazione di dimensione finita $V$ di $G$ e $i:X\to V$ iniettiva che \`e $G$-equivariante
 \end{theorem}
-\begin{proof}
-ESERCIZIO
+\begin{proof}[Dimostrazione (per Esercizio)]
+Scriviamo $\K[X]=\frac{\K[x_1,\cdots, x_n]}{I}$ per qualche ideale $I$. Chiamiamo $f_1,\cdots, f_n$ le classi di $x_1,\cdots, x_n$ in $\K[X]$. Poich\'e $\K[X]$ \`e una rappresentazione regolare di $G$ per (\ref{LmAnelloCoordinateERappresentazioneRegolare}), possiamo considerare $H\subseteq \K[X]$ sottorappresentazione di dimensione finita che contiene $f_1,\cdots, f_n$. Sia $V=H^\ast$ lo spazio vettoriale duale (che ha anello delle coordinate $SH$).
+
+La mappa di algebre $SH\to \K[X]$, che \`e evidentemente $G$-equivariante, corrisponde al morfismo $X\to V$ che ad un punto $x$ associa il funzionale $f\mapsto f(x)$ per $f\in H$. Questo morfismo \`e equivariante per la proposizione precedente ed \`e iniettivo perch\'e se $x$ e $y$ hanno la stessa immagine allora $f_i(x)=f_i(y)$ per ogni $i$, ma $f_i$ \`e la classe di $x_i$ in $\K[X]$, quindi questo significa che $x$ e $y$ sono lo stesso punto di $X\subseteq \K^n$.
 \end{proof}
 
 \begin{theorem}
@@ -274,12 +258,4 @@ Questo mostra che i generatori $f_j$ di $\K[G]$ appartengono all'immagine di $\p
 \end{proof}
 
 
-\begin{proposition}
-Se $G$ e $H$ gruppi algebrici affini con $\vp:G\to H$ morfismo di gruppi algebrici allora $\vp(G)$ \`e un chiuso di $H$.
-\end{proposition}
-\begin{proof}
-Sia $T=\vp(G)\subseteq H$. Vogliamo mostrare che $T=\ol T\subseteq H$. Per il teorema (\ref{ThDominantiAperteSuAperto}), $T\supseteq U$ per $U$ aperto di $\ol T$. Notiamo che $\ol T$ \`e un sottogruppo di $H$. Dunque per ogni $t\in \ol T$, $tU\subseteq \ol T$.
-
-Poich\'e la moltiplicazione per $t$ \`e un omeomorfismo, $U$ e $tU$ sono aperti di $\ol T$, quindi per irriducibilit\`a $U\cap tU\neq \emptyset$, dunque esistono $g,h\in U$ tali che $g=th$, cio\`e $t=gh\ii\in T$ e dato che $t$ era un generico elemento di $T$ abbiamo finito.
-\end{proof}
 

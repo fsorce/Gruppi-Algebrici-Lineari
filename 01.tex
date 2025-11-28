@@ -342,3 +342,23 @@ quindi possiamo scegliere come rappresentazione supplementare
 \[U=\bigoplus_{\smat{i\in M\ t.c.\\ S_i\cap W= 0}}S_i.\]
 \end{proof}
 
+
+
+\begin{theorem}\label{ThSottoalgebraAssociativaDiEndomorfismiDiSempliceETuttiGliEndomorfismi}
+Sia $\K$ algebricamente chiuso, $V$ spazio vettoriale di dimensione finita, $A\subseteq \End_\K(V)$ che sia una $\K$-algebra associativa. Se $V$ \`e un $A$-modulo semplice allora $A=\End_\K(V)$.
+\end{theorem}
+\begin{proof}
+Sia $v_1,\cdots, v_n$ una base di $V$. Se $v=(v_1,\cdots, v_n)\in V^n$ allora vogliamo mostrare che $\cpa{a(v)\mid a\in A}=V^n\equiv \End_\K(V)$.
+
+Poich\'e $V$ \`e semplice, $V^n$ \`e somma di rappresentazioni semplici, quindi per la proposizione (\ref{PrSommaSempliciESommaDirettaSemplici}) si ha che $V^n$ \`e semisemplice e quindi completamente riducibile. Possiamo allora scrivere $V^n=Av\oplus P$ per $P$ un $A$-sottomodulo. Sia $\pi_P:V^n\to V^n$ la proiezione su $P$ e notiamo che essa ammette una decomposizione a blocchi
+\[\pi_P=(\al_{ij})_{i,j}\quad\text{ per degli endomorfismi }\al_{ij}:V\to V\]
+dove il dominio di $\al_{ij}$ \`e la $j$-esima copia di $V$ in $V^n$ e il codominio \`e l'$i$-esima copia.
+
+Quindi $\al_{ij}\in \End_A(V)$ con $V$ spazio vettoriale su $\K$ algebricamente chiuso. Per il lemma di Schur (\ref{LmSchur}) questi endomorfismi sono le costanti.
+
+Ricordando che $V^n=Av\oplus P$, si ha necessariamente $\pi_P(v)=0$ per definizione di $\pi_P$, quindi per ogni $i$ abbiamo $\sum \al_{ij}v_j=0$. Poich\'e gli $v_j$ sono una base e gli endomorfismi $\al_{ij}$ sono costanti, per indipendenza lineare questo significa che per ogni $i$ e ogni $j$ si ha $\al_{ij}=0$. Segue dunque che $\pi_P=0$ e quindi $P=\imm \pi_P=\cpa{0}$, cio\`e $V^n=Av$.
+\end{proof}
+
+\begin{exercise}
+Trova un controesempio per $\K$ non algebricamente chiuso.
+\end{exercise}
